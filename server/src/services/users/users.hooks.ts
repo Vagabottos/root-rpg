@@ -1,16 +1,36 @@
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
+import { Conflict } from '@feathersjs/errors';
+
+import { HookContext } from '../../app';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = feathersAuthentication.hooks;
 const { hashPassword, protect } = local.hooks;
+
+const duplicateEmail = async (context: HookContext): Promise<HookContext> => {
+  const { email } = context.data;
+
+  const { total } = await  context.service.find({ 
+    query: {
+      email,
+      $limit: 0
+    }
+  });
+
+  if(total > 0) {
+    throw new Conflict('Email already registered.');
+  }
+
+  return context;
+};
 
 export default {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ hashPassword('password') ],
+    create: [ duplicateEmail, hashPassword('password') ],
     update: [ hashPassword('password'),  authenticate('jwt') ],
     patch: [ hashPassword('password'),  authenticate('jwt') ],
     remove: [ authenticate('jwt') ]

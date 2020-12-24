@@ -1,0 +1,71 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-row>
+      <ion-col class="login-container">
+        <form [formGroup]="authForm">
+          <ion-card>
+
+            <ion-card-header>
+              <ion-card-title>
+                {{ isRegistering ? 'Sign Up' : 'Log In' }}
+              </ion-card-title>
+            </ion-card-header>
+    
+            <ion-card-content>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label position="stacked">Email</ion-label>
+                  <ion-input type="email" formControlName="email"></ion-input>
+                </ion-item>
+
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of validationMessages.email">
+                    <div class="error-message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
+                      <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+      
+                <ion-item>
+                  <ion-label position="stacked">Password</ion-label>
+                  <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of validationMessages.password">
+                    <div class="error-message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
+                      <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+
+                <ion-item lines="none">
+                  <ion-row class="action-row">
+                    <ion-col>
+                      <ion-button color="secondary" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
+                        {{ isRegistering ? 'Log in instead?' : 'Sign up instead?' }}
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col class="ion-text-right">
+                      <ion-button color="primary" [disabled]="isDoing || authForm.invalid" (click)="auth()">
+                        <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
+                        {{ isRegistering ? 'Sign Up' : 'Log in' }}
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              
+            </ion-card-content>
+
+          </ion-card>
+        </form>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

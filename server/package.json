@@ -1,13 +1,9 @@
 {
-  "name": "server",
+  "name": "root-rpg-server",
   "description": "root rpg server",
   "version": "0.0.0",
-  "homepage": "",
   "private": true,
   "main": "src",
-  "keywords": [
-    "feathers"
-  ],
   "author": {
     "name": "Kyle Kemp",
     "email": "kyle@seiyria.com"
@@ -24,11 +20,10 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run lint && npm run compile && npm run mocha",
-    "lint": "eslint src/. test/. --config .eslintrc.json --ext .ts --fix",
+    "test": "npm run lint && npm run compile",
+    "lint": "eslint src/. --config .eslintrc.json --ext .ts --fix",
     "start:dev": "ts-node-dev --no-notify src/",
     "start": "npm run compile && node lib/",
-    "mocha": "ts-mocha \"test/**/*.ts\" --recursive --exit",
     "compile": "shx rm -rf lib/ && tsc"
   },
   "standard": {
@@ -63,14 +58,11 @@
     "@types/cors": "^2.8.9",
     "@types/helmet": "^4.0.0",
     "@types/jsonwebtoken": "^8.5.0",
-    "@types/mocha": "^8.2.0",
     "@types/mongodb": "^3.6.3",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
     "axios": "^0.21.1",
     "eslint": "^7.16.0",
-    "mocha": "^8.2.1",
-    "ts-mocha": "^8.0.0",
     "ts-node-dev": "^1.1.1"
   }
 }
