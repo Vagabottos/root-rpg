@@ -1,8 +1,9 @@
 import * as feathersAuthentication from '@feathersjs/authentication';
 import * as local from '@feathersjs/authentication-local';
+import { HookContext } from '@feathersjs/feathers';
+
 import { Conflict } from '@feathersjs/errors';
 
-import { HookContext } from '../../app';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = feathersAuthentication.hooks;
@@ -11,7 +12,7 @@ const { hashPassword, protect } = local.hooks;
 const duplicateEmail = async (context: HookContext): Promise<HookContext> => {
   const { email } = context.data;
 
-  const { total } = await  context.service.find({ 
+  const { total } = await  context.service.find({
     query: {
       email,
       $limit: 0
@@ -37,7 +38,7 @@ export default {
   },
 
   after: {
-    all: [ 
+    all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
       protect('password')
