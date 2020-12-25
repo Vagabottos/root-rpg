@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -12,7 +14,18 @@ const routes: Routes = [
   },
   {
     path: 'player',
-    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule)
+    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'gm',
+    loadChildren: () => import('./pages/gm/gm.module').then( m => m.GmPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { IUser } from '../models';
 
 import { APIService } from './api.service';
@@ -12,6 +13,10 @@ export class UserAPIService {
 
   private user = new BehaviorSubject<IUser>(null);
   public user$ = this.user.asObservable();
+
+  public get hasUser(): boolean {
+    return !!this.user.getValue();
+  }
 
   constructor(
     private api: APIService,
@@ -32,7 +37,10 @@ export class UserAPIService {
     return this.http.post(this.api.apiUrl('/authentication'), {
       strategy: 'local',
       ...args
-    });
+    }).pipe(tap(() => {
+      localStorage.setItem('email', args.email);
+      localStorage.setItem('password', args.password);
+    }));
   }
 
 }
