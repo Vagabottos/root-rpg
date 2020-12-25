@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { UserAPIService } from '../services/user.api.service';
 
 @Injectable({
@@ -23,15 +23,24 @@ export class AuthGuard implements CanActivate {
     const password = localStorage.getItem('password');
 
     return this.userAPI.login({ email, password })
-      .pipe(map(val => {
-        const retVal = !!val.user;
+      .pipe(
+        catchError(err => {
+          if (!err) { return; }
 
-        if (!retVal) {
           this.router.navigate(['/login']);
-          return false;
-        }
 
-        return true;
-      }));
+          return err;
+        }),
+        map(val => {
+          const retVal = !!val.user;
+
+          if (!retVal) {
+            this.router.navigate(['/login']);
+            return false;
+          }
+
+          return true;
+        })
+      );
   }
 }
