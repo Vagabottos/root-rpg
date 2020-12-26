@@ -1,0 +1,30 @@
+
+- name: Justice
+  desc: Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual. 
+
+- name: Discovery
+  desc: Advance when you encounter a new wonder or ruin in the forests.
+
+- name: Ambition
+  desc: Advance when you increase your reputation with any faction.
+
+- name: Clean paws
+  desc: Advance when you accomplish an illicit, criminal goal while maintaining a believable veneer of innocence.
+
+- name: Loyalty
+  desc: You're loyal to someone; name them. Advance when you obey their order at a great cost to yourself. 
+
+- name: Revenge
+  desc: Name your foe. Advance when you cause significant harm to them or their interests. 
+
+- name: Chaos
+  desc: Advance when you topple a tyrannical or dangerously overbearing figure or order.
+
+- name: Infamy
+  desc: Advance when you decrease your reputation with any faction.
+
+- name: Greed
+  desc: Advance when you secure a serious payday or treasure.
+
+- name: Wanderlust
+  desc: Advance when you finish a journey to a clearing.

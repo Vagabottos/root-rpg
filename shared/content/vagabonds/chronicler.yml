@@ -1,0 +1,108 @@
+
+archetype: The Chronicler
+
+description: You are a sage who honors history and the written word, keeper of lost, banned, or forbidden texts of truths the great Woodland powers would rather be forgotten.
+
+species:
+  - otter
+
+adjectives:
+  - fastidious
+  - rumpled
+  - proper
+  - colorful
+
+items:
+  - old scrolls
+  - letter of introduction
+  - small glasses
+  - vest with secret pockets
+
+demeanor:
+  - clumsy
+  - endearing
+  - sly
+  - thoughtful
+
+background:
+  - question: Where do you call home?
+    answers:
+      - text: _ clearing
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    answers:
+      - text: I seek the Woodland's secrets
+      - text: I swore an oath to record true, unbiased history
+      - text: I want to spread knowledge throughout the Woodland
+      - text: I aim to change the Woodland by sharing its history
+      - text: I crave adventure
+
+  - question: Who inspired your love of history?
+    answers:
+      - text: My parents
+      - text: An older sibling
+      - text: An old mentor
+      - text: A lover or friend
+      - text: A formal school
+
+  - question: Which faction have you served the most?
+  - question: With which faction have you earned a special enmity?
+
+drives:
+  - Justice
+  - Discovery
+  - Ambition
+  - Clean paws
+
+natures:
+  - Observer
+  - Activist
+
+connections:
+  - name: Partner
+    desc: _ and I exposed a dark secret of a faction, leading to a meaningful political change. What was it? And which member of that faction hates us for it?
+    mech: When you fill in this connection, you each mark 2-prestige with the faction you helped, and mark 2-notoriety with the faction you harmed. During play, if you are spotted together, then any prestige or notoriety gains with those factions are doubled for the two of you.
+
+  - name: Peer
+    desc: I think _ sees the truth of the world, and I value their perspective deeply. What kinds of information do they see that I often overlook?
+    mech: If you share information with them after **reading a tense situation**, you both benefit from the +1 for acting on the answers. If you **help** them while they **attempt a roguish feat**, you gain choices on the help move as if you had marked 2-exhaustion when you mark 1-exhaustion.
+
+stats:
+  charm: -1
+  cunning: +2
+  finesse: +1
+  luck: 0
+  might: 0
+
+feats:
+  - Counterfeit
+  - Disable Device
+  - Pick pocket
+
+skills:
+  - Confuse Senses
+  - Improvise
+  - Parry
+  - Trick Shot
+
+moves:
+  - name: The Worth of a Book
+    taken: true
+    text: When you **study your tomes and scrolls to discover old techniques or methods** to solve an intractable problem—curing a deadly disease, ending a drought, legally unseating a leader, etc—decide what you want to change and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to discover a path forward, including time taken, additional information needed, mentors or translators needed, facilities/tools needed, or the limits of your solution. When you fulfill the conditions, you gain whatever knowledge you were seeking—it’s up to you to put to use.
+
+  - name: An Eye for the Real Story
+    text: When you **read a tense situation**, mark an exhaustion—even on a miss—to spot a fellow observer who knows more than you might expect. Take a +1 ongoing to convince them to share their secrets with you when you get them in private.
+
+  - name: Search the Records
+    text: When you **examine the documents, records, or assorted notes of an important NPC (your call)**, roll with Cunning. On a hit, you discover evidence of their secrets; the GM will tell you who would pay for the information you've uncovered. On a 10+, you also take a 12+ instead of rolling the next time you try to figure them out. On a miss, your search yields terrible news—someone is acting against you or your interests in an unexpected arena.
+
+  - name: Loremaster
+    text: When you **consult your knowledge in order to understand a political conflict**, roll with Cunning. On a hit, the GM tells you what information you remember that completes your understanding of the messy situation. On a 10+, you can ask a followup question; the GM will answer honestly. On a miss, something about the situation doesn't fit the history—the GM will tell you what has radically shifted.
+
+  - name: Good Advice
+    text: When you **offer an NPC advice about a sticky situation**, offer them the best advice you've got and roll with cunning. On a hit, they see the wisdom of your suggestion; they have to mark exhaustion or incorporate your advice into their plans. On a 7-9, you let something about your own plans or allegiances slip as you try to help them out. On a miss, the advice angers or offends them; the GM will tell you what local custom you’ve overstepped with your meddling.
+
+  - name: Dedicated Scholar
+    text: Take an extra box of exhaustion. When you acquire a new tome or scroll documenting the history of the Woodland, clear your exhaustion track.

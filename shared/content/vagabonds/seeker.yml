@@ -1,0 +1,125 @@
+
+archetype: The Seeker
+
+description: You are an explorer by nature, interested in free-ranging discovery, delving into ruins, and uncovering whatever secret wonders and ancient truths lie hidden amid the Woodland.
+
+species:
+  - mole
+
+adjectives:
+  - honest
+  - traveled
+  - whimsical
+  - young
+
+items:
+  - trusty satchel
+  - large and grandiose hat
+  - book of stamps
+  - sturdy boots
+
+demeanor:
+  - absentminded
+  - driven
+  - jovial
+  - quiet
+
+background:
+  - question: Where do you call home?
+    answers:
+      - text: _ clearing
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    answers:
+      - text: I want to wander the Woodland
+      - text: I'm seeking answers to a mystery
+      - text: I need to find and reconnect with a loved one
+      - text: I am pursuing a treasure
+      - text: I stole and sold something precious from someone dangerous
+
+  - question: Whom have you left behind?
+    answers:
+      - text: My family
+      - text: An spouse or loved one
+      - text: My best friend
+      - text: My fellow explorer
+      - text: My idol
+
+  - question: Which faction have you served the most?
+  - question: With which faction have you earned a special enmity?
+
+drives:
+  - Justice
+  - Discovery
+  - Greed
+  - Wanderlust
+
+natures:
+  - Explorer
+  - Historian
+
+connections:
+  - name: Partner
+    desc: I and _ have seen the wonders of the Woodland together. What makes them a stalwart companion on my travels?
+    mech: When you fill in this connection, you each mark 2-prestige with the faction you helped, and mark 2-notoriety with the faction you harmed. During play, if you are spotted together, then any prestige or notoriety gains with those factions are doubled for the two of you.
+
+  - name: Peer
+    desc: _ is famous for a discovery of their own. I greatly respect them! What did they discover? How?
+    mech: If you share information with them after **reading a tense situation**, you both benefit from the +1 for acting on the answers. If you **help** them while they **attempt a roguish feat**, you gain choices on the help move as if you had marked 2-exhaustion when you mark 1-exhaustion.
+
+stats:
+  charm: -1
+  cunning: +1
+  finesse: +1
+  luck: 0
+  might: +1
+
+feats:
+  - Acrobatics
+  - Disable Device
+  - Pick lock
+
+skills:
+  - Confuse Senses
+  - Disarm
+  - Parry
+  - Trick Shot
+
+moves:
+  - name: Word on the Street
+    taken: true
+    text: When you **spend time in a clearing talking with locals**, roll with Finesse. On a hit, you catch wind of a nearby unexplored wonder or ruin; someone promises to take you to it for a fair fee (1-value). On a 7-9, the dangers make their price steeper—an additional 1-value of coin or gear. On a miss, the location is under threat—soon it will be plundered, destroyed, or claimed by another power
+
+  - name: Never Lost
+    text: Take two additional boxes of injury and depletion you can mark when you confront dangers within a ruin and a +1 ongoing to **trusting fate** and **performing roguish feats** while exploring such ancient locales.
+
+  - name: Treasure Hunter
+    text: >
+      When you sell the **treasures you found in a ruin at market**, roll with Cunning. On a hit, you find some buyers. On a 7-9, take 1. On a 10+, both:
+
+
+      * you get a good price; you get double what such findings are usually worth
+      * you are popular; mark two prestige with the controlling faction
+
+
+      On a miss, someone powerful takes offense at your plunder of local sites.
+
+
+  - name: Loremaster
+    text: When you **try to convince a powerful NPC to supply an exploratory adventure**, roll with Cunning. On a hit, they give you 8-value in resources and depletion—but you must fulfill a request. On a 10+, they ask for something general—more riches, information, a prize or trophy. On a 7-9, they want something specific—a singular treasure, secret knowledge, a lost ritual. On a miss, they mount a competing expedition based on what you have told them.
+
+  - name: Watch the Signs
+    text: >
+      When you first attune yourself to a ruin or mysterious site by taking in its signs, symbols, particular traits, and layout, roll with Cunning. On a 10+, hold 3. On a 7-9, hold 2. On a miss, you may mark an exhaustion to hold 1. While within that ruin or mysterious site, you can spend your hold 1 for 1 to:
+
+
+      * Identify the quickest path to the closest valuable treasure or knowledge.
+      * Disarm a trap or overcome a natural hazard without cost.
+      * Name a character within reach about to suffer harm; you suffer it instead.
+      * Name a character in the ruin; you cross the distance to them instantly.
+      * Take cover in the ruin; ignore all harm from a single attack or catastrophe
+
+  - name: Unstable Ground
+    text: When you use a rough or chaotic environment—slippery rocks, a crowded market, etc—to gain an advantage over your opponents in a fight, you can mark exhaustion to **grapple** with them using Finesse instead of Might.
