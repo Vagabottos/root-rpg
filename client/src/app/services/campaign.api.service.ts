@@ -21,7 +21,7 @@ export class CampaignAPIService {
   }
 
   getCampaigns(page = 0): Observable<ITableData<ICampaign>> {
-    const limit = 15;
+    const limit = 10;
 
     const params = new HttpParams()
       .set('owner', this.userAPI.userId)
