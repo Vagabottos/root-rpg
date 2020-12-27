@@ -106,7 +106,6 @@ moves:
 
       On a miss, someone powerful takes offense at your plunder of local sites.
 
-
   - name: Loremaster
     text: When you **try to convince a powerful NPC to supply an exploratory adventure**, roll with Cunning. On a hit, they give you 8-value in resources and depletion—but you must fulfill a request. On a 10+, they ask for something general—more riches, information, a prize or trophy. On a 7-9, they want something specific—a singular treasure, secret knowledge, a lost ritual. On a miss, they mount a competing expedition based on what you have told them.
 
