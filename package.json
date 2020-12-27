@@ -2,13 +2,17 @@
   "name": "root-rpg",
   "private": true,
   "scripts": {
-    "postinstall": "lerna exec -- npm install",
+    "postinstall": "lerna exec -- npm install && npm run content",
     "start": "lerna exec --parallel -- npm run start:dev",
     "start:client": "cd client && npm run start:dev",
     "start:server": "cd server && npm run start:dev",
-    "lint": "lerna exec --parallel -- npm run lint"
+    "lint": "lerna exec --parallel -- npm run lint",
+    "content": "node shared/scripts/content"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "yamljs": "^0.3.0"
   }
 }
