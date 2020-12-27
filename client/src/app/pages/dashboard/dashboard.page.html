@@ -28,7 +28,7 @@
                   Want to roll a new character?
                 </ion-label>
 
-                <ion-button slot="end" color="primary">Create Character</ion-button>
+                <ion-button slot="end" color="primary" [routerLink]="['character', 'create']">Create Character</ion-button>
               </ion-item>
 
               <ion-item *ngFor="let character of characters">
@@ -52,7 +52,7 @@
                   Want to start a new campaign?
                 </ion-label>
 
-                <ion-button slot="end" color="primary">Create Campaign</ion-button>
+                <ion-button slot="end" color="primary" [routerLink]="['campaign', 'create']">Create Campaign</ion-button>
               </ion-item>
 
               <ion-item *ngFor="let campaign of campaigns">

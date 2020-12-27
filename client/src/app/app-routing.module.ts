@@ -28,6 +28,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'dashboard/campaign/create',
+    loadChildren: () => import('./pages/create-campaign/create-campaign.module').then( m => m.CreateCampaignPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/character/create',
+    loadChildren: () => import('./pages/create-character/create-character.module').then( m => m.CreateCharacterPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
