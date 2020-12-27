@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Root RPG - Characters
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Root RPG - Characters</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Characters</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-label class="ion-text-wrap">
+              Want to roll a new character?
+            </ion-label>
+
+            <ion-button slot="end" color="primary" [routerLink]="['create']">Create Character</ion-button>
+          </ion-item>
+
+          <ion-item *ngFor="let character of characters">
+            {{ character | json }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

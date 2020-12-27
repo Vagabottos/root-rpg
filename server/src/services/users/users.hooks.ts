@@ -3,6 +3,7 @@ import * as local from '@feathersjs/authentication-local';
 import { HookContext } from '@feathersjs/feathers';
 
 import { Conflict } from '@feathersjs/errors';
+import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
 
 // Don't remove this comment. It's needed to format import lines nicely.
 
@@ -31,7 +32,7 @@ export default {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ duplicateEmail, hashPassword('password') ],
+    create: [ duplicateEmail, attachCreatedAt, attachUpdatedAt, hashPassword('password') ],
     update: [ hashPassword('password'),  authenticate('jwt') ],
     patch: [ hashPassword('password'),  authenticate('jwt') ],
     remove: [ authenticate('jwt') ]

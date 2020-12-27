@@ -18,6 +18,10 @@ export class UserAPIService {
     return !!this.user.getValue();
   }
 
+  public get userId(): string {
+    return this.user.getValue()._id;
+  }
+
   constructor(
     private api: APIService,
     private http: HttpClient

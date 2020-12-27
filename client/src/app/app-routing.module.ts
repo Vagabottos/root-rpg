@@ -28,16 +28,17 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard/campaign/create',
+    path: 'dashboard/campaigns/create',
     loadChildren: () => import('./pages/campaign-create/create-campaign.module').then( m => m.CreateCampaignPageModule),
     canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard/campaign/view/:id',
-    loadChildren: () => import('./pages/campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule)
+    path: 'dashboard/campaigns/view/:id',
+    loadChildren: () => import('./pages/campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule),
+    canActivate: [AuthGuard]
   },
   {
-    path: 'dashboard/character/create',
+    path: 'dashboard/characters/create',
     loadChildren: () => import('./pages/character-create/create-character.module').then( m => m.CreateCharacterPageModule),
     canActivate: [AuthGuard]
   },

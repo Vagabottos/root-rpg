@@ -43,7 +43,7 @@ export class CreateCampaignPage implements OnInit {
     this.campaignAPI.createCampaign(args)
       .subscribe((campaign) => {
         this.notification.notify('Created campaign successfully!');
-        this.router.navigate(['/dashboard', 'campaign', 'view', campaign._id]);
+        this.router.navigate(['/dashboard', 'campaigns', 'view', campaign._id]);
         this.isDoing = false;
       }, () => {
         this.isDoing = false;

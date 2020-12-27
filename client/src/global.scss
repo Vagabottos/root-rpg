@@ -35,7 +35,14 @@
 
 .blank-slate {
   font-size: 2rem;
-  opacity: 0.7;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20%;
 }
 
 .action-row {

@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Root RPG - Campaigns
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['create']">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Root RPG - Campaigns</ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['create']">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="blank-slate" *ngIf="campaigns.length === 0">
+    You have no campaigns.
+  </div>
+
+  <ion-list *ngIf="campaigns.length > 0">
+    <ion-item *ngFor="let campaign of campaigns; let i = index">
+      #{{ i + 1 }} {{ campaign | json }}
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreCampaigns($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more campaigns...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
