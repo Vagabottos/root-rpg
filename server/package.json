@@ -20,11 +20,11 @@
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run lint && npm run compile",
+    "test": "npm run lint && npm run build",
     "lint": "eslint src/. --config .eslintrc.json --ext .ts --fix",
     "start:dev": "ts-node-dev --no-notify src/",
     "start": "npm run compile && node lib/",
-    "compile": "shx rm -rf lib/ && tsc"
+    "build": "shx rm -rf lib/ && tsc"
   },
   "standard": {
     "env": [

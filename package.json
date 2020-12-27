@@ -6,6 +6,7 @@
     "start": "lerna exec --parallel -- npm run start:dev",
     "start:client": "cd client && npm run start:dev",
     "start:server": "cd server && npm run start:dev",
+    "build": "lerna exec --parallel npm run build",
     "lint": "lerna exec --parallel -- npm run lint",
     "content": "node shared/scripts/content"
   },
