@@ -12,7 +12,7 @@ const { hashPassword, protect } = local.hooks;
 const duplicateEmail = async (context: HookContext): Promise<HookContext> => {
   const { email } = context.data;
 
-  const { total } = await  context.service.find({
+  const { total } = await context.service.find({
     query: {
       email,
       $limit: 0

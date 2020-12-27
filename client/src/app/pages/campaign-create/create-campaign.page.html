@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Root RPG - Create Campaign
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Root RPG - Create Campaign</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <ion-row>
+      <ion-col class="campaign-container">
+        <form [formGroup]="campaignForm">
+          <ion-card>
+
+            <ion-card-header>
+              <ion-card-title>
+                Create New Campaign
+              </ion-card-title>
+            </ion-card-header>
+    
+            <ion-card-content>
+
+              <ion-list>
+                <ion-item>
+                  <ion-label position="stacked">Campaign Name</ion-label>
+                  <ion-input type="text" formControlName="campaignName"></ion-input>
+                </ion-item>
+
+                <div class="validation-errors">
+                  <ng-container *ngFor="let validation of validationMessages.campaignName">
+                    <div class="error-message" *ngIf="campaignForm.get('campaignName').hasError(validation.type) && (campaignForm.get('campaignName').dirty || campaignForm.get('campaignName').touched)">
+                      <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                    </div>
+                  </ng-container>
+                </div>
+
+                <ion-item lines="none">
+                  <ion-row class="action-row">
+                    <ion-col>
+                    </ion-col>
+
+                    <ion-col class="ion-text-right">
+                      <ion-button color="primary" [disabled]="isDoing || campaignForm.invalid" (click)="create()">
+                        <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
+                        Create Campaign
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              
+            </ion-card-content>
+
+          </ion-card>
+        </form>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

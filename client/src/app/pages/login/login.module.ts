@@ -13,9 +13,9 @@ import { SharedModule } from '../../shared.module';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     IonicModule,
     SharedModule,
-    ReactiveFormsModule,
     LoginPageRoutingModule
   ],
   declarations: [LoginPage]

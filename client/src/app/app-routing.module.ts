@@ -13,33 +13,37 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'player',
-    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule),
     canActivate: [AuthGuard]
   },
   {
-    path: 'gm',
+    path: 'dashboard/player',
+    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/gm',
     loadChildren: () => import('./pages/gm/gm.module').then( m => m.GmPageModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'dashboard/campaign/create',
-    loadChildren: () => import('./pages/create-campaign/create-campaign.module').then( m => m.CreateCampaignPageModule),
+    loadChildren: () => import('./pages/campaign-create/create-campaign.module').then( m => m.CreateCampaignPageModule),
     canActivate: [AuthGuard]
   },
   {
+    path: 'dashboard/campaign/view/:id',
+    loadChildren: () => import('./pages/campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule)
+  },
+  {
     path: 'dashboard/character/create',
-    loadChildren: () => import('./pages/create-character/create-character.module').then( m => m.CreateCharacterPageModule),
+    loadChildren: () => import('./pages/character-create/create-character.module').then( m => m.CreateCharacterPageModule),
     canActivate: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
     pathMatch: 'full'
   },
 ];

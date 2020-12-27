@@ -1,0 +1,27 @@
+
+.container, ion-row, ion-col {
+  height: 100%;
+}
+
+.container {
+  form {
+    min-width: 30%;
+    min-height: 30%;
+
+    @media screen and (min-width: 720px) {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+  }
+
+  .campaign-container {
+    padding-top: 20%;
+    height: 100%;
+  }
+
+  ion-spinner {
+    margin-right: 10px;
+    height: 18px;
+    width: 18px;
+  }
+}

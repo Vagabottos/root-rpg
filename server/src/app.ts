@@ -20,7 +20,7 @@ import mongodb from './mongodb';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const app: Application = express(feathers());
-export type HookContext<T = any> = { app: Application } & FeathersHookContext<T>;
+export type AppHookContext<T = any> = { app: Application } & FeathersHookContext<T>;
 
 // Load app configuration
 app.configure(configuration());
