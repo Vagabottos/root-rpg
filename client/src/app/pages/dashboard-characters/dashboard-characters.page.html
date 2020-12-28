@@ -3,6 +3,12 @@
     <ion-title>
       Root RPG - Characters
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['create']">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,30 +16,37 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Root RPG - Characters</ion-title>
+
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['create']">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <div class="container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Characters</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-list>
-          <ion-item lines="none">
-            <ion-label class="ion-text-wrap">
-              Want to roll a new character?
-            </ion-label>
-
-            <ion-button slot="end" color="primary" [routerLink]="['create']">Create Character</ion-button>
-          </ion-item>
-
-          <ion-item *ngFor="let character of characters">
-            {{ character | json }}
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
+  <div class="blank-slate" *ngIf="characters.length === 0">
+    You have no characters.
   </div>
+
+  <ion-list *ngIf="characters.length > 0">
+    <ion-item *ngFor="let character of characters" lines="none" [routerLink]="['view', character._id]">
+      <ion-card class="campaign-card">
+        <ion-card-header>
+          <ion-card-title>{{ character.name }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreCharacters($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more characters...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
