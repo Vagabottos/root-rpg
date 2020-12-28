@@ -24,58 +24,70 @@
   <ion-row>
     <ion-col>
       <div class="character-container">
-    
-        <!-- TODO: screen: "campaign or no campaign" [validate campaign id] -->
-        <ng-template *ngIf="currentStep === Step.CampaignOrNo">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose archetype" - display description, adjectives, items, demeanor -->
-        <ng-template *ngIf="currentStep === Step.Archetype">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose name and species" -->
-        <ng-template *ngIf="currentStep === Step.NameSpecies">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "background questions" -->
-        <ng-template *ngIf="currentStep === Step.Background">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose drives" -->
-        <ng-template *ngIf="currentStep === Step.Drives">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose natures" -->
-        <ng-template *ngIf="currentStep === Step.Natures">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "describe connections" -->
-        <ng-template *ngIf="currentStep === Step.Connections">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose bonus stats" -->
-        <ng-template *ngIf="currentStep === Step.BonusStats">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "choose moves" -->
-        <ng-template *ngIf="currentStep === Step.Moves">
-          
-        </ng-template>
-    
-        <!-- TODO: screen: "finalize" -->
-        <ng-template *ngIf="currentStep === Step.Finalize">
-          
-        </ng-template>
-    
+        <ng-container [ngSwitch]="currentStep">
+          <ng-container [ngTemplateOutlet]="campaigncode" *ngSwitchCase="Step.CampaignOrNo"></ng-container>
+          <ng-container [ngTemplateOutlet]="archetype" *ngSwitchCase="Step.Archetype"></ng-container>
+          <ng-container [ngTemplateOutlet]="namespecies" *ngSwitchCase="Step.NameSpecies"></ng-container>
+          <ng-container [ngTemplateOutlet]="background" *ngSwitchCase="Step.Background"></ng-container>
+          <ng-container [ngTemplateOutlet]="drives" *ngSwitchCase="Step.Drives"></ng-container>
+          <ng-container [ngTemplateOutlet]="natures" *ngSwitchCase="Step.Natures"></ng-container>
+          <ng-container [ngTemplateOutlet]="connections" *ngSwitchCase="Step.Connections"></ng-container>
+          <ng-container [ngTemplateOutlet]="bonusstats" *ngSwitchCase="Step.BonusStats"></ng-container>
+          <ng-container [ngTemplateOutlet]="moves" *ngSwitchCase="Step.Moves"></ng-container>
+          <ng-container [ngTemplateOutlet]="finalize" *ngSwitchCase="Step.Finalize"></ng-container>
+        </ng-container>
       </div>
     </ion-col>
   </ion-row>
 </ion-content>
+
+    
+<!-- TODO: screen: "campaign or no campaign" [validate campaign id] -->
+<ng-template #campaigncode>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose archetype" - display description, adjectives, items, demeanor -->
+<ng-template #archetype>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose name and species" -->
+<ng-template #namespecies>
+  
+</ng-template>
+
+<!-- TODO: screen: "background questions" -->
+<ng-template #background>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose drives" -->
+<ng-template #drives>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose natures" -->
+<ng-template #natures>
+  
+</ng-template>
+
+<!-- TODO: screen: "describe connections" -->
+<ng-template #connections>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose bonus stats" -->
+<ng-template #bonusstats>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose moves" -->
+<ng-template #moves>
+  
+</ng-template>
+
+<!-- TODO: screen: "finalize" -->
+<ng-template #finalize>
+  
+</ng-template>
