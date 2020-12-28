@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 
+import { MarkdownPipe } from './pipes/markdown.pipe';
+
 @NgModule({
-  declarations: [],
+  declarations: [MarkdownPipe],
   entryComponents: [],
   imports: [],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
+  exports: [MarkdownPipe]
 })
 export class SharedModule {}
