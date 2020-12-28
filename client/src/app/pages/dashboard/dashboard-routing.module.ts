@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../../guards/auth.guard';
 
 import { DashboardPage } from './dashboard.page';
 
@@ -15,6 +16,25 @@ const routes: Routes = [
       {
         path: 'campaigns',
         loadChildren: () => import('../dashboard-campaigns/dashboard-campaigns.module').then( m => m.DashboardCampaignsPageModule)
+      },
+      {
+        path: 'campaigns/create',
+        loadChildren: () => import('../campaign-create/create-campaign.module').then( m => m.CreateCampaignPageModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'campaigns/view/:id',
+        loadChildren: () => import('../campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'characters/create',
+        loadChildren: () => import('../character-create/create-character.module').then( m => m.CreateCharacterPageModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'character/view/:id',
+        loadChildren: () => import('../character-view/character-view.module').then( m => m.CharacterViewPageModule)
       },
       {
         path: '**',
