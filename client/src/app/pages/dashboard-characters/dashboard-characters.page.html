@@ -31,7 +31,7 @@
 
   <ion-list *ngIf="characters.length > 0">
     <ion-item *ngFor="let character of characters" lines="none" [routerLink]="['view', character._id]">
-      <ion-card class="campaign-card">
+      <ion-card class="character-card">
         <ion-card-header>
           <ion-card-title>{{ character.name }}</ion-card-title>
         </ion-card-header>

@@ -13,6 +13,57 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="container">
+  <div class="character-container">
+
+    <!-- TODO: screen: "campaign or no campaign" [validate campaign id] -->
+    <ng-template *ngIf="currentStep === Step.CampaignOrNo">
+
+    </ng-template>
+
+    <!-- TODO: screen: "choose archetype" - display description, adjectives, items, demeanor -->
+    <ng-template *ngIf="currentStep === Step.Archetype">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "choose name and species" -->
+    <ng-template *ngIf="currentStep === Step.NameSpecies">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "background questions" -->
+    <ng-template *ngIf="currentStep === Step.Background">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "choose drives" -->
+    <ng-template *ngIf="currentStep === Step.Drives">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "choose natures" -->
+    <ng-template *ngIf="currentStep === Step.Natures">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "describe connections" -->
+    <ng-template *ngIf="currentStep === Step.Connections">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "choose bonus stats" -->
+    <ng-template *ngIf="currentStep === Step.BonusStats">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "choose moves" -->
+    <ng-template *ngIf="currentStep === Step.Moves">
+      
+    </ng-template>
+
+    <!-- TODO: screen: "finalize" -->
+    <ng-template *ngIf="currentStep === Step.Finalize">
+      
+    </ng-template>
+    
   </div>
 </ion-content>
