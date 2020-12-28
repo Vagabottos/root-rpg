@@ -5,7 +5,7 @@
     </ion-buttons>
 
     <ion-title>
-      Root RPG - Create Character
+      Create Character
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +17,7 @@
     </ion-buttons>
 
     <ion-toolbar>
-      <ion-title size="large">Root RPG - Create Character</ion-title>
+      <ion-title size="large">Create Character</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -43,9 +43,7 @@
     </ion-col>
   </ion-row>
 </ion-content>
-
     
-<!-- TODO: screen: "campaign or no campaign" [validate campaign id] -->
 <ng-template #campaigncode>
   <form [formGroup]="campaignForm">
     <ion-card>
@@ -56,7 +54,7 @@
         </ion-card-title>
 
         <ion-card-subtitle>
-          Is this character part of a campaign? If so, enter the campaign ID below.
+          Is this character part of a campaign? If so, enter the campaign ID below. If not, you can skip to the Archetype selection.
         </ion-card-subtitle>
       </ion-card-header>
 
@@ -65,7 +63,7 @@
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Campaign ID</ion-label>
-            <ion-input type="text" formControlName="campaignId"></ion-input>
+            <ion-input type="text" formControlName="campaignId" placeholder="Enter Campaign ID"></ion-input>
           </ion-item>
 
           <div class="validation-errors">
@@ -81,9 +79,10 @@
               <ion-col>
               </ion-col>
 
-              <ion-col class="ion-text-right">
+              <ion-col size="12" size-sm="6" class="ion-text-right">
                 <ion-button color="primary" [disabled]="campaignForm.invalid || validatingCampaignId" (click)="next()">
-                  Next: Archetype
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Archetype
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -96,14 +95,150 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "choose archetype" - display description -->
 <ng-template #archetype>
-  
+  <form [formGroup]="archetypeForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Choose Archetype
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose the archetype that represents your character.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Archetype</ion-label>
+            <ion-select placeholder="Select Archetype" formControlName="archetype">
+              <ion-select-option *ngFor="let type of allContent.vagabonds | keyvalue"
+                                 [value]="type.key">
+                {{ type.key }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="archetypeForm.get('archetype').value">
+            <ion-label class="ion-text-wrap">
+              <p>{{ chosenVagabond.description }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Join Campaign
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="archetypeForm.invalid" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Character Details
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "choose name and species", pick 1 gender, 1 species, name, X adjective, X demeanor -->
 <ng-template #namespecies>
-  
+  <form [formGroup]="characterForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Character Appearance
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your name, species, and other defining characteristics.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Name</ion-label>
+            <ion-input type="text" formControlName="name" placeholder="Enter Name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Species</ion-label>
+            <ion-select placeholder="Select Species" formControlName="species">
+              <ion-select-option *ngFor="let species of validSpecies"
+                                 [value]="species">
+                {{ species }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Pronouns</ion-label>
+            <ion-select placeholder="Select Pronouns" formControlName="pronouns">
+              <ion-select-option *ngFor="let pronouns of allContent.core.pronouns"
+                                 [value]="pronouns">
+                {{ pronouns }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Adjectives</ion-label>
+            <ion-select placeholder="Select Adjectives" multiple="true" formControlName="adjectives">
+              <ion-select-option *ngFor="let adjective of chosenVagabond.adjectives"
+                                 [value]="adjective">
+                {{ adjective }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Demeanor</ion-label>
+            <ion-select placeholder="Select Demeanor" multiple="true" formControlName="demeanor">
+              <ion-select-option *ngFor="let demeanor of chosenVagabond.demeanor"
+                                 [value]="demeanor">
+                {{ demeanor }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Archetype
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="characterForm.invalid" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Bonus Stats
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "choose bonus stats" -->

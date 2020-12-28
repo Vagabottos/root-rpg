@@ -25,6 +25,10 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+.hidden {
+  display: none !important;
+}
+
 .true-center {
   display: flex;
   justify-content: center;
@@ -41,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   padding: 20%;
 }

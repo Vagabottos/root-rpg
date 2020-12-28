@@ -1,6 +1,20 @@
 
-.container, ion-row, ion-col {
-  height: 100%;
+
+
+@media screen and (min-width: 720px) {
+  .container, ion-row, ion-col {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .action-row ion-col {
+    text-align: center !important;
+
+    ion-button {
+      width: 100%;
+    }
+  }
 }
 
 .container {
@@ -24,4 +38,9 @@
     height: 18px;
     width: 18px;
   }
+
+}
+
+.action-row {
+  margin-top: 20px;
 }

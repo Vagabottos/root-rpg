@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
+  public get isCreating(): boolean {
+    return window.location.href.includes('/create');
+  }
+
   constructor(
   ) { }
 

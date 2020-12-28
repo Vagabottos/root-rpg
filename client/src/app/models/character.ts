@@ -4,7 +4,7 @@ export interface ICharacter {
   campaign?: string;
   archetype: string;
   species: string;
-  gender: string;
+  pronouns: string;
   background: string[];
   drives: string[];
   natures: string[];
