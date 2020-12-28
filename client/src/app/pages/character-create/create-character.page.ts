@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, TemplateRef, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
