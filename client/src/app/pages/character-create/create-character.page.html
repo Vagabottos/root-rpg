@@ -1,5 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
+    </ion-buttons>
+
     <ion-title>
       Root RPG - Create Character
     </ion-title>
@@ -8,6 +12,10 @@
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
+    </ion-buttons>
+
     <ion-toolbar>
       <ion-title size="large">Root RPG - Create Character</ion-title>
     </ion-toolbar>
@@ -64,6 +72,6 @@
     <ng-template *ngIf="currentStep === Step.Finalize">
       
     </ng-template>
-    
+
   </div>
 </ion-content>
