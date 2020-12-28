@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Root RPG - View Character
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Root RPG - View Character</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    {{ character | json }}
+  </div>
+</ion-content>

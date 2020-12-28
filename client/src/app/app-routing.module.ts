@@ -43,6 +43,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'dashboard/character/view/:id',
+    loadChildren: () => import('./pages/character-view/character-view.module').then( m => m.CharacterViewPageModule)
+  },
+  {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
