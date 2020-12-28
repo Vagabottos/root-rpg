@@ -16,8 +16,13 @@ const routes: Routes = [
         path: 'campaigns',
         loadChildren: () => import('../dashboard-campaigns/dashboard-campaigns.module').then( m => m.DashboardCampaignsPageModule)
       },
+      {
+        path: '**',
+        redirectTo: 'characters',
+        pathMatch: 'full'
+      },
     ]
-  }
+  },
 ];
 
 @NgModule({

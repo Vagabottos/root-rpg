@@ -52,7 +52,7 @@ export class LoginPage implements OnInit {
     const login = () => {
       this.userAPI.login(args)
         .subscribe(() => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard', 'characters']);
           this.isDoing = false;
         }, () => {
           this.isDoing = false;
