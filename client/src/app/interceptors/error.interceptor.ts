@@ -9,6 +9,8 @@ import { NotificationService } from '../services/notification.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
+  private readonly badMessages = ['No record found for id'];
+
   constructor(private notification: NotificationService) {}
 
   intercept(httpRequest: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -16,7 +18,12 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(httpRequest)
       .pipe(catchError((error: HttpErrorResponse) => {
         const errorMsg = error?.error?.message ?? 'Unknown error.';
-        this.notification.notify(errorMsg);
+
+        // some messages are pretty annoying and shouldnt be shown
+        if (!this.badMessages.every(msg => errorMsg.includes(msg))) {
+          this.notification.notify(errorMsg);
+        }
+
         return throwError(error);
       }));
 

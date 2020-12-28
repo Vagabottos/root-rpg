@@ -28,12 +28,15 @@
           <ng-container [ngTemplateOutlet]="campaigncode" *ngSwitchCase="Step.CampaignOrNo"></ng-container>
           <ng-container [ngTemplateOutlet]="archetype" *ngSwitchCase="Step.Archetype"></ng-container>
           <ng-container [ngTemplateOutlet]="namespecies" *ngSwitchCase="Step.NameSpecies"></ng-container>
-          <ng-container [ngTemplateOutlet]="background" *ngSwitchCase="Step.Background"></ng-container>
-          <ng-container [ngTemplateOutlet]="drives" *ngSwitchCase="Step.Drives"></ng-container>
-          <ng-container [ngTemplateOutlet]="natures" *ngSwitchCase="Step.Natures"></ng-container>
-          <ng-container [ngTemplateOutlet]="connections" *ngSwitchCase="Step.Connections"></ng-container>
           <ng-container [ngTemplateOutlet]="bonusstats" *ngSwitchCase="Step.BonusStats"></ng-container>
+          <ng-container [ngTemplateOutlet]="background" *ngSwitchCase="Step.Background"></ng-container>
+          <ng-container [ngTemplateOutlet]="natures" *ngSwitchCase="Step.Natures"></ng-container>
+          <ng-container [ngTemplateOutlet]="drives" *ngSwitchCase="Step.Drives"></ng-container>
           <ng-container [ngTemplateOutlet]="moves" *ngSwitchCase="Step.Moves"></ng-container>
+          <ng-container [ngTemplateOutlet]="feats" *ngSwitchCase="Step.Feats"></ng-container>
+          <ng-container [ngTemplateOutlet]="skills" *ngSwitchCase="Step.Skills"></ng-container>
+          <ng-container [ngTemplateOutlet]="items" *ngSwitchCase="Step.Items"></ng-container>
+          <ng-container [ngTemplateOutlet]="connections" *ngSwitchCase="Step.Connections"></ng-container>
           <ng-container [ngTemplateOutlet]="finalize" *ngSwitchCase="Step.Finalize"></ng-container>
         </ng-container>
       </div>
@@ -44,7 +47,53 @@
     
 <!-- TODO: screen: "campaign or no campaign" [validate campaign id] -->
 <ng-template #campaigncode>
-  
+  <form [formGroup]="campaignForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Join Campaign?
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Is this character part of a campaign? If so, enter the campaign ID below.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Campaign ID</ion-label>
+            <ion-input type="text" formControlName="campaignId"></ion-input>
+          </ion-item>
+
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.campaignId">
+              <div class="error-message" *ngIf="campaignForm.get('campaignId').hasError(validation.type) && (campaignForm.get('campaignId').dirty || campaignForm.get('campaignId').touched)">
+                <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col>
+              </ion-col>
+
+              <ion-col class="ion-text-right">
+                <ion-button color="primary" [disabled]="campaignForm.invalid || validatingCampaignId" (click)="next()">
+                  Next: Archetype
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "choose archetype" - display description -->
@@ -52,28 +101,8 @@
   
 </ng-template>
 
-<!-- TODO: screen: "choose name and species", pick 1 adjective, 1 demeanor, 1 item, 1 gender -->
+<!-- TODO: screen: "choose name and species", pick 1 gender, 1 species, name, X adjective, X demeanor -->
 <ng-template #namespecies>
-  
-</ng-template>
-
-<!-- TODO: screen: "background questions" -->
-<ng-template #background>
-  
-</ng-template>
-
-<!-- TODO: screen: "choose drives" -->
-<ng-template #drives>
-  
-</ng-template>
-
-<!-- TODO: screen: "choose natures" -->
-<ng-template #natures>
-  
-</ng-template>
-
-<!-- TODO: screen: "describe connections" -->
-<ng-template #connections>
   
 </ng-template>
 
@@ -82,8 +111,43 @@
   
 </ng-template>
 
+<!-- TODO: screen: "background questions" -->
+<ng-template #background>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose natures" -->
+<ng-template #natures>
+  
+</ng-template>
+
+<!-- TODO: screen: "choose drives" -->
+<ng-template #drives>
+  
+</ng-template>
+
 <!-- TODO: screen: "choose moves" -->
 <ng-template #moves>
+  
+</ng-template>
+
+<!-- TODO: screen: "feats" (only if archetype has none selected) -->
+<ng-template #feats>
+  
+</ng-template>
+
+<!-- TODO: screen: "skills" (only if archetype has none selected) -->
+<ng-template #skills>
+  
+</ng-template>
+
+<!-- TODO: screen: "buy items" -->
+<ng-template #items>
+  
+</ng-template>
+
+<!-- TODO: screen: "describe connections" -->
+<ng-template #connections>
   
 </ng-template>
 

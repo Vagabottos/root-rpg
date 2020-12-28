@@ -10,7 +10,7 @@ export default {
   before: {
     all: [ authenticate('jwt') ],
     find: [fixObjectId],
-    get: [fixObjectId, validateOwner],
+    get: [fixObjectId],
     create: [attachOwner, attachCreatedAt, attachUpdatedAt],
     update: [validateOwner, attachUpdatedAt],
     patch: [validateOwner, attachUpdatedAt],
