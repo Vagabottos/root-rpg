@@ -21,7 +21,7 @@ enum CharacterCreateStep {
 export class CreateCharacterPage implements OnInit {
 
   public readonly Step = CharacterCreateStep;
-  public currentStep: CharacterCreateStep;
+  public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor() { }
 
