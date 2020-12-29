@@ -153,7 +153,6 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "choose name and species", pick 1 gender, 1 species, name, X adjective, X demeanor -->
 <ng-template #namespecies>
   <form [formGroup]="characterForm">
     <ion-card>
@@ -243,7 +242,55 @@
 
 <!-- TODO: screen: "choose bonus stats" -->
 <ng-template #bonusstats>
-  
+  <form [formGroup]="bonusForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Bonus Stat
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose the stat you want to apply a +1 bonus to, to a maximum of +2.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-radio-group formControlName="stat">
+            <ion-item *ngFor="let stat of stats" [disabled]="chosenVagabond.stats[stat.key] >= 2">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ stat.name }} ({{ chosenVagabond.stats[stat.key] < 0 ? '' : '+' }}{{ chosenVagabond.stats[stat.key] }})</h2>
+                <p>{{ stat.desc }}</p>
+              </ion-label>
+              <ion-radio [value]="stat.key"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Character Details
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="bonusForm.invalid" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Background
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "background questions" -->
