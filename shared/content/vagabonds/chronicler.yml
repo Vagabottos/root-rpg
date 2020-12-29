@@ -63,14 +63,14 @@ background:
       notoriety: 1
 
 drives:
-  - Justice
-  - Discovery
-  - Ambition
-  - Clean paws
+  - name: Justice
+  - name: Discovery
+  - name: Ambition
+  - name: Clean paws
 
 natures:
-  - Observer
-  - Activist
+  - name: Observer
+  - name: Activist
 
 connections:
   - name: Partner
@@ -87,21 +87,21 @@ stats:
   might: 0
 
 feats:
-  - Counterfeit
-  - Disable Device
-  - Pick pocket
+  - name: Counterfeit
+  - name: Disable Device
+  - name: Pick pocket
 
 skills:
-  - Confuse Senses
-  - Improvise
-  - Parry
-  - Trick Shot
+  - name: Confuse Senses
+  - name: Improvise
+  - name: Parry
+  - name: Trick Shot
 
 defaultMove: The Worth of a Book
 moves:
-  - The Worth of a Book
-  - An Eye for the Real Story
-  - Search the Records
-  - Loremaster
-  - Good Advice
-  - Dedicated Scholar
+  - name: The Worth of a Book
+  - name: An Eye for the Real Story
+  - name: Search the Records
+  - name: Loremaster
+  - name: Good Advice
+  - name: Dedicated Scholar

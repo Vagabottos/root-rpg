@@ -10,8 +10,6 @@ import { CharacterAPIService } from '../../services/character.api.service';
 
 import * as content from '../../../../../shared/_output/content.json';
 
-const clonedContent = cloneDeep((content as any).default || content);
-
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
   Archetype = 'archetype',
@@ -35,9 +33,7 @@ enum CharacterCreateStep {
 })
 export class CreateCharacterPage implements OnInit {
 
-  public get allContent() {
-    return clonedContent;
-  }
+  public allContent;
 
   public get chosenVagabond() {
     return this.vagabondData(this.archetypeForm.get('archetype').value);
@@ -95,7 +91,7 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public naturesForm = new FormGroup({
-    natures: new FormControl([], [Validators.required])
+    nature: new FormControl('', [Validators.required])
   });
 
   public drivesForm = new FormGroup({
@@ -161,6 +157,7 @@ export class CreateCharacterPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.allContent = cloneDeep((content as any).default || content);
     this.load();
   }
 
@@ -254,8 +251,33 @@ export class CreateCharacterPage implements OnInit {
 
   }
 
+  // background functions
   compareAnswer(currentValue, compareValue): boolean {
     return currentValue.text === compareValue.text;
+  }
+
+  // nature functions
+  getNatureDesc(nature: string): string {
+    return this.allContent.core.natures[nature]?.desc ?? 'No description entered.';
+  }
+
+  // drive functions
+  getDriveDesc(drive: string): string {
+    return this.allContent.core.drives[drive]?.desc ?? 'No description entered.';
+  }
+
+  selectDrive(drive: string) {
+    const drives = this.drivesForm.get('drives').value;
+
+    if (drives.includes(drive)) {
+      this.drivesForm.get('drives').setValue(drives.filter(x => x !== drive));
+      return;
+    }
+
+    if (drives.length >= 2) { return; }
+
+    drives.push(drive);
+    this.drivesForm.get('drives').setValue(drives);
   }
 
   reset() {
@@ -299,11 +321,9 @@ export class CreateCharacterPage implements OnInit {
     loadObject.background = loadObject.background || {};
     loadObject.background.backgrounds = loadObject.background.backgrounds || [];
 
-    // TODO: natures form
     loadObject.natures = loadObject.natures || {};
-    loadObject.natures.natures = loadObject.natures.natures || [];
+    loadObject.natures.nature = loadObject.natures.nature || '';
 
-    // TODO: drives form
     loadObject.drives = loadObject.drives || {};
     loadObject.drives.drives = loadObject.drives.drives || [];
 

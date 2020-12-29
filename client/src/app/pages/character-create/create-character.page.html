@@ -368,14 +368,109 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "choose nature" -->
 <ng-template #natures>
-  
+  <form [formGroup]="naturesForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Nature
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting nature.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-radio-group formControlName="nature">
+            <ion-item *ngFor="let nature of chosenVagabond.natures">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ nature.name }}</h2>
+                <p>{{ getNatureDesc(nature.name) }}</p>
+              </ion-label>
+              <ion-radio [value]="nature.name"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Background
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="naturesForm.invalid" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Drives
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
-<!-- TODO: screen: "choose drives" -->
 <ng-template #drives>
-  
+  <form [formGroup]="drivesForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Drives
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting two drives.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item *ngFor="let drive of chosenVagabond.drives" 
+                    [disabled]="drivesForm.get('drives').value.length >= 2 && !drivesForm.get('drives').value.includes(drive.name)">
+            <ion-label class="ion-text-wrap">
+              <h2>{{ drive.name }}</h2>
+              <p>{{ getDriveDesc(drive.name) }}</p>
+            </ion-label>
+            <ion-checkbox slot="end" 
+                          (ionChange)="selectDrive(drive.name)" 
+                          [checked]="drivesForm.get('drives').value.includes(drive.name)"></ion-checkbox>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Nature
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="drivesForm.invalid || drivesForm.get('drives').value.length < 2" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Moves
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "choose moves" -->

@@ -87,21 +87,21 @@ stats:
   might: +1
 
 feats:
-  - Acrobatics
-  - Disable Device
-  - Pick lock
+  - name: Acrobatics
+  - name: Disable Device
+  - name: Pick lock
 
 skills:
-  - Confuse Senses
-  - Disarm
-  - Parry
-  - Trick Shot
+  - name: Confuse Senses
+  - name: Disarm
+  - name: Parry
+  - name: Trick Shot
 
 defaultMove: Word on the Street
 moves:
-  - Word on the Street
-  - Never Lost
-  - Treasure Hunter
-  - Loremaster
-  - Watch the Signs
-  - Unstable Ground
+  - name: Word on the Street
+  - name: Never Lost
+  - name: Treasure Hunter
+  - name: Loremaster
+  - name: Watch the Signs
+  - name: Unstable Ground

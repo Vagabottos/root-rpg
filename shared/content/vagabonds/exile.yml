@@ -69,14 +69,14 @@ background:
       prestige: 5
 
 drives:
-  - Loyalty
-  - Revenge
-  - Chaos
-  - Infamy
+  - name: Loyalty
+  - name: Revenge
+  - name: Chaos
+  - name: Infamy
 
 natures:
-  - Schemer
-  - Avenger
+  - name: Schemer
+  - name: Avenger
 
 connections:
   - name: Protector
@@ -93,19 +93,19 @@ stats:
   might: +1
 
 feats:
-  - Sneak
+  - name: Sneak
 
 skills:
-  - Cleave
-  - Quick Shot
-  - Storm a Group
-  - Vicious Strike
+  - name: Cleave
+  - name: Quick Shot
+  - name: Storm a Group
+  - name: Vicious Strike
 
 defaultMove: Known by All
 moves:
-  - Known by All
-  - Above It All
-  - I Bring You...
-  - Greatest of the Age
-  - Born to Be a King
-  - Fancy Paper
+  - name: Known by All
+  - name: Above It All
+  - name: I Bring You...
+  - name: Greatest of the Age
+  - name: Born to Be a King
+  - name: Fancy Paper
