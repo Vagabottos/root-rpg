@@ -1,18 +1,18 @@
 
-- name: Protector
+Protector:
   text: When they are in reach, mark exhaustion to take a blow meant for them. If you do, take +1 ongoing to weapon moves for the rest of the scene.
 
-- name: Partner
+Partner:
   text: When you fill in this connection, you each mark 2-prestige with the faction you helped and mark 2-notoriety with the faction you harmed. During play, if you are spotted together, then any prestige or notoriety gains with those factions are doubled for the two of you.
 
-- name: Watcher
+Watcher:
   text: When you **figure them out**, you always hold 1, even on a miss. When you **plead with them to go along with you**, you can let them clear 2-exhaustion instead of 1.
 
-- name: Friend
+Friend:
   text: When you **help** them, you can mark 2-exhaustion to give a +2, instead of 1-exhaustion for a +1.
 
-- name: Peer
+Peer:
   text: If you share information with them after **reading a tense situation**, you both benefit from the +1 for acting on the answers. If you **help** them while they **attempt a roguish feat**, you gain choices on the **help** move as if you had marked 2-exhaustion when you mark 1-exhaustion.
 
-- name: Family
+Family:
   text: When you help them fulfill their nature, you both clear your exhaustion track.

@@ -1,25 +1,32 @@
 
 # Chronicler
-- name: The Worth of a Book
+The Worth of a Book:
+  archetype: The Chronicler
   text: When you **study your tomes and scrolls to discover old techniques or methods** to solve an intractable problem—curing a deadly disease, ending a drought, legally unseating a leader, etc—decide what you want to change and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to discover a path forward, including time taken, additional information needed, mentors or translators needed, facilities/tools needed, or the limits of your solution. When you fulfill the conditions, you gain whatever knowledge you were seeking—it’s up to you to put to use.
 
-- name: An Eye for the Real Story
+An Eye for the Real Story:
+  archetype: The Chronicler
   text: When you **read a tense situation**, mark an exhaustion—even on a miss—to spot a fellow observer who knows more than you might expect. Take a +1 ongoing to convince them to share their secrets with you when you get them in private.
 
-- name: Search the Records
+Search the Records:
+  archetype: The Chronicler
   text: When you **examine the documents, records, or assorted notes of an important NPC (your call)**, roll with Cunning. On a hit, you discover evidence of their secrets; the GM will tell you who would pay for the information you've uncovered. On a 10+, you also take a 12+ instead of rolling the next time you try to figure them out. On a miss, your search yields terrible news—someone is acting against you or your interests in an unexpected arena.
 
-- name: Loremaster
+Loremaster:
+  archetype: The Chronicler
   text: When you **consult your knowledge in order to understand a political conflict**, roll with Cunning. On a hit, the GM tells you what information you remember that completes your understanding of the messy situation. On a 10+, you can ask a followup question; the GM will answer honestly. On a miss, something about the situation doesn't fit the history—the GM will tell you what has radically shifted.
 
-- name: Good Advice
+Good Advice:
+  archetype: The Chronicler
   text: When you **offer an NPC advice about a sticky situation**, offer them the best advice you've got and roll with cunning. On a hit, they see the wisdom of your suggestion; they have to mark exhaustion or incorporate your advice into their plans. On a 7-9, you let something about your own plans or allegiances slip as you try to help them out. On a miss, the advice angers or offends them; the GM will tell you what local custom you’ve overstepped with your meddling.
 
-- name: Dedicated Scholar
+Dedicated Scholar:
+  archetype: The Chronicler
   text: Take an extra box of exhaustion. When you acquire a new tome or scroll documenting the history of the Woodland, clear your exhaustion track.
 
 # Exile
-- name: Known by All
+Known by All:
+  archetype: The Exile
   text: >
     When you **first encounter an important NPC from the faction that exiled you**, you may declare them an old ally—choosing one from the list below instead of meeting someone important—and roll.
 
@@ -31,29 +38,37 @@
 
     On a hit, your exile has done little to diminish their respect for you; they offer you whatever comfort and aid they can, even to the point of risking their own reputation and safety. On a 7-9, they can only assist you if they can cover their tracks when you leave; mark as much notoriety with their faction as you added to your roll as they spread a story of the terrible treatment they endured when they met you. On a miss, your attempts to contact your old network only reveal your position and desperation; mark as much notoriety as you added to your roll and those who hunt you will surely be here soon.
 
-- name: Above It All
+Above It All:
+  archetype: The Exile
   text: When you **trick an NPC** into granting you access or information by pretending to be a high-ranking member of their faction, roll with Charm instead of Cunning.
 
-- name: I Bring You...
+I Bring You...:
+  archetype: The Exile
   text: When you **spend time talking to the denizens of a new clearing**, mark exhaustion to learn what vital resource or fugitive the powers-that-be currently seek. When you deliver a vital resource or prisoner to a faction, you may **ask for a favor** from the faction as if you rolled a 12+. If your reputation with that faction is already +2 or greater, you may instead **sway the NPC** whose cause you most directly benefited with your contribution as if you rolled a 12+.
 
-- name: Greatest of the Age
+Greatest of the Age:
+  archetype: The Exile
   text: When you engage an enemy in melee, you take all four options and one for double effect when you roll a 12+.
 
-- name: Born to Be a King
+Born to Be a King:
+  archetype: The Exile
   text: Take +1 Charm (max +3).
 
-- name: Fancy Paper
+Fancy Paper:
+  archetype: The Exile
   text: You gain the roguish feat Counterfeit (it does not count against your maximum for advancement). When you **attempt a roguish feat** to produce counterfeit documents using your intimate knowledge of your home faction’s politics and procedures, mark notoriety with that faction to make the move as if you had rolled a 12+.
 
 # Seeker
-- name: Word on the Street
+Word on the Street:
+  archetype: The Seeker
   text: When you **spend time in a clearing talking with locals**, roll with Finesse. On a hit, you catch wind of a nearby unexplored wonder or ruin; someone promises to take you to it for a fair fee (1-value). On a 7-9, the dangers make their price steeper—an additional 1-value of coin or gear. On a miss, the location is under threat—soon it will be plundered, destroyed, or claimed by another power
 
-- name: Never Lost
+Never Lost:
+  archetype: The Seeker
   text: Take two additional boxes of injury and depletion you can mark when you confront dangers within a ruin and a +1 ongoing to **trusting fate** and **performing roguish feats** while exploring such ancient locales.
 
-- name: Treasure Hunter
+Treasure Hunter:
+  archetype: The Seeker
   text: >
     When you sell the **treasures you found in a ruin at market**, roll with Cunning. On a hit, you find some buyers. On a 7-9, take 1. On a 10+, both:
 
@@ -64,10 +79,12 @@
 
     On a miss, someone powerful takes offense at your plunder of local sites.
 
-- name: Loremaster
+Loremaster:
+  archetype: The Seeker
   text: When you **try to convince a powerful NPC to supply an exploratory adventure**, roll with Cunning. On a hit, they give you 8-value in resources and depletion—but you must fulfill a request. On a 10+, they ask for something general—more riches, information, a prize or trophy. On a 7-9, they want something specific—a singular treasure, secret knowledge, a lost ritual. On a miss, they mount a competing expedition based on what you have told them.
 
-- name: Watch the Signs
+Watch the Signs:
+  archetype: The Seeker
   text: >
     When you first attune yourself to a ruin or mysterious site by taking in its signs, symbols, particular traits, and layout, roll with Cunning. On a 10+, hold 3. On a 7-9, hold 2. On a miss, you may mark an exhaustion to hold 1. While within that ruin or mysterious site, you can spend your hold 1 for 1 to:
 
@@ -78,5 +95,6 @@
     * Name a character in the ruin; you cross the distance to them instantly.
     * Take cover in the ruin; ignore all harm from a single attack or catastrophe
 
-- name: Unstable Ground
+Unstable Ground:
+  archetype: The Seeker
   text: When you use a rough or chaotic environment—slippery rocks, a crowded market, etc—to gain an advantage over your opponents in a fight, you can mark exhaustion to **grapple** with them using Finesse instead of Might.

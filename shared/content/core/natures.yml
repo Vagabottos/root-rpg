@@ -1,18 +1,18 @@
 
-- name: Observer
+Observer:
   desc: Clear your exhaustion track when you enter a dangerous situation to try to witness a significant or secret event.
 
-- name: Activist
+Activist:
   desc: Clear your exhaustion track when you publicly confront the leadership of a clearing about changes you think are vital to the community's success.
 
-- name: Schemer
+Schemer:
   desc: Clear your exhaustion track when you offer valuable resources to a dangerous Woodland figure to secure their aid.
 
-- name: Avenger
+Avenger:
   desc: Clear your exhaustion track when you openly attack those who have wronged you or your sworn vassals and wards.
 
-- name: Explorer
+Explorer:
   desc: Clear your exhaustion track when you enter a ruin or other dangerous area of the forest.
 
-- name: Historian
+Historian:
   desc: Clear your exhaustion track when you refuse to allow someone to cover up or obscure the truth.
