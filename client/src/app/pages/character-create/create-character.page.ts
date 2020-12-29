@@ -82,6 +82,30 @@ export class CreateCharacterPage implements OnInit {
     stat: new FormControl('', [Validators.required])
   });
 
+  public backgroundForm = new FormGroup({
+  });
+
+  public naturesForm = new FormGroup({
+  });
+
+  public drivesForm = new FormGroup({
+  });
+
+  public movesForm = new FormGroup({
+  });
+
+  public featsForm = new FormGroup({
+  });
+
+  public skillsForm = new FormGroup({
+  });
+
+  public itemsForm = new FormGroup({
+  });
+
+  public connectionsForm = new FormGroup({
+  });
+
   public validationMessages = {
     campaignId: [
       { type: 'required', message: 'Campaign ID is required.' },
@@ -106,6 +130,9 @@ export class CreateCharacterPage implements OnInit {
     ],
     demeanor: [
       { type: 'required', message: 'Demeanor is required.' },
+    ],
+    stat: [
+      { type: 'required', message: 'Bonus stat is required.' },
     ]
   };
 
@@ -202,6 +229,16 @@ export class CreateCharacterPage implements OnInit {
     this.currentStep = CharacterCreateStep.CampaignOrNo;
     this.campaignForm.reset();
     this.archetypeForm.reset();
+    this.characterForm.reset();
+    this.bonusForm.reset();
+    this.backgroundForm.reset();
+    this.naturesForm.reset();
+    this.drivesForm.reset();
+    this.movesForm.reset();
+    this.featsForm.reset();
+    this.skillsForm.reset();
+    this.itemsForm.reset();
+    this.connectionsForm.reset();
     this.save();
   }
 
@@ -222,9 +259,21 @@ export class CreateCharacterPage implements OnInit {
     loadObject.character.adjectives = loadObject.character.adjectives || [];
     loadObject.character.demeanor = loadObject.character.demeanor || [];
 
+    loadObject.bonus.stat = loadObject.bonus.stat || '';
+
+    // TODO: background form
+    // TODO: natures form
+    // TODO: drives form
+    // TODO: moves form
+    // TODO: feats form
+    // TODO: skills form
+    // TODO: items form
+    // TODO: connections form
+
     this.campaignForm.setValue(loadObject.campaign || {});
     this.archetypeForm.setValue(loadObject.archetype || {});
     this.characterForm.setValue(loadObject.character || {});
+    this.bonusForm.setValue(loadObject.bonus || '');
   }
 
   save() {
@@ -232,7 +281,16 @@ export class CreateCharacterPage implements OnInit {
       _currentStep: this.currentStep,
       campaign: this.campaignForm.value,
       archetype: this.archetypeForm.value,
-      character: this.characterForm.value
+      character: this.characterForm.value,
+      bonus: this.bonusForm.value,
+      background: this.bonusForm.value,
+      natures: this.naturesForm.value,
+      drives: this.drivesForm.value,
+      moves: this.movesForm.value,
+      feats: this.featsForm.value,
+      skills: this.skillsForm.value,
+      items: this.itemsForm.value,
+      connections: this.connectionsForm.value
     };
 
     localStorage.setItem('newchar', JSON.stringify(saveObject));
