@@ -26,6 +26,7 @@ demeanor:
 
 background:
   - question: Where do you call home?
+    type: answers
     answers:
       - text: _ clearing
         type: clearing
@@ -34,6 +35,7 @@ background:
       - text: a place far from here
 
   - question: Why are you a vagabond?
+    type: answers
     answers:
       - text: I want to wander the Woodland
       - text: I'm seeking answers to a mystery
@@ -42,6 +44,7 @@ background:
       - text: I stole and sold something precious from someone dangerous
 
   - question: Whom have you left behind?
+    type: answers
     answers:
       - text: My family
       - text: An spouse or loved one
@@ -50,13 +53,11 @@ background:
       - text: My idol
 
   - question: Which faction have you served the most?
-    input: select
     type: faction
     reputation:
       prestige: 2
 
   - question: With which faction have you earned a special enmity?
-    input: select
     type: faction
     reputation:
       notoriety: 1

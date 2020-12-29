@@ -295,7 +295,6 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "background questions" -->
 <ng-template #background>
   <form [formGroup]="backgroundForm">
     <ion-card>
@@ -312,11 +311,37 @@
 
       <ion-card-content>
 
-        <ion-list>
-          <ion-item>
-            <ion-label position="stacked"></ion-label>
-            <ion-input type="text" formControlName="backgrounds" placeholder=""></ion-input>
-          </ion-item>
+        <ion-list formArrayName="backgrounds">
+          <ng-container *ngFor="let qa of chosenVagabond.background; let i = index">
+            <ion-item>
+              <ion-label position="stacked" class="ion-text-wrap spaced-label">{{ qa.question }}</ion-label>
+
+              <ion-select placeholder="Select Answer" 
+                          [formControlName]="i"
+                          [compareWith]="compareAnswer" 
+                          *ngIf="qa.type === 'answers'">
+                <ion-select-option *ngFor="let answer of qa.answers"
+                                   [value]="answer">
+                  {{ answer.text }}
+                </ion-select-option>
+              </ion-select>
+
+              <ion-select placeholder="Select Faction" [formControlName]="i" *ngIf="qa.type === 'faction'">
+                <ion-select-option *ngFor="let faction of validFactions"
+                                   [value]="faction.name">
+                  {{ faction.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="backgroundForm.get('backgrounds').value && backgroundForm.get('backgrounds').value[i]?.input === 'text'">
+
+              <ion-input type="text"
+                         [(ngModel)]="backgroundForm.get('backgrounds').value[i].realText"
+                         [ngModelOptions]="{ standalone: true }"
+                         [placeholder]="backgroundForm.get('backgrounds').value[i]?.text"></ion-input>
+            </ion-item>
+          </ng-container>
 
           <ion-item lines="none">
             <ion-row class="action-row">
@@ -328,7 +353,7 @@
               </ion-col>
 
               <ion-col size="12" size-sm="6" class="ion-text-right">
-                <ion-button color="primary" [disabled]="bonusForm.invalid" (click)="next()">
+                <ion-button color="primary" [disabled]="backgroundForm.invalid" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
                   Nature
                 </ion-button>

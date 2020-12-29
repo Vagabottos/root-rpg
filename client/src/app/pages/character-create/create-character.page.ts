@@ -1,14 +1,16 @@
 
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { sample } from 'lodash';
+import { cloneDeep, sample } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 import * as content from '../../../../../shared/_output/content.json';
+
+const clonedContent = cloneDeep((content as any).default || content);
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -34,7 +36,7 @@ enum CharacterCreateStep {
 export class CreateCharacterPage implements OnInit {
 
   public get allContent() {
-    return (content as any).default || content;
+    return clonedContent;
   }
 
   public get chosenVagabond() {
@@ -46,6 +48,12 @@ export class CreateCharacterPage implements OnInit {
     return [
       ...this.allContent.core.species,
       ...(vagabond.species || [])
+    ];
+  }
+
+  public get validFactions() {
+    return [
+      ...this.allContent.core.factions
     ];
   }
 
@@ -83,7 +91,7 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public backgroundForm = new FormGroup({
-    backgrounds: new FormControl([], [Validators.required])
+    backgrounds: new FormArray([])
   });
 
   public naturesForm = new FormGroup({
@@ -222,6 +230,7 @@ export class CreateCharacterPage implements OnInit {
     if (this.currentStep === CharacterCreateStep.Archetype)     { this.currentStep = CharacterCreateStep.NameSpecies; }
     if (this.currentStep === CharacterCreateStep.CampaignOrNo)  { this.currentStep = CharacterCreateStep.Archetype; }
 
+    this.syncFormWithStep();
     this.save();
   }
 
@@ -231,6 +240,22 @@ export class CreateCharacterPage implements OnInit {
 
   pickRandomName() {
     this.characterForm.get('name').setValue(sample(this.allContent.core.names));
+  }
+
+  syncFormWithStep() {
+    if (!this.chosenVagabond) { return; }
+
+    const bgArr = this.backgroundForm.get('backgrounds') as FormArray;
+    if (bgArr.length === 0) {
+      this.chosenVagabond.background.forEach(() => {
+        bgArr.push(new FormControl('', [Validators.required]));
+      });
+    }
+
+  }
+
+  compareAnswer(currentValue, compareValue): boolean {
+    return currentValue.text === compareValue.text;
   }
 
   reset() {
@@ -252,6 +277,7 @@ export class CreateCharacterPage implements OnInit {
 
   load() {
     const loadObject = JSON.parse(localStorage.getItem('newchar') || '{}');
+
     this.currentStep = loadObject._currentStep || CharacterCreateStep.CampaignOrNo;
 
     loadObject.campaign = loadObject.campaign || {};
@@ -270,7 +296,6 @@ export class CreateCharacterPage implements OnInit {
     loadObject.bonus = loadObject.bonus || {};
     loadObject.bonus.stat = loadObject.bonus.stat || '';
 
-    // TODO: background form
     loadObject.background = loadObject.background || {};
     loadObject.background.backgrounds = loadObject.background.backgrounds || [];
 
@@ -302,6 +327,13 @@ export class CreateCharacterPage implements OnInit {
     loadObject.connections = loadObject.connections || {};
     loadObject.connections.connections = loadObject.connections.connections || [];
 
+    // create extra form objects
+    loadObject.background.backgrounds.forEach(bg => {
+      const bgArr = this.backgroundForm.get('backgrounds') as FormArray;
+      bgArr.push(new FormControl(bg, [Validators.required]));
+    });
+
+    // set all of the form values
     this.campaignForm.setValue(loadObject.campaign || {});
     this.archetypeForm.setValue(loadObject.archetype || {});
     this.characterForm.setValue(loadObject.character || {});

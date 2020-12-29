@@ -26,6 +26,7 @@ demeanor:
 
 background:
   - question: Where do you call home?
+    type: answers
     answers:
       - text: _ clearing
         type: clearing
@@ -34,6 +35,7 @@ background:
       - text: a place far from here
 
   - question: Why are you a vagabond?
+    type: answers
     answers:
       - text: I seek the Woodland's secrets
       - text: I swore an oath to record true, unbiased history
@@ -42,6 +44,7 @@ background:
       - text: I crave adventure
 
   - question: Who inspired your love of history?
+    type: answers
     answers:
       - text: My parents
       - text: An older sibling
@@ -50,10 +53,12 @@ background:
       - text: A formal school
 
   - question: Which faction have you served the most?
+    type: faction
     reputation:
       prestige: 2
 
   - question: With which faction have you earned a special enmity?
+    type: faction
     reputation:
       notoriety: 1
 

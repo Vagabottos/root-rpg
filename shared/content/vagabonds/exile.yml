@@ -26,6 +26,7 @@ demeanor:
 
 background:
   - question: Where do you call home?
+    type: answers
     answers:
       - text: _ clearing
         type: clearing
@@ -34,6 +35,7 @@ background:
       - text: a place far from here
 
   - question: What caused your fall?
+    type: answers
     answers:
       - text: I led a failed coup or rebellion
       - text: I committed a terrible crime
@@ -41,6 +43,7 @@ background:
       - text: I fell prey to my rival's schemes
 
   - question: Why were you exiled (not killed)?
+    type: answers
     answers:
       - text: A complex legal system protected me
       - text: The last of my allies saved my life
@@ -48,6 +51,7 @@ background:
       - text: I fled before facing judgment
 
   - question: Why are you a vagabond?
+    type: answers
     answers:
       - text: I seek a new home in the Woodland
       - text: I want to reclaim my prestige
@@ -55,13 +59,11 @@ background:
       - text: I seek revenge against my enemies
 
   - question: Which faction exiled you?
-    input: select
     type: faction
     reputation:
       notoriety: 6
 
   - question: Which faction now seeks your loyalty or allegiance?
-    input: select
     type: faction
     reputation:
       prestige: 5

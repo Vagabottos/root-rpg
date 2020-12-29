@@ -78,3 +78,16 @@
 ion-card-title, ion-card-subtitle {
   text-align: center;
 }
+
+.alert-tappable {
+  height: auto !important;
+  contain: content !important;
+
+  .alert-radio-label {
+    white-space: normal !important;
+  }
+}
+
+.spaced-label {
+  margin-bottom: 10px !important;
+}
