@@ -74,10 +74,10 @@ natures:
 
 connections:
   - name: Partner
-    desc: _ and I exposed a dark secret of a faction, leading to a meaningful political change. What was it? And which member of that faction hates us for it?
+    text: _ and I exposed a dark secret of a faction, leading to a meaningful political change. What was it? And which member of that faction hates us for it?
 
   - name: Peer
-    desc: I think _ sees the truth of the world, and I value their perspective deeply. What kinds of information do they see that I often overlook?
+    text: I think _ sees the truth of the world, and I value their perspective deeply. What kinds of information do they see that I often overlook?
 
 stats:
   charm: -1

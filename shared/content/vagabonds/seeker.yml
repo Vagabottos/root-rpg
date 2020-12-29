@@ -74,10 +74,10 @@ natures:
 
 connections:
   - name: Partner
-    desc: I and _ have seen the wonders of the Woodland together. What makes them a stalwart companion on my travels?
+    text: I and _ have seen the wonders of the Woodland together. What makes them a stalwart companion on my travels?
 
   - name: Peer
-    desc: _ is famous for a discovery of their own. I greatly respect them! What did they discover? How?
+    text: _ is famous for a discovery of their own. I greatly respect them! What did they discover? How?
 
 stats:
   charm: -1

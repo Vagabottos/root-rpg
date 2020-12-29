@@ -473,9 +473,57 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "choose moves" -->
 <ng-template #moves>
-  
+  <form [formGroup]="movesForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Moves
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting moves.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item *ngFor="let move of chosenVagabond.moves" 
+                    [disabled]="move.name === chosenVagabond.defaultMove || movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name)">
+            <ion-label class="ion-text-wrap">
+              <h2>{{ move.name }}</h2>
+              <p [innerHTML]="getMoveDesc(move.name) | markdown"></p>
+            </ion-label>
+            <ion-checkbox slot="end" 
+                          (ionChange)="selectMove(move.name)" 
+                          [checked]="movesForm.get('moves').value.includes(move.name)"></ion-checkbox>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Drives
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="movesForm.invalid || movesForm.get('moves').value.length < 3" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Feats
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "feats" (only if archetype has none selected) -->

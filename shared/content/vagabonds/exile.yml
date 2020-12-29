@@ -80,10 +80,10 @@ natures:
 
 connections:
   - name: Protector
-    desc: I see greatness in _ that I wish to nurture...and perhaps turn to my own purposes. What is it about them that inspires me so?
+    text: I see greatness in _ that I wish to nurture...and perhaps turn to my own purposes. What is it about them that inspires me so?
 
   - name: Family
-    desc: _ sheltered me in the earliest days of my exile when I was at my most vulnerable. Why did they offer me such kindness in my moment of need?
+    text: _ sheltered me in the earliest days of my exile when I was at my most vulnerable. Why did they offer me such kindness in my moment of need?
 
 stats:
   charm: +1

@@ -249,6 +249,11 @@ export class CreateCharacterPage implements OnInit {
       });
     }
 
+    const moves = this.movesForm.get('moves').value;
+    if (moves.length === 0) {
+      this.movesForm.get('moves').setValue([this.chosenVagabond.defaultMove]);
+    }
+
   }
 
   // background functions
@@ -258,15 +263,15 @@ export class CreateCharacterPage implements OnInit {
 
   // nature functions
   getNatureDesc(nature: string): string {
-    return this.allContent.core.natures[nature]?.desc ?? 'No description entered.';
+    return this.allContent.core.natures[nature]?.text ?? 'No description entered.';
   }
 
   // drive functions
   getDriveDesc(drive: string): string {
-    return this.allContent.core.drives[drive]?.desc ?? 'No description entered.';
+    return this.allContent.core.drives[drive]?.text ?? 'No description entered.';
   }
 
-  selectDrive(drive: string) {
+  selectDrive(drive: string): void {
     const drives = this.drivesForm.get('drives').value;
 
     if (drives.includes(drive)) {
@@ -278,6 +283,25 @@ export class CreateCharacterPage implements OnInit {
 
     drives.push(drive);
     this.drivesForm.get('drives').setValue(drives);
+  }
+
+  // move functions
+  getMoveDesc(move: string): string {
+    return this.allContent.core.moves[move]?.text ?? 'No description entered.';
+  }
+
+  selectMove(move: string): void {
+    const moves = this.movesForm.get('moves').value;
+
+    if (moves.includes(move)) {
+      this.movesForm.get('moves').setValue(moves.filter(x => x !== move));
+      return;
+    }
+
+    if (moves.length >= 3) { return; }
+
+    moves.push(move);
+    this.movesForm.get('moves').setValue(moves);
   }
 
   reset() {
