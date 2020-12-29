@@ -63,11 +63,9 @@ natures:
 connections:
   - name: Partner
     desc: I and _ have seen the wonders of the Woodland together. What makes them a stalwart companion on my travels?
-    mech: When you fill in this connection, you each mark 2-prestige with the faction you helped, and mark 2-notoriety with the faction you harmed. During play, if you are spotted together, then any prestige or notoriety gains with those factions are doubled for the two of you.
 
   - name: Peer
     desc: _ is famous for a discovery of their own. I greatly respect them! What did they discover? How?
-    mech: If you share information with them after **reading a tense situation**, you both benefit from the +1 for acting on the answers. If you **help** them while they **attempt a roguish feat**, you gain choices on the help move as if you had marked 2-exhaustion when you mark 1-exhaustion.
 
 stats:
   charm: -1
