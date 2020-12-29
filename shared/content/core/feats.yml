@@ -1,10 +1,27 @@
 
-- name: Acrobatics
-- name: Blindside
-- name: Counterfeit
-- name: Disable Device
-- name: Hide
-- name: Pick pocket
-- name: Sneak
-- name: Pick lock
-- name: Sleight of hand
+Acrobatics:
+  text: Do a barrel roll.
+
+Blindside:
+  text: Stab someone from behind.
+
+Counterfeit:
+  text: Fake it til you make it.
+
+Disable Device:
+  text: We must construct additional pylons.
+
+Hide:
+  text: Vanish into the shadows.
+
+Pick pocket:
+  text: Steal from someone.
+  
+Sneak:
+  text: Sneak around like a sneaky sneak.
+
+Pick lock:
+  text: Pick a lock up and set it back down.
+
+Sleight of hand:
+  text: Perform a sneaky trick with your hands.
