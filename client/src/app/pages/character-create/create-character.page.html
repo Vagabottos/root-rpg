@@ -230,7 +230,7 @@
               <ion-col size="12" size-sm="6" class="ion-text-right">
                 <ion-button color="primary" [disabled]="characterForm.invalid" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
-                  Bonus Stats
+                  Bonus Stat
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -306,36 +306,31 @@
         </ion-card-title>
 
         <ion-card-subtitle>
-          Choose the stat you want to apply a +1 bonus to, to a maximum of +2.
+          Describe your characters background.
         </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
 
         <ion-list>
-          <ion-radio-group formControlName="stat">
-            <ion-item *ngFor="let stat of stats" [disabled]="chosenVagabond.stats[stat.key] >= 2">
-              <ion-label class="ion-text-wrap">
-                <h2>{{ stat.name }} ({{ chosenVagabond.stats[stat.key] < 0 ? '' : '+' }}{{ chosenVagabond.stats[stat.key] }})</h2>
-                <p>{{ stat.desc }}</p>
-              </ion-label>
-              <ion-radio [value]="stat.key"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
+          <ion-item>
+            <ion-label position="stacked"></ion-label>
+            <ion-input type="text" formControlName="backgrounds" placeholder=""></ion-input>
+          </ion-item>
 
           <ion-item lines="none">
             <ion-row class="action-row">
               <ion-col size="12" size-sm="6">
                 <ion-button color="secondary" (click)="prev()">
                   <ion-icon slot="start" name="caret-back"></ion-icon>
-                  Character Details
+                  Bonus Stat
                 </ion-button>
               </ion-col>
 
               <ion-col size="12" size-sm="6" class="ion-text-right">
                 <ion-button color="primary" [disabled]="bonusForm.invalid" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
-                  Background
+                  Nature
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -348,7 +343,7 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "choose natures" -->
+<!-- TODO: screen: "choose nature" -->
 <ng-template #natures>
   
 </ng-template>

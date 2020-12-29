@@ -83,27 +83,35 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public backgroundForm = new FormGroup({
+    backgrounds: new FormControl([], [Validators.required])
   });
 
   public naturesForm = new FormGroup({
+    natures: new FormControl([], [Validators.required])
   });
 
   public drivesForm = new FormGroup({
+    drives: new FormControl([], [Validators.required])
   });
 
   public movesForm = new FormGroup({
+    moves: new FormControl([], [Validators.required])
   });
 
   public featsForm = new FormGroup({
+    feats: new FormControl([], [Validators.required])
   });
 
   public skillsForm = new FormGroup({
+    skills: new FormControl([], [Validators.required])
   });
 
   public itemsForm = new FormGroup({
+    items: new FormControl([], [Validators.required])
   });
 
   public connectionsForm = new FormGroup({
+    connections: new FormControl([], [Validators.required])
   });
 
   public validationMessages = {
@@ -264,27 +272,35 @@ export class CreateCharacterPage implements OnInit {
 
     // TODO: background form
     loadObject.background = loadObject.background || {};
+    loadObject.background.backgrounds = loadObject.background.backgrounds || [];
 
     // TODO: natures form
     loadObject.natures = loadObject.natures || {};
+    loadObject.natures.natures = loadObject.natures.natures || [];
 
     // TODO: drives form
     loadObject.drives = loadObject.drives || {};
+    loadObject.drives.drives = loadObject.drives.drives || [];
 
     // TODO: moves form
     loadObject.moves = loadObject.moves || {};
+    loadObject.moves.moves = loadObject.moves.moves || [];
 
     // TODO: feats form
     loadObject.feats = loadObject.feats || {};
+    loadObject.feats.feats = loadObject.feats.feats || [];
 
     // TODO: skills form
     loadObject.skills = loadObject.skills || {};
+    loadObject.skills.skills = loadObject.skills.skills || [];
 
     // TODO: items form
     loadObject.items = loadObject.items || {};
+    loadObject.items.items = loadObject.items.items || [];
 
     // TODO: connections form
     loadObject.connections = loadObject.connections || {};
+    loadObject.connections.connections = loadObject.connections.connections || [];
 
     this.campaignForm.setValue(loadObject.campaign || {});
     this.archetypeForm.setValue(loadObject.archetype || {});
@@ -307,7 +323,7 @@ export class CreateCharacterPage implements OnInit {
       archetype: this.archetypeForm.value,
       character: this.characterForm.value,
       bonus: this.bonusForm.value,
-      background: this.bonusForm.value,
+      background: this.backgroundForm.value,
       natures: this.naturesForm.value,
       drives: this.drivesForm.value,
       moves: this.movesForm.value,
