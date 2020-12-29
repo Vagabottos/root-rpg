@@ -28,6 +28,8 @@ background:
   - question: Where do you call home?
     answers:
       - text: _ clearing
+        type: clearing
+        input: text
       - text: the forest
       - text: a place far from here
 
@@ -48,7 +50,12 @@ background:
       - text: A formal school
 
   - question: Which faction have you served the most?
+    reputation:
+      prestige: 2
+
   - question: With which faction have you earned a special enmity?
+    reputation:
+      notoriety: 1
 
 drives:
   - Justice

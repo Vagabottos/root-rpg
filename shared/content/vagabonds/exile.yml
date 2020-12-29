@@ -28,6 +28,8 @@ background:
   - question: Where do you call home?
     answers:
       - text: _ clearing
+        type: clearing
+        input: text
       - text: the forest
       - text: a place far from here
 
@@ -53,7 +55,16 @@ background:
       - text: I seek revenge against my enemies
 
   - question: Which faction exiled you?
+    input: select
+    type: faction
+    reputation:
+      notoriety: 6
+
   - question: Which faction now seeks your loyalty or allegiance?
+    input: select
+    type: faction
+    reputation:
+      prestige: 5
 
 drives:
   - Loyalty
