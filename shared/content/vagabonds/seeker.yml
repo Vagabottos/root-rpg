@@ -91,6 +91,7 @@ feats:
   - name: Disable Device
   - name: Pick lock
 
+numSkills: 1
 skills:
   - name: Confuse Senses
   - name: Disarm

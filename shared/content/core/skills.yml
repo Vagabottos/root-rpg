@@ -18,6 +18,7 @@ Harry:
 
 
     * They suffer morale harm.
+    
     * They are pinned or blocked.
 
 Improvise:
@@ -31,7 +32,9 @@ Parry:
 
 
     * You inflict morale harm on them.
+
     * You disarm your opponent.
+
     * You don’t suffer any harm.
 
 Quick Shot:
@@ -40,8 +43,11 @@ Quick Shot:
 
 
     * You don’t mark decay.
+
     * You don’t mark exhaustion.
+
     * You move quickly and change your position (and, if you choose, range).
+
     * You keep your target at bay — they don’t move.
 
 Storm a Group:
@@ -53,8 +59,11 @@ Trick Shot:
 
 
     * Your shot lands in any target of your choice within range, even if it’s behind cover or hidden (inflicting injury or decay if appropriate).
+
     * Your shot strikes a second available target of your choice.
+
     * Your shot cuts something, breaks something, or knocks something over, your choice.
+
     * Your shot distracts an opponent and provides an opportunity.
 
 Vicious Strike:

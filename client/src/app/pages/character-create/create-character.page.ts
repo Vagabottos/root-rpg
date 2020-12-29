@@ -304,6 +304,25 @@ export class CreateCharacterPage implements OnInit {
     this.movesForm.get('moves').setValue(moves);
   }
 
+  // skill functions
+  getSkillDesc(skill: string): string {
+    return this.allContent.core.skills[skill]?.text ?? 'No description entered.';
+  }
+
+  selectSkill(skill: string): void {
+    const skills = this.skillsForm.get('skills').value;
+
+    if (skills.includes(skill)) {
+      this.skillsForm.get('skills').setValue(skills.filter(x => x !== skill));
+      return;
+    }
+
+    if (skills.length >= this.chosenVagabond.numSkills) { return; }
+
+    skills.push(skill);
+    this.skillsForm.get('skills').setValue(skills);
+  }
+
   reset() {
     this.currentStep = CharacterCreateStep.CampaignOrNo;
     this.campaignForm.reset();

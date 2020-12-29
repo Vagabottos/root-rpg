@@ -513,7 +513,7 @@
               <ion-col size="12" size-sm="6" class="ion-text-right">
                 <ion-button color="primary" [disabled]="movesForm.invalid || movesForm.get('moves').value.length < 3" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
-                  Feats
+                  Roguish Feats
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -526,24 +526,198 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "feats" (only if archetype has none selected) -->
 <ng-template #feats>
-  
+  <form [formGroup]="featsForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Roguish Feats
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting roguish feats.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            TODO: Need a book that doesn't start with feats.
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Moves
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <!-- [disabled]="featsForm.invalid" -->
+                <ion-button color="primary" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Weapon Skills
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
-<!-- TODO: screen: "skills" (only if archetype has none selected) -->
 <ng-template #skills>
-  
+  <form [formGroup]="skillsForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Weapon Skills
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting {{ chosenVagabond.numSkills }} weapon skill(s).
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item *ngFor="let skill of chosenVagabond.skills" 
+                    [disabled]="skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)">
+            <ion-label class="ion-text-wrap">
+              <h2>{{ skill.name }}</h2>
+              <p [innerHTML]="getSkillDesc(skill.name) | markdown"></p>
+            </ion-label>
+            <ion-checkbox slot="end" 
+                          (ionChange)="selectSkill(skill.name)" 
+                          [checked]="skillsForm.get('skills').value.includes(skill.name)"></ion-checkbox>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Roguish Feats
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="skillsForm.invalid || skillsForm.get('skills').value.length < chosenVagabond.numSkills" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Items
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
-<!-- TODO: screen: "buy items" -->
 <ng-template #items>
-  
+  <form [formGroup]="itemsForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Items
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting items.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            TODO: Need to figure out how this works.
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Weapon Skills
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <!-- [disabled]="itemsForm.invalid" -->
+                <ion-button color="primary" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Connections
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "describe connections" -->
 <ng-template #connections>
-  
+  <form [formGroup]="connectionsForm">
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Connections
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Choose your character's starting connections.
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ion-item>
+            TODO: Do this.
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col size="12" size-sm="6">
+                <ion-button color="secondary" (click)="prev()">
+                  <ion-icon slot="start" name="caret-back"></ion-icon>
+                  Items
+                </ion-button>
+              </ion-col>
+
+              <ion-col size="12" size-sm="6" class="ion-text-right">
+                <ion-button color="primary" [disabled]="connectionsForm.invalid" (click)="next()">
+                  <ion-icon slot="end" name="caret-forward"></ion-icon>
+                  Finalize
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content>
+
+    </ion-card>
+  </form>
 </ng-template>
 
 <!-- TODO: screen: "finalize" -->

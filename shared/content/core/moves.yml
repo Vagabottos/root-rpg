@@ -32,7 +32,9 @@ Known by All:
 
 
     * If they merely know you by your former reputation, take a +1.
+
     * If you have worked closely with them before, take a +2.
+
     * If they were a close friend or loyal servitor, take a +3.
 
 
@@ -74,6 +76,7 @@ Treasure Hunter:
 
 
     * you get a good price; you get double what such findings are usually worth
+
     * you are popular; mark two prestige with the controlling faction
 
 
@@ -90,10 +93,14 @@ Watch the Signs:
 
 
     * Identify the quickest path to the closest valuable treasure or knowledge.
+    
     * Disarm a trap or overcome a natural hazard without cost.
+
     * Name a character within reach about to suffer harm; you suffer it instead.
+
     * Name a character in the ruin; you cross the distance to them instantly.
-    * Take cover in the ruin; ignore all harm from a single attack or catastrophe
+
+    * Take cover in the ruin; ignore all harm from a single attack or catastrophe.
 
 Unstable Ground:
   archetype: The Seeker

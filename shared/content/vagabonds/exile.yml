@@ -95,6 +95,7 @@ stats:
 feats:
   - name: Sneak
 
+numSkills: 1
 skills:
   - name: Cleave
   - name: Quick Shot
