@@ -259,21 +259,45 @@ export class CreateCharacterPage implements OnInit {
     loadObject.character.adjectives = loadObject.character.adjectives || [];
     loadObject.character.demeanor = loadObject.character.demeanor || [];
 
+    loadObject.bonus = loadObject.bonus || {};
     loadObject.bonus.stat = loadObject.bonus.stat || '';
 
     // TODO: background form
+    loadObject.background = loadObject.background || {};
+
     // TODO: natures form
+    loadObject.natures = loadObject.natures || {};
+
     // TODO: drives form
+    loadObject.drives = loadObject.drives || {};
+
     // TODO: moves form
+    loadObject.moves = loadObject.moves || {};
+
     // TODO: feats form
+    loadObject.feats = loadObject.feats || {};
+
     // TODO: skills form
+    loadObject.skills = loadObject.skills || {};
+
     // TODO: items form
+    loadObject.items = loadObject.items || {};
+
     // TODO: connections form
+    loadObject.connections = loadObject.connections || {};
 
     this.campaignForm.setValue(loadObject.campaign || {});
     this.archetypeForm.setValue(loadObject.archetype || {});
     this.characterForm.setValue(loadObject.character || {});
-    this.bonusForm.setValue(loadObject.bonus || '');
+    this.bonusForm.setValue(loadObject.bonus || {});
+    this.backgroundForm.setValue(loadObject.background || {});
+    this.naturesForm.setValue(loadObject.natures || {});
+    this.drivesForm.setValue(loadObject.drives || {});
+    this.movesForm.setValue(loadObject.moves || {});
+    this.featsForm.setValue(loadObject.feats || {});
+    this.skillsForm.setValue(loadObject.skills || {});
+    this.itemsForm.setValue(loadObject.items || {});
+    this.connectionsForm.setValue(loadObject.connections || {});
   }
 
   save() {
