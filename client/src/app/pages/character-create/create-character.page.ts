@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { ICharacter } from '../../models';
+import { sample } from 'lodash';
+
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
@@ -55,8 +56,6 @@ export class CreateCharacterPage implements OnInit {
     { name: 'Luck',     key: 'luck',    desc: 'Luck measures how...well...lucky you are, how capable you are of putting your fate into the hands of pure chance and coming out on top.' },
     { name: 'Might',    key: 'might',   desc: 'Might measures how strong and tough you are, how capable you are of overpowering opponents or succeeding in tasks that require brute force.' }
   ];
-
-  public character: Partial<ICharacter> = {};
 
   public validatingCampaignId = false;
 
@@ -193,6 +192,10 @@ export class CreateCharacterPage implements OnInit {
 
   vagabondData(vaga: string) {
     return this.allContent.vagabonds[vaga] || {};
+  }
+
+  pickRandomName() {
+    this.characterForm.get('name').setValue(sample(this.allContent.core.names));
   }
 
   reset() {
