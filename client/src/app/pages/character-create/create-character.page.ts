@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { cloneDeep, sample } from 'lodash';
+import { capitalize, cloneDeep, sample } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
@@ -115,7 +115,7 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public connectionsForm = new FormGroup({
-    connections: new FormControl([], [Validators.required])
+    connections: new FormArray([])
   });
 
   public validationMessages = {
@@ -196,36 +196,36 @@ export class CreateCharacterPage implements OnInit {
 
   prev() {
     if (this.currentStep === CharacterCreateStep.CampaignOrNo)  { return; }
-    if (this.currentStep === CharacterCreateStep.Archetype)     { this.currentStep = CharacterCreateStep.CampaignOrNo; }
-    if (this.currentStep === CharacterCreateStep.NameSpecies)   { this.currentStep = CharacterCreateStep.Archetype; }
-    if (this.currentStep === CharacterCreateStep.BonusStats)    { this.currentStep = CharacterCreateStep.NameSpecies; }
-    if (this.currentStep === CharacterCreateStep.Background)    { this.currentStep = CharacterCreateStep.BonusStats; }
-    if (this.currentStep === CharacterCreateStep.Natures)       { this.currentStep = CharacterCreateStep.Background; }
-    if (this.currentStep === CharacterCreateStep.Drives)        { this.currentStep = CharacterCreateStep.Natures; }
-    if (this.currentStep === CharacterCreateStep.Moves)         { this.currentStep = CharacterCreateStep.Drives; }
-    if (this.currentStep === CharacterCreateStep.Feats)         { this.currentStep = CharacterCreateStep.Moves; }
-    if (this.currentStep === CharacterCreateStep.Skills)        { this.currentStep = CharacterCreateStep.Feats; }
-    if (this.currentStep === CharacterCreateStep.Items)         { this.currentStep = CharacterCreateStep.Skills; }
-    if (this.currentStep === CharacterCreateStep.Connections)   { this.currentStep = CharacterCreateStep.Items; }
-    if (this.currentStep === CharacterCreateStep.Finalize)      { this.currentStep = CharacterCreateStep.Connections; }
+    if (this.currentStep === CharacterCreateStep.Archetype)     { this.setStep(CharacterCreateStep.CampaignOrNo); }
+    if (this.currentStep === CharacterCreateStep.NameSpecies)   { this.setStep(CharacterCreateStep.Archetype); }
+    if (this.currentStep === CharacterCreateStep.BonusStats)    { this.setStep(CharacterCreateStep.NameSpecies); }
+    if (this.currentStep === CharacterCreateStep.Background)    { this.setStep(CharacterCreateStep.BonusStats); }
+    if (this.currentStep === CharacterCreateStep.Natures)       { this.setStep(CharacterCreateStep.Background); }
+    if (this.currentStep === CharacterCreateStep.Drives)        { this.setStep(CharacterCreateStep.Natures); }
+    if (this.currentStep === CharacterCreateStep.Moves)         { this.setStep(CharacterCreateStep.Drives); }
+    if (this.currentStep === CharacterCreateStep.Feats)         { this.setStep(CharacterCreateStep.Moves); }
+    if (this.currentStep === CharacterCreateStep.Skills)        { this.setStep(CharacterCreateStep.Feats); }
+    if (this.currentStep === CharacterCreateStep.Items)         { this.setStep(CharacterCreateStep.Skills); }
+    if (this.currentStep === CharacterCreateStep.Connections)   { this.setStep(CharacterCreateStep.Items); }
+    if (this.currentStep === CharacterCreateStep.Finalize)      { this.setStep(CharacterCreateStep.Connections); }
 
     this.save();
   }
 
   next() {
     if (this.currentStep === CharacterCreateStep.Finalize)      { return; }
-    if (this.currentStep === CharacterCreateStep.Connections)   { this.currentStep = CharacterCreateStep.Finalize; }
-    if (this.currentStep === CharacterCreateStep.Items)         { this.currentStep = CharacterCreateStep.Connections; }
-    if (this.currentStep === CharacterCreateStep.Skills)        { this.currentStep = CharacterCreateStep.Items; }
-    if (this.currentStep === CharacterCreateStep.Feats)         { this.currentStep = CharacterCreateStep.Skills; }
-    if (this.currentStep === CharacterCreateStep.Moves)         { this.currentStep = CharacterCreateStep.Feats; }
-    if (this.currentStep === CharacterCreateStep.Drives)        { this.currentStep = CharacterCreateStep.Moves; }
-    if (this.currentStep === CharacterCreateStep.Natures)       { this.currentStep = CharacterCreateStep.Drives; }
-    if (this.currentStep === CharacterCreateStep.Background)    { this.currentStep = CharacterCreateStep.Natures; }
-    if (this.currentStep === CharacterCreateStep.BonusStats)    { this.currentStep = CharacterCreateStep.Background; }
-    if (this.currentStep === CharacterCreateStep.NameSpecies)   { this.currentStep = CharacterCreateStep.BonusStats; }
-    if (this.currentStep === CharacterCreateStep.Archetype)     { this.currentStep = CharacterCreateStep.NameSpecies; }
-    if (this.currentStep === CharacterCreateStep.CampaignOrNo)  { this.currentStep = CharacterCreateStep.Archetype; }
+    if (this.currentStep === CharacterCreateStep.Connections)   { this.setStep(CharacterCreateStep.Finalize); }
+    if (this.currentStep === CharacterCreateStep.Items)         { this.setStep(CharacterCreateStep.Connections); }
+    if (this.currentStep === CharacterCreateStep.Skills)        { this.setStep(CharacterCreateStep.Items); }
+    if (this.currentStep === CharacterCreateStep.Feats)         { this.setStep(CharacterCreateStep.Skills); }
+    if (this.currentStep === CharacterCreateStep.Moves)         { this.setStep(CharacterCreateStep.Feats); }
+    if (this.currentStep === CharacterCreateStep.Drives)        { this.setStep(CharacterCreateStep.Moves); }
+    if (this.currentStep === CharacterCreateStep.Natures)       { this.setStep(CharacterCreateStep.Drives); }
+    if (this.currentStep === CharacterCreateStep.Background)    { this.setStep(CharacterCreateStep.Natures); }
+    if (this.currentStep === CharacterCreateStep.BonusStats)    { this.setStep(CharacterCreateStep.Background); }
+    if (this.currentStep === CharacterCreateStep.NameSpecies)   { this.setStep(CharacterCreateStep.BonusStats); }
+    if (this.currentStep === CharacterCreateStep.Archetype)     { this.setStep(CharacterCreateStep.NameSpecies); }
+    if (this.currentStep === CharacterCreateStep.CampaignOrNo)  { this.setStep(CharacterCreateStep.Archetype); }
 
     this.syncFormWithStep();
     this.save();
@@ -252,6 +252,13 @@ export class CreateCharacterPage implements OnInit {
     const moves = this.movesForm.get('moves').value;
     if (moves.length === 0) {
       this.movesForm.get('moves').setValue([this.chosenVagabond.defaultMove]);
+    }
+
+    const connArr = this.connectionsForm.get('connections') as FormArray;
+    if (connArr.length === 0) {
+      this.chosenVagabond.connections.forEach(() => {
+        connArr.push(new FormControl('', [Validators.required]));
+      });
     }
 
   }
@@ -323,8 +330,28 @@ export class CreateCharacterPage implements OnInit {
     this.skillsForm.get('skills').setValue(skills);
   }
 
+  // connection functions
+  getConnectionDesc(conn: string): string {
+    return this.allContent.core.connections[conn]?.text ?? 'No description entered.';
+  }
+
+  setStep(step: CharacterCreateStep): void {
+    this.currentStep = step;
+  }
+
+  // stat functions
+  getStatName(stat: string): string {
+    return capitalize(stat);
+  }
+
+  getTotalStat(stat: string): number {
+    const baseValue = this.chosenVagabond.stats[stat] ?? 0;
+    if (stat === this.bonusForm.get('stat').value) { return baseValue + 1; }
+    return baseValue;
+  }
+
   reset() {
-    this.currentStep = CharacterCreateStep.CampaignOrNo;
+    this.setStep(CharacterCreateStep.CampaignOrNo);
     this.campaignForm.reset();
     this.archetypeForm.reset();
     this.characterForm.reset();
@@ -343,7 +370,7 @@ export class CreateCharacterPage implements OnInit {
   load() {
     const loadObject = JSON.parse(localStorage.getItem('newchar') || '{}');
 
-    this.currentStep = loadObject._currentStep || CharacterCreateStep.CampaignOrNo;
+    this.setStep(loadObject._currentStep || CharacterCreateStep.CampaignOrNo);
 
     loadObject.campaign = loadObject.campaign || {};
     loadObject.campaign.campaignId = loadObject.campaign.campaignId || '';
@@ -370,23 +397,18 @@ export class CreateCharacterPage implements OnInit {
     loadObject.drives = loadObject.drives || {};
     loadObject.drives.drives = loadObject.drives.drives || [];
 
-    // TODO: moves form
     loadObject.moves = loadObject.moves || {};
     loadObject.moves.moves = loadObject.moves.moves || [];
 
-    // TODO: feats form
     loadObject.feats = loadObject.feats || {};
     loadObject.feats.feats = loadObject.feats.feats || [];
 
-    // TODO: skills form
     loadObject.skills = loadObject.skills || {};
     loadObject.skills.skills = loadObject.skills.skills || [];
 
-    // TODO: items form
     loadObject.items = loadObject.items || {};
     loadObject.items.items = loadObject.items.items || [];
 
-    // TODO: connections form
     loadObject.connections = loadObject.connections || {};
     loadObject.connections.connections = loadObject.connections.connections || [];
 
@@ -394,6 +416,11 @@ export class CreateCharacterPage implements OnInit {
     loadObject.background.backgrounds.forEach(bg => {
       const bgArr = this.backgroundForm.get('backgrounds') as FormArray;
       bgArr.push(new FormControl(bg, [Validators.required]));
+    });
+
+    loadObject.connections.connections.forEach(conn => {
+      const connArr = this.connectionsForm.get('connections') as FormArray;
+      connArr.push(new FormControl(conn, [Validators.required]));
     });
 
     // set all of the form values

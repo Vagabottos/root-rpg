@@ -25,6 +25,30 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+$sizes: 1, 2, 3;
+
+@each $size in $sizes {
+  .margin-#{$size} {
+    margin: #{$size}rem;
+  }
+
+  .margin-top-#{$size} {
+    margin-top: #{$size}rem;
+  }
+
+  .margin-bottom-#{$size} {
+    margin-bottom: #{$size}rem;
+  }
+
+  .margin-left-#{$size} {
+    margin-left: #{$size}rem;
+  }
+
+  .margin-right-#{$size} {
+    margin-right: #{$size}rem;
+  }
+}
+
 .hidden {
   display: none !important;
 }

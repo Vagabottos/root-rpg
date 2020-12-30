@@ -15,6 +15,9 @@ export class MarkdownPipe implements PipeTransform {
 
   private getCustomRenderer(): marked.Renderer {
     const renderer = new marked.Renderer();
+
+    renderer.paragraph = t => t;
+
     return renderer;
   }
 

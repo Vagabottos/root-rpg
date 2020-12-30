@@ -44,3 +44,26 @@
 .action-row {
   margin-top: 20px;
 }
+
+.sub-desc {
+  font-style: italic;
+  font-size: 0.75em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-section {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+
+  max-width: 30px;
+  max-height: 30px;
+
+  --padding-start: 0 !important;
+  --padding-end: 0 !important;
+}
+
+.space-between + .space-between {
+  margin-top: 1rem;
+}

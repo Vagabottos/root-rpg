@@ -673,7 +673,6 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "describe connections" -->
 <ng-template #connections>
   <form [formGroup]="connectionsForm">
     <ion-card>
@@ -690,10 +689,20 @@
 
       <ion-card-content>
 
-        <ion-list>
-          <ion-item>
-            TODO: Do this.
-          </ion-item>
+        <ion-list formArrayName="connections">
+          <ng-container *ngFor="let conn of chosenVagabond.connections; let i = index">
+            <ion-item>
+              <ion-label class="ion-text-wrap">
+                <h3>{{ conn.name }}</h3>
+                <p>{{ conn.text }}</p>
+                <p class="sub-desc" [innerHTML]="getConnectionDesc(conn.name) | markdown"></p>
+              </ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" [formControlName]="i" placeholder="Enter Player Name"></ion-input>
+            </ion-item>
+          </ng-container>
 
           <ion-item lines="none">
             <ion-row class="action-row">
@@ -720,7 +729,232 @@
   </form>
 </ng-template>
 
-<!-- TODO: screen: "finalize" -->
 <ng-template #finalize>
-  
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Finalize
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Make sure your character looks right. Don't forget to introduce yourself!
+      </ion-card-subtitle>
+    </ion-card-header>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ characterForm.get('name').value }}</ion-card-title>
+      <ion-card-subtitle>{{ archetypeForm.get('archetype').value }}</ion-card-subtitle>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.NameSpecies)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p *ngIf="campaignForm.get('campaignId').value">You will be joining a campaign.</p>
+      <p>You are a(n) <strong>{{ characterForm.get('species').value }}</strong>, whose pronouns are <strong>{{ characterForm.get('pronouns').value }}</strong>.</p>
+      <p>You are described by others as: <strong>{{ characterForm.get('adjectives').value.join(', ') }}</strong></p>
+      <p>Your demeanor is: <strong>{{ characterForm.get('demeanor').value.join(', ') }}</strong></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Stats</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.BonusStats)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col *ngFor="let stat of chosenVagabond.stats | keyvalue" size="3" size-xs="6">
+          <span><strong>{{ getStatName(stat.key) }}</strong>:</span> 
+          <span>{{ getTotalStat(stat.key) < 0 ? '' : '+' }}{{ getTotalStat(stat.key) }}</span>
+          <span *ngIf="stat.key === bonusForm.get('stat').value"> (Bonus)</span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Background</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Background)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row *ngFor="let bg of chosenVagabond.background; let i = index">
+        <ion-col>
+          <strong>{{ bg.question }}</strong>
+          <br>
+          <span *ngIf="backgroundForm.get('backgrounds').value[i] as answer">
+            {{ answer.realText || answer.text || answer }}
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nature</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Natures)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div>
+        <span><strong>{{ naturesForm.get('nature').value }}</strong>: </span>
+        <span [innerHTML]="getNatureDesc(naturesForm.get('nature').value) | markdown"></span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Drives</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Drives)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row *ngFor="let drive of drivesForm.get('drives').value">
+        <ion-col>
+          <strong>{{ drive }}</strong>: 
+          <span [innerHTML]="getDriveDesc(drive) | markdown"></span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Moves</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Moves)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-row *ngFor="let move of movesForm.get('moves').value">
+        <ion-col>
+          <strong>{{ move }}</strong>: 
+          <span [innerHTML]="getMoveDesc(move) | markdown"></span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Roguish Feats</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Feats)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          TODO: feats area needs to be done
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Weapon Skills</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Skills)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row *ngFor="let skill of skillsForm.get('skills').value">
+        <ion-col>
+          <strong>{{ skill }}</strong>: 
+          <span [innerHTML]="getSkillDesc(skill) | markdown"></span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Items</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Items)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      TODO: items area needs to be done
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Connections</ion-card-title>
+      <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Connections)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row *ngFor="let conn of connectionsForm.get('connections').value; let i = index">
+        <ion-col>
+          <strong>{{ chosenVagabond.connections[i].name }} ({{ conn }})</strong>: 
+          <span [innerHTML]="getConnectionDesc(chosenVagabond.connections[i].name) | markdown"></span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Looking good?
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        If not, you can still go back.
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="prev()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Connections
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
 </ng-template>
