@@ -63,14 +63,14 @@ background:
       notoriety: 1
 
 drives:
-  - Justice
-  - Discovery
-  - Greed
-  - Wanderlust
+  - name: Justice
+  - name: Discovery
+  - name: Greed
+  - name: Wanderlust
 
 natures:
-  - Explorer
-  - Historian
+  - name: Explorer
+  - name: Historian
 
 connections:
   - name: Partner

@@ -1,4 +1,13 @@
 
+export enum Stat {
+  Charm = 'charm',
+  Cunning = 'cunning',
+  Finesse = 'finesse',
+  Luck = 'luck',
+  Might = 'might'
+}
+
+
 export interface IConnection {
   name: string;
   target: string;
