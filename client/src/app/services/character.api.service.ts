@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICharacter, ITableData } from '../models';
+import { ICharacter, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
 import { UserAPIService } from './user.api.service';
 
@@ -16,7 +16,7 @@ export class CharacterAPIService {
     private http: HttpClient
   ) { }
 
-  createCharacter(opts: ICharacter): Observable<ICharacter> {
+  createCharacter(opts): Observable<ICharacter> {
     return this.http.post(this.api.apiUrl('/character'), opts) as Observable<ICharacter>;
   }
 

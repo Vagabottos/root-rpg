@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICampaign } from '../../models';
+import { ICampaign } from '../../../interfaces';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 
 @Component({

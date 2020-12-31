@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../../interfaces';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 @Component({

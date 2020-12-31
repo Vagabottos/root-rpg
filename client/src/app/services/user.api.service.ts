@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IUser } from '../models';
+import { IUser } from '../../interfaces';
 
 import { APIService } from './api.service';
 

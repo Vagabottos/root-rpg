@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICampaign, ITableData } from '../models';
+import { ICampaign, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
 import { UserAPIService } from './user.api.service';
 

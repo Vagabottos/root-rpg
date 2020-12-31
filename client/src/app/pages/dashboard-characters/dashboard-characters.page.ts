@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICharacter } from '../../models';
+import { ICharacter } from '../../../interfaces';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 @Component({

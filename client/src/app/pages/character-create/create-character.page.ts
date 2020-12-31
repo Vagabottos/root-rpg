@@ -8,7 +8,7 @@ import { capitalize, cloneDeep, sample } from 'lodash';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import * as content from '../../../../../shared/_output/content.json';
+import { content } from '../../../interfaces';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -231,7 +231,7 @@ export class CreateCharacterPage implements OnInit {
     this.save();
   }
 
-  vagabondData(vaga: string) {
+  private vagabondData(vaga: string) {
     return this.allContent.vagabonds[vaga] || {};
   }
 
@@ -239,7 +239,7 @@ export class CreateCharacterPage implements OnInit {
     this.characterForm.get('name').setValue(sample(this.allContent.core.names));
   }
 
-  syncFormWithStep() {
+  private syncFormWithStep() {
     if (!this.chosenVagabond) { return; }
 
     const bgArr = this.backgroundForm.get('backgrounds') as FormArray;
@@ -438,8 +438,8 @@ export class CreateCharacterPage implements OnInit {
     this.connectionsForm.setValue(loadObject.connections || {});
   }
 
-  save() {
-    const saveObject = {
+  private getSaveObject() {
+    return {
       _currentStep: this.currentStep,
       campaign: this.campaignForm.value,
       archetype: this.archetypeForm.value,
@@ -454,12 +454,22 @@ export class CreateCharacterPage implements OnInit {
       items: this.itemsForm.value,
       connections: this.connectionsForm.value
     };
+  }
+
+  save() {
+    const saveObject = this.getSaveObject();
 
     localStorage.setItem('newchar', JSON.stringify(saveObject));
   }
 
   confirm() {
-
+    // TODO: confirm dialog
+    // TODO: navigate to character view
+    // TODO: call reset
+    this.characterAPI.createCharacter(this.getSaveObject())
+      .subscribe(char => {
+        console.log('create', char);
+      });
   }
 
 }
