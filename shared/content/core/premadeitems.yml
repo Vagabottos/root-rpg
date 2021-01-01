@@ -1,0 +1,48 @@
+
+- name: Chainmail
+  wear: 3
+  tags:
+    - Tightly woven
+    - Weighty
+
+- name: Dagger
+  wear: 1
+  ranges: 
+    - intimate
+    - close
+  skilltags:
+    - Parry
+    - Vicious Strike
+  tags:
+    - Quick
+
+- name: Leather Armor
+  wear: 2
+  tags:
+    - Flexible
+
+- name: Mousefolk Short Sword
+  wear: 2
+  ranges:
+    - close
+  skilltags:
+    - Parry
+    - Disarm
+  tags:
+    - Mousefolk Steel
+
+- name: Plate Armor
+  wear: 4
+  tags:
+    - Arrow-proof
+    - Cumbersome
+    - Weighty
+  
+- name: Shortbow
+  wear: 4
+  ranges:
+    - close
+  skilltags:
+    - Quick Shot
+  tags:
+    - Short Limbs

@@ -11,8 +11,9 @@ import { CharacterAPIService } from '../../services/character.api.service';
 import { content } from '../../../interfaces';
 import { IContent, IContentVagabond } from '../../../../../shared/interfaces';
 
-// TODO: change archetype should reset everything else
 // TODO: name people in drives
+// TODO: items with text inputs attached
+// TODO: item component
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',

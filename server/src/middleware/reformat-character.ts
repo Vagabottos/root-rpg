@@ -43,7 +43,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
   newChar.stats[context.data.bonus.stat as Stat] += 1;
 
   allContent.core.factions.forEach(fact => {
-    newChar.reputation[fact.name] = 0;
+    newChar.reputation[fact.name] = { notoriety: 0, prestige: 0 };
   });
 
   archetypeData.background.forEach((bg, i) => {
@@ -62,7 +62,12 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
         answer
       };
 
-      newChar.reputation[answer] += bg.reputation?.delta ?? 0;
+      const repChange = bg.reputation?.delta ?? 0;
+      if(repChange < 0) {
+        newChar.reputation[answer].notoriety += repChange;
+      } else {
+        newChar.reputation[answer].prestige += repChange;
+      }
     }
   });
 

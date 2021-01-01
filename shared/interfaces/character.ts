@@ -8,14 +8,19 @@ export enum Stat {
 }
 
 
-export interface IConnection {
+export interface ICharacterConnection {
   name: string;
   target: string;
 }
 
-export interface IBackground {
+export interface ICharacterBackground {
   question: string;
   answer: string;
+}
+
+export interface ICharacterReputation {
+  prestige: number;
+  notoriety: number;
 }
 
 export interface ICharacter {
@@ -26,15 +31,15 @@ export interface ICharacter {
   adjectives: string[];
   demeanor: string[];
   pronouns: string;
-  background: IBackground[];
+  background: ICharacterBackground[];
   drives: string[];
   nature: string;
-  connections: IConnection[];
+  connections: ICharacterConnection[];
   stats: Record<Stat, number>;
   feats: string[];
   skills: string[];
   moves: string[];
-  reputation: Record<string, number>;
+  reputation: Record<string, ICharacterReputation>;
 
   createdAt?: number;
   updatedAt?: number;

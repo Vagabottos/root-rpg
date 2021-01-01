@@ -1,4 +1,5 @@
 import { Stat } from './character';
+import { IItem } from './item';
 
 export interface IContentConnection {
   text: string;
@@ -29,6 +30,12 @@ export interface IContentSkill {
   text: string;
 }
 
+export interface IContentItemTag {
+  text: string;
+  valueMod: number;
+  loadMod?: number;
+}
+
 export interface IContentCore {
   connections: Record<string, IContentConnection>;
   drives: Record<string, IContentDrive>;
@@ -40,6 +47,8 @@ export interface IContentCore {
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];
+  items: IItem[];
+  itemtags: IContentItemTag[];
 }
 
 export interface IContentBackgroundReputationChange {

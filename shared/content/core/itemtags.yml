@@ -1,0 +1,130 @@
+
+Arrow-proof: 
+  text: Ignore the first hit dealing injury from arrows that you suffer in a scene. 
+  valueMod: 1
+
+Blunted:
+  text: This weapon inflicts exhaustion, not injury.
+  valueMod: 1
+
+Ceremonial:
+  text: Choose an attached faction. While this item is displayed, treat yourself as having +1 Reputation with that faction, and -1 Reputation with other factions.
+  valueMod: 1
+
+Comfortable:
+  text: This item counts as 1 fewer Load.
+  loadMod: -1
+  valueMod: 1
+
+Cumbersome:
+  text: Mark one exhaustion while you wear your armor—clear one exhaustion when you take it off. 
+  valueMod: -1
+
+Eaglecraft:
+  text: Mark wear when **engaging in melee** to both make and suffer another exchange of harm.
+  valueMod: 1
+
+Fast:
+  text: Mark wear when **engaging in melee** to suffer 1 fewer harm, even on a miss.
+  valueMod: 1
+
+Friendly:
+  text: When you **meet someone important**, mark exhaustion to roll with your Reputation +1.
+  valueMod: 1
+
+Flexible:
+  text: When you **grapple** with someone, mark exhaustion to ignore the first choice they make. 
+  valueMod: 1
+
+Foxfolk steel:
+  text: Ignore the first box of wear you mark on this item each session.
+  valueMod: 1
+
+Hair trigger:
+  text: Mark wear to target a vulnerable foe at close range instead of far.
+  valueMod: 1
+
+Healer's kit:
+  text: Mark wear to clear exhaustion. Mark 2 wear to clear injury.
+  valueMod: 1
+
+Heavy bludgeon:
+  text: Mark exhaustion to to ignore the enemy’s armor when you inflict harm.
+  valueMod: 1
+
+Heavy Draw Weight:
+  text: When you target a vulnerable foe with this bow, mark exhaustion to inflict 1 additional injury.
+  valueMod: 1
+
+Iron bolts:
+  text: This weapon inflicts 1 additional wear when its harm is absorbed by armor.
+  valueMod: 1
+
+Large:
+  text: Mark exhaustion when inflicting harm with this weapon to inflict 1 additional harm.
+  valueMod: 1
+
+Luxury:
+  text: After creation, this item is worth +3 Value.
+  valueMod: 1
+
+Mousefolk Steel:
+  text: Mark wear to **engage in melee** using Cunning instead of Might.
+  valueMod: 1
+
+Oiled string:
+  text: Mark wear to use the weapon skill quick shot even if you don’t have it.
+  valueMod: 1
+
+Quick:
+  text: Mark exhaustion to engage in melee with Finesse instead of Might.
+  valueMod: 1
+
+Rabbitfolk Steel:
+  text: Mark wear to engage in melee with Finesse instead of Might.
+  valueMod: 1
+
+Reach:
+  text: When you **engage in melee**, mark wear on this weapon to inflict harm instead of trading harm; you cannot use this tag if your enemy’s weapon also has **reach**.
+  valueMod: 1
+
+Sharp:
+  text: Mark wear when inflicting harm with this weapon to inflict 1 additional harm. 
+  valueMod: 1
+
+Short Limbs:
+  text: Mark wear to fire a quick shot at far range.
+  valueMod: 1
+
+Slow:
+  text: When you **engage in melee** with this weapon, choose one fewer option. Mark wear to ignore this effect.
+  valueMod: -1
+
+Thick:
+  text: When you mark wear on this shield to block a hit, you only ever mark 1-wear, even if you are blocking more harm from a single hit.
+  valueMod: 1
+
+Throwable:
+  text: Mark exhaustion to **target a vulnerable foe** with this weapon at far range. 
+  valueMod: 1
+
+Tightly woven:
+  text: When you take a few seconds to repair this armor after a fight, clear 1-wear you marked during the fight.
+  valueMod: 1
+
+Tricky:
+  text: When you use this item to **trick an NPC** by distracting them at a distance, on a 7-9 mark wear to eliminate one option from the **trick an NPC** move before the NPC picks.
+  valueMod: 1
+
+Unassuming:
+  text: Until you harm an enemy, they will never deem you more of a threat than other vagabonds with arms and armor.
+  valueMod: 1
+
+Versatile:
+  text: When you move to or from a range this weapon can reach, mark wear to make a quick strike and inflict 1-injury on any opponent in this weapon’s range
+  valueMod: 1
+
+Weighty:
+  text: This item counts as 1 additional Load.
+  valueMod: -1
+  loadMod: 1
