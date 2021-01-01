@@ -47,8 +47,8 @@ export interface IContentCore {
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];
-  items: IItem[];
-  itemtags: IContentItemTag[];
+  premadeitems: IItem[];
+  itemtags: Record<string, IContentItemTag>;
 }
 
 export interface IContentBackgroundReputationChange {

@@ -668,8 +668,8 @@
       <ion-card-content>
 
         <ion-list>
-          <ion-item>
-            TODO: Need to figure out how this works.
+          <ion-item *ngFor="let item of testItems">
+            <app-item [item]="item"></app-item>
           </ion-item>
 
           <ion-item lines="none">

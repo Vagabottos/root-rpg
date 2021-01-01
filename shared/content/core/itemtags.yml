@@ -49,7 +49,7 @@ Healer's kit:
   valueMod: 1
 
 Heavy bludgeon:
-  text: Mark exhaustion to to ignore the enemy’s armor when you inflict harm.
+  text: Mark exhaustion to to ignore the enemy's armor when you inflict harm.
   valueMod: 1
 
 Heavy Draw Weight:
@@ -73,7 +73,7 @@ Mousefolk Steel:
   valueMod: 1
 
 Oiled string:
-  text: Mark wear to use the weapon skill quick shot even if you don’t have it.
+  text: Mark wear to use the weapon skill quick shot even if you don't have it.
   valueMod: 1
 
 Quick:
@@ -85,7 +85,7 @@ Rabbitfolk Steel:
   valueMod: 1
 
 Reach:
-  text: When you **engage in melee**, mark wear on this weapon to inflict harm instead of trading harm; you cannot use this tag if your enemy’s weapon also has **reach**.
+  text: When you **engage in melee**, mark wear on this weapon to inflict harm instead of trading harm; you cannot use this tag if your enemy's weapon also has **reach**.
   valueMod: 1
 
 Sharp:
@@ -121,7 +121,7 @@ Unassuming:
   valueMod: 1
 
 Versatile:
-  text: When you move to or from a range this weapon can reach, mark wear to make a quick strike and inflict 1-injury on any opponent in this weapon’s range
+  text: When you move to or from a range this weapon can reach, mark wear to make a quick strike and inflict 1-injury on any opponent in this weapon's range
   valueMod: 1
 
 Weighty:

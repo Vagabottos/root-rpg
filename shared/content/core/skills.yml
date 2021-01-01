@@ -35,20 +35,20 @@ Parry:
 
     * You disarm your opponent.
 
-    * You don’t suffer any harm.
+    * You don't suffer any harm.
 
 Quick Shot:
   text: >
     When you **fire a snap shot at an enemy at close range**, roll with Luck. On a hit, inflict injury. On a 7–9, choose 1. On a 10+, choose 2.
 
 
-    * You don’t mark decay.
+    * You don't mark decay.
 
-    * You don’t mark exhaustion.
+    * You don't mark exhaustion.
 
     * You move quickly and change your position (and, if you choose, range).
 
-    * You keep your target at bay — they don’t move.
+    * You keep your target at bay — they don't move.
 
 Storm a Group:
   text: No description.
@@ -58,7 +58,7 @@ Trick Shot:
     When you **fire a clever shot designed to take advantage of the environment**, mark decay on your bow and roll with Finesse. On a 7–9, choose 2. On a 10+, choose 3.
 
 
-    * Your shot lands in any target of your choice within range, even if it’s behind cover or hidden (inflicting injury or decay if appropriate).
+    * Your shot lands in any target of your choice within range, even if it's behind cover or hidden (inflicting injury or decay if appropriate).
 
     * Your shot strikes a second available target of your choice.
 

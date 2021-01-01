@@ -1,3 +1,4 @@
+import { IItem } from './item';
 
 export enum Stat {
   Charm = 'charm',
@@ -39,6 +40,7 @@ export interface ICharacter {
   feats: string[];
   skills: string[];
   moves: string[];
+  items: IItem[];
   reputation: Record<string, ICharacterReputation>;
 
   createdAt?: number;

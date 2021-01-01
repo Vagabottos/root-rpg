@@ -9,6 +9,6 @@ export interface IItem {
   name: string;
   wear: number;
   tags?: string[];
-  ranges?: ItemRange[];
+  ranges?: ItemRange[] | string[];
   skillTags?: string[];
 }

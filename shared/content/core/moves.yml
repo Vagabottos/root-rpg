@@ -2,7 +2,7 @@
 # Chronicler
 The Worth of a Book:
   archetype: The Chronicler
-  text: When you **study your tomes and scrolls to discover old techniques or methods** to solve an intractable problem—curing a deadly disease, ending a drought, legally unseating a leader, etc—decide what you want to change and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to discover a path forward, including time taken, additional information needed, mentors or translators needed, facilities/tools needed, or the limits of your solution. When you fulfill the conditions, you gain whatever knowledge you were seeking—it’s up to you to put to use.
+  text: When you **study your tomes and scrolls to discover old techniques or methods** to solve an intractable problem—curing a deadly disease, ending a drought, legally unseating a leader, etc—decide what you want to change and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to discover a path forward, including time taken, additional information needed, mentors or translators needed, facilities/tools needed, or the limits of your solution. When you fulfill the conditions, you gain whatever knowledge you were seeking—it's up to you to put to use.
 
 An Eye for the Real Story:
   archetype: The Chronicler
@@ -18,7 +18,7 @@ Loremaster:
 
 Good Advice:
   archetype: The Chronicler
-  text: When you **offer an NPC advice about a sticky situation**, offer them the best advice you've got and roll with cunning. On a hit, they see the wisdom of your suggestion; they have to mark exhaustion or incorporate your advice into their plans. On a 7-9, you let something about your own plans or allegiances slip as you try to help them out. On a miss, the advice angers or offends them; the GM will tell you what local custom you’ve overstepped with your meddling.
+  text: When you **offer an NPC advice about a sticky situation**, offer them the best advice you've got and roll with cunning. On a hit, they see the wisdom of your suggestion; they have to mark exhaustion or incorporate your advice into their plans. On a 7-9, you let something about your own plans or allegiances slip as you try to help them out. On a miss, the advice angers or offends them; the GM will tell you what local custom you've overstepped with your meddling.
 
 Dedicated Scholar:
   archetype: The Chronicler
@@ -58,7 +58,7 @@ Born to Be a King:
 
 Fancy Paper:
   archetype: The Exile
-  text: You gain the roguish feat Counterfeit (it does not count against your maximum for advancement). When you **attempt a roguish feat** to produce counterfeit documents using your intimate knowledge of your home faction’s politics and procedures, mark notoriety with that faction to make the move as if you had rolled a 12+.
+  text: You gain the roguish feat Counterfeit (it does not count against your maximum for advancement). When you **attempt a roguish feat** to produce counterfeit documents using your intimate knowledge of your home faction's politics and procedures, mark notoriety with that faction to make the move as if you had rolled a 12+.
 
 # Seeker
 Word on the Street:
@@ -126,7 +126,7 @@ Crash & Smash:
 
     * You break an important part of your surroundings
 
-    * You damage or leave behind a piece of gear (GM’s choice)
+    * You damage or leave behind a piece of gear (GM's choice)
 
 
     On a miss, you smash through, but you leave yourself totally vulnerable on the other side.
@@ -137,7 +137,7 @@ Hardy:
 
 Strong Draw:
   archetype: The Arbiter
-  text: When you **target someone** with a bow, mark wear on the bow to roll with Might. On a hit, mark exhaustion to inflict 1 additional injury. Mark exhaustion again to make your shot ignore the enemy’s armor—they cannot mark wear to absorb the injury.
+  text: When you **target someone** with a bow, mark wear on the bow to roll with Might. On a hit, mark exhaustion to inflict 1 additional injury. Mark exhaustion again to make your shot ignore the enemy's armor—they cannot mark wear to absorb the injury.
 
 Guardian:
   archetype: The Arbiter

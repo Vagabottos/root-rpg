@@ -8,12 +8,11 @@ import { capitalize, cloneDeep, sample } from 'lodash';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { content } from '../../../interfaces';
 import { IContent, IContentVagabond } from '../../../../../shared/interfaces';
+import { ContentService } from '../../services/content.service';
 
 // TODO: name people in drives
 // TODO: items with text inputs attached
-// TODO: item component
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -31,6 +30,9 @@ enum CharacterCreateStep {
   Finalize = 'finalize'
 }
 
+// TODO: move to using content service for everything instead of allcontent
+// TODO: move feat names to content
+
 @Component({
   selector: 'app-create-character',
   templateUrl: './create-character.page.html',
@@ -40,21 +42,21 @@ export class CreateCharacterPage implements OnInit {
 
   public allContent: IContent;
 
-  public get chosenVagabond() {
-    return this.vagabondData(this.archetypeForm.get('archetype').value);
+  public get chosenVagabond(): IContentVagabond {
+    return this.contentService.getVagabond(this.archetypeForm.get('archetype').value);
   }
 
   public get validSpecies() {
     const vagabond = this.chosenVagabond;
     return [
-      ...this.allContent.core.species,
+      ...this.contentService.getSpecies(),
       ...(vagabond.species || [])
     ];
   }
 
   public get validFactions() {
     return [
-      ...this.allContent.core.factions
+      ...this.contentService.getFactions()
     ];
   }
 
@@ -69,6 +71,32 @@ export class CreateCharacterPage implements OnInit {
   public readonly featNames = [
     'Acrobatics', 'Blindside', 'Counterfeit', 'Disable Device', 'Hide',
     'Pick pocket', 'Sneak', 'Pick lock', 'Sleight of hand'
+  ];
+
+  public testItems = [
+    {
+        name: 'Chainmail',
+        wear: 3,
+        tags: [
+            'Tightly woven',
+            'Weighty'
+        ]
+    },
+    {
+        name: 'Dagger',
+        wear: 1,
+        ranges: [
+            'intimate',
+            'close'
+        ],
+        skilltags: [
+            'Parry',
+            'Vicious Strike'
+        ],
+        tags: [
+            'Quick'
+        ]
+    }
   ];
 
   public validatingCampaignId = false;
@@ -162,12 +190,13 @@ export class CreateCharacterPage implements OnInit {
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor(
+    private contentService: ContentService,
     private campaignAPI: CampaignAPIService,
     private characterAPI: CharacterAPIService
   ) { }
 
   ngOnInit() {
-    this.allContent = cloneDeep((content as any).default || content);
+    this.allContent = this.contentService.getAllContent();
     this.load();
   }
 
@@ -239,10 +268,6 @@ export class CreateCharacterPage implements OnInit {
 
     this.syncFormWithStep();
     this.save();
-  }
-
-  private vagabondData(vaga: string): IContentVagabond | undefined {
-    return this.allContent.vagabonds[vaga];
   }
 
   pickRandomName() {
