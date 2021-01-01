@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
-import { IContentDrive, IContentFaction, IContentFeat, IContentItemTag, IContentMove, IContentNature, IContentSkill, IContentVagabond } from '../../../../shared/interfaces';
+import { IContentConnection, IContentDrive, IContentFaction,
+  IContentFeat, IContentItemTag, IContentMove, IContentNature,
+  IContentSkill, IContentVagabond
+} from '../../../../shared/interfaces';
 
 import { IContent, content } from '../../interfaces';
 
