@@ -61,12 +61,12 @@ background:
   - question: Which faction exiled you?
     type: faction
     reputation:
-      notoriety: 6
+      delta: -6
 
   - question: Which faction now seeks your loyalty or allegiance?
     type: faction
     reputation:
-      prestige: 5
+      delta: 5
 
 drives:
   - name: Loyalty
@@ -86,12 +86,15 @@ connections:
     text: _ sheltered me in the earliest days of my exile when I was at my most vulnerable. Why did they offer me such kindness in my moment of need?
 
 stats:
-  charm: +1
+  charm: 1
   cunning: -1
   finesse: 0
-  luck: +1
-  might: +1
+  luck: 1
+  might: 1
 
+startingValue: 10
+
+chooseFeats: 0
 feats:
   - name: Sneak
 

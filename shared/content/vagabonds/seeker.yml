@@ -55,12 +55,12 @@ background:
   - question: Which faction have you served the most?
     type: faction
     reputation:
-      prestige: 2
+      delta: 2
 
   - question: With which faction have you earned a special enmity?
     type: faction
     reputation:
-      notoriety: 1
+      delta: -1
 
 drives:
   - name: Justice
@@ -81,11 +81,14 @@ connections:
 
 stats:
   charm: -1
-  cunning: +1
-  finesse: +1
+  cunning: 1
+  finesse: 1
   luck: 0
-  might: +1
+  might: 1
 
+startingValue: 10
+
+chooseFeats: 0
 feats:
   - name: Acrobatics
   - name: Disable Device

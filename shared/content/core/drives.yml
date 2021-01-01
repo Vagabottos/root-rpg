@@ -23,6 +23,12 @@ Chaos:
 Infamy:
   text: Advance when you decrease your reputation with any faction.
 
+Principles:
+  text: Advance when you express or embody your moral principles at great cost to yourself or your allies.
+
+Protection:
+  text: Name your ward. Advance when you protect them from significant danger, or when time passes and your ward is safe.
+
 Greed:
   text: Advance when you secure a serious payday or treasure.
 

@@ -16,3 +16,9 @@ Explorer:
 
 Historian:
   text: Clear your exhaustion track when you refuse to allow someone to cover up or obscure the truth.
+
+Defender:
+  text: Clear your exhaustion track when you put yourself in harm’s way to defend someone against injustice or dire threat. 
+
+Punisher:
+  text: Clear your exhaustion track when you tell a powerful or dangerous villain to their face that you will punish them.

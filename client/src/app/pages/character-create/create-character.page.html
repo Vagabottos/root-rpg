@@ -114,7 +114,7 @@
         <ion-list>
           <ion-item>
             <ion-label position="stacked">Archetype</ion-label>
-            <ion-select placeholder="Select Archetype" formControlName="archetype">
+            <ion-select placeholder="Select Archetype" formControlName="archetype" (ionChange)="resetVagabond()">
               <ion-select-option *ngFor="let type of allContent.vagabonds | keyvalue"
                                  [value]="type.key">
                 {{ type.key }}
@@ -124,7 +124,7 @@
 
           <ion-item *ngIf="archetypeForm.get('archetype').value">
             <ion-label class="ion-text-wrap">
-              <p>{{ chosenVagabond.description }}</p>
+              <p>{{ chosenVagabond?.description }}</p>
             </ion-label>
           </ion-item>
 
@@ -169,7 +169,7 @@
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-item class="has-suffix">
             <ion-label position="stacked">Name</ion-label>
             <ion-input type="text" formControlName="name" placeholder="Enter Name"></ion-input>
@@ -259,7 +259,7 @@
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-radio-group formControlName="stat">
             <ion-item *ngFor="let stat of stats" [disabled]="chosenVagabond.stats[stat.key] >= 2">
               <ion-label class="ion-text-wrap">
@@ -311,7 +311,7 @@
 
       <ion-card-content>
 
-        <ion-list formArrayName="backgrounds">
+        <ion-list formArrayName="backgrounds" *ngIf="chosenVagabond">
           <ng-container *ngFor="let qa of chosenVagabond.background; let i = index">
             <ion-item>
               <ion-label position="stacked" class="ion-text-wrap spaced-label">{{ qa.question }}</ion-label>
@@ -384,7 +384,7 @@
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-radio-group formControlName="nature">
             <ion-item *ngFor="let nature of chosenVagabond.natures">
               <ion-label class="ion-text-wrap">
@@ -436,7 +436,7 @@
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-item *ngFor="let drive of chosenVagabond.drives" 
                     [disabled]="drivesForm.get('drives').value.length >= 2 && !drivesForm.get('drives').value.includes(drive.name)">
             <ion-label class="ion-text-wrap">
@@ -489,7 +489,7 @@
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-item *ngFor="let move of chosenVagabond.moves" 
                     [disabled]="move.name === chosenVagabond.defaultMove || movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name)">
             <ion-label class="ion-text-wrap">
@@ -535,17 +535,43 @@
           Roguish Feats
         </ion-card-title>
 
-        <ion-card-subtitle>
-          Choose your character's starting roguish feats.
+        <ion-card-subtitle *ngIf="chosenVagabond">
+          <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
+            Choose your character's starting roguish feats.
+          </ng-container>
+          <ng-container *ngIf="!chosenVagabond.chooseFeats">
+            Your character starts with the following feats.
+          </ng-container>
         </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
 
-        <ion-list>
-          <ion-item>
-            TODO: Need a book that doesn't start with feats.
-          </ion-item>
+        <ion-list *ngIf="chosenVagabond">
+          <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
+            <ion-item *ngFor="let feat of featNames" 
+                      [disabled]="featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ feat }}</h2>
+                <p>{{ getFeatDesc(feat) }}</p>
+              </ion-label>
+              <ion-checkbox slot="end" 
+                            (ionChange)="selectFeat(feat)" 
+                            [checked]="featsForm.get('feats').value.includes(feat)"></ion-checkbox>
+            </ion-item>
+          </ng-container>
+
+          <ng-container *ngIf="!chosenVagabond.chooseFeats">
+            <ion-item *ngFor="let feat of chosenVagabond.feats">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ feat.name }}</h2>
+                <p>{{ getFeatDesc(feat.name) }}</p>
+              </ion-label>
+              <ion-checkbox slot="end" 
+                            [disabled]="true"
+                            [checked]="true"></ion-checkbox>
+            </ion-item>
+          </ng-container>
 
           <ion-item lines="none">
             <ion-row class="action-row">
@@ -557,8 +583,7 @@
               </ion-col>
 
               <ion-col size="12" size-sm="6" class="ion-text-right">
-                <!-- [disabled]="featsForm.invalid" -->
-                <ion-button color="primary" (click)="next()">
+                <ion-button color="primary" [disabled]="chosenVagabond.chooseFeats > 0 && (featsForm.invalid || featsForm.get('feats').value.length < chosenVagabond.chooseFeats)" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
                   Weapon Skills
                 </ion-button>
@@ -582,14 +607,14 @@
           Weapon Skills
         </ion-card-title>
 
-        <ion-card-subtitle>
+        <ion-card-subtitle *ngIf="chosenVagabond">
           Choose your character's starting {{ chosenVagabond.numSkills }} weapon skill(s).
         </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
 
-        <ion-list>
+        <ion-list *ngIf="chosenVagabond">
           <ion-item *ngFor="let skill of chosenVagabond.skills" 
                     [disabled]="skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)">
             <ion-label class="ion-text-wrap">
@@ -689,7 +714,7 @@
 
       <ion-card-content>
 
-        <ion-list formArrayName="connections">
+        <ion-list formArrayName="connections" *ngIf="chosenVagabond">
           <ng-container *ngFor="let conn of chosenVagabond.connections; let i = index">
             <ion-item>
               <ion-label class="ion-text-wrap">
@@ -770,7 +795,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row>
+      <ion-row *ngIf="chosenVagabond">
         <ion-col *ngFor="let stat of chosenVagabond.stats | keyvalue" size="3" size-xs="6">
           <span><strong>{{ getStatName(stat.key) }}</strong>:</span> 
           <span>{{ getTotalStat(stat.key) < 0 ? '' : '+' }}{{ getTotalStat(stat.key) }}</span>
@@ -789,15 +814,17 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngFor="let bg of chosenVagabond.background; let i = index">
-        <ion-col>
-          <strong>{{ bg.question }}</strong>
-          <br>
-          <span *ngIf="backgroundForm.get('backgrounds').value[i] as answer">
-            {{ answer.realText || answer.text || answer }}
-          </span>
-        </ion-col>
-      </ion-row>
+      <ng-container *ngIf="chosenVagabond">
+        <ion-row *ngFor="let bg of chosenVagabond.background; let i = index">
+          <ion-col>
+            <strong>{{ bg.question }}</strong>
+            <br>
+            <span *ngIf="backgroundForm.get('backgrounds').value[i] as answer">
+              {{ answer.realText || answer.text || answer }}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 
@@ -862,11 +889,25 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row>
-        <ion-col>
-          TODO: feats area needs to be done
-        </ion-col>
-      </ion-row>
+      <ng-container *ngIf="chosenVagabond">
+        <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
+          <ion-row *ngFor="let feat of featsForm.get('feats').value">
+            <ion-col>
+              <strong>{{ feat }}</strong>: 
+              <span [innerHTML]="getFeatDesc(feat) | markdown"></span>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+  
+        <ng-container *ngIf="!chosenVagabond.chooseFeats">
+          <ion-row *ngFor="let feat of chosenVagabond.feats">
+            <ion-col>
+              <strong>{{ feat.name }}</strong>: 
+              <span [innerHTML]="getFeatDesc(feat.name) | markdown"></span>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 
@@ -910,12 +951,14 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngFor="let conn of connectionsForm.get('connections').value; let i = index">
-        <ion-col>
-          <strong>{{ chosenVagabond.connections[i].name }} ({{ conn }})</strong>: 
-          <span [innerHTML]="getConnectionDesc(chosenVagabond.connections[i].name) | markdown"></span>
-        </ion-col>
-      </ion-row>
+      <ng-container *ngIf="chosenVagabond">
+        <ion-row *ngFor="let conn of connectionsForm.get('connections').value; let i = index">
+          <ion-col>
+            <strong>{{ chosenVagabond.connections[i].name }} ({{ conn }})</strong>: 
+            <span [innerHTML]="getConnectionDesc(chosenVagabond.connections[i].name) | markdown"></span>
+          </ion-col>
+        </ion-row>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 

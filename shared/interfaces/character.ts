@@ -28,12 +28,13 @@ export interface ICharacter {
   pronouns: string;
   background: IBackground[];
   drives: string[];
-  natures: string[];
+  nature: string;
   connections: IConnection[];
-  stats: Record<string, number>;
+  stats: Record<Stat, number>;
   feats: string[];
   skills: string[];
   moves: string[];
+  reputation: Record<string, number>;
 
   createdAt?: number;
   updatedAt?: number;

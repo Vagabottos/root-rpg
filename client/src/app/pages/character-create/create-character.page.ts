@@ -9,6 +9,10 @@ import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 import { content } from '../../../interfaces';
+import { IContent, IContentVagabond } from '../../../../../shared/interfaces';
+
+// TODO: change archetype should reset everything else
+// TODO: name people in drives
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -33,7 +37,7 @@ enum CharacterCreateStep {
 })
 export class CreateCharacterPage implements OnInit {
 
-  public allContent;
+  public allContent: IContent;
 
   public get chosenVagabond() {
     return this.vagabondData(this.archetypeForm.get('archetype').value);
@@ -59,6 +63,11 @@ export class CreateCharacterPage implements OnInit {
     { name: 'Finesse',  key: 'finesse', desc: 'Finesse measures how deft and dexterous you are, how capable you are of performing complicated or intricate tasks with your hands.' },
     { name: 'Luck',     key: 'luck',    desc: 'Luck measures how...well...lucky you are, how capable you are of putting your fate into the hands of pure chance and coming out on top.' },
     { name: 'Might',    key: 'might',   desc: 'Might measures how strong and tough you are, how capable you are of overpowering opponents or succeeding in tasks that require brute force.' }
+  ];
+
+  public readonly featNames = [
+    'Acrobatics', 'Blindside', 'Counterfeit', 'Disable Device', 'Hide',
+    'Pick pocket', 'Sneak', 'Pick lock', 'Sleight of hand'
   ];
 
   public validatingCampaignId = false;
@@ -231,8 +240,8 @@ export class CreateCharacterPage implements OnInit {
     this.save();
   }
 
-  private vagabondData(vaga: string) {
-    return this.allContent.vagabonds[vaga] || {};
+  private vagabondData(vaga: string): IContentVagabond | undefined {
+    return this.allContent.vagabonds[vaga];
   }
 
   pickRandomName() {
@@ -249,8 +258,8 @@ export class CreateCharacterPage implements OnInit {
       });
     }
 
-    const moves = this.movesForm.get('moves').value;
-    if (moves.length === 0) {
+    const moves = this.movesForm.get('moves').value || [];
+    if (moves.length === 0 && this.chosenVagabond.defaultMove) {
       this.movesForm.get('moves').setValue([this.chosenVagabond.defaultMove]);
     }
 
@@ -290,6 +299,25 @@ export class CreateCharacterPage implements OnInit {
 
     drives.push(drive);
     this.drivesForm.get('drives').setValue(drives);
+  }
+
+  // feat functions
+  getFeatDesc(feat: string): string {
+    return this.allContent.core.feats[feat]?.text ?? 'No description entered.';
+  }
+
+  selectFeat(feat: string): void {
+    const feats = this.featsForm.get('feats').value;
+
+    if (feats.includes(feat)) {
+      this.featsForm.get('feats').setValue(feats.filter(x => x !== feat));
+      return;
+    }
+
+    if (feats.length >= this.chosenVagabond.chooseFeats) { return; }
+
+    feats.push(feat);
+    this.featsForm.get('feats').setValue(feats);
   }
 
   // move functions
@@ -337,6 +365,7 @@ export class CreateCharacterPage implements OnInit {
 
   setStep(step: CharacterCreateStep): void {
     this.currentStep = step;
+    this.save();
   }
 
   // stat functions
@@ -351,7 +380,6 @@ export class CreateCharacterPage implements OnInit {
   }
 
   reset() {
-    this.setStep(CharacterCreateStep.CampaignOrNo);
     this.campaignForm.reset();
     this.archetypeForm.reset();
     this.characterForm.reset();
@@ -364,13 +392,28 @@ export class CreateCharacterPage implements OnInit {
     this.skillsForm.reset();
     this.itemsForm.reset();
     this.connectionsForm.reset();
+    this.setStep(CharacterCreateStep.CampaignOrNo);
     this.save();
+  }
+
+  resetVagabond() {
+    (this.backgroundForm.get('backgrounds') as FormArray).clear();
+    (this.connectionsForm.get('connections') as FormArray).clear();
+
+    this.characterForm.reset();
+    this.bonusForm.reset();
+    this.backgroundForm.reset();
+    this.naturesForm.reset();
+    this.drivesForm.get('drives').setValue([]);
+    this.movesForm.get('moves').setValue([]);
+    this.featsForm.get('feats').setValue([]);
+    this.skillsForm.get('skills').setValue([]);
+    this.itemsForm.get('items').setValue([]);
+    this.connectionsForm.get('connections').setValue([]);
   }
 
   load() {
     const loadObject = JSON.parse(localStorage.getItem('newchar') || '{}');
-
-    this.setStep(loadObject._currentStep || CharacterCreateStep.CampaignOrNo);
 
     loadObject.campaign = loadObject.campaign || {};
     loadObject.campaign.campaignId = loadObject.campaign.campaignId || '';
@@ -436,6 +479,8 @@ export class CreateCharacterPage implements OnInit {
     this.skillsForm.setValue(loadObject.skills || {});
     this.itemsForm.setValue(loadObject.items || {});
     this.connectionsForm.setValue(loadObject.connections || {});
+
+    this.setStep(loadObject._currentStep || CharacterCreateStep.CampaignOrNo);
   }
 
   private getSaveObject() {

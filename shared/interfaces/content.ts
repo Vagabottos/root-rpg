@@ -43,8 +43,7 @@ export interface IContentCore {
 }
 
 export interface IContentBackgroundReputationChange {
-  prestige?: number;
-  notoriety?: number;
+  delta?: number;
 }
 
 export interface IContentBackgroundAnswer {
@@ -97,6 +96,8 @@ export interface IContentVagabond {
   natures: IContentVagabondNature[];
   connections: IContentVagabondConnection[];
   stats: Record<Stat, number>;
+  startingValue: number;
+  chooseFeats: number;
   feats: IContentVagabondFeat[];
   numSkills: number;
   skills: IContentVagabondSkill[];

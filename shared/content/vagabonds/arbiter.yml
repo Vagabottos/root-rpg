@@ -1,0 +1,108 @@
+
+archetype: The Arbiter
+
+description: You are a powerful, obstinate vagabond, serving as somewhere between a mercenary and a protector, perhaps taking sides too easily in the greater conflict between the factions. 
+
+species:
+  - badger
+
+adjectives:
+  - large
+  - scarred
+  - well-groomed
+  - old
+
+items:
+  - faded military jacket
+  - eyepatch
+  - repaired clothes
+  - tarnished locket
+
+demeanor:
+  - intimidating
+  - honest
+  - brusque
+  - open
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I'm being hunted by a powerful official
+      - text: I wish to make up for a past transgression
+      - text: I want to fight injustice
+      - text: I must clear my tarnished name
+      - text: I have been exiled from most clearings
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My peer and friend
+      - text: My family
+      - text: My loved one
+      - text: My ward
+      - text: My commander
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Justice
+  - name: Principles
+  - name: Loyalty
+  - name: Protection
+
+natures:
+  - name: Defender
+  - name: Punisher
+
+connections:
+  - name: Partner
+    text: _ and I together helped a faction take control of a clearing, and share responsibility for it.
+
+  - name: Protector
+    text: I once protected _ from a mortal blow during a fight, and I would do it again. Why?
+
+stats:
+  charm: 1
+  cunning: 0
+  finesse: 0
+  luck: -1
+  might: 2
+
+startingValue: 10
+
+chooseFeats: 1
+feats: []
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Parry
+  - name: Storm a Group
+  - name: Disarm
+
+defaultMove: ''
+moves:
+  - name: Brute
+  - name: Carry a Big Stick
+  - name: Crash & Smash
+  - name: Hardy
+  - name: Strong Draw
+  - name: Guardian
