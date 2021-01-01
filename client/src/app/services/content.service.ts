@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
-import { IContentFaction, IContentItemTag, IContentVagabond } from '../../../../shared/interfaces';
+import { IContentDrive, IContentFaction, IContentFeat, IContentItemTag, IContentMove, IContentNature, IContentSkill, IContentVagabond } from '../../../../shared/interfaces';
 
 import { IContent, content } from '../../interfaces';
 
@@ -20,6 +20,22 @@ export class ContentService {
     return this.content;
   }
 
+  getVagabonds(): string[] {
+    return Object.keys(this.content.vagabonds);
+  }
+
+  getPronouns(): string[] {
+    return this.content.core.pronouns;
+  }
+
+  getNames(): string[] {
+    return this.content.core.names;
+  }
+
+  getFeats(): string[] {
+    return Object.keys(this.content.core.feats);
+  }
+
   getSpecies(): string[] {
     return this.content.core.species;
   }
@@ -34,5 +50,29 @@ export class ContentService {
 
   getTag(name: string): IContentItemTag {
     return this.content.core.itemtags[name];
+  }
+
+  getNature(name: string): IContentNature {
+    return this.content.core.natures[name];
+  }
+
+  getDrive(name: string): IContentDrive {
+    return this.content.core.drives[name];
+  }
+
+  getConnection(name: string): IContentConnection {
+    return this.content.core.connections[name];
+  }
+
+  getMove(name: string): IContentMove {
+    return this.content.core.moves[name];
+  }
+
+  getFeat(name: string): IContentFeat {
+    return this.content.core.feats[name];
+  }
+
+  getSkill(name: string): IContentSkill {
+    return this.content.core.skills[name];
   }
 }

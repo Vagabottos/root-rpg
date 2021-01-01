@@ -115,9 +115,9 @@
           <ion-item>
             <ion-label position="stacked">Archetype</ion-label>
             <ion-select placeholder="Select Archetype" formControlName="archetype" (ionChange)="resetVagabond()">
-              <ion-select-option *ngFor="let type of allContent.vagabonds | keyvalue"
-                                 [value]="type.key">
-                {{ type.key }}
+              <ion-select-option *ngFor="let type of contentService.getVagabonds()"
+                                 [value]="type">
+                {{ type }}
               </ion-select-option>
             </ion-select>
           </ion-item>
@@ -191,7 +191,7 @@
           <ion-item>
             <ion-label position="stacked">Pronouns</ion-label>
             <ion-select placeholder="Select Pronouns" formControlName="pronouns">
-              <ion-select-option *ngFor="let pronouns of allContent.core.pronouns"
+              <ion-select-option *ngFor="let pronouns of contentService.getPronouns()"
                                  [value]="pronouns">
                 {{ pronouns }}
               </ion-select-option>
@@ -549,7 +549,7 @@
 
         <ion-list *ngIf="chosenVagabond">
           <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
-            <ion-item *ngFor="let feat of featNames" 
+            <ion-item *ngFor="let feat of contentService.getFeats()" 
                       [disabled]="featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ feat }}</h2>

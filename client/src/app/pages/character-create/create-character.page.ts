@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, cloneDeep, sample } from 'lodash';
+import { capitalize, sample } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { IContent, IContentVagabond } from '../../../../../shared/interfaces';
+import { IContentVagabond } from '../../../../../shared/interfaces';
 import { ContentService } from '../../services/content.service';
 
 // TODO: name people in drives
@@ -30,17 +30,12 @@ enum CharacterCreateStep {
   Finalize = 'finalize'
 }
 
-// TODO: move to using content service for everything instead of allcontent
-// TODO: move feat names to content
-
 @Component({
   selector: 'app-create-character',
   templateUrl: './create-character.page.html',
   styleUrls: ['./create-character.page.scss'],
 })
 export class CreateCharacterPage implements OnInit {
-
-  public allContent: IContent;
 
   public get chosenVagabond(): IContentVagabond {
     return this.contentService.getVagabond(this.archetypeForm.get('archetype').value);
@@ -66,11 +61,6 @@ export class CreateCharacterPage implements OnInit {
     { name: 'Finesse',  key: 'finesse', desc: 'Finesse measures how deft and dexterous you are, how capable you are of performing complicated or intricate tasks with your hands.' },
     { name: 'Luck',     key: 'luck',    desc: 'Luck measures how...well...lucky you are, how capable you are of putting your fate into the hands of pure chance and coming out on top.' },
     { name: 'Might',    key: 'might',   desc: 'Might measures how strong and tough you are, how capable you are of overpowering opponents or succeeding in tasks that require brute force.' }
-  ];
-
-  public readonly featNames = [
-    'Acrobatics', 'Blindside', 'Counterfeit', 'Disable Device', 'Hide',
-    'Pick pocket', 'Sneak', 'Pick lock', 'Sleight of hand'
   ];
 
   public testItems = [
@@ -190,13 +180,12 @@ export class CreateCharacterPage implements OnInit {
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor(
-    private contentService: ContentService,
+    public contentService: ContentService,
     private campaignAPI: CampaignAPIService,
     private characterAPI: CharacterAPIService
   ) { }
 
   ngOnInit() {
-    this.allContent = this.contentService.getAllContent();
     this.load();
   }
 
@@ -271,7 +260,7 @@ export class CreateCharacterPage implements OnInit {
   }
 
   pickRandomName() {
-    this.characterForm.get('name').setValue(sample(this.allContent.core.names));
+    this.characterForm.get('name').setValue(sample(this.contentService.getNames()));
   }
 
   private syncFormWithStep() {
@@ -305,12 +294,12 @@ export class CreateCharacterPage implements OnInit {
 
   // nature functions
   getNatureDesc(nature: string): string {
-    return this.allContent.core.natures[nature]?.text ?? 'No description entered.';
+    return this.contentService.getNature(nature)?.text ?? 'No description entered.';
   }
 
   // drive functions
   getDriveDesc(drive: string): string {
-    return this.allContent.core.drives[drive]?.text ?? 'No description entered.';
+    return this.contentService.getDrive(drive)?.text ?? 'No description entered.';
   }
 
   selectDrive(drive: string): void {
@@ -329,7 +318,7 @@ export class CreateCharacterPage implements OnInit {
 
   // feat functions
   getFeatDesc(feat: string): string {
-    return this.allContent.core.feats[feat]?.text ?? 'No description entered.';
+    return this.contentService.getFeat(feat)?.text ?? 'No description entered.';
   }
 
   selectFeat(feat: string): void {
@@ -348,7 +337,7 @@ export class CreateCharacterPage implements OnInit {
 
   // move functions
   getMoveDesc(move: string): string {
-    return this.allContent.core.moves[move]?.text ?? 'No description entered.';
+    return this.contentService.getMove(move)?.text ?? 'No description entered.';
   }
 
   selectMove(move: string): void {
@@ -367,7 +356,7 @@ export class CreateCharacterPage implements OnInit {
 
   // skill functions
   getSkillDesc(skill: string): string {
-    return this.allContent.core.skills[skill]?.text ?? 'No description entered.';
+    return this.contentService.getSkill(skill)?.text ?? 'No description entered.';
   }
 
   selectSkill(skill: string): void {
@@ -386,7 +375,7 @@ export class CreateCharacterPage implements OnInit {
 
   // connection functions
   getConnectionDesc(conn: string): string {
-    return this.allContent.core.connections[conn]?.text ?? 'No description entered.';
+    return this.contentService.getConnection(conn)?.text ?? 'No description entered.';
   }
 
   setStep(step: CharacterCreateStep): void {
