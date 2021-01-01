@@ -1,0 +1,29 @@
+
+:host, ion-row {
+  width: 100%;
+}
+
+:host {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.name {
+  margin-right: 10px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.small-row {
+  font-size: 80%;
+  font-style: italic;
+}
+
+ion-row {
+  ion-col {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

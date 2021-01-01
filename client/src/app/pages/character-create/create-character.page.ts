@@ -3,13 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, sample } from 'lodash';
+import { capitalize, sample, sumBy } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 import { IContentVagabond } from '../../../../../shared/interfaces';
 import { ContentService } from '../../services/content.service';
+import { ItemService } from '../../services/item.service';
+import { ModalController } from '@ionic/angular';
+import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
 
 // TODO: name people in drives
 // TODO: items with text inputs attached
@@ -55,6 +58,10 @@ export class CreateCharacterPage implements OnInit {
     ];
   }
 
+  public get totalValueSpent(): number {
+    return sumBy(this.testItems, i => this.itemService.value(i));
+  }
+
   public readonly stats = [
     { name: 'Charm',    key: 'charm',   desc: 'Charm measures how socially adept you are, how capable you are of bending other people to your will using words and ideas.' },
     { name: 'Cunning',  key: 'cunning', desc: 'Cunning measures how sharp-minded you are, how capable you are of noticing important details in people and places, and how capable you are of tricking others.' },
@@ -79,7 +86,7 @@ export class CreateCharacterPage implements OnInit {
             'intimate',
             'close'
         ],
-        skilltags: [
+        skillTags: [
             'Parry',
             'Vicious Strike'
         ],
@@ -180,7 +187,9 @@ export class CreateCharacterPage implements OnInit {
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor(
+    private modal: ModalController,
     public contentService: ContentService,
+    private itemService: ItemService,
     private campaignAPI: CampaignAPIService,
     private characterAPI: CharacterAPIService
   ) { }
@@ -392,6 +401,18 @@ export class CreateCharacterPage implements OnInit {
     const baseValue = this.chosenVagabond.stats[stat] ?? 0;
     if (stat === this.bonusForm.get('stat').value) { return baseValue + 1; }
     return baseValue;
+  }
+
+  async createItem() {
+    const modal = await this.modal.create({
+      component: ItemCreatorComponent
+    });
+
+    modal.onDidDismiss().then((data) => {
+      console.log(data);
+    });
+
+    await modal.present();
   }
 
   reset() {

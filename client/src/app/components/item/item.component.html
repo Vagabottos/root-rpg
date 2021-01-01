@@ -1,6 +1,35 @@
 
 <ion-row>
+  <ion-col class="vertical-center">
+    <span class="name label">{{ item.name }}</span>
+    <ion-icon name="square-outline" *ngFor="let slot of boxSlots"></ion-icon>
+  </ion-col>
+</ion-row>
+
+<ion-row class="small-row">
   <ion-col>
-    {{ item.name }}
+    <span class="label">Value</span>: {{ itemService.value(item) }}
+  </ion-col>
+
+  <ion-col>
+    <span class="label">Load</span>: {{ itemService.load(item) }}
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="item.tags" class="small-row">
+  <ion-col>
+    <span class="label">Item Tags</span>: {{ item.tags.join(', ') }}
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="item.skillTags" class="small-row">
+  <ion-col>
+    <span class="label">Skill Tags</span>: {{ item.skillTags.join(', ') }}
+  </ion-col>
+</ion-row>
+
+<ion-row *ngIf="item.ranges" class="small-row">
+  <ion-col>
+    <span class="label">Range</span>: {{ item.ranges.join(', ') }}
   </ion-col>
 </ion-row>
