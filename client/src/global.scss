@@ -99,6 +99,11 @@ $sizes: 1, 2, 3;
   }
 }
 
+ion-list {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 ion-card-title, ion-card-subtitle {
   text-align: center;
 }

@@ -16,19 +16,19 @@
   </ion-col>
 </ion-row>
 
-<ion-row *ngIf="item.tags" class="small-row">
+<ion-row *ngIf="item.tags?.length > 0" class="small-row">
   <ion-col>
     <span class="label">Item Tags</span>: {{ item.tags.join(', ') }}
   </ion-col>
 </ion-row>
 
-<ion-row *ngIf="item.skillTags" class="small-row">
+<ion-row *ngIf="item.skillTags?.length > 0" class="small-row">
   <ion-col>
     <span class="label">Skill Tags</span>: {{ item.skillTags.join(', ') }}
   </ion-col>
 </ion-row>
 
-<ion-row *ngIf="item.ranges" class="small-row">
+<ion-row *ngIf="item.ranges?.length > 0" class="small-row">
   <ion-col>
     <span class="label">Range</span>: {{ item.ranges.join(', ') }}
   </ion-col>

@@ -3,16 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, sample, sumBy } from 'lodash';
+import { capitalize, cloneDeep, sample, sumBy } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { IContentVagabond } from '../../../../../shared/interfaces';
+import { IContentVagabond, IItem } from '../../../../../shared/interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
+import { ItemEditPopoverComponent } from './item.popover';
 
 // TODO: name people in drives
 // TODO: items with text inputs attached
@@ -59,7 +60,7 @@ export class CreateCharacterPage implements OnInit {
   }
 
   public get totalValueSpent(): number {
-    return sumBy(this.testItems, i => this.itemService.value(i));
+    return sumBy(this.itemsForm.get('items').value, i => this.itemService.value(i));
   }
 
   public readonly stats = [
@@ -68,32 +69,6 @@ export class CreateCharacterPage implements OnInit {
     { name: 'Finesse',  key: 'finesse', desc: 'Finesse measures how deft and dexterous you are, how capable you are of performing complicated or intricate tasks with your hands.' },
     { name: 'Luck',     key: 'luck',    desc: 'Luck measures how...well...lucky you are, how capable you are of putting your fate into the hands of pure chance and coming out on top.' },
     { name: 'Might',    key: 'might',   desc: 'Might measures how strong and tough you are, how capable you are of overpowering opponents or succeeding in tasks that require brute force.' }
-  ];
-
-  public testItems = [
-    {
-        name: 'Chainmail',
-        wear: 3,
-        tags: [
-            'Tightly woven',
-            'Weighty'
-        ]
-    },
-    {
-        name: 'Dagger',
-        wear: 1,
-        ranges: [
-            'intimate',
-            'close'
-        ],
-        skillTags: [
-            'Parry',
-            'Vicious Strike'
-        ],
-        tags: [
-            'Quick'
-        ]
-    }
   ];
 
   public validatingCampaignId = false;
@@ -188,6 +163,7 @@ export class CreateCharacterPage implements OnInit {
 
   constructor(
     private modal: ModalController,
+    private popover: PopoverController,
     public contentService: ContentService,
     private itemService: ItemService,
     private campaignAPI: CampaignAPIService,
@@ -403,19 +379,60 @@ export class CreateCharacterPage implements OnInit {
     return baseValue;
   }
 
-  async createItem() {
+  // item functions
+  async createItem(item?: IItem) {
     const modal = await this.modal.create({
-      component: ItemCreatorComponent
+      component: ItemCreatorComponent,
+      componentProps: { item: cloneDeep(item) }
     });
 
     modal.onDidDismiss().then((res) => {
-      const item = res.data;
-      if (!item) { return; }
+      const resItem = res.data;
+      if (!resItem) { return; }
 
-      console.log(item);
+      const control = this.itemsForm.get('items');
+
+      if (item) {
+        const replaceIdx = control.value.findIndex(x => x.name === item.name);
+        control.value[replaceIdx] = resItem;
+
+      } else {
+        control.value.push(resItem);
+      }
     });
 
     await modal.present();
+  }
+
+  editItem(item: IItem): void {
+    this.createItem(item);
+  }
+
+  removeItem(item: IItem): void {
+    const control = this.itemsForm.get('items');
+    control.setValue(control.value.filter(x => x.name !== item.name));
+  }
+
+  async showItemEditPopover(item: IItem, event) {
+    const popover = await this.popover.create({
+      component: ItemEditPopoverComponent,
+      event
+    });
+
+    popover.onDidDismiss().then((res) => {
+      const resAct = res.data;
+      if (!resAct) { return; }
+
+      if (resAct === 'edit') {
+        this.editItem(item);
+      }
+
+      if (resAct === 'delete') {
+        this.removeItem(item);
+      }
+    });
+
+    popover.present();
   }
 
   reset() {

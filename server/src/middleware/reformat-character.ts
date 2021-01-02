@@ -41,6 +41,8 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     reputation: {}
   };
 
+  // TODO: items - that valuable item trait that boosts value - new valueAdd property - add to calc() in frontend and set here
+
   newChar.stats[context.data.bonus.stat as Stat] += 1;
 
   allContent.core.factions.forEach(fact => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { IItem } from '../../../interfaces';
@@ -10,7 +10,9 @@ import { ItemService } from '../../services/item.service';
   templateUrl: './item-creator.component.html',
   styleUrls: ['./item-creator.component.scss'],
 })
-export class ItemCreatorComponent {
+export class ItemCreatorComponent implements OnInit {
+
+  @Input() item: IItem;
 
   public itemForm = new FormGroup({
     name:       new FormControl('', [Validators.required]),
@@ -40,6 +42,16 @@ export class ItemCreatorComponent {
     public itemService: ItemService
   ) { }
 
+  ngOnInit() {
+    if (this.item) {
+      this.itemForm.get('name').setValue(this.item.name);
+      this.itemForm.get('wear').setValue(this.item.wear);
+      this.itemForm.get('itemTags').setValue(this.item.tags || []);
+      this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
+      this.itemForm.get('ranges').setValue(this.item.ranges || []);
+    }
+  }
+
   dismiss(item?: IItem) {
     this.modal.dismiss(item);
   }
@@ -59,7 +71,7 @@ export class ItemCreatorComponent {
 
   removeItemTag(tag: string): void {
     const control = this.itemForm.get('itemTags');
-    control.setValue(control.value.filter(x => x !== tag)); 
+    control.setValue(control.value.filter(x => x !== tag));
   }
 
   addWeaponTag($event): void {
@@ -72,7 +84,7 @@ export class ItemCreatorComponent {
 
   removeWeaponTag(tag: string): void {
     const control = this.itemForm.get('skillTags');
-    control.setValue(control.value.filter(x => x !== tag)); 
+    control.setValue(control.value.filter(x => x !== tag));
   }
 
   addRange($event): void {
@@ -85,6 +97,6 @@ export class ItemCreatorComponent {
 
   removeRange(tag: string): void {
     const control = this.itemForm.get('ranges');
-    control.setValue(control.value.filter(x => x !== tag)); 
+    control.setValue(control.value.filter(x => x !== tag));
   }
 }

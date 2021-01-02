@@ -141,7 +141,7 @@
 
       <ion-item color="success" (click)="dismiss(itemForm.value)" [disabled]="itemForm.invalid">
         <ion-icon slot="start" name="add"></ion-icon>
-        Create Item
+        {{ item ? 'Update' : 'Create' }} Item
       </ion-item>
     </ion-list>
   </form>

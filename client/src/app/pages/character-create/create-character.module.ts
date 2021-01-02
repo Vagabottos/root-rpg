@@ -8,6 +8,7 @@ import { CreateCharacterPageRoutingModule } from './create-character-routing.mod
 
 import { CreateCharacterPage } from './create-character.page';
 import { SharedModule } from '../../shared.module';
+import { ItemEditPopoverComponent } from './item.popover';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { SharedModule } from '../../shared.module';
     SharedModule,
     CreateCharacterPageRoutingModule
   ],
-  declarations: [CreateCharacterPage]
+  declarations: [CreateCharacterPage, ItemEditPopoverComponent],
+  entryComponents: [ItemEditPopoverComponent]
 })
 export class CreateCharacterPageModule {}
