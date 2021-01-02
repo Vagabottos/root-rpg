@@ -11,4 +11,7 @@ export interface IItem {
   tags?: string[];
   ranges?: ItemRange[] | string[];
   skillTags?: string[];
+
+  extraValue?: number;              // used for luxurious items
+  designation?: string;             // used for ceremonial items
 }

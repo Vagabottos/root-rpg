@@ -10,6 +10,7 @@ Blunted:
 Ceremonial:
   text: Choose an attached faction. While this item is displayed, treat yourself as having +1 Reputation with that faction, and -1 Reputation with other factions.
   valueMod: 1
+  input: designation
 
 Comfortable:
   text: This item counts as 1 fewer Load.

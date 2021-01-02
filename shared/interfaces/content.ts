@@ -34,6 +34,7 @@ export interface IContentItemTag {
   text: string;
   valueMod: number;
   loadMod?: number;
+  input?: string;
 }
 
 export interface IContentCore {

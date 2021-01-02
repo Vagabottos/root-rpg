@@ -33,3 +33,9 @@
     <span class="label">Range</span>: {{ item.ranges.join(', ') }}
   </ion-col>
 </ion-row>
+
+<ion-row *ngIf="item.designation" class="small-row">
+  <ion-col>
+    <span class="label">Faction</span>: {{ item.designation }}
+  </ion-col>
+</ion-row>

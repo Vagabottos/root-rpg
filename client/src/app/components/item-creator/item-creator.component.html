@@ -139,7 +139,7 @@
         <p>Value: {{ itemService.value(this.formItem) }} | Load: {{ itemService.load(this.formItem) }}</p>
       </ion-item>
 
-      <ion-item color="success" (click)="dismiss(itemForm.value)" [disabled]="itemForm.invalid">
+      <ion-item color="success" (click)="dismiss(this.formItem)" [disabled]="itemForm.invalid">
         <ion-icon slot="start" name="add"></ion-icon>
         {{ item ? 'Update' : 'Create' }} Item
       </ion-item>

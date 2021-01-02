@@ -3,9 +3,14 @@ import { HookContext } from '@feathersjs/feathers';
 import { NotAcceptable } from '@feathersjs/errors';
 import { cloneDeep } from 'lodash';
 
-import { ICharacter, IContent, Stat } from '../interfaces';
-import { content } from '../interfaces';
+import { ICharacter, IContent, Stat, IItem, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
+
+export function reformatItem(item: IItem): void {
+  if(item.tags?.includes('Luxury')) {
+    item.extraValue = 3;
+  }
+}
 
 export async function reformatCharacter(context: HookContext): Promise<HookContext> {
 
@@ -26,7 +31,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     background: [],
     drives: context.data.drives.drives,
     nature: context.data.natures.nature,
-    connections: [],
+    connections: context.data.connections.connections,
     stats: {
       [Stat.Charm]: archetypeData.stats[Stat.Charm],
       [Stat.Cunning]: archetypeData.stats[Stat.Cunning],
@@ -41,14 +46,20 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     reputation: {}
   };
 
-  // TODO: items - that valuable item trait that boosts value - new valueAdd property - add to calc() in frontend and set here
+  // post-process items
+  newChar.items.forEach(item => {
+    reformatItem(item);
+  });
 
+  // add bonus stat
   newChar.stats[context.data.bonus.stat as Stat] += 1;
 
+  // set base reps
   allContent.core.factions.forEach(fact => {
     newChar.reputation[fact.name] = { notoriety: 0, prestige: 0 };
   });
 
+  // set background answers
   archetypeData.background.forEach((bg, i) => {
     const answer = context.data.background.backgrounds[i];
 
@@ -74,6 +85,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     }
   });
 
+  // write this copy to the db
   context.data = newChar;
 
   return context;

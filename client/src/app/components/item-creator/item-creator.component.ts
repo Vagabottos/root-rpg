@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
@@ -15,11 +15,12 @@ export class ItemCreatorComponent implements OnInit {
   @Input() item: IItem;
 
   public itemForm = new FormGroup({
-    name:       new FormControl('', [Validators.required]),
-    wear:       new FormControl(0, [Validators.required, Validators.min(0), Validators.max(10)]),
-    itemTags:   new FormControl([]),
-    skillTags:  new FormControl([]),
-    ranges:     new FormControl([])
+    name:         new FormControl('', [Validators.required]),
+    wear:         new FormControl(0, [Validators.required, Validators.min(0), Validators.max(10)]),
+    itemTags:     new FormControl([]),
+    skillTags:    new FormControl([]),
+    ranges:       new FormControl([]),
+    designation:  new FormControl('')
   });
 
   public get boxSlots(): boolean[] {
@@ -32,11 +33,14 @@ export class ItemCreatorComponent implements OnInit {
       wear: this.itemForm.get('wear').value,
       tags: this.itemForm.get('itemTags').value,
       skillTags: this.itemForm.get('skillTags').value,
-      ranges: this.itemForm.get('ranges').value
+      ranges: this.itemForm.get('ranges').value,
+      designation: this.itemForm.get('designation').value,
+      extraValue: this.item?.extraValue
     };
   }
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController,
     public contentService: ContentService,
     public itemService: ItemService
@@ -49,6 +53,7 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('itemTags').setValue(this.item.tags || []);
       this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
       this.itemForm.get('ranges').setValue(this.item.ranges || []);
+      this.itemForm.get('designation').setValue(this.item.designation || '');
     }
   }
 
@@ -61,17 +66,47 @@ export class ItemCreatorComponent implements OnInit {
     control.setValue(control.value + mod);
   }
 
-  addItemTag($event): void {
+  async addItemTag($event) {
     const value = $event.detail.value;
     if (!value) { return; }
 
     $event.target.value = '';
     this.itemForm.get('itemTags').value.push(value);
+
+    const tag = this.contentService.getTag(value);
+    if (tag.input) {
+      const alert = await this.alert.create({
+        header: 'Ceremonial Item',
+        message: 'Enter the faction you want this item to be special for.',
+        backdropDismiss: false,
+        inputs: [
+          {
+            name: 'designation',
+            type: 'text',
+            placeholder: 'Enter Faction'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Confirm',
+            handler: (data) => {
+              this.itemForm.get('designation').setValue(data?.designation);
+            }
+          }
+        ]
+      });
+
+      alert.present();
+    }
   }
 
   removeItemTag(tag: string): void {
     const control = this.itemForm.get('itemTags');
     control.setValue(control.value.filter(x => x !== tag));
+
+    if (tag === 'Ceremonial') {
+      this.itemForm.get('designation').setValue('');
+    }
   }
 
   addWeaponTag($event): void {
