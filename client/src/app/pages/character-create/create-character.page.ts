@@ -16,7 +16,6 @@ import { ItemCreatorComponent } from '../../components/item-creator/item-creator
 import { ItemEditPopoverComponent } from './item.popover';
 
 // TODO: name people in drives
-// TODO: items with text inputs attached
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -85,7 +84,7 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public characterForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     species: new FormControl('', [Validators.required]),
     pronouns: new FormControl('', [Validators.required]),
     adjectives: new FormControl([], [Validators.required]),
@@ -140,6 +139,7 @@ export class CreateCharacterPage implements OnInit {
     ],
     name: [
       { type: 'required', message: 'Name is required.' },
+      { type: 'maxlength', message: 'Name must be less than 20 characters.' },
     ],
     species: [
       { type: 'required', message: 'Species is required.' },

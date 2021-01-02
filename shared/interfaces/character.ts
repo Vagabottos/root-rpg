@@ -43,6 +43,10 @@ export interface ICharacter {
   items: IItem[];
   reputation: Record<string, ICharacterReputation>;
 
+  injury: number;
+  exhaustion: number;
+  depletion: number;
+
   createdAt?: number;
   updatedAt?: number;
   _id?: string;

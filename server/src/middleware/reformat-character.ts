@@ -43,7 +43,10 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     skills: context.data.skills.skills,
     moves: context.data.moves.moves,
     items: context.data.items.items,
-    reputation: {}
+    reputation: {},
+    depletion: 0,
+    exhaustion: 0,
+    injury: 0
   };
 
   // post-process items
