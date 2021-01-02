@@ -965,7 +965,11 @@
     </ion-card-header>
 
     <ion-card-content>
-      TODO: items area needs to be done
+      <ion-list>
+        <ion-item *ngFor="let item of itemsForm.get('items').value">
+          <app-item [item]="item"></app-item>
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 
