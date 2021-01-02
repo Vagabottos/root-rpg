@@ -31,7 +31,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     background: [],
     drives: context.data.drives.drives,
     nature: context.data.natures.nature,
-    connections: context.data.connections.connections,
+    connections: [],
     stats: {
       [Stat.Charm]: archetypeData.stats[Stat.Charm],
       [Stat.Cunning]: archetypeData.stats[Stat.Cunning],
@@ -78,11 +78,19 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
 
       const repChange = bg.reputation?.delta ?? 0;
       if(repChange < 0) {
-        newChar.reputation[answer].notoriety += repChange;
+        newChar.reputation[answer].notoriety += Math.abs(repChange);
       } else {
-        newChar.reputation[answer].prestige += repChange;
+        newChar.reputation[answer].prestige += Math.abs(repChange);
       }
     }
+  });
+
+  // set connections
+  archetypeData.connections.forEach((conn, i) => {
+    newChar.connections[i] = {
+      name: conn.name,
+      target: context.data.connections.connections[i]
+    };
   });
 
   // write this copy to the db
