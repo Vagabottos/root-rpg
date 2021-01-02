@@ -13,4 +13,4 @@ export class Campaign extends Service {
       this.Model = db.collection('campaign');
     });
   }
-};
+}
