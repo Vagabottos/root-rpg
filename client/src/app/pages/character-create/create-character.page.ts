@@ -408,8 +408,11 @@ export class CreateCharacterPage implements OnInit {
       component: ItemCreatorComponent
     });
 
-    modal.onDidDismiss().then((data) => {
-      console.log(data);
+    modal.onDidDismiss().then((res) => {
+      const item = res.data;
+      if (!item) { return; }
+
+      console.log(item);
     });
 
     await modal.present();

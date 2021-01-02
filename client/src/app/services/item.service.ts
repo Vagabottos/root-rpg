@@ -11,7 +11,7 @@ export class ItemService {
 
   public value(item: IItem): number {
     return item.wear
-         + (item.ranges ? item.ranges.length - 1 : 0)
+         + (item.ranges ? Math.max(item.ranges.length - 1, 0) : 0)
          + (item.skillTags?.length ?? 0)
          + ((item.tags || []).reduce((prev, cur) => prev + this.contentService.getTag(cur).valueMod, 0));
   }

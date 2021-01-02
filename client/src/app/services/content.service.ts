@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentMove, IContentNature,
   IContentSkill, IContentVagabond
-} from '../../../../shared/interfaces';
+} from '../../interfaces';
 
 import { IContent, content } from '../../interfaces';
 
@@ -53,6 +53,14 @@ export class ContentService {
 
   getTag(name: string): IContentItemTag {
     return this.content.core.itemtags[name];
+  }
+
+  getTags(): string[] {
+    return Object.keys(this.content.core.itemtags);
+  }
+
+  getWeaponSkills(): string[] {
+    return Object.keys(this.content.core.skills);
   }
 
   getNature(name: string): IContentNature {

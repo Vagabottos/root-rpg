@@ -1,3 +1,148 @@
-<p>
-  item-creator works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Item Creator
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="itemForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Item Name</ion-label>
+        <ion-input type="text" formControlName="name" placeholder="Enter Item Name"></ion-input>
+      </ion-item>
+  
+      <ion-item class="wear" lines="none">
+        <ion-button slot="start" color="secondary" (click)="wear(-1)" [disabled]="itemForm.get('wear').value <= 0">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+
+        <div class="wear-center">
+          <div class="wear-label">Wear: {{ itemForm.get('wear').value }}</div>
+          <div class="wear-squares">
+            <ion-icon name="square-outline" *ngFor="let slot of boxSlots"></ion-icon>
+          </div>
+        </div>
+
+        <ion-button slot="end" color="secondary" (click)="wear(1)" [disabled]="itemForm.get('wear').value >= 10">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item class="hidden">
+        <ion-label position="stacked">Add Item Tag</ion-label>
+        <ion-select #itemTags (ionChange)="addItemTag($event)">
+          <ion-select-option *ngFor="let tag of contentService.getTags()"
+                             [disabled]="itemForm.get('itemTags').value.includes(tag)"
+                             [value]="tag">
+            {{ tag }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-list-header>
+        <ion-label>
+          Item Tags
+        </ion-label>
+
+        <ion-button (click)="itemTags.open()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item class="none" *ngIf="itemForm.get('itemTags').value.length === 0">
+        None
+      </ion-item>
+
+      <ion-item *ngFor="let tag of itemForm.get('itemTags').value">
+        {{ tag }}
+
+        <ion-button slot="end" color="danger" (click)="removeItemTag(tag)">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item class="hidden">
+        <ion-label position="stacked">Add Weapon Skill Tag</ion-label>
+        <ion-select #weaponTags (ionChange)="addWeaponTag($event)">
+          <ion-select-option *ngFor="let tag of contentService.getWeaponSkills()"
+                             [disabled]="itemForm.get('skillTags').value.includes(tag)"
+                             [value]="tag">
+            {{ tag }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-list-header>
+        <ion-label>
+          Weapon Skill Tags
+        </ion-label>
+
+        <ion-button (click)="weaponTags.open()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item class="none" *ngIf="itemForm.get('skillTags').value.length === 0">
+        None
+      </ion-item>
+
+      <ion-item *ngFor="let tag of itemForm.get('skillTags').value">
+        {{ tag }}
+
+        <ion-button slot="end" color="danger" (click)="removeWeaponTag(tag)">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item class="hidden">
+        <ion-label position="stacked">Add Range</ion-label>
+        <ion-select #rangeTags (ionChange)="addRange($event)">
+          <ion-select-option *ngFor="let tag of ['intimate', 'close', 'far']"
+                             [disabled]="itemForm.get('ranges').value.includes(tag)"
+                             [value]="tag">
+            {{ tag }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-list-header>
+        <ion-label>
+          Ranges
+        </ion-label>
+
+        <ion-button (click)="rangeTags.open()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item class="none" *ngIf="itemForm.get('ranges').value.length === 0">
+        None
+      </ion-item>
+
+      <ion-item *ngFor="let tag of itemForm.get('ranges').value">
+        {{ tag }}
+
+        <ion-button slot="end" color="danger" (click)="removeRange(tag)">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item class="calculated">
+        <p>Value: {{ itemService.value(this.formItem) }} | Load: {{ itemService.load(this.formItem) }}</p>
+      </ion-item>
+
+      <ion-item color="success" (click)="dismiss(itemForm.value)" [disabled]="itemForm.invalid">
+        <ion-icon slot="start" name="add"></ion-icon>
+        Create Item
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
