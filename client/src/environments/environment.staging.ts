@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://rootrpgapi.seiyria.com'
+  apiUrl: 'https://rootrpgapi.rootrpgapi.seiyria.com'
 };
