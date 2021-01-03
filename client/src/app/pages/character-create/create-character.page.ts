@@ -11,9 +11,11 @@ import { CharacterAPIService } from '../../services/character.api.service';
 import { IContentVagabond, IItem } from '../../../../../shared/interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
 import { ItemEditPopoverComponent } from './item.popover';
+import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -152,8 +154,11 @@ export class CreateCharacterPage implements OnInit {
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController,
     private popover: PopoverController,
+    private router: Router,
+    private notification: NotificationService,
     public contentService: ContentService,
     private itemService: ItemService,
     private campaignAPI: CampaignAPIService,
@@ -557,14 +562,28 @@ export class CreateCharacterPage implements OnInit {
     localStorage.setItem('newchar', JSON.stringify(saveObject));
   }
 
-  confirm() {
-    // TODO: confirm dialog
-    // TODO: navigate to character view
-    // TODO: call reset
-    this.characterAPI.createCharacter(this.getSaveObject())
-      .subscribe(char => {
-        console.log('create', char);
-      });
+  async confirm() {
+    const alert = await this.alert.create({
+      header: 'Create Character?',
+      message: 'Do you want to finish creating this character?',
+      backdropDismiss: false,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, Create',
+          handler: () => {
+            this.characterAPI.createCharacter(this.getSaveObject())
+              .subscribe(char => {
+                this.reset();
+                this.notification.notify('Created character successfully!');
+                this.router.navigate(['/dashboard', 'characters', 'view', char._id]);
+              });
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }
