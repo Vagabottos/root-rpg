@@ -9,7 +9,7 @@ import { CampaignAPIService } from '../../services/campaign.api.service';
 })
 export class DashboardCampaignsPage implements OnInit {
 
-  public campaigns: ICampaign[] = [];
+  public campaigns: ICampaign[];
 
   private page = 0;
 
@@ -33,7 +33,7 @@ export class DashboardCampaignsPage implements OnInit {
           return;
         }
 
-        this.campaigns = campaigns.data;
+        this.campaigns = campaigns.data || [];
       });
   }
 

@@ -9,7 +9,7 @@ import { CharacterAPIService } from '../../services/character.api.service';
 })
 export class DashboardCharactersPage implements OnInit {
 
-  public characters: ICharacter[] = [];
+  public characters: ICharacter[];
 
   private page = 0;
 
@@ -33,7 +33,7 @@ export class DashboardCharactersPage implements OnInit {
           return;
         }
 
-        this.characters = characters.data;
+        this.characters = characters.data || [];
       });
   }
 

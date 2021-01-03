@@ -25,11 +25,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="blank-slate" *ngIf="campaigns.length === 0">
+  <div class="blank-slate" *ngIf="!campaigns">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="blank-slate" *ngIf="campaigns?.length === 0">
     You have no campaigns.
   </div>
 
-  <ion-list *ngIf="campaigns.length > 0">
+  <ion-list *ngIf="campaigns?.length > 0">
     <ion-item *ngFor="let campaign of campaigns" lines="none" [routerLink]="['view', campaign._id]">
       <ion-card class="campaign-card">
         <ion-card-header>
