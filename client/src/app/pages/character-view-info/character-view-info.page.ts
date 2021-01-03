@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { DataService } from '../../services/data.service';
 })
 export class CharacterViewInfoPage implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(
+    public data: DataService,
+    public content: ContentService
+  ) { }
 
   ngOnInit() {
   }

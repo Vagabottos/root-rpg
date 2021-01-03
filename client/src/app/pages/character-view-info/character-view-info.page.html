@@ -27,17 +27,69 @@
 
 <ion-content>
   <ng-container *ngIf="data.char$ | async as character">
-    {{ character.name }}
-  </ng-container>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ character.archetype }}</ion-card-title>
+        <ion-card-subtitle>{{ character.species }} / {{ character.pronouns }}</ion-card-subtitle>
+        <ion-card-subtitle>{{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</ion-card-subtitle>
+      </ion-card-header>
 
-- archetype
-- species / adjectives / demeanor / pronouns
-- stats
-- feats
-- skills
-- injury
-- exhaustion
-- depletion
-- reputation
-- connections
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="stat" *ngFor="let stat of content.getStats()">
+            <div class="stat-name">
+              {{ stat }}
+            </div>
+
+            <div class="stat-value">
+              {{ character.stats[stat.toLowerCase()] > 0 ? '+' : '' }}{{ character.stats[stat.toLowerCase()] }}
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Harm</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
+          <ion-col class="harm-label">{{ harm }}</ion-col>
+          <ion-col class="harm-box" *ngFor="let i of [0, 1, 2, 3]">
+            <ion-icon [name]="character[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Reputation</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row *ngFor="let faction of content.getFactions()" class="reputation-row">
+          <ion-col class="reputation-label">{{ faction.name }}</ion-col>
+          <ion-col class="reputation-box">
+            reputation stuff
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Connections</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row *ngFor="let connection of character.connections" class="connection-row">
+          <ion-col class="connection-label">{{ connection.name }}: {{ connection.target }}</ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ng-container>
 </ion-content>

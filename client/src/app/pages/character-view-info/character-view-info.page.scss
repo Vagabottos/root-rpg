@@ -1,0 +1,49 @@
+
+.stat {
+  text-align: center;
+
+  .stat-name {
+    font-weight: bold;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+}
+
+.harm-row {
+
+  .harm-label, .harm-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .harm-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-width: 30%;
+    max-width: 30%;
+    justify-content: flex-end;
+  }
+
+  .harm-box {
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.reputation-row {
+
+  .reputation-label {
+    font-weight: bold;
+  }
+}
+
+.connection-row {
+
+  .connection-label {
+    font-weight: bold;
+  }
+}
