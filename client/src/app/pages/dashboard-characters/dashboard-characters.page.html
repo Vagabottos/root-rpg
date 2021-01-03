@@ -37,11 +37,14 @@
     <ion-item *ngFor="let character of characters" lines="none" [routerLink]="['view', character._id]">
       <ion-card class="character-card">
         <ion-card-header>
-          <ion-card-title>{{ character.name }}</ion-card-title>
+          <ion-card-title>{{ character.name }}, {{ character.archetype }}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-
+          <p>{{ character.species }} / {{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</p>
+          <p *ngIf="character.campaign">Part of a campaign</p>
+          <p>{{ character.nature }} Nature</p>
+          <p>Driven by {{ character.drives.join(' & ') }}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>
