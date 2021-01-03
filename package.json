@@ -2,7 +2,7 @@
   "name": "root-rpg",
   "private": true,
   "scripts": {
-    "postinstall": "lerna exec -- npm install && npm run content",
+    "setup": "lerna exec -- npm install && npm run content",
     "start": "lerna exec --parallel -- npm run start:dev",
     "start:client": "cd client && npm run start:dev",
     "start:server": "cd server && npm run start:dev",
