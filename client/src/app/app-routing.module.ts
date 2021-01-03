@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
+import { CampaignGuard } from './guards/campaign.guard';
+import { CharacterGuard } from './guards/character.guard';
 
 const routes: Routes = [
   {
@@ -13,18 +15,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'dashboard/campaigns/view/:id',
+    loadChildren: () => import('./pages/campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule),
+    canActivate: [AuthGuard, CampaignGuard]
+  },
+  {
+    path: 'dashboard/characters/view/:id',
+    loadChildren: () => import('./pages/character-view/character-view.module').then( m => m.CharacterViewPageModule),
+    canActivate: [AuthGuard, CharacterGuard]
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/player',
-    loadChildren: () => import('./pages/player/player.module').then( m => m.PlayerPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'dashboard/gm',
-    loadChildren: () => import('./pages/gm/gm.module').then( m => m.GmPageModule),
     canActivate: [AuthGuard]
   },
   {

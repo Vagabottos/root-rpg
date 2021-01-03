@@ -33,7 +33,6 @@ export class CampaignGuard implements CanActivate {
           return err;
         }),
         map(val => {
-          console.log('check', val);
           const retVal = !!val;
 
           if (!retVal) {
