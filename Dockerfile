@@ -6,7 +6,7 @@ COPY ./package.json /usr/src/app
 COPY ./package-lock.json /usr/src/app
 COPY ./server /usr/src/app/server
 COPY ./shared /usr/src/app/shared
-RUN npm install
+RUN npm install --unsafe-perm
 RUN cd server && npm cache clean --force
 RUN cd server && npm run build
 ENV NODE_ENV production
