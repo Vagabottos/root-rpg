@@ -1,4 +1,5 @@
 {
   "host": "rootrpg.seiyria.com",
-  "port": "PORT"
+  "port": "PORT",
+  "mongodb": "MONGODB_URI"
 }

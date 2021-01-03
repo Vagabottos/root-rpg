@@ -1,4 +1,5 @@
 {
   "host": "rootrpg.magpiegames.com",
-  "port": "PORT"
+  "port": "PORT",
+  "mongodb": "MONGODB_URI"
 }
