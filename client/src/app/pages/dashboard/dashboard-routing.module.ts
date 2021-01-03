@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guard';
+import { CampaignGuard } from '../../guards/campaign.guard';
+import { CharacterGuard } from '../../guards/character.guard';
 
 import { DashboardPage } from './dashboard.page';
 
@@ -25,7 +27,7 @@ const routes: Routes = [
       {
         path: 'campaigns/view/:id',
         loadChildren: () => import('../campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, CampaignGuard]
       },
       {
         path: 'characters/create',
@@ -33,8 +35,9 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'character/view/:id',
-        loadChildren: () => import('../character-view/character-view.module').then( m => m.CharacterViewPageModule)
+        path: 'characters/view/:id',
+        loadChildren: () => import('../character-view/character-view.module').then( m => m.CharacterViewPageModule),
+        canActivate: [AuthGuard, CharacterGuard]
       },
       {
         path: '**',

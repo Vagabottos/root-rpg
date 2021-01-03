@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ICharacter } from '../../../interfaces';
 import { CharacterAPIService } from '../../services/character.api.service';
 
@@ -14,29 +14,15 @@ export class CharacterViewPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private characterAPI: CharacterAPIService
   ) { }
 
   ngOnInit() {
-
-    // TODO: make CharacterExists guard
     const id = this.route.snapshot.paramMap.get('id');
-
-    const kickback = () => {
-      this.router.navigate(['/dashboard']);
-    };
-
-    if (!id) {
-      kickback();
-      return;
-    }
 
     this.characterAPI.loadCharacter(id)
       .subscribe(character => {
         this.character = character;
-      }, () => {
-        kickback();
       });
   }
 

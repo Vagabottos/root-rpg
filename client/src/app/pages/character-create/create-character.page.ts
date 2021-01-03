@@ -15,8 +15,6 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
 import { ItemEditPopoverComponent } from './item.popover';
 
-// TODO: name people in drives
-
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
   Archetype = 'archetype',
