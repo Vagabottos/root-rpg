@@ -14,10 +14,18 @@
 
 <ion-content>
   <ng-container *ngIf="data.char$ | async as character">
-    {{ character.name }}
+    <ion-list>
+      <ion-list-header class="weight-header">
+        <ion-row>
+          <ion-col>
+            <strong>Carrying</strong> {{ carrying(character) }} | <strong>Burdened</strong> @ {{ burdened(character) }} | <strong>Max</strong> @ {{ max(character) }}
+          </ion-col>
+        </ion-row>
+      </ion-list-header>
+
+      <ion-item *ngFor="let item of character.items">
+        <app-item [item]="item"></app-item>
+      </ion-item>
+    </ion-list>
   </ng-container>
-- # carrying
-- # burdened
-- # max
-- items
 </ion-content>

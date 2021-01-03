@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CharacterViewAbilitiesPageRoutingModule } from './character-view-abilities-routing.module';
 
 import { CharacterViewAbilitiesPage } from './character-view-abilities.page';
+import { SharedModule } from '../../shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedModule,
     CharacterViewAbilitiesPageRoutingModule
   ],
   declarations: [CharacterViewAbilitiesPage]
