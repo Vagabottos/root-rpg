@@ -9,6 +9,14 @@
         {{ character?.name || 'Loading...' }}
       </ng-container>
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ng-container *ngIf="data.char$ | async as character">
+        <ion-button (click)="addNewItem(character)">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -23,9 +31,30 @@
         </ion-row>
       </ion-list-header>
 
-      <ion-item *ngFor="let item of character.items">
-        <app-item [item]="item"></app-item>
+      <ion-item *ngFor="let item of character.items; let i = index" class="ion-hide-md-up">
+        <app-item [item]="item" 
+                  (swipeLeft)="wear(item, -1)" 
+                  (swipeRight)="wear(item, 1)" 
+                  appLongPress="500"
+                  (release)="itemOptions(character, item, i)"></app-item>
       </ion-item>
+
+      <ion-item *ngFor="let item of character.items; let i = index" class="ion-hide-md-down">
+        <app-item [item]="item"></app-item>
+
+        <ion-button slot="end" color="secondary" (click)="wear(item, -1)" [disabled]="item.wearUsed <= 0">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+
+        <ion-button slot="end" color="secondary" (click)="wear(item, 1)" [disabled]="item.wearUsed >= item.wear">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+        
+        <ion-button slot="end" fill="clear" (click)="showItemEditPopover(character, item, i, $event)">
+          <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-item>
+
     </ion-list>
   </ng-container>
 </ion-content>

@@ -11,9 +11,9 @@ import { CharacterAPIService } from '../../services/character.api.service';
 import { IContentVagabond, IItem } from '../../../../../shared/interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
-import { AlertController, ModalController, PopoverController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
-import { ItemEditPopoverComponent } from './item.popover';
+import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 
@@ -154,6 +154,7 @@ export class CreateCharacterPage implements OnInit {
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
 
   constructor(
+    private actionSheet: ActionSheetController,
     private alert: AlertController,
     private modal: ModalController,
     private popover: PopoverController,
@@ -412,9 +413,34 @@ export class CreateCharacterPage implements OnInit {
     control.setValue(control.value.filter(x => x.name !== item.name));
   }
 
+  async showItemEditActionSheet(item: IItem) {
+    const actionSheet = await this.actionSheet.create({
+      header: 'Actions',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.removeItem(item);
+          }
+        },
+        {
+          text: 'Edit',
+          icon: 'pencil',
+          handler: () => {
+            this.editItem(item);
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
+
   async showItemEditPopover(item: IItem, event) {
     const popover = await this.popover.create({
-      component: ItemEditPopoverComponent,
+      component: EditDeletePopoverComponent,
       event
     });
 

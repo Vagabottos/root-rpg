@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as jsonpatch from 'fast-json-patch';
+
 import { ICharacter, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
 import { UserAPIService } from './user.api.service';
@@ -34,5 +36,9 @@ export class CharacterAPIService {
 
   loadCharacter(id: string): Observable<ICharacter> {
     return this.http.get(this.api.apiUrl(`/character/${id}`)) as Observable<ICharacter>;
+  }
+
+  patchCharacter(id: string, patches: jsonpatch.Operation[]): Observable<ICharacter> {
+    return this.http.patch(this.api.apiUrl(`/character/${id}`), patches) as Observable<ICharacter>;
   }
 }

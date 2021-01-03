@@ -672,21 +672,9 @@
             You don't have any items.
           </ion-item>
 
-          <ion-item-sliding *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-up">
-            <ion-item>
-              <app-item [item]="item"></app-item>
-            </ion-item>
-
-            <ion-item-options side="end">
-              <ion-item-option color="secondary" (click)="editItem(item)">
-                <ion-icon name="pencil"></ion-icon>
-              </ion-item-option>
-
-              <ion-item-option color="danger" (click)="removeItem(item)">
-                <ion-icon name="trash"></ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
+          <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-up">
+            <app-item [item]="item" appLongPress="500" (release)="showItemEditActionSheet(item)"></app-item>
+          </ion-item>
 
           <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-down">
             <app-item [item]="item"></app-item>

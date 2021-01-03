@@ -1,5 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as jsonpatch from 'fast-json-patch';
+
 import { Observable } from 'rxjs';
 import { ICampaign, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
@@ -34,6 +36,10 @@ export class CampaignAPIService {
 
   loadCampaign(id: string): Observable<ICampaign> {
     return this.http.get(this.api.apiUrl(`/campaign/${id}`)) as Observable<ICampaign>;
+  }
+
+  patchCampaign(id: string, patches: jsonpatch.Operation[]): Observable<ICampaign> {
+    return this.http.patch(this.api.apiUrl(`/character/${id}`), patches) as Observable<ICampaign>;
   }
 
 }

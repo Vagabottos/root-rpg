@@ -13,6 +13,7 @@ import { ItemService } from '../../services/item.service';
 export class ItemCreatorComponent implements OnInit {
 
   @Input() item: IItem;
+  @Input() postProcess: boolean;
 
   public itemForm = new FormGroup({
     name:         new FormControl('', [Validators.required]),
@@ -58,6 +59,11 @@ export class ItemCreatorComponent implements OnInit {
   }
 
   dismiss(item?: IItem) {
+    if (item && this.postProcess) {
+      item.extraValue = 0;
+      if (item.tags?.includes('Luxury')) { item.extraValue = 3; }
+    }
+
     this.modal.dismiss(item);
   }
 

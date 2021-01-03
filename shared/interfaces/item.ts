@@ -8,6 +8,7 @@ export enum ItemRange {
 export interface IItem {
   name: string;
   wear: number;
+  wearUsed?: number;
   tags?: string[];
   ranges?: ItemRange[] | string[];
   skillTags?: string[];

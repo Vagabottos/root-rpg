@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-item-edit-popover',
+  selector: 'app-edit-delete-popover',
   template: `
   <ion-content>
     <ion-list>
@@ -21,7 +21,7 @@ import { PopoverController } from '@ionic/angular';
     ``
   ]
 })
-export class ItemEditPopoverComponent {
+export class EditDeletePopoverComponent {
   constructor(public popover: PopoverController) {}
 
   dismiss(choice?: string) {
