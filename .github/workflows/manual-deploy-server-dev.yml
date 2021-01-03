@@ -33,4 +33,4 @@ jobs:
       with:
         server: 'https://captain.rootrpgapi.seiyria.com'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
-        appname: 'game'
+        appname: 'rootrpgapi'
