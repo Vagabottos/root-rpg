@@ -23,8 +23,8 @@
     "test": "npm run lint && npm run build",
     "lint": "eslint src/. --config .eslintrc.json --ext .ts --fix",
     "start:dev": "ts-node-dev --no-notify src/",
-    "start": "npm run compile && node lib/",
-    "build": "shx rm -rf lib/ && tsc"
+    "start": "node dist/server/src/index",
+    "build": "shx rm -rf dist/ && tsc"
   },
   "standard": {
     "env": [
@@ -32,7 +32,7 @@
     ],
     "ignore": []
   },
-  "types": "lib/",
+  "types": "dist/",
   "dependencies": {
     "@feathersjs/authentication": "^4.5.11",
     "@feathersjs/authentication-local": "^4.5.11",

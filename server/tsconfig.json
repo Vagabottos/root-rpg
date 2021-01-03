@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "outDir": "./lib",
+    "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
