@@ -62,14 +62,6 @@ export class CreateCharacterPage implements OnInit {
     return sumBy(this.itemsForm.get('items').value, i => this.itemService.value(i));
   }
 
-  public readonly stats = [
-    { name: 'Charm',    key: 'charm',   desc: 'Charm measures how socially adept you are, how capable you are of bending other people to your will using words and ideas.' },
-    { name: 'Cunning',  key: 'cunning', desc: 'Cunning measures how sharp-minded you are, how capable you are of noticing important details in people and places, and how capable you are of tricking others.' },
-    { name: 'Finesse',  key: 'finesse', desc: 'Finesse measures how deft and dexterous you are, how capable you are of performing complicated or intricate tasks with your hands.' },
-    { name: 'Luck',     key: 'luck',    desc: 'Luck measures how...well...lucky you are, how capable you are of putting your fate into the hands of pure chance and coming out on top.' },
-    { name: 'Might',    key: 'might',   desc: 'Might measures how strong and tough you are, how capable you are of overpowering opponents or succeeding in tasks that require brute force.' }
-  ];
-
   public validatingCampaignId = false;
 
   public campaignForm = new FormGroup({
@@ -371,6 +363,10 @@ export class CreateCharacterPage implements OnInit {
   // stat functions
   getStatName(stat: string): string {
     return capitalize(stat);
+  }
+
+  getStatDesc(stat: string): string {
+    return this.contentService.getStat(stat).text;
   }
 
   getTotalStat(stat: string): number {

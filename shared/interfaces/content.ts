@@ -30,6 +30,10 @@ export interface IContentSkill {
   text: string;
 }
 
+export interface IContentStat {
+  text: string;
+}
+
 export interface IContentItemTag {
   text: string;
   valueMod: number;
@@ -50,6 +54,7 @@ export interface IContentCore {
   species: string[];
   premadeitems: IItem[];
   itemtags: Record<string, IContentItemTag>;
+  stats: Record<string, IContentStat>;
 }
 
 export interface IContentBackgroundReputationChange {

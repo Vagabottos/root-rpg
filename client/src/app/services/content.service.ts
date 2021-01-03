@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
+import { IContentStat } from '../../../../shared/interfaces';
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentMove, IContentNature,
   IContentSkill, IContentVagabond
@@ -33,6 +34,14 @@ export class ContentService {
 
   getNames(): string[] {
     return this.content.core.names;
+  }
+
+  getStats(): string[] {
+    return Object.keys(this.content.core.stats);
+  }
+
+  getStat(statName: string): IContentStat {
+    return this.content.core.stats[statName];
   }
 
   getFeats(): string[] {
