@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ng-container *ngIf="data.char$ | async as character">
+        {{ character?.name || 'Loading...' }}
+      </ng-container>
+    </ion-title>
+
+    <ion-buttons slot="end">
+
+      <!-- TODO: background of character-->
+      <ion-button>
+        <ion-icon slot="icon-only" name="book"></ion-icon>
+      </ion-button>
+
+      <!-- TODO: campaign join or info modal -->
+      <ion-button>
+        <ion-icon slot="icon-only" name="library"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="data.char$ | async as character">
+    {{ character.name }}
+  </ng-container>
+- click on moves, nature, etc to get a popup of what it actually does
+- moves
+- nature
+- drives
+- connections
+</ion-content>

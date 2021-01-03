@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ng-container *ngIf="data.char$ | async as character">
+        {{ character?.name || 'Loading...' }}
+      </ng-container>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="data.char$ | async as character">
+    {{ character.name }}
+  </ng-container>
+- archetype
+- species / adjectives / demeanor / pronouns
+- stats
+- feats
+- skills
+- injury
+- exhaustion
+- depletion
+- reputation
+</ion-content>

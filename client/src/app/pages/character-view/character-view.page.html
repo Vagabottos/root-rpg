@@ -1,27 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>
-      View Character
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
-      </ion-buttons>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="info">
+        <ion-icon name="body"></ion-icon>
+        <ion-label>Character</ion-label>
+      </ion-tab-button>
 
-      <ion-title size="large">View Character</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-tab-button tab="abilities">
+        <ion-icon name="podium"></ion-icon>
+        <ion-label>Abilities</ion-label>
+      </ion-tab-button>
 
-  <div class="container">
-    {{ character | json }}
-  </div>
+      <ion-tab-button tab="inventory">
+        <ion-icon name="shirt"></ion-icon>
+        <ion-label>Inventory</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

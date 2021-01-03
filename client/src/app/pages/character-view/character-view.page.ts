@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICharacter } from '../../../interfaces';
 import { CharacterAPIService } from '../../services/character.api.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-character-view',
@@ -14,6 +15,7 @@ export class CharacterViewPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private dataService: DataService,
     private characterAPI: CharacterAPIService
   ) { }
 
@@ -23,7 +25,12 @@ export class CharacterViewPage implements OnInit {
     this.characterAPI.loadCharacter(id)
       .subscribe(character => {
         this.character = character;
+        this.dataService.setActiveCharacter(character);
       });
+  }
+
+  ionViewDidLeave() {
+    this.dataService.setActiveCharacter(null);
   }
 
 }
