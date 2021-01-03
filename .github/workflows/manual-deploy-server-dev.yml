@@ -1,0 +1,37 @@
+name: Manual Deploy Dev (Server Only)
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Manual Deploy Dev (Server Only)
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        # os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+        node-version: [15.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - run: npm install
+    
+    - run: cd server && npm run lint
+      
+    - run: cd server && npm run build
+
+    - name: Deploy Server
+      uses: akhileshns/heroku-deploy@v3.8.8
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "rootrpg"
+        heroku_email: "kyle@seiyria.com"
+        appdir: "server/dist"
