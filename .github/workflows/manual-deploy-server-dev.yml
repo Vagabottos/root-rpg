@@ -33,5 +33,5 @@ jobs:
       with:
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_app_name: "rootrpg"
-        heroku_email: "kyle@seiyria.com"
+        heroku_email: "imnothere199@gmail.com"
         appdir: "server/dist"
