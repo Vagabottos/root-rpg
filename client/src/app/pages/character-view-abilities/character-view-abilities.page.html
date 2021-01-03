@@ -14,12 +14,62 @@
 
 <ion-content>
   <ng-container *ngIf="data.char$ | async as character">
-    {{ character.name }}
-  </ng-container>
 
-- click on moves, nature, etc to get a popup of what it actually does
-- moves
-- nature
-- drives
-- connections
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Nature</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            {{ character.nature }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Drives</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let drive of character.drives">
+            {{ drive }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Moves</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let move of character.moves">
+            {{ move }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Skills</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let skill of character.skills">
+            {{ skill }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    
+  </ng-container>
 </ion-content>
