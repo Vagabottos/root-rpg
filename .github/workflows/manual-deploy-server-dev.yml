@@ -29,9 +29,8 @@ jobs:
     - run: cd server && npm run build
 
     - name: Deploy Server
-      uses: akhileshns/heroku-deploy@v3.8.8
+      uses: AlexxNB/caprover-action@v1
       with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: "rootrpg"
-        heroku_email: "imnothere199@gmail.com"
-        appdir: "server/dist"
+        server: 'https://captain.rootrpgapi.seiyria.com'
+        password: '${{ secrets.CAPROVER_PASSWORD }}'
+        appname: 'game'
