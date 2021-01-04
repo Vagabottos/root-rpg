@@ -314,5 +314,30 @@ Nimble Mind:
   
 Dismantle:
   archetype: The Tinker
-  text: When you **dismantle a broken or disabled piece of equipment or machinery**, clear 2 depletion boxes.
+  text: When you **dismantle a broken or disabled piece of equipment or machinery, clear 2 depletion boxes.
+  
+# Vagrant
+Instigator:
+  archetype: The Vagrant
+  text: When you **trick an NPC** into fighting another NPC, you can remove one option from the 7-9 list—they cannot choose that option instead of doing what you want.
+  
+Pleasant Facade:
+  archetype: The Vagrant
+  text: When you **suck up to or otherwise butter up an unsuspecting NPC**, roll with Charm. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1 for 1 to deflect their suspicion or aggression away from you onto someone or something else. On a miss, your attempts at flattery are suspicious—they’re going to keep their eye on you.
+  
+Desperate Smile:
+  archetype: The Vagrant
+  text: When you **trust fate** to see you through by begging, pleading, or abasing yourself, roll with Charm instead of Luck.
+  
+Charm Offensive:
+  archetype: The Vagrant
+  text: When you **play upon an enemy’s insecurities, concerns, or fears to distract them with words during a fight**, roll with Cunning. On a hit, you create an opening for yourself—make any available weapon move against them at +1, or strike quickly and deal injury to them. On a 7-9, you also tick them off; they aren’t listening to you anymore, no matter what you do, until the situation drastically changes. On a miss, you infuriate them—they come at you, hard, and you’re not prepared.
+  
+Let's Play:
+  archetype: The Vagrant
+  text: When you **play a game of skill and wit to loosen another’s tongue**, roll with Charm. On a hit, they let slip something useful or valuable. On a 7-9, you have to lose the game to get them there; mark one depletion. On a miss, they’re better than you ever thought; either mark one depletion and cut your losses, or mark three depletion and they’ll start talking.
+  
+Pocket Sand:
+  archetype: The Vagrant
+  text: Take the weapon skill Confuse Senses. This does not count against the maximum number of weapon skills you can take. When you **throw something to confuse an opponent’s senses at close or intimate range**, roll with Cunning instead of Finesse.
   

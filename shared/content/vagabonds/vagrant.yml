@@ -1,0 +1,109 @@
+
+archetype: The Vagrant
+
+description: You are a charming, survivor vagabond, using words to get out of dangerous situations, perhaps even setting possible predators upon each other to keep them away from yourself.
+
+species:
+  - opossum
+
+adjectives:
+  - mangy
+  - wild
+  - patchwork
+  - inconspicuous
+
+items:
+  - stolen military insignia
+  - tattered cloak
+  - luck charm
+  - gambling paraphernalia
+
+demeanor:
+  - excited
+  - low key
+  - thoughtful
+  - angry
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I am being hunted by a powerful vagabond
+      - text: I can't settle down with the denizen I truly love
+      - text: I seek to depose corrupt and dangerous leaders
+      - text: I feel deep wanderlust
+      - text: I am on the run for my lies
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My partner in crime
+      - text: My family
+      - text: My loved one
+      - text: My boss
+      - text: My best friend
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Chaos
+  - name: Thrills
+  - name: Clean paws
+  - name: Wanderlust
+
+natures:
+  - name: Glutton
+  - name: Hustler
+
+connections:
+  - name: Family
+    text: After _ and I pulled off an impressive heist and stole something very valuable from a powerful faction, my bad choices landed me in dire straits. But they bailed me out, and we’ve been close ever since.
+
+  - name: Watcher
+    text: _ saw through one of my cons, and turned it back on me. How? Why did we forgive each other? 
+
+stats:
+  charm: 2
+  cunning: 1
+  finesse: -1
+  luck: 0
+  might: 0
+
+startingValue: 9
+
+chooseFeats: 0
+feats:
+  - name: Pick lock
+  - name: Sleight of hand
+
+numSkills: 1
+skills:
+  - name: Quick Shot
+  - name: Improvise
+  - name: Harry
+  - name: Vicious Strike
+
+moves:
+  - name: Instigator
+  - name: Pleasant Facade
+  - name: Desperate Smile
+  - name: Charm Offensive
+  - name: Let's Play
+  - name: Pocket Sand
