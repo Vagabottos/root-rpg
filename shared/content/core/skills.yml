@@ -1,71 +1,78 @@
 
-Blind:
-  text: When you **throw something to blind an opponent**, roll with Finesse. On a hit, you've impaired their vision and given yourself an opportunity. On a 10+, they have to take some time to clean out their eyes before they can see clearly again. On a 7–9, you have just a few moments.
 
 Cleave:
   text: >
-    When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-decay. On a 7–9, you overextend your weapon or yourself: mark decay or end up in a bad spot, your choice.
+    When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-wear. On a 7–9, you overextend your weapon or yourself: mark wear or end up in a bad spot, your choice.
 
 Confuse Senses:
-  text: No description.
+  text: When you **throw something to confuse an opponent’s senses at close or intimate range**, roll with Finesse. On a hit, you’ve thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7–9, you have just a few moments.
 
 Disarm:
-  text: When you **target an opponent's weapon with your strikes**, roll with Finesse. On a hit, they have to mark two exhaustion or drop their weapon. On a 10+, they have to mark three exhaustion instead of two.
+  text: When you target an opponent’s weapon with your strikes at close range, roll with Finesse. On a hit, they have to mark 2-exhaustion or lose their weapon—it’s well out of reach. On a 10+, they have to mark 3-exhaustion instead of 2.
 
 Harry:
   text: >
-    When you harry a group of enemies at far range, mark decay and roll with Cunning. On a 10+, both. On a 7–9, choose 1:
+    When you **harry a group of enemies at far range**, mark wear and roll with Cunning. On a 10+, both. On a 7–9, choose 1:
 
 
-    * They suffer morale harm.
+    * inflict 2-morale harm
     
-    * They are pinned or blocked.
+    * they are pinned or blocked
 
-Improvise:
+Improvise Weapon:
   text: >
     When you **make a weapon out of improvised materials around you**, roll with Cunning. On a hit, you make a weapon; the GM will tell you its range tag and at least one other tag based on the materials you used. On a 7–9, the weapon also has a weakness tag.
-
 
 Parry:
   text: >
     When you **try to parry the attacks of an enemy at close range**, mark exhaustion and roll with Finesse. On a hit, you consume their attention. On a 10+, pick 3. On a 7–9, pick 1.
 
 
-    * You inflict morale harm on them.
+    * you inflict morale or exhaustion harm (GM’s choice)
 
-    * You disarm your opponent.
+    * you disarm your opponent; their weapon is out of hand, but in reach
 
-    * You don't suffer any harm.
+    * you don’t suffer any harm
 
 Quick Shot:
   text: >
     When you **fire a snap shot at an enemy at close range**, roll with Luck. On a hit, inflict injury. On a 7–9, choose 1. On a 10+, choose 2.
 
 
-    * You don't mark decay.
+    * you don’t mark wear
 
-    * You don't mark exhaustion.
+    * you don’t mark exhaustion
 
-    * You move quickly and change your position (and, if you choose, range).
+    * you move quickly and change your position (and, if you choose, range)
 
-    * You keep your target at bay — they don't move.
+    * you keep your target at bay—they don’t move
 
 Storm a Group:
-  text: No description.
+  text: >
+    When you storm a group of foes in melee, mark exhaustion and roll with Might. On a hit, trade harm. On a 10+, choose 2. On a 7-9, choose 1.
+
+
+    * you show them up; you inflict 2-morale harm
+
+    * you keep them off balance and confused; you inflict 2-exhaustion
+
+    * you avoid their blows to the best of your ability; you suffer little (-1) harm.
+
+    * you use them against each other; mark exhaustion again and they inflict their harm against themselves
 
 Trick Shot:
   text: >
-    When you **fire a clever shot designed to take advantage of the environment**, mark decay on your bow and roll with Finesse. On a 7–9, choose 2. On a 10+, choose 3.
+    When you **fire a clever shot designed to take advantage of the environment**, mark wear and roll with Finesse. On a 7–9, choose 2. On a 10+, choose 3.
 
 
-    * Your shot lands in any target of your choice within range, even if it's behind cover or hidden (inflicting injury or decay if appropriate).
+    * your shot lands in any target of your choice within range, even if it’s behind cover or hidden (inflicting injury or wear if appropriate)
 
-    * Your shot strikes a second available target of your choice.
+    * your shot strikes a second available target of your choice
 
-    * Your shot cuts something, breaks something, or knocks something over, your choice.
+    * your shot cuts something, breaks something, or knocks something over, your choice
 
-    * Your shot distracts an opponent and provides an opportunity.
+    * your shot distracts an opponent and provides an opportunity
 
 Vicious Strike:
   text: >
-    When you viciously strike an opponent where they are weak, mark exhaustion and roll with Might. On a hit, they suffer serious harm. On a 10+, you get away with the strike. On a 7–9, they get a shot in as well.
+    When you **viciously strike an opponent where they are weak at intimate or close range**, mark exhaustion and roll with Might. On a hit, they suffer serious (+1) harm and cannot mark wear on their armor to block it. On a 10+, you get away with the strike. On a 7–9, they score a blow against you as well.
