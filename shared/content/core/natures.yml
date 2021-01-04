@@ -22,3 +22,9 @@ Defender:
 
 Punisher:
   text: Clear your exhaustion track when you tell a powerful or dangerous villain to their face that you will punish them.
+
+Loner:
+  text: Clear your exhaustion track when you enter a dangerous situation alone, without backup or assistance.
+
+Cynic:
+  text: Clear your exhaustion track when you openly and directly ask dangerous questions about an accepted "truth". 

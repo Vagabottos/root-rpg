@@ -1,0 +1,109 @@
+
+archetype: The Ranger
+
+description: You are a capable, stealthy vagabond, centered on the forests that fill the Woodland between the clearings, more interested in the wilds than in the company of other Woodland denizens or their society.
+
+species:
+  - wolf
+
+adjectives:
+  - unkempt
+  - scarred
+  - natural
+  - practical
+
+items:
+  - forest charm
+  - leafy cloak
+  - smoking pipe
+  - stolen ring
+
+demeanor:
+  - terse
+  - mistrusting
+  - polite
+  - kind
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I dislike the hypocrisy of society
+      - text: I am mistrusted by other denizens
+      - text: I want to wander the Woodland
+      - text: I need to find and save a loved one
+      - text: I seek escape from the wars
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My commander
+      - text: My family
+      - text: My best friend
+      - text: My student
+      - text: No one- I lost those who mattered to me
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Discovery
+  - name: Freedom
+  - name: Revenge
+  - name: Protection
+
+natures:
+  - name: Loner
+  - name: Cynic
+
+connections:
+  - name: Watcher
+    text: I was tricked, conned, or deceived by _ once. Why do I choose to continue working with them?
+
+  - name: Protector
+    text: I did something that would have gotten me the enmity of a Woodland faction— if _ hadn’t covered for me. What did I do? Why and how did they protect me? Regardless, I feel indebted to them.
+
+stats:
+  charm: -1
+  cunning: 1
+  finesse: 1
+  luck: 0
+  might: 1
+
+startingValue: 9
+
+chooseFeats: 0
+feats:
+  - name: Sneak
+  - name: Hide
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Disarm
+  - name: Harry
+  - name: Vicious Strike
+
+moves:
+  - name: Silent Paws
+  - name: Slip Away
+  - name: Poisons and Antidotes
+  - name: Forager
+  - name: Threatening Visage
+  - name: Dirty Fighter
