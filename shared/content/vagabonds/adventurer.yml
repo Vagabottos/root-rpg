@@ -1,0 +1,109 @@
+
+archetype: The Adventurer
+
+description: You are a peaceful, diplomatic vagabond, making allies from those you aid, perhaps toppling greater powers by forging strong bonds with others from yourself.
+
+species:
+  - owl
+
+adjectives:
+  - formal
+  - colorful
+  - multicultural
+  - simple
+
+items:
+  - medal of service
+  - beaded jewelry
+  - carved flute
+  - pouches with pretty stones
+
+demeanor:
+  - charming
+  - diplomatic
+  - agreeable
+  - stern
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I want to help the Woodland
+      - text: I want to explore the Woodland
+      - text: I believe the current factions should be overturned
+      - text: I must keep a promise to a loved one
+      - text: I want freedom from society's constraints
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My mentor
+      - text: My family
+      - text: My loved one
+      - text: My student
+      - text: My greatest ally
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Ambition
+  - name: Clean paws
+  - name: Principles
+  - name: Justice
+
+natures:
+  - name: Extrovert
+  - name: Peacemaker
+
+connections:
+  - name: Partner
+    text: _ and I fought alongside each other to defend a clearing from a faction’s advances...but we failed. Why did we defend the clearing? Why did we fail? Who defeated us?
+
+  - name: Friend
+    text: I traveled with _ for the time right after I became a vagabond. They helped keep me safe and showed me the Woodland. What keepsake did I gift them?
+
+stats:
+  charm: 2
+  cunning: 1
+  finesse: 0
+  luck: 0
+  might: -1
+
+startingValue: 9
+
+chooseFeats: 0
+feats:
+  - name: Counterfeit
+  - name: Sleight of hand
+
+numSkills: 1
+skills:
+  - name: Parry
+  - name: Improvise
+  - name: Harry
+  - name: Disarm
+
+moves:
+  - name: Sterling Reputation
+  - name: Subduing Strikes
+  - name: Talon on the Pulse
+  - name: Orator
+  - name: Well-Read
+  - name: Fast Friends
