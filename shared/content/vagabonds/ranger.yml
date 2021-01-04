@@ -77,7 +77,7 @@ connections:
     text: I was tricked, conned, or deceived by _ once. Why do I choose to continue working with them?
 
   - name: Protector
-    text: I did something that would have gotten me the enmity of a Woodland faction— if _ hadn’t covered for me. What did I do? Why and how did they protect me? Regardless, I feel indebted to them.
+    text: I did something that would have gotten me the enmity of a Woodland faction— if _ hadn't covered for me. What did I do? Why and how did they protect me? Regardless, I feel indebted to them.
 
 stats:
   charm: -1

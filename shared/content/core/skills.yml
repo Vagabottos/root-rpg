@@ -5,10 +5,10 @@ Cleave:
     When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-wear. On a 7–9, you overextend your weapon or yourself: mark wear or end up in a bad spot, your choice.
 
 Confuse Senses:
-  text: When you **throw something to confuse an opponent’s senses at close or intimate range**, roll with Finesse. On a hit, you’ve thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7–9, you have just a few moments.
+  text: When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Finesse. On a hit, you've thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7–9, you have just a few moments.
 
 Disarm:
-  text: When you target an opponent’s weapon with your strikes at close range, roll with Finesse. On a hit, they have to mark 2-exhaustion or lose their weapon—it’s well out of reach. On a 10+, they have to mark 3-exhaustion instead of 2.
+  text: When you target an opponent's weapon with your strikes at close range, roll with Finesse. On a hit, they have to mark 2-exhaustion or lose their weapon—it's well out of reach. On a 10+, they have to mark 3-exhaustion instead of 2.
 
 Harry:
   text: >
@@ -28,24 +28,24 @@ Parry:
     When you **try to parry the attacks of an enemy at close range**, mark exhaustion and roll with Finesse. On a hit, you consume their attention. On a 10+, pick 3. On a 7–9, pick 1.
 
 
-    * you inflict morale or exhaustion harm (GM’s choice)
+    * you inflict morale or exhaustion harm (GM's choice)
 
     * you disarm your opponent; their weapon is out of hand, but in reach
 
-    * you don’t suffer any harm
+    * you don't suffer any harm
 
 Quick Shot:
   text: >
     When you **fire a snap shot at an enemy at close range**, roll with Luck. On a hit, inflict injury. On a 7–9, choose 1. On a 10+, choose 2.
 
 
-    * you don’t mark wear
+    * you don't mark wear
 
-    * you don’t mark exhaustion
+    * you don't mark exhaustion
 
     * you move quickly and change your position (and, if you choose, range)
 
-    * you keep your target at bay—they don’t move
+    * you keep your target at bay—they don't move
 
 Storm a Group:
   text: >
@@ -65,7 +65,7 @@ Trick Shot:
     When you **fire a clever shot designed to take advantage of the environment**, mark wear and roll with Finesse. On a 7–9, choose 2. On a 10+, choose 3.
 
 
-    * your shot lands in any target of your choice within range, even if it’s behind cover or hidden (inflicting injury or wear if appropriate)
+    * your shot lands in any target of your choice within range, even if it's behind cover or hidden (inflicting injury or wear if appropriate)
 
     * your shot strikes a second available target of your choice
 

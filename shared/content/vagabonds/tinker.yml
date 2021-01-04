@@ -74,10 +74,10 @@ natures:
 
 connections:
   - name: Peer
-    text: _ and I have been working together well for a while. We read each other’s moves easily.
+    text: _ and I have been working together well for a while. We read each other's moves easily.
 
   - name: Family
-    text: _ and I had each other’s back when we were run out of a clearing because our natures got out of hand.
+    text: _ and I had each other's back when we were run out of a clearing because our natures got out of hand.
 
 stats:
   charm: -1

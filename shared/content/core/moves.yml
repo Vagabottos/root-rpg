@@ -238,7 +238,7 @@ Better Lucky than Good:
 # Thief
 Breaking and Entering:
   archetype: The Thief
-  text: When you **attempt roguish feats** to get into or out of a place you’ve previously been, you can mark exhaustion to make the move as if you had rolled a 10+, instead of rolling.
+  text: When you **attempt roguish feats** to get into or out of a place you've previously been, you can mark exhaustion to make the move as if you had rolled a 10+, instead of rolling.
   
 Disappear Into the Dark:
   archetype: The Thief
@@ -246,11 +246,11 @@ Disappear Into the Dark:
   
 Rope-a-dope:
   archetype: The Thief
-  text: When you **evade and dodge your enemy so as to tire them out**, roll with Finesse. On a hit, you can mark exhaustion to make them mark 2-exhaustion. On a 10+, you can mark exhaustion to make them mark 3-exhaustion. On a miss, they catch you in the middle of a dodge—you’re at their mercy. 
+  text: When you **evade and dodge your enemy so as to tire them out**, roll with Finesse. On a hit, you can mark exhaustion to make them mark 2-exhaustion. On a 10+, you can mark exhaustion to make them mark 3-exhaustion. On a miss, they catch you in the middle of a dodge—you're at their mercy. 
   
 Small Hands:
   archetype: The Thief
-  text: When you **grapple** with an enemy larger than you, roll with Finesse instead of Might. On a miss, they overpower you—you’re at their mercy.
+  text: When you **grapple** with an enemy larger than you, roll with Finesse instead of Might. On a miss, they overpower you—you're at their mercy.
   
 Master Thief:
   archetype: The Thief
@@ -323,7 +323,7 @@ Instigator:
   
 Pleasant Facade:
   archetype: The Vagrant
-  text: When you **suck up to or otherwise butter up an unsuspecting NPC**, roll with Charm. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1 for 1 to deflect their suspicion or aggression away from you onto someone or something else. On a miss, your attempts at flattery are suspicious—they’re going to keep their eye on you.
+  text: When you **suck up to or otherwise butter up an unsuspecting NPC**, roll with Charm. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1 for 1 to deflect their suspicion or aggression away from you onto someone or something else. On a miss, your attempts at flattery are suspicious—they're going to keep their eye on you.
   
 Desperate Smile:
   archetype: The Vagrant
@@ -331,15 +331,15 @@ Desperate Smile:
   
 Charm Offensive:
   archetype: The Vagrant
-  text: When you **play upon an enemy’s insecurities, concerns, or fears to distract them with words during a fight**, roll with Cunning. On a hit, you create an opening for yourself—make any available weapon move against them at +1, or strike quickly and deal injury to them. On a 7-9, you also tick them off; they aren’t listening to you anymore, no matter what you do, until the situation drastically changes. On a miss, you infuriate them—they come at you, hard, and you’re not prepared.
+  text: When you **play upon an enemy's insecurities, concerns, or fears to distract them with words during a fight**, roll with Cunning. On a hit, you create an opening for yourself—make any available weapon move against them at +1, or strike quickly and deal injury to them. On a 7-9, you also tick them off; they aren't listening to you anymore, no matter what you do, until the situation drastically changes. On a miss, you infuriate them—they come at you, hard, and you're not prepared.
   
 Let's Play:
   archetype: The Vagrant
-  text: When you **play a game of skill and wit to loosen another’s tongue**, roll with Charm. On a hit, they let slip something useful or valuable. On a 7-9, you have to lose the game to get them there; mark one depletion. On a miss, they’re better than you ever thought; either mark one depletion and cut your losses, or mark three depletion and they’ll start talking.
+  text: When you **play a game of skill and wit to loosen another's tongue**, roll with Charm. On a hit, they let slip something useful or valuable. On a 7-9, you have to lose the game to get them there; mark one depletion. On a miss, they're better than you ever thought; either mark one depletion and cut your losses, or mark three depletion and they'll start talking.
   
 Pocket Sand:
   archetype: The Vagrant
-  text: Take the weapon skill Confuse Senses. This does not count against the maximum number of weapon skills you can take. When you **throw something to confuse an opponent’s senses at close or intimate range**, roll with Cunning instead of Finesse.
+  text: Take the weapon skill Confuse Senses. This does not count against the maximum number of weapon skills you can take. When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Cunning instead of Finesse.
   
 # Adventurer
 Sterling Reputation:
@@ -375,11 +375,11 @@ Orator:
     When you give a speech to interested denizens of a clearing, say what you are motivating them to do and roll with Charm. On a hit, they will move to do it as they see fit. On a 10+, choose 2. On a 7-9, choose 1.
 
 
-    * They don’t try to take your intent too far
+    * They don't try to take your intent too far
 
-    * They don’t disband at the first sign of real resistance
+    * They don't disband at the first sign of real resistance
 
-    * They don’t demand you stand at their head and lead
+    * They don't demand you stand at their head and lead
 
 
     On a miss, they twist your message in unpredictable ways.
@@ -390,7 +390,7 @@ Well-Read:
   
 Fast Friends:
   archetype: The Adventurer
-  text: When you **try to befriend an NPC you’ve just met by matching their personality, body language, and desires**, mark exhaustion and roll with Cunning. On a hit, they’ll look upon you favorably—ask them any one noncompromising question and they’ll answer truthfully, or request a simple favor and they’ll do it for you. On a 10+, they really like you—they’ll share a valuable secret or grant you a serious favor instead. On a miss, you read them totally wrong, and their displeasure costs you.
+  text: When you **try to befriend an NPC you've just met by matching their personality, body language, and desires**, mark exhaustion and roll with Cunning. On a hit, they'll look upon you favorably—ask them any one noncompromising question and they'll answer truthfully, or request a simple favor and they'll do it for you. On a 10+, they really like you—they'll share a valuable secret or grant you a serious favor instead. On a miss, you read them totally wrong, and their displeasure costs you.
   
 # Harrier
 Cross Country:
@@ -407,7 +407,7 @@ Don't Shoot the Messenger:
   
 Parkour:
   archetype: The Harrier
-  text: When you **dash your way through a chaotic scene or fight**, roll with Finesse. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1-for-1 to dash to something within sight and reach without being stopped, or to dash away from something nearby without being stopped. You can dash away from an enemy even at the moment they attack. On a miss, your surroundings trip you up, and you’re caught in place while danger closes in.
+  text: When you **dash your way through a chaotic scene or fight**, roll with Finesse. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1-for-1 to dash to something within sight and reach without being stopped, or to dash away from something nearby without being stopped. You can dash away from an enemy even at the moment they attack. On a miss, your surroundings trip you up, and you're caught in place while danger closes in.
   
 Traveller Extraordinaire:
   archetype: The Harrier
@@ -415,7 +415,7 @@ Traveller Extraordinaire:
 
 Smuggler's Path:
   archetype: The Harrier
-  text: You’ve got a good sense for finding secret paths and doors. When you **spend time looking for a secret way in or out of a place that might have one**, mark exhaustion and roll with Luck. On a hit, you find a hidden path—the GM will detail it and to where it leads. On a 10+, there’s something along or inside the path of value to you—the GM will tell you what. On a miss, you find a secret path...and someone else is using it right this second. They probably won’t be happy you found their secret.
+  text: You've got a good sense for finding secret paths and doors. When you **spend time looking for a secret way in or out of a place that might have one**, mark exhaustion and roll with Luck. On a hit, you find a hidden path—the GM will detail it and to where it leads. On a 10+, there's something along or inside the path of value to you—the GM will tell you what. On a miss, you find a secret path...and someone else is using it right this second. They probably won't be happy you found their secret.
 
 # Ronin
 Always Armed:
@@ -434,11 +434,11 @@ Well-Mannered:
 
     * Cover up a social faux pas on behalf of you or an ally; clear 1 exhaustion.
 
-    * Call out someone else’s social faux pas; inflict 1-morale harm on them.
+    * Call out someone else's social faux pas; inflict 1-morale harm on them.
 
     * Charm someone; take +1 ongoing to speak to them while you have hold.
 
-    * Demonstrate your value; mark prestige with a powerful denizen’s faction.
+    * Demonstrate your value; mark prestige with a powerful denizen's faction.
 
 
     On a miss, the rules of etiquette here are far different from what you expected; mark exhaustion as you commit a gravely impolite error.
