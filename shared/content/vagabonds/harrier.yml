@@ -1,0 +1,110 @@
+
+archetype: The Harrier
+
+description: You are a quick, enterprising vagabond, racing easily from building to building and clearing to clearing without anything stopping you, perhaps finding yourself in places others would rather keep secret or hidden.
+
+species:
+  - squirrel
+
+adjectives:
+  - roguish
+  - kitted out
+  - vibrant
+  - scarred
+
+items:
+  - half-started maps
+  - sewn bandana
+  - ball and cup
+  - wide-brimmed hat
+
+demeanor:
+  - excited
+  - energetic
+  - passionate
+  - flighty
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I want to fight for Woodland freedom
+      - text: I am chasing a loved one
+      - text: I am on the run for my crimes
+      - text: I feel a deep wanderlust
+      - text: I am on the run from a commitment at home
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My teacher
+      - text: My family
+      - text: My loved one
+      - text: My idol
+      - text: My best friend
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Crime
+  - name: Discovery
+  - name: Infamy
+  - name: Wanderlust
+
+natures:
+  - name: Dutiful
+  - name: Competitive
+
+connections:
+  - name: Peer
+    text: _  and I tried to blaze a new trail between two clearings; without the support of the major factions, it never fully came to fruition.
+
+
+  - name: Friend
+    text: _ and I forged a bond while investigating a ruin deep in the woods. What strange minor trinkets do each of you carry from that expedition? 
+
+stats:
+  charm: 0
+  cunning: -1
+  finesse: 2
+  luck: 1
+  might: 0
+
+startingValue: 9
+
+chooseFeats: 0
+feats:
+  - name: Acrobatics
+  - name: Sneak
+
+numSkills: 1
+skills:
+  - name: Quick Shot
+  - name: Trick Shot
+  - name: Harry
+  - name: Disarm
+
+moves:
+  - name: Cross Country
+  - name: Fleet of Foot and Hand
+  - name: Don't Shoot the Messenger
+  - name: Parkour
+  - name: Traveller Extraordinaire
+  - name: Smuggler's Path

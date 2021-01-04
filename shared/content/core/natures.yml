@@ -58,3 +58,9 @@ Extrovert:
 
 Peacemaker:
   text: Clear your exhaustion track when you resolve a dangerous conflict nonviolently. 
+
+Dutiful:
+  text: Clear your exhaustion track when you take on a dangerous or difficult task on behalf of another.
+
+Competitive:
+  text: Clear your exhaustion track when you take dramatically unnecessary risks to show off.
