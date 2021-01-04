@@ -31,7 +31,7 @@ export class LongPressDirective implements OnInit, OnDestroy {
           )),
         )
         .subscribe((res: TouchEvent) => {
-          if (!res) return;
+          if (!res) { return; }
           this.release.emit();
         });
     }
