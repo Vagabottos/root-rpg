@@ -27,4 +27,10 @@ Loner:
   text: Clear your exhaustion track when you enter a dangerous situation alone, without backup or assistance.
 
 Cynic:
-  text: Clear your exhaustion track when you openly and directly ask dangerous questions about an accepted "truth". 
+  text: Clear your exhaustion track when you openly and directly ask dangerous questions about an accepted "truth".
+
+Arsonist:
+  text: Clear your exhaustion track when you use needlessly destructive or damaging methods to solve a problem.
+
+Combative:
+  text: Clear your exhaustion track when you try to start a fight against overwhelming opposition.

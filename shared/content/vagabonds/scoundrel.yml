@@ -1,0 +1,110 @@
+
+archetype: The Scoundrel
+
+description: You are a lucky, dangerous vagabond, acting more as destroyer and troublemaker than anything else, perhaps creating chaos and destruction for its own sake.
+
+species:
+  - cat
+
+adjectives:
+  - suspicious
+  - impoverished
+  - flea-bitten
+  - scarred
+
+items:
+  - full face mask
+  - mousesteel spark lighter
+  - overly large coat
+  - sulphurous pouches
+
+demeanor:
+  - shifty
+  - slimy
+  - straightforward
+  - naive
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I am on the run for a destructive crime
+      - text: I seek vengeance for my suffering
+      - text: I wish to defeat a faction
+      - text: I am mistrusted by other denizens
+      - text: I want to be free from society's bonds
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My teacher
+      - text: My family
+      - text: My loved one
+      - text: My only defender
+      - text: My best friend
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Chaos
+  - name: Thrills
+  - name: Crime
+  - name: Infamy
+
+natures:
+  - name: Arsonist
+  - name: Combative
+
+connections:
+  - name: Friend
+    text: _ and I once met and pulled off a mad, impossible stunt together. What did we do? Why?
+
+  - name: Partner
+    text: _ and I destroyed a faction's resource, on behalf of an opposing faction. Why?
+
+stats:
+  charm: 1
+  cunning: -1
+  finesse: 0
+  luck: 2
+  might: 0
+
+startingValue: 8
+
+chooseFeats: 0
+feats:
+  - name: Acrobatics
+  - name: Hide
+  - name: Sneak
+
+numSkills: 1
+skills:
+  - name: Confuse Senses
+  - name: Improvise
+  - name: Quick Shot
+  - name: Vicious Strike
+
+moves:
+  - name: Arsonist
+  - name: Create to Destroy
+  - name: It's a Distraction!
+  - name: Daredevil
+  - name: Danger Mask
+  - name: Better Lucky than Good
