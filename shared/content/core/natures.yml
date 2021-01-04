@@ -34,3 +34,9 @@ Arsonist:
 
 Combative:
   text: Clear your exhaustion track when you try to start a fight against overwhelming opposition.
+
+Kleptomaniac:
+  text: Clear your exhaustion track when you try to selfishly steal something valuable or important.
+
+Rebellious:
+  text: Clear your exhaustion track when you grievously insult, defy, or anger figures of authority.

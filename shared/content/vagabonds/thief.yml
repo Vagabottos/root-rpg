@@ -1,0 +1,107 @@
+
+archetype: The Thief
+
+description: You are a cunning, criminal vagabond, capable of stealing even the most well-guarded treasures, perhaps committed to crime and theft for its own sake.
+
+species:
+  - racoon
+
+adjectives:
+  - worn
+  - fidgety
+  - inconspicuous
+  - flamboyant
+
+items:
+  - black cape
+  - large bag
+  - old broken weapon
+  - stolen scarf
+
+demeanor:
+  - fast-talking
+  - quiet
+  - angry
+  - friendly
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I have no better way to get food, water, shelter, and money
+      - text: I am on the run from "associates"
+      - text: I am mistrusted by other denizens
+      - text: I am pursuing a treasure
+      - text: I am being hunted by a powerful official
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My partner-in-crime
+      - text: My family
+      - text: My loved one
+      - text: My protector
+      - text: My benefactor
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Freedom
+  - name: Greed
+  - name: Ambition
+  - name: Thrills
+
+natures:
+  - name: Kleptomaniac
+  - name: Rebellious
+
+connections:
+  - name: Peer
+    text: I stole something important, something needed or craved, for _. I proved my worth to them.
+
+  - name: Friend
+    text: _  sprang to get me out of holding, whether they bailed me out or rescued me. I owe them.
+
+stats:
+  charm: 0
+  cunning: 0
+  finesse: 2
+  luck: 1
+  might: -1
+
+startingValue: 6
+
+chooseFeats: 4
+feats: []
+
+numSkills: 1
+skills:
+  - name: Confuse Senses
+  - name: Improvise
+  - name: Parry
+  - name: Trick Shot
+
+moves:
+  - name: Breaking and Entering
+  - name: Disappear Into the Dark
+  - name: Rope-a-dope
+  - name: Small Hands
+  - name: Master Thief
+  - name: Nose For Gold
