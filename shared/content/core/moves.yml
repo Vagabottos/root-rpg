@@ -270,3 +270,49 @@ Nose for Gold:
 
     * what is the most valuable thing here?
   
+# Tinker
+Toolbox:
+  archetype: The Tinker
+  text: >
+    You have a kit of tools and supplies with which you work on long-term projects. Choose two features:
+
+
+    assorted scrap wood, assorted gears and springs, esoteric hand tools, manuals, assorted medicines, portable alchemy kit, sewing kit, cookware, minor explosives
+
+
+    Choose one drawback:
+
+    heavy (counts as 2 Load instead of 1), bulky & obvious, stolen, fragile
+
+
+    When you **open up your toolkit and dedicate yourself to making a thing or to getting to the bottom of something**, decide what and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to accomplish your goal, including time taken, materials needed, help needed, facilities/tools needed, or the limits on the project. When you **accomplish the conditions**, you accomplish the goal.
+  
+Repair:
+  archetype: The Tinker
+  text: When you **repair destroyed personal equipment with your toolbox**, the GM will set one condition as per the toolbox move. Fulfill it, and clear all wear for that equipment. When you **repair damaged personal equipment with your toolkit**, you do it as long as you spend depletion or value, 1 for 1, for each box of wear you clear.
+  
+Big Pockets:
+  archetype: The Tinker
+  text: Take two extra boxes of depletion.
+  
+Jury Rig:
+  archetype: The Tinker
+  text: >
+    When you create a makeshift device on the fly, roll with Cunning. On a hit, you create a device that works once, then breaks. On a 10+, choose one:
+
+
+    * It works exceptionally well
+
+    * You get an additional use out of it
+
+
+    On a miss, the device works, but it has an unintended side effect that the GM will reveal when you use it.
+  
+Nimble Mind:
+  archetype: The Tinker
+  text: When you **attempt roguish feats** involving mechanisms or locks, mark depletion to roll with Cunning instead of Finesse. 
+  
+Dismantle:
+  archetype: The Tinker
+  text: When you **dismantle a broken or disabled piece of equipment or machinery**, clear 2 depletion boxes.
+  

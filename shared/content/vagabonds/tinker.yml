@@ -1,0 +1,111 @@
+
+archetype: The Tinker
+
+description: You are an adept, clever vagabond, interested in mechanisms and craftsmanship, perhaps possessed of ideas that separate you from those around you.
+
+species:
+  - beaver
+
+adjectives:
+  - scattered
+  - organized
+  - grubby
+  - singed
+
+items:
+  - eccentric tool belt
+  - beautiful whetstone
+  - former patron's insignia
+  - massive packs
+
+demeanor:
+  - hopeful
+  - cheerful
+  - inquisitive
+  - cynical
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I refuse to keep my ideas to myself
+      - text: I need to rebuild my workshop anew in a safe space
+      - text: I crave adventure
+      - text: I need to find and save my family
+      - text: I need to keep my most dangerous design safe
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My mentor
+      - text: My family
+      - text: My best friend
+      - text: My loved one
+      - text: My leader
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Greed
+  - name: Ambition
+  - name: Revenge
+  - name: Protection
+
+natures:
+  - name: Perfectionist
+  - name: Radical
+
+connections:
+  - name: Peer
+    text: _ and I have been working together well for a while. We read each other’s moves easily.
+
+  - name: Family
+    text: _ and I had each other’s back when we were run out of a clearing because our natures got out of hand.
+
+stats:
+  charm: -1
+  cunning: 2
+  finesse: 1
+  luck: 0
+  might: 0
+
+startingValue: 8
+
+chooseFeats: 0
+feats:
+  - name: Counterfeit
+  - name: Pick lock
+  - name: Disable Device
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Improvise
+  - name: Harry
+  - name: Trick Shot
+
+defaultMoves: [Toolbox, Repair]
+moves:
+  - name: Toolbox
+  - name: Repair
+  - name: Big Pockets
+  - name: Jury Rig
+  - name: Nimble Mind
+  - name: Dismantle

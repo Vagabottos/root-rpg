@@ -101,7 +101,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
-defaultMove: Word on the Street
+defaultMoves: [Word on the Street]
 moves:
   - name: Word on the Street
   - name: Never Lost

@@ -98,7 +98,7 @@ skills:
   - name: Storm a Group
   - name: Disarm
 
-defaultMove: ''
+defaultMoves: []
 moves:
   - name: Brute
   - name: Carry a Big Stick

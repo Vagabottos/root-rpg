@@ -255,8 +255,8 @@ export class CreateCharacterPage implements OnInit {
     }
 
     const moves = this.movesForm.get('moves').value || [];
-    if (moves.length === 0 && this.chosenVagabond.defaultMove) {
-      this.movesForm.get('moves').setValue([this.chosenVagabond.defaultMove]);
+    if (moves.length === 0 && this.chosenVagabond.defaultMoves?.length > 0) {
+      this.movesForm.get('moves').setValue(this.chosenVagabond.defaultMoves);
     }
 
     const connArr = this.connectionsForm.get('connections') as FormArray;

@@ -101,7 +101,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
-defaultMove: The Worth of a Book
+defaultMoves: [The Worth of a Book]
 moves:
   - name: The Worth of a Book
   - name: An Eye for the Real Story

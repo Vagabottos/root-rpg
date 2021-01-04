@@ -105,7 +105,7 @@ skills:
   - name: Storm a Group
   - name: Vicious Strike
 
-defaultMove: Known by All
+defaultMoves: [Known by All]
 moves:
   - name: Known by All
   - name: Above It All

@@ -116,7 +116,7 @@ export interface IContentVagabond {
   feats: IContentVagabondFeat[];
   numSkills: number;
   skills: IContentVagabondSkill[];
-  defaultMove: string;
+  defaultMoves: string[];
   moves: IContentVagabondMove[];
 }
 
