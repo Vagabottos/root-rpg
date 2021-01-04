@@ -25,7 +25,7 @@ export async function validateOwner(context: HookContext): Promise<HookContext> 
     }
   });
 
-  if(total === 0) throw new Forbidden('Could not view that campaign.');
+  if(total === 0) throw new Forbidden('Could not view that item.');
 
   return context;
 }
