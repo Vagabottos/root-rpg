@@ -98,6 +98,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
+defaultMoves: []
 moves:
   - name: Breaking and Entering
   - name: Disappear Into the Dark

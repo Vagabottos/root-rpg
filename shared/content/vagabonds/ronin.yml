@@ -99,6 +99,7 @@ skills:
   - name: Harry
   - name: Vicious Strike
 
+defaultMoves: []
 moves:
   - name: Always Armed
   - name: Knowing a Lord's Will

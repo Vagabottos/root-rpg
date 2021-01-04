@@ -101,6 +101,7 @@ skills:
   - name: Quick Shot
   - name: Vicious Strike
 
+defaultMoves: []
 moves:
   - name: Arsonist
   - name: Create to Destroy
