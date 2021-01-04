@@ -20,16 +20,25 @@ export class LongPressDirective implements OnInit, OnDestroy {
     ngOnInit(): void {
     }
 
-    private initClick(): void {
+    private initClick(event: MouseEvent): void {
       const interval$ = this.interval$()
         .pipe(
           takeUntil(this.mouseups$)
         );
 
-      combineLatest([this.mousedowns$, interval$])
+      combineLatest([this.mousedowns$, this.mouseups$, interval$])
         .pipe(first())
         .subscribe((val) => {
-          this.release.emit(val[0] as MouseEvent);
+          const endEvent = val[0] as MouseEvent;
+          const startEvent = val[1] as MouseEvent;
+          
+          const dist = Math.sqrt(
+            Math.pow(endEvent.x - startEvent.x, 2) + Math.pow(endEvent.y - startEvent.y, 2)
+          );
+
+          if(dist > 50) return;
+
+          this.release.emit(endEvent);
         });
     }
 
@@ -55,7 +64,7 @@ export class LongPressDirective implements OnInit, OnDestroy {
 
     @HostListener('touchstart', ['$event'])
     public onTouchStart(event: MouseEvent): void {
-      this.initClick();
+      this.initClick(event);
       this.mousedowns$.next(event);
     }
 
@@ -66,7 +75,7 @@ export class LongPressDirective implements OnInit, OnDestroy {
 
     @HostListener('mousedown', ['$event'])
     public onMouseDown(event: MouseEvent): void {
-      this.initClick();
+      this.initClick(event);
       this.mousedowns$.next(event);
     }
 
