@@ -64,3 +64,9 @@ Dutiful:
 
 Competitive:
   text: Clear your exhaustion track when you take dramatically unnecessary risks to show off.
+
+Survivor:
+  text: Clear your exhaustion track when you try to flee or cover allies’ flight from a dangerous or overwhelming situation.
+
+Pilgrim:
+  text: Clear your exhaustion track when you find an expert in a skill you don’t possess.

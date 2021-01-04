@@ -1,0 +1,108 @@
+
+archetype: The Ronin
+
+description: You are a skilled, willful vagabond, formerly a servant of a lord in a different land, now masterless. You came to the Woodland to live as a free vagabond.
+
+species:
+  - raccoon dog
+
+adjectives:
+  - militaristic
+  - outlandish
+  - simple
+  - colorful
+
+items:
+  - lord's token
+  - mark of esteem
+  - stringed instrument
+  - board game
+
+demeanor:
+  - gruff
+  - polite
+  - direct
+  - dangerous
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I want to build a masterless life
+      - text: I seek a cause to redeem myself
+      - text: I aim to bring a hunted foe to justice
+      - text: I am hunted by old foes
+      - text: I need freedom to fulfill my master's last wish
+
+  - question: What happened to your last master?
+    type: answers
+    answers:
+      - text: Assassination
+      - text: Unjust imprisonment
+      - text: Disappearance
+      - text: Justified overthrow
+      - text: Betrayal
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Principles
+  - name: Revenge
+  - name: Thrills
+  - name: Wanderlust
+
+natures:
+  - name: Survivor
+  - name: Pilgrim
+
+connections:
+  - name: Partner
+    text: _ and I worked together on my first real task of significance in the Woodland, deposing a dangerous authority figure of a faction. Who did we depose? Why?
+
+  - name: Watcher
+    text: I see in _ many reminders of my old master. I am drawn to them, even as I watch them carefully. What is it that reminds me of my old master? How do they feel about my watchful eyes?
+
+stats:
+  charm: 0
+  cunning: 1
+  finesse: 0
+  luck: -1
+  might: 2
+
+startingValue: 11
+
+chooseFeats: 0
+feats:
+  - name: Blindside
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Storm a Group
+  - name: Harry
+  - name: Vicious Strike
+
+moves:
+  - name: Always Armed
+  - name: Knowing a Lord's Will
+  - name: Well-Mannered
+  - name: Fealty
+  - name: The Rules of War
+  - name: Always Watching

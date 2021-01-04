@@ -416,3 +416,57 @@ Traveller Extraordinaire:
 Smuggler's Path:
   archetype: The Harrier
   text: You’ve got a good sense for finding secret paths and doors. When you **spend time looking for a secret way in or out of a place that might have one**, mark exhaustion and roll with Luck. On a hit, you find a hidden path—the GM will detail it and to where it leads. On a 10+, there’s something along or inside the path of value to you—the GM will tell you what. On a miss, you find a secret path...and someone else is using it right this second. They probably won’t be happy you found their secret.
+
+# Ronin
+Always Armed:
+  archetype: The Ronin
+  text: Take the weapon skill Improvise a Weapon (it does not count against your limit). When you deal harm with an improvised weapon, deal +1 harm. 
+  
+Knowing a Lord's Will:
+  archetype: The Ronin
+  text: When you **figure out** a denizen of status, authority, or power, roll with Might instead of Charm. When you **trick** a denizen of status, authority, or power by playing subordinate, roll with Might instead of Cunning. 
+  
+Well-Mannered:
+  archetype: The Ronin
+  text: >
+    When you **enter a social environment dependent on manners and etiquette**, roll with Cunning. On a 10+, hold 3. On a 7-9, hold 2. Lose all hold when you leave or when social rules fall apart. Spend hold 1-for-1 to:
+
+
+    * Cover up a social faux pas on behalf of you or an ally; clear 1 exhaustion.
+
+    * Call out someone else’s social faux pas; inflict 1-morale harm on them.
+
+    * Charm someone; take +1 ongoing to speak to them while you have hold.
+
+    * Demonstrate your value; mark prestige with a powerful denizen’s faction.
+
+
+    On a miss, the rules of etiquette here are far different from what you expected; mark exhaustion as you commit a gravely impolite error.
+  
+Fealty:
+  archetype: The Ronin
+  text: When you **commit yourself to the cause of someone you deem worthy**, swear an oath to them stating what task you will complete on their behalf. Mark exhaustion to reroll a move made in pursuit of that task. You cannot commit yourself to another cause until you accomplish the first, or break your oath. If you break your oath, fill your exhaustion track and mark 4 notoriety with the faction whose trust you betrayed. If you fulfill your oath, mark 4 prestige with the faction whose trust you kept.
+  
+The Rules of War:
+  archetype: The Ronin
+  text: >
+    When you call upon a reasonable foe to uphold a rule of war, roll with Might. On a hit, they feel obliged; choose one below they must follow. On a 7-9, they choose one that you must follow; disobey, and the obligation ends.
+
+
+    * Show mercy to surrendering foes and prisoners
+    
+    * Refrain from underhanded tactics in a fight
+
+    * Face each other without aid, back-up, or assistance
+
+    * Keep the violence away from the unarmed or innocent
+
+    * Fight to surrender or subdual, without retreat
+
+
+    On a miss, they feel no obligation to your ideas of war; prepare for a brutal lesson in the rules they adhere to.
+  
+Always Watching:
+  archetype: The Ronin
+  text: Take +1 Cunning (max +3).
+  

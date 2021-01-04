@@ -74,8 +74,7 @@ natures:
 
 connections:
   - name: Peer
-    text: _  and I tried to blaze a new trail between two clearings; without the support of the major factions, it never fully came to fruition.
-
+    text: _ and I tried to blaze a new trail between two clearings; without the support of the major factions, it never fully came to fruition.
 
   - name: Friend
     text: _ and I forged a bond while investigating a ruin deep in the woods. What strange minor trinkets do each of you carry from that expedition? 
