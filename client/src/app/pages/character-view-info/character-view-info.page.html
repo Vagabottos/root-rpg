@@ -59,8 +59,8 @@
 
       <ion-card-content>
         <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
-          <ion-col class="harm-label">{{ harm }}</ion-col>
-          <ion-col class="harm-box" *ngFor="let i of [0, 1, 2, 3]">
+          <ion-col class="harm-label" (click)="adjustHarm(character, harm, 0)">{{ harm }}</ion-col>
+          <ion-col class="harm-box" *ngFor="let i of [0, 1, 2, 3]" (click)="adjustHarm(character, harm, i + 1)">
             <ion-icon [name]="character[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
           </ion-col>
         </ion-row>

@@ -50,6 +50,10 @@ export class CharacterViewInfoPage implements OnInit {
     bg.present();
   }
 
+  private save(): void {
+    this.data.patchCharacter();
+  }
+
   // reputation functions
   getNotoriety(character: ICharacter, faction: string): number {
     return character.reputation[faction]?.notoriety ?? 0;
@@ -57,6 +61,18 @@ export class CharacterViewInfoPage implements OnInit {
 
   getPrestige(character: ICharacter, faction: string): number {
     return character.reputation[faction]?.prestige ?? 0;
+  }
+
+  // harm functions
+  adjustHarm(character: ICharacter, harm: string, newValue: number): void {
+    if (character[harm.toLowerCase()] === newValue) {
+      character[harm.toLowerCase()] = 0;
+      this.save();
+      return;
+    }
+
+    character[harm.toLowerCase()] = newValue;
+    this.save();
   }
 
   // connection functions
