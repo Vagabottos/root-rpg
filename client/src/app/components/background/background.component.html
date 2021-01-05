@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Background
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="data.char$ | async as character">
+
+    <ion-card *ngFor="let bg of character.background">
+      <ion-card-header>
+        <ion-card-title>{{ bg.question }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{ bg.answer }}
+      </ion-card-content>
+    </ion-card>
+    
+  </ng-container>
+</ion-content>
