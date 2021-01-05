@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ICharacterConnection } from '../../../../../shared/interfaces';
 import { AdvancementComponent } from '../../components/advancement/advancement.component';
 import { BackgroundComponent } from '../../components/background/background.component';
 import { CampaignComponent } from '../../components/campaign/campaign.component';
+import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 
@@ -14,6 +16,8 @@ import { DataService } from '../../services/data.service';
 export class CharacterViewInfoPage implements OnInit {
 
   constructor(
+    private markdown: MarkdownPipe,
+    private alert: AlertController,
     private modal: ModalController,
     public data: DataService,
     public content: ContentService
@@ -26,7 +30,7 @@ export class CharacterViewInfoPage implements OnInit {
     const bg = await this.modal.create({
       component: BackgroundComponent
     });
-    
+
     bg.present();
   }
 
@@ -34,7 +38,7 @@ export class CharacterViewInfoPage implements OnInit {
     const bg = await this.modal.create({
       component: CampaignComponent
     });
-    
+
     bg.present();
   }
 
@@ -42,8 +46,30 @@ export class CharacterViewInfoPage implements OnInit {
     const bg = await this.modal.create({
       component: AdvancementComponent
     });
-    
+
     bg.present();
+  }
+
+  parseMarkdown(md: string): string {
+    return this.markdown.transform(md);
+  }
+
+  async viewHTML(title: string, markdown: string) {
+    const html = this.parseMarkdown(markdown);
+
+    const alert = await this.alert.create({
+      header: title,
+      message: html,
+      buttons: ['Close'],
+      cssClass: 'big-alert'
+    });
+
+    alert.present();
+  }
+
+  viewConnection(connection: string) {
+    const md = this.content.getConnection(connection)?.text;
+    this.viewHTML(connection, md);
   }
 
 }

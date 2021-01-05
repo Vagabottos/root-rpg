@@ -88,9 +88,11 @@
       </ion-card-header>
 
       <ion-card-content>
-        <ion-row *ngFor="let connection of character.connections" class="connection-row">
-          <ion-col class="connection-label">{{ connection.name }}: {{ connection.target }}</ion-col>
-        </ion-row>
+        <ion-list>
+          <ion-item *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
+            {{ connection.name }} ({{ connection.target }})
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
 
