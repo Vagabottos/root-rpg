@@ -20,7 +20,7 @@ import { CampaignComponent } from './components/campaign/campaign.component';
     BackgroundComponent, AdvancementComponent, CampaignComponent
   ],
   entryComponents: [
-    ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent, 
+    ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
     CampaignComponent
   ],
   imports: [
