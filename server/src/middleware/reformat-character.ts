@@ -88,6 +88,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     }
   });
 
+  // process rep changes from background questions
   (context.data.background.backgroundReps || []).forEach(rep => {
     if(!rep) return;
 
@@ -98,6 +99,11 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
       newChar.reputation[rep.faction].prestige += Math.abs(repChange);
     }
   });
+
+  // check and set feats
+  if(newChar.feats.length === 0) {
+    newChar.feats = archetypeData.feats.map(f => f.name);
+  }
 
   // set connections
   archetypeData.connections.forEach((conn, i) => {
