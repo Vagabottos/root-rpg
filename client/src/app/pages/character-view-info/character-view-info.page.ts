@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { ICharacterConnection } from '../../../../../shared/interfaces';
+import { ICharacter } from '../../../interfaces';
 import { AdvancementComponent } from '../../components/advancement/advancement.component';
 import { BackgroundComponent } from '../../components/background/background.component';
 import { CampaignComponent } from '../../components/campaign/campaign.component';
@@ -50,6 +50,16 @@ export class CharacterViewInfoPage implements OnInit {
     bg.present();
   }
 
+  // reputation functions
+  getNotoriety(character: ICharacter, faction: string): number {
+    return character.reputation[faction]?.notoriety ?? 0;
+  }
+
+  getPrestige(character: ICharacter, faction: string): number {
+    return character.reputation[faction]?.prestige ?? 0;
+  }
+
+  // connection functions
   parseMarkdown(md: string): string {
     return this.markdown.transform(md);
   }

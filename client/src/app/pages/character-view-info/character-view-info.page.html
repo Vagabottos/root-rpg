@@ -76,7 +76,29 @@
         <ion-row *ngFor="let faction of content.getFactions()" class="reputation-row">
           <ion-col class="reputation-label">{{ faction.name }}</ion-col>
           <ion-col class="reputation-box">
-            reputation stuff
+            <ion-row>
+              <ion-col class="notoriety-level">
+                -1
+              </ion-col>
+  
+              <ion-col class="notoriety-track">
+                <ion-icon *ngFor="let i of [0, 1, 2]"
+                          [name]="getNotoriety(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+              </ion-col>
+  
+              <ion-col class="current-level">
+                +0
+              </ion-col>
+  
+              <ion-col class="prestige-track">
+                <ion-icon *ngFor="let i of [0, 1, 2, 3, 4]"
+                          [name]="getPrestige(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+              </ion-col>
+  
+              <ion-col class="prestige-level">
+                +1
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-card-content>

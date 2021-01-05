@@ -37,7 +37,42 @@
 .reputation-row {
 
   .reputation-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reputation-label {
     font-weight: bold;
+    min-width: 30%;
+    max-width: 30%;
+    justify-content: flex-end;
+  }
+
+  .notoriety-track, .prestige-track {
+    display: flex;
+  }
+
+  .notoriety-track {
+    flex-direction: row-reverse;
+    min-width: 70px;
+  }
+
+  .prestige-track {
+    min-width: 110px;
+  }
+
+  .current-level {
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .notoriety-level {
+    text-align: right;
+  }
+
+  ion-icon {
+    font-size: 1.2rem;
   }
 }
 
