@@ -26,7 +26,7 @@ import { CampaignComponent } from './components/campaign/campaign.component';
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot()
   ],
-  providers: [],
+  providers: [MarkdownPipe],
   bootstrap: [],
   exports: [
     MarkdownPipe, LongPressDirective, ItemComponent, ItemCreatorComponent, EditDeletePopoverComponent

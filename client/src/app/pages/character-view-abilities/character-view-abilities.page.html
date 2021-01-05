@@ -22,7 +22,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item>
+          <ion-item (click)="viewNature(character.nature)">
             {{ character.nature }}
           </ion-item>
         </ion-list>
@@ -36,7 +36,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let drive of character.drives">
+          <ion-item *ngFor="let drive of character.drives" (click)="viewDrive(drive)">
             {{ drive }}
           </ion-item>
         </ion-list>
@@ -50,7 +50,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let move of character.moves">
+          <ion-item *ngFor="let move of character.moves" (click)="viewMove(move)">
             {{ move }}
           </ion-item>
         </ion-list>
@@ -64,7 +64,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let skill of character.skills">
+          <ion-item *ngFor="let skill of character.skills" (click)="viewSkill(skill)">
             {{ skill }}
           </ion-item>
         </ion-list>
@@ -78,7 +78,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let feat of character.feats">
+          <ion-item *ngFor="let feat of character.feats" (click)="viewFeat(feat)">
             {{ feat }}
           </ion-item>
         </ion-list>
