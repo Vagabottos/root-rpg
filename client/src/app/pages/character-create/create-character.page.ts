@@ -276,9 +276,10 @@ export class CreateCharacterPage implements OnInit {
   }
 
   changeAnswer(event, qa: IContentBackgroundQuestion, control: IonSelect, index: number): void {
-    if(qa.type !== 'answers') return;
+    if (qa.type !== 'answers') { return; }
+
     const ans = event.detail.value;
-    if(ans.factionDelta) {
+    if (ans.factionDelta) {
       const updControl = this.backgroundForm.get('backgroundReps');
       const value = updControl.value;
       value[index] = null;
