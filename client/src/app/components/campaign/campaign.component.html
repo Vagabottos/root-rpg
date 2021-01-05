@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Campaign Info
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="data.char$ | async as character">
+    Need more campaign info first, but will be able to join/leave/view campaign overview here.
+  </ng-container>
+</ion-content>

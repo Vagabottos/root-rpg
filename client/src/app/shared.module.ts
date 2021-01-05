@@ -11,14 +11,17 @@ import { BackgroundComponent } from './components/background/background.componen
 import { LongPressDirective } from './directives/longpress.directive';
 
 import { MarkdownPipe } from './pipes/markdown.pipe';
+import { AdvancementComponent } from './components/advancement/advancement.component';
+import { CampaignComponent } from './components/campaign/campaign.component';
 
 @NgModule({
   declarations: [
     MarkdownPipe, LongPressDirective, ItemComponent, ItemCreatorComponent, EditDeletePopoverComponent,
-    BackgroundComponent
+    BackgroundComponent, AdvancementComponent, CampaignComponent
   ],
   entryComponents: [
-    ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent
+    ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent, 
+    CampaignComponent
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot()
