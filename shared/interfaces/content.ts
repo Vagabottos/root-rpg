@@ -65,6 +65,7 @@ export interface IContentBackgroundAnswer {
   text: string;
   type?: string;
   input?: string;
+  factionDelta?: number;
 }
 
 export interface IContentBackgroundQuestion {

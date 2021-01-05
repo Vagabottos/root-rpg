@@ -1,6 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ActionSheetController, AlertController, IonSelect, ModalController, PopoverController } from '@ionic/angular';
+
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { capitalize, cloneDeep, sample, sumBy } from 'lodash';
@@ -8,13 +11,11 @@ import { capitalize, cloneDeep, sample, sumBy } from 'lodash';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { IContentVagabond, IItem } from '../../../../../shared/interfaces';
+import { IContentBackgroundQuestion, IContentVagabond, IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
-import { ActionSheetController, AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
-import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 
 enum CharacterCreateStep {
@@ -88,7 +89,8 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public backgroundForm = new FormGroup({
-    backgrounds: new FormArray([])
+    backgrounds: new FormArray([]),
+    backgroundReps: new FormControl([])
   });
 
   public naturesForm = new FormGroup({
@@ -271,6 +273,35 @@ export class CreateCharacterPage implements OnInit {
   // background functions
   compareAnswer(currentValue, compareValue): boolean {
     return currentValue.text === compareValue.text;
+  }
+
+  changeAnswer(event, qa: IContentBackgroundQuestion, control: IonSelect, index: number): void {
+    if(qa.type !== 'answers') return;
+    const ans = event.detail.value;
+    if(ans.factionDelta) {
+      const updControl = this.backgroundForm.get('backgroundReps');
+      const value = updControl.value;
+      value[index] = null;
+      updControl.setValue(value);
+
+      this.openSelect(control);
+    }
+  }
+
+  openSelect(control: IonSelect): void {
+    control.open();
+  }
+
+  changeBackgroundRep(event, qa: IContentBackgroundQuestion, index: number): void {
+    const value = event.detail.value;
+
+    const checkVal = this.backgroundForm.get('backgrounds').value[index].text;
+    const checkIdx = qa.answers.findIndex(ans => ans.text === checkVal);
+
+    const updControl = this.backgroundForm.get('backgroundReps');
+    const updValue = updControl.value;
+    updValue[index] = { faction: value, delta: qa.answers?.[checkIdx]?.factionDelta ?? 0 };
+    updControl.setValue(updValue);
   }
 
   // nature functions
@@ -514,6 +545,7 @@ export class CreateCharacterPage implements OnInit {
 
     loadObject.background = loadObject.background || {};
     loadObject.background.backgrounds = loadObject.background.backgrounds || [];
+    loadObject.background.backgroundReps = loadObject.background.backgroundReps || [];
 
     loadObject.natures = loadObject.natures || {};
     loadObject.natures.nature = loadObject.natures.nature || '';

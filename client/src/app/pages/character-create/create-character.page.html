@@ -318,7 +318,8 @@
 
               <ion-select placeholder="Select Answer" 
                           [formControlName]="i"
-                          [compareWith]="compareAnswer" 
+                          [compareWith]="compareAnswer"
+                          (ionChange)="changeAnswer($event, qa, factionRep, i)"
                           *ngIf="qa.type === 'answers'">
                 <ion-select-option *ngFor="let answer of qa.answers"
                                    [value]="answer">
@@ -327,6 +328,15 @@
               </ion-select>
 
               <ion-select placeholder="Select Faction" [formControlName]="i" *ngIf="qa.type === 'faction'">
+                <ion-select-option *ngFor="let faction of validFactions"
+                                   [value]="faction.name">
+                  {{ faction.name }}
+                </ion-select-option>
+              </ion-select>
+
+              <ion-select placeholder="Select Faction" class="hidden" #factionRep 
+                          (ionCancel)="openSelect(factionRep)"
+                          (ionChange)="changeBackgroundRep($event, qa, i)">
                 <ion-select-option *ngFor="let faction of validFactions"
                                    [value]="faction.name">
                   {{ faction.name }}
@@ -954,6 +964,10 @@
 
     <ion-card-content>
       <ion-list>
+        <ion-item *ngIf="!itemsForm.get('items').value?.length">
+          None
+        </ion-item>
+
         <ion-item *ngFor="let item of itemsForm.get('items').value">
           <app-item [item]="item"></app-item>
         </ion-item>

@@ -50,7 +50,8 @@ background:
       - text: My family
       - text: My best friend
       - text: My student
-      - text: No one- I lost those who mattered to me
+      - text: No one- I lost those who mattered to me (choose a faction and mark notoriety)
+        factionDelta: -1
 
   - question: Which faction have you served the most?
     type: faction

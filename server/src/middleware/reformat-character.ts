@@ -88,6 +88,17 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     }
   });
 
+  (context.data.background.backgroundReps || []).forEach(rep => {
+    if(!rep) return;
+
+    const repChange = rep.delta ?? 0;
+    if(repChange < 0) {
+      newChar.reputation[rep.faction].notoriety += Math.abs(repChange);
+    } else {
+      newChar.reputation[rep.faction].prestige += Math.abs(repChange);
+    }
+  });
+
   // set connections
   archetypeData.connections.forEach((conn, i) => {
     newChar.connections[i] = {
