@@ -33,7 +33,7 @@
 
       <ion-item *ngFor="let item of character.items; let i = index" class="ion-hide-md-up">
         <app-item [item]="item" 
-                  [appSwipe]
+                  appSwipe
                   (swipeLeft)="wear(item, -1)" 
                   (swipeRight)="wear(item, 1)" 
                   appLongPress="500"
