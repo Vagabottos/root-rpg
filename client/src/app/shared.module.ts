@@ -9,19 +9,29 @@ import { EditDeletePopoverComponent } from './components/editdelete.popover';
 import { BackgroundComponent } from './components/background/background.component';
 
 import { LongPressDirective } from './directives/longpress.directive';
+import { SwipeDirective } from './directives/swipe.directive';
 
 import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AdvancementComponent } from './components/advancement/advancement.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 
+const pipes = [MarkdownPipe];
+const directives = [LongPressDirective, SwipeDirective];
+const components = [ItemComponent];
+const modals = [
+  ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
+  CampaignComponent
+];
+
 @NgModule({
   declarations: [
-    MarkdownPipe, LongPressDirective, ItemComponent, ItemCreatorComponent, EditDeletePopoverComponent,
-    BackgroundComponent, AdvancementComponent, CampaignComponent
+    ...pipes,
+    ...directives,
+    ...modals,
+    ...components
   ],
   entryComponents: [
-    ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
-    CampaignComponent
+    ...modals
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot()
@@ -29,7 +39,10 @@ import { CampaignComponent } from './components/campaign/campaign.component';
   providers: [MarkdownPipe],
   bootstrap: [],
   exports: [
-    MarkdownPipe, LongPressDirective, ItemComponent, ItemCreatorComponent, EditDeletePopoverComponent
+    ...pipes,
+    ...directives,
+    ...modals,
+    ...components
   ]
 })
 export class SharedModule {}
