@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, NgZone, OnDestroy, OnInit, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, NgZone, OnInit, Output } from '@angular/core';
 import { Gesture, GestureConfig, createGesture } from '@ionic/core';
 
 @Directive({
