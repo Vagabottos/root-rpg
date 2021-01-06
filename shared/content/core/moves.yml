@@ -55,6 +55,8 @@ Greatest of the Age:
 Born to Be a King:
   archetype: The Exile
   text: Take +1 Charm (max +3).
+  addStat:
+    charm: 1
 
 Fancy Paper:
   archetype: The Exile
@@ -110,6 +112,8 @@ Unstable Ground:
 Brute:
   archetype: The Arbiter
   text: Take +1 Might (max +3).
+  addStat:
+    might: 1
 
 Carry a Big Stick:
   archetype: The Arbiter
@@ -198,6 +202,13 @@ Dirty Fighter:
   archetype: The Ranger
   text: >
     Take two of the following weapon skills: Trick Shot, Confuse Senses, Improvise Weapon, Disarm, Vicious Strike. None of the skills you take with this move count against your maximum for advancement.
+  addSkillChoose: 2
+  addSkill:
+    - Trick Shot
+    - Confuse Senses
+    - Improvise Weapon
+    - Disarm
+    - Vicious Strike
 
 # Scoundrel
 Arsonist:
@@ -222,6 +233,8 @@ Create to Destroy:
 It's a Distraction!:
   archetype: The Scoundrel
   text: You gain the roguish feat Blindside (it does not count against your maximum for advancement). When you **attempt a roguish feat** to blindside someone while they are distracted by environmental dangers (a raging fire, an oncoming flood, etc.), roll with Luck instead of Cunning. 
+  addFeat:
+    - Blindside
 
 Daredevil:
   archetype: The Scoundrel
@@ -255,6 +268,8 @@ Small Hands:
 Master Thief:
   archetype: The Thief
   text: Take +1 Finesse (max +3).
+  addStat:
+    finesse: 1
   
 Nose for Gold:
   archetype: The Thief
@@ -294,6 +309,8 @@ Repair:
 Big Pockets:
   archetype: The Tinker
   text: Take two extra boxes of depletion.
+  addHarm:
+    depletion: 2
   
 Jury Rig:
   archetype: The Tinker
@@ -340,6 +357,8 @@ Let's Play:
 Pocket Sand:
   archetype: The Vagrant
   text: Take the weapon skill Confuse Senses. This does not count against the maximum number of weapon skills you can take. When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Cunning instead of Finesse.
+  addSkill:
+    - Confuse Senses
   
 # Adventurer
 Sterling Reputation:
@@ -387,6 +406,8 @@ Orator:
 Well-Read:
   archetype: The Adventurer
   text: Take +1 Cunning (max +3).
+  addStat:
+    cunning: 1
   
 Fast Friends:
   archetype: The Adventurer
@@ -400,10 +421,14 @@ Cross Country:
 Fleet of Foot and Hand:
   archetype: The Harrier
   text: Take +1 Finesse (max +3).
+  addStat:
+    finesse: 1
   
 Don't Shoot the Messenger:
   archetype: The Harrier
   text: Take the Counterfeit roguish feat. (It does not count against your maximum.) When you pretend to be an innocuous messenger carrying a missive of import to **trick** someone, roll with Luck instead of Cunning.
+  addFeat:
+    - Counterfeit
   
 Parkour:
   archetype: The Harrier
@@ -420,7 +445,9 @@ Smuggler's Path:
 # Ronin
 Always Armed:
   archetype: The Ronin
-  text: Take the weapon skill Improvise a Weapon (it does not count against your limit). When you deal harm with an improvised weapon, deal +1 harm. 
+  text: Take the weapon skill Improvise Weapon (it does not count against your limit). When you deal harm with an improvised weapon, deal +1 harm.
+  addSkill:
+    - Improvise Weapon
   
 Knowing a Lord's Will:
   archetype: The Ronin
@@ -469,4 +496,6 @@ The Rules of War:
 Always Watching:
   archetype: The Ronin
   text: Take +1 Cunning (max +3).
+  addStat:
+    cunning: 1
   

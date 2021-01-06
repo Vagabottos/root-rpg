@@ -20,6 +20,11 @@ export interface IContentFeat {
 export interface IContentMove {
   archetype: string;
   text: string;
+  addStat?: Record<string, number>;
+  addFeat?: string[];
+  addHarm?: Record<string, number>;
+  addSkillChoose?: number;
+  addSkill?: string[];
 }
 
 export interface IContentNature {
