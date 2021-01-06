@@ -45,7 +45,7 @@
             </div>
 
             <div class="stat-value">
-              {{ character.stats[stat.toLowerCase()] > 0 ? '+' : '' }}{{ character.stats[stat.toLowerCase()] }}
+              {{ getStatTotal(character, stat.toLowerCase()) > 0 ? '+' : '' }}{{ getStatTotal(character, stat.toLowerCase()) }}
             </div>
           </ion-col>
         </ion-row>

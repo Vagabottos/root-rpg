@@ -63,6 +63,13 @@ export class CharacterViewInfoPage implements OnInit {
     return character.reputation[faction]?.prestige ?? 0;
   }
 
+  // stat functions
+  getStatTotal(character: ICharacter, stat: string): number {
+    const base = character.stats[stat];
+    const bonus = character.moves.reduce((prev, cur) => prev + (this.content.getMove(cur)?.addStat?.[stat] ?? 0), 0);
+    return base + bonus;
+  }
+
   // harm functions
   adjustHarm(character: ICharacter, harm: string, newValue: number): void {
     if (character[harm.toLowerCase()] === newValue) {

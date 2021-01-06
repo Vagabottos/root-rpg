@@ -407,8 +407,9 @@ export class CreateCharacterPage implements OnInit {
 
   getTotalStat(stat: string): number {
     const baseValue = this.chosenVagabond.stats[stat] ?? 0;
-    if (stat === this.bonusForm.get('stat').value) { return baseValue + 1; }
-    return baseValue;
+    const bonus = this.movesForm.get('moves').value.reduce((prev, cur) => prev + (this.contentService.getMove(cur)?.addStat?.[stat] ?? 0), 0);
+    if (stat === this.bonusForm.get('stat').value) { return baseValue + bonus + 1; }
+    return baseValue + bonus;
   }
 
   // item functions

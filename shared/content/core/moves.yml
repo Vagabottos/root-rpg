@@ -271,7 +271,7 @@ Master Thief:
   addStat:
     finesse: 1
   
-Nose for Gold:
+Nose For Gold:
   archetype: The Thief
   text: >
     When you figure someone out, you can always ask (even on a miss):
