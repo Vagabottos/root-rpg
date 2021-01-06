@@ -1,27 +1,28 @@
 
 Acrobatics:
-  text: Do a barrel roll.
+  text: Used when adeptly climbing, vaulting, or jumping. Carries the risk of breaking something, being detected, or plunging into danger.
 
 Blindside:
-  text: Stab someone from behind.
+  text: Used when backstabbing, murdering, attacking from stealth, or suckerpunching. Carries the risk of drawing unwanted attention, leaving evidence, or plunging into danger.
 
 Counterfeit:
-  text: Fake it til you make it.
+  text: Used when copying, forging, or in general fakery. Carries the risk of leaving evidence, creating a weak result, or taking too long. 
 
 Disable Device:
-  text: We must construct additional pylons.
+  text: Used when disarming traps or turning off mechanisms. Carries the risk of breaking something, drawing unwanted attention,
+or expend resources.
 
 Hide:
-  text: Vanish into the shadows.
-
-Pick pocket:
-  text: Steal from someone.
-  
-Sneak:
-  text: Sneak around like a sneaky sneak.
+  text: Used when disappearing from view or staying hidden. Carries the risk of expending resources, leaving evidence, or taking too long.
 
 Pick lock:
-  text: Pick a lock up and set it back down.
+  text: Used when opening a locked door or chest. Carries the risk of breaking something, being detected, or plunging into danger.
+
+Pick pocket:
+  text: Used when subtly stealing from someone's pockets. Carries the risk of leaving evidence, giving a weak result, or taking too long.
 
 Sleight of hand:
-  text: Perform a sneaky trick with your hands.
+  text: Used when palming, switching, ditching, or flourishing. Carries the risk of drawing unwanted attention, leaving evidence, or giving a weak result.
+  
+Sneak:
+  text: Used when getting into or out of places without being seen. Carries the risk of breaking something, drawing unwanted attention, or plunging into danger.
