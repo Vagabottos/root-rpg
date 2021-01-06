@@ -39,6 +39,7 @@ export interface ICharacter {
   stats: Record<Stat, number>;
   feats: string[];
   skills: string[];
+  moveSkills: string[];
   moves: string[];
   items: IItem[];
   reputation: Record<string, ICharacterReputation>;
