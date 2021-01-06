@@ -348,6 +348,19 @@ export class CreateCharacterPage implements OnInit {
     this.featsForm.get('feats').setValue(feats);
   }
 
+  getBonusFeats(): string[] {
+    return this.movesForm.get('moves').value.map(x => this.contentService.getMove(x)?.addFeat).flat().filter(Boolean);
+  }
+
+  getAllFeats(): string[] {
+    const feats = this.getBonusFeats();
+    return this.chosenVagabond.feats.map(x => x.name).concat(feats);
+  }
+
+  getBonusFeatsAndFormData(): string[] {
+    return this.featsForm.get('feats').value.concat(this.getBonusFeats());
+  }
+
   // move functions
   getMoveDesc(move: string): string {
     return this.contentService.getMove(move)?.text ?? 'No description entered.';

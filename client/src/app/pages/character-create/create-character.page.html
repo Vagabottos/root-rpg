@@ -560,7 +560,7 @@
         <ion-list *ngIf="chosenVagabond">
           <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
             <ion-item *ngFor="let feat of contentService.getFeats()" 
-                      [disabled]="featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)">
+                      [disabled]="(featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)) || getBonusFeats().includes(feat)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ feat }}</h2>
                 <p>{{ getFeatDesc(feat) }}</p>
@@ -572,10 +572,10 @@
           </ng-container>
 
           <ng-container *ngIf="!chosenVagabond.chooseFeats">
-            <ion-item *ngFor="let feat of chosenVagabond.feats">
+            <ion-item *ngFor="let feat of getAllFeats()">
               <ion-label class="ion-text-wrap">
-                <h2>{{ feat.name }}</h2>
-                <p>{{ getFeatDesc(feat.name) }}</p>
+                <h2>{{ feat }}</h2>
+                <p>{{ getFeatDesc(feat) }}</p>
               </ion-label>
               <ion-checkbox slot="end" 
                             [disabled]="true"
@@ -916,7 +916,7 @@
     <ion-card-content>
       <ng-container *ngIf="chosenVagabond">
         <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
-          <ion-row *ngFor="let feat of featsForm.get('feats').value">
+          <ion-row *ngFor="let feat of getBonusFeatsAndFormData()">
             <ion-col>
               <strong>{{ feat }}</strong>: 
               <span [innerHTML]="getFeatDesc(feat) | markdown"></span>
@@ -925,10 +925,10 @@
         </ng-container>
   
         <ng-container *ngIf="!chosenVagabond.chooseFeats">
-          <ion-row *ngFor="let feat of chosenVagabond.feats">
+          <ion-row *ngFor="let feat of getAllFeats()">
             <ion-col>
-              <strong>{{ feat.name }}</strong>: 
-              <span [innerHTML]="getFeatDesc(feat.name) | markdown"></span>
+              <strong>{{ feat }}</strong>: 
+              <span [innerHTML]="getFeatDesc(feat) | markdown"></span>
             </ion-col>
           </ion-row>
         </ng-container>

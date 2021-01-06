@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { ICharacter } from '../../../../../shared/interfaces';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -61,6 +62,11 @@ export class CharacterViewAbilitiesPage implements OnInit {
   viewFeat(feat: string) {
     const md = this.content.getFeat(feat)?.text;
     this.viewHTML(feat, md);
+  }
+
+  getFeats(character: ICharacter): string[] {
+    const addedFeats = character.moves.map(x => this.content.getMove(x)?.addFeat).flat().filter(Boolean);
+    return character.feats.concat(addedFeats);
   }
 
 }

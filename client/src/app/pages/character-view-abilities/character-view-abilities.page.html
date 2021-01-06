@@ -78,7 +78,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let feat of character.feats" (click)="viewFeat(feat)">
+          <ion-item *ngFor="let feat of getFeats(character)" (click)="viewFeat(feat)">
             {{ feat }}
           </ion-item>
         </ion-list>
