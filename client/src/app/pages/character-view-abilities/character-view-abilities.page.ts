@@ -69,4 +69,9 @@ export class CharacterViewAbilitiesPage implements OnInit {
     return character.feats.concat(addedFeats);
   }
 
+  getSkills(character: ICharacter): string[] {
+    const addedSkills = character.moves.map(x => this.content.getMove(x)?.addSkill).flat().filter(Boolean);
+    return character.skills.concat(addedSkills);
+  }
+
 }

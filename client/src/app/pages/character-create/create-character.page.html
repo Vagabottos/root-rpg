@@ -626,14 +626,14 @@
 
         <ion-list *ngIf="chosenVagabond">
           <ion-item *ngFor="let skill of chosenVagabond.skills" 
-                    [disabled]="skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)">
+                    [disabled]="(skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)) || getBonusSkills().includes(skill.name)">
             <ion-label class="ion-text-wrap">
               <h2>{{ skill.name }}</h2>
               <p [innerHTML]="getSkillDesc(skill.name) | markdown"></p>
             </ion-label>
             <ion-checkbox slot="end" 
                           (ionChange)="selectSkill(skill.name)" 
-                          [checked]="skillsForm.get('skills').value.includes(skill.name)"></ion-checkbox>
+                          [checked]="skillsForm.get('skills').value.includes(skill.name) || getBonusSkills().includes(skill.name)"></ion-checkbox>
           </ion-item>
 
           <ion-item lines="none">
@@ -945,7 +945,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-row *ngFor="let skill of skillsForm.get('skills').value">
+      <ion-row *ngFor="let skill of getBonusSkillsAndFormData()">
         <ion-col>
           <strong>{{ skill }}</strong>: 
           <span [innerHTML]="getSkillDesc(skill) | markdown"></span>

@@ -64,7 +64,7 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item *ngFor="let skill of character.skills" (click)="viewSkill(skill)">
+          <ion-item *ngFor="let skill of getSkills(character)" (click)="viewSkill(skill)">
             {{ skill }}
           </ion-item>
         </ion-list>

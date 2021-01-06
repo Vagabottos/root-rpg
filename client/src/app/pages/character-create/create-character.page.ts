@@ -399,6 +399,21 @@ export class CreateCharacterPage implements OnInit {
     this.skillsForm.get('skills').setValue(skills);
   }
 
+  getBonusSkills(): string[] {
+    return this.movesForm.get('moves').value
+      .filter(x => {
+        const move = this.contentService.getMove(x);
+        return move.addSkill && !move.addSkillChoose;
+      })
+      .map(x => this.contentService.getMove(x)?.addSkill)
+      .flat()
+      .filter(Boolean);
+  }
+
+  getBonusSkillsAndFormData(): string[] {
+    return this.skillsForm.get('skills').value.concat(this.getBonusSkills());
+  }
+
   // connection functions
   getConnectionDesc(conn: string): string {
     return this.contentService.getConnection(conn)?.text ?? 'No description entered.';
