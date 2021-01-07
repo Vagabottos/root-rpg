@@ -287,14 +287,14 @@ export class CreateCharacterPage implements OnInit {
       updControl.setValue(value);
 
       const modal = await this.notification.loadForcedChoiceModal(
-        `Choose Faction`, 
+        `Choose Faction`,
         `Choose a faction for the background question.`,
         this.validFactions.map(x => x.name),
         1
       );
 
       modal.onDidDismiss().then(({ data }) => {
-        if(!data) {
+        if (!data) {
           event.srcElement.value = '';
           return;
         }
@@ -387,23 +387,23 @@ export class CreateCharacterPage implements OnInit {
     if (moves.length >= 3) { return; }
 
     const moveData = this.contentService.getMove(move);
-    if(moveData.addSkill && moveData.addSkillChoose) {
-      if(checkbox.checked) {
+    if (moveData.addSkill && moveData.addSkillChoose) {
+      if (checkbox.checked) {
         const modal = await this.notification.loadForcedChoiceModal(
-          `Choose ${moveData.addSkillChoose} Skills`, 
+          `Choose ${moveData.addSkillChoose} Skills`,
           `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
           moveData.addSkill || [],
           moveData.addSkillChoose || 1
         );
-  
+
         modal.onDidDismiss().then(({ data }) => {
-          if(!data) {
+          if (!data) {
             setTimeout(() => {
               checkbox.checked = false;
             }, 0);
             return;
           }
-  
+
           this.skillsForm.get('bonusSkills').setValue(data);
           moves.push(move);
           this.movesForm.get('moves').setValue(moves);
@@ -413,7 +413,7 @@ export class CreateCharacterPage implements OnInit {
         this.skillsForm.get('bonusSkills').setValue([]);
 
       }
-      
+
     } else {
       moves.push(move);
       this.movesForm.get('moves').setValue(moves);
