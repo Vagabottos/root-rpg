@@ -31,7 +31,6 @@ export class ForceSelectorComponent implements OnInit {
 
   selectItem(checkbox: IonCheckbox, index: number): void {
     this.selected[index] = checkbox.checked;
-    console.log(checkbox, index, this.selected, this.numSelected)
   }
 
   dismiss(choices?: string[]) {

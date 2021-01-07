@@ -276,7 +276,7 @@ export class CreateCharacterPage implements OnInit {
     return currentValue.text === compareValue.text;
   }
 
-  changeAnswer(event, qa: IContentBackgroundQuestion, control: IonSelect, index: number): void {
+  async changeAnswer(event, qa: IContentBackgroundQuestion, index: number): Promise<void> {
     if (qa.type !== 'answers') { return; }
 
     const ans = event.detail.value;
@@ -286,16 +286,25 @@ export class CreateCharacterPage implements OnInit {
       value[index] = null;
       updControl.setValue(value);
 
-      this.openSelect(control);
+      const modal = await this.notification.loadForcedChoiceModal(
+        `Choose Faction`, 
+        `Choose a faction for the background question.`,
+        this.validFactions.map(x => x.name),
+        1
+      );
+
+      modal.onDidDismiss().then(({ data }) => {
+        if(!data) {
+          event.srcElement.value = '';
+          return;
+        }
+
+        this.changeBackgroundRep(data[0], qa, index);
+      });
     }
   }
 
-  openSelect(control: IonSelect): void {
-    control.open();
-  }
-
-  changeBackgroundRep(event, qa: IContentBackgroundQuestion, index: number): void {
-    const value = event.detail.value;
+  changeBackgroundRep(value: string, qa: IContentBackgroundQuestion, index: number): void {
 
     const checkVal = this.backgroundForm.get('backgrounds').value[index].text;
     const checkIdx = qa.answers.findIndex(ans => ans.text === checkVal);
