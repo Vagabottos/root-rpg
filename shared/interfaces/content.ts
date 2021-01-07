@@ -28,7 +28,7 @@ export interface IContentMove {
   addSkill?: string[];
   customItemData?: {
     name: string;
-    tagDefs: IContentItemTag[] & { name: string };
+    tagSet: string;
     extraLoad: number;
   }
 }
