@@ -30,6 +30,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     pronouns: context.data.character.pronouns,
     background: [],
     drives: context.data.drives.drives,
+    driveTargets: context.data.drives.driveTargets,
     nature: context.data.natures.nature,
     connections: [],
     stats: {

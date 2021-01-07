@@ -98,7 +98,8 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public drivesForm = new FormGroup({
-    drives: new FormControl([], [Validators.required])
+    drives: new FormControl([], [Validators.required]),
+    driveTargets: new FormControl([])
   });
 
   public movesForm = new FormGroup({
@@ -636,6 +637,7 @@ export class CreateCharacterPage implements OnInit {
 
     loadObject.drives = loadObject.drives || {};
     loadObject.drives.drives = loadObject.drives.drives || [];
+    loadObject.drives.driveTargets = loadObject.drives.driveTargets || [];
 
     loadObject.moves = loadObject.moves || {};
     loadObject.moves.moves = loadObject.moves.moves || [];

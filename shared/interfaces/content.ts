@@ -7,6 +7,7 @@ export interface IContentConnection {
 
 export interface IContentDrive {
   text: string;
+  namedTarget?: boolean;
 }
 
 export interface IContentFaction {

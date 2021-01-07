@@ -13,9 +13,11 @@ Clean paws:
 
 Loyalty:
   text: You're loyal to someone; name them. Advance when you obey their order at a great cost to yourself. 
+  namedTarget: true
 
 Revenge:
   text: Name your foe. Advance when you cause significant harm to them or their interests. 
+  namedTarget: true
 
 Chaos:
   text: Advance when you topple a tyrannical or dangerously overbearing figure or order.
@@ -28,6 +30,7 @@ Principles:
 
 Protection:
   text: Name your ward. Advance when you protect them from significant danger, or when time passes and your ward is safe.
+  namedTarget: true
 
 Greed:
   text: Advance when you secure a serious payday or treasure.

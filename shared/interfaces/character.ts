@@ -35,6 +35,7 @@ export interface ICharacter {
   pronouns: string;
   background: ICharacterBackground[];
   drives: string[];
+  driveTargets: string[];
   nature: string;
   connections: ICharacterConnection[];
   stats: Record<Stat, number>;
