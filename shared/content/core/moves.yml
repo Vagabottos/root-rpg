@@ -360,7 +360,7 @@ Nimble Mind:
   
 Dismantle:
   archetype: The Tinker
-  text: When you **dismantle a broken or disabled piece of equipment or machinery, clear 2 depletion boxes.
+  text: When you **dismantle a broken or disabled piece of equipment or machinery**, clear 2 depletion boxes.
   
 # Vagrant
 Instigator:
