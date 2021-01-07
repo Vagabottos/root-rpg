@@ -60,7 +60,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
 
   // set base reps
   allContent.core.factions.forEach(fact => {
-    newChar.reputation[fact.name] = { notoriety: 0, prestige: 0 };
+    newChar.reputation[fact.name] = { notoriety: 0, prestige: 0, total: 0 };
   });
 
   // set background answers

@@ -52,6 +52,10 @@
 
   .notoriety-track, .prestige-track {
     display: flex;
+
+    ion-icon {
+      cursor: pointer;
+    }
   }
 
   .notoriety-track {
@@ -70,6 +74,10 @@
 
   .notoriety-level {
     text-align: right;
+  }
+
+  .prestige-level, .notoriety-level {
+    cursor: pointer;
   }
 
   ion-icon {

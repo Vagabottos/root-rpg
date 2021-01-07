@@ -22,6 +22,7 @@ export interface ICharacterBackground {
 export interface ICharacterReputation {
   prestige: number;
   notoriety: number;
+  total: number;
 }
 
 export interface ICharacter {
