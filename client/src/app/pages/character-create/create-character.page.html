@@ -500,16 +500,18 @@
       <ion-card-content>
 
         <ion-list *ngIf="chosenVagabond">
-          <ion-item *ngFor="let move of chosenVagabond.moves" 
-                    [disabled]="chosenVagabond.defaultMoves.includes(move.name) || movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name)">
-            <ion-label class="ion-text-wrap">
-              <h2>{{ move.name }}</h2>
-              <p [innerHTML]="getMoveDesc(move.name) | markdown"></p>
-            </ion-label>
-            <ion-checkbox slot="end" 
-                          (ionChange)="selectMove(move.name)" 
-                          [checked]="movesForm.get('moves').value.includes(move.name)"></ion-checkbox>
-          </ion-item>
+          <ng-container *ngFor="let move of chosenVagabond.moves">
+            <ion-item [disabled]="chosenVagabond.defaultMoves.includes(move.name) || movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name)">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ move.name }}</h2>
+                <p [innerHTML]="getMoveDesc(move.name) | markdown"></p>
+              </ion-label>
+              <ion-checkbox slot="end" 
+                            #checkbox
+                            (ionChange)="selectMove(move.name, checkbox)" 
+                            [checked]="movesForm.get('moves').value.includes(move.name)"></ion-checkbox>
+            </ion-item>
+          </ng-container>
 
           <ion-item lines="none">
             <ion-row class="action-row">
@@ -626,7 +628,7 @@
 
         <ion-list *ngIf="chosenVagabond">
           <ion-item *ngFor="let skill of chosenVagabond.skills" 
-                    [disabled]="(skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)) || getBonusSkills().includes(skill.name)">
+                    [disabled]="(skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)) || getBonusSkills().includes(skill.name) || skillsForm.get('bonusSkills').value.includes(skill.name)">
             <ion-label class="ion-text-wrap">
               <h2>{{ skill.name }}</h2>
               <p [innerHTML]="getSkillDesc(skill.name) | markdown"></p>

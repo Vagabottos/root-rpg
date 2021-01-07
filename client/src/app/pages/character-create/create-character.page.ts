@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActionSheetController, AlertController, IonSelect, ModalController, PopoverController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonCheckbox, IonSelect, ModalController, PopoverController } from '@ionic/angular';
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -110,7 +110,8 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public skillsForm = new FormGroup({
-    skills: new FormControl([], [Validators.required])
+    skills: new FormControl([], [Validators.required]),
+    bonusSkills: new FormControl([])
   });
 
   public itemsForm = new FormGroup({
@@ -366,7 +367,7 @@ export class CreateCharacterPage implements OnInit {
     return this.contentService.getMove(move)?.text ?? 'No description entered.';
   }
 
-  selectMove(move: string): void {
+  async selectMove(move: string, checkbox: IonCheckbox): Promise<void> {
     const moves = this.movesForm.get('moves').value;
 
     if (moves.includes(move)) {
@@ -376,11 +377,45 @@ export class CreateCharacterPage implements OnInit {
 
     if (moves.length >= 3) { return; }
 
-    moves.push(move);
-    this.movesForm.get('moves').setValue(moves);
+    const moveData = this.contentService.getMove(move);
+    if(moveData.addSkill && moveData.addSkillChoose) {
+      if(checkbox.checked) {
+        const modal = await this.notification.loadForcedChoiceModal(
+          `Choose ${moveData.addSkillChoose} Skills`, 
+          `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
+          moveData.addSkill || [],
+          moveData.addSkillChoose || 1
+        );
+  
+        modal.onDidDismiss().then(({ data }) => {
+          if(!data) {
+            setTimeout(() => {
+              checkbox.checked = false;
+            }, 0);
+            return;
+          }
+  
+          this.skillsForm.get('bonusSkills').setValue(data);
+          moves.push(move);
+          this.movesForm.get('moves').setValue(moves);
+        });
+
+      } else {
+        this.skillsForm.get('bonusSkills').setValue([]);
+
+      }
+      
+    } else {
+      moves.push(move);
+      this.movesForm.get('moves').setValue(moves);
+    }
   }
 
   // skill functions
+  getAddSkills(move: string): string[] {
+    return this.contentService.getMove(move)?.addSkill || [];
+  }
+
   getSkillDesc(skill: string): string {
     return this.contentService.getSkill(skill)?.text ?? 'No description entered.';
   }
@@ -411,7 +446,7 @@ export class CreateCharacterPage implements OnInit {
   }
 
   getBonusSkillsAndFormData(): string[] {
-    return this.skillsForm.get('skills').value.concat(this.getBonusSkills());
+    return this.skillsForm.get('skills').value.concat(this.skillsForm.get('bonusSkills').value).concat(this.getBonusSkills());
   }
 
   // connection functions
@@ -591,6 +626,7 @@ export class CreateCharacterPage implements OnInit {
 
     loadObject.skills = loadObject.skills || {};
     loadObject.skills.skills = loadObject.skills.skills || [];
+    loadObject.skills.bonusSkills = loadObject.skills.bonusSkills || [];
 
     loadObject.items = loadObject.items || {};
     loadObject.items.items = loadObject.items.items || [];

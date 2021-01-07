@@ -14,13 +14,14 @@ import { SwipeDirective } from './directives/swipe.directive';
 import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AdvancementComponent } from './components/advancement/advancement.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
+import { ForceSelectorComponent } from './components/force-selector/force-selector.component';
 
 const pipes = [MarkdownPipe];
 const directives = [LongPressDirective, SwipeDirective];
 const components = [ItemComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
-  CampaignComponent
+  CampaignComponent, ForceSelectorComponent
 ];
 
 @NgModule({

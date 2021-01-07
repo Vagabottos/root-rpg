@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+import { ForceSelectorComponent } from '../components/force-selector/force-selector.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor(private toast: ToastController) { }
+  constructor(
+    private toast: ToastController,
+    private modal: ModalController
+  ) { }
 
-  async notify(message: string) {
+  async notify(message: string): Promise<void> {
     const toast = await this.toast.create({
       duration: 3000,
       message,
@@ -22,5 +26,18 @@ export class NotificationService {
     });
 
     await toast.present();
+  }
+
+  async loadForcedChoiceModal(title: string, message: string, choices: string[], numChoices: number): Promise<any> {
+    const modal = await this.modal.create({
+      component: ForceSelectorComponent,
+      componentProps: {
+        title, message, choices, numChoices
+      }
+    });
+
+    modal.present();
+
+    return modal;
   }
 }

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ title || 'Select Something...' }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(formattedSelected)" [disabled]="numSelected !== numChoices">
+        Confirm
+      </ion-button>
+      <ion-button (click)="dismiss()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>{{ message }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let choice of choices; let i = index" [disabled]="numSelected >= numChoices && !selected[i]">
+          <ion-label class="ion-text-wrap">
+            <h3>{{ choice }}</h3>
+          </ion-label>
+
+          <ion-checkbox #checkbox slot="end" (ionChange)="selectItem(checkbox, i)" [checked]="selected[i]"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
