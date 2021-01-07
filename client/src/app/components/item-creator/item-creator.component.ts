@@ -13,6 +13,8 @@ import { ItemService } from '../../services/item.service';
 export class ItemCreatorComponent implements OnInit {
 
   @Input() item: IItem;
+  @Input() tagSet = 'default';
+  @Input() customItemData: any;
   @Input() postProcess: boolean;
 
   public itemForm = new FormGroup({
@@ -23,6 +25,14 @@ export class ItemCreatorComponent implements OnInit {
     ranges:       new FormControl([]),
     designation:  new FormControl('')
   });
+
+  public get allItemTags(): string[] {
+    return this.contentService.getTags(this.tagSet);
+  }
+
+  public get hideExtraData(): boolean {
+    return this.tagSet !== 'default';
+  }
 
   public get boxSlots(): boolean[] {
     return Array(this.itemForm.get('wear').value).fill(false);
@@ -36,7 +46,9 @@ export class ItemCreatorComponent implements OnInit {
       skillTags: this.itemForm.get('skillTags').value,
       ranges: this.itemForm.get('ranges').value,
       designation: this.itemForm.get('designation').value,
-      extraValue: this.item?.extraValue
+      extraValue: this.item?.extraValue,
+      extraLoad: this.customItemData?.extraLoad,
+      tagSet: this.customItemData?.tagSet
     };
   }
 
@@ -55,6 +67,15 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
       this.itemForm.get('ranges').setValue(this.item.ranges || []);
       this.itemForm.get('designation').setValue(this.item.designation || '');
+
+      if (this.item.tagSet) {
+        this.tagSet = this.item.tagSet;
+      }
+    }
+
+    if (this.customItemData) {
+      this.itemForm.get('name').setValue(this.customItemData.name);
+      this.tagSet = this.customItemData.tagSet;
     }
   }
 
@@ -62,6 +83,10 @@ export class ItemCreatorComponent implements OnInit {
     if (item && this.postProcess) {
       item.extraValue = 0;
       if (item.tags?.includes('Luxury')) { item.extraValue = 3; }
+
+      if (this.customItemData) {
+
+      }
     }
 
     this.modal.dismiss(item);
@@ -80,7 +105,7 @@ export class ItemCreatorComponent implements OnInit {
     this.itemForm.get('itemTags').value.push(value);
 
     const tag = this.contentService.getTag(value);
-    if (tag.input) {
+    if (tag?.input) {
       const alert = await this.alert.create({
         header: 'Ceremonial Item',
         message: 'Enter the faction you want this item to be special for.',

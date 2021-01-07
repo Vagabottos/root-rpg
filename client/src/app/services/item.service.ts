@@ -14,10 +14,11 @@ export class ItemService {
          + (item.extraValue ?? 0)
          + (item.ranges ? Math.max(item.ranges.length - 1, 0) : 0)
          + (item.skillTags?.length ?? 0)
-         + ((item.tags || []).reduce((prev, cur) => prev + this.contentService.getTag(cur).valueMod, 0));
+         + ((item.tags || []).reduce((prev, cur) => prev + (this.contentService.getTag(cur)?.valueMod || 0), 0));
   }
 
   public load(item: IItem): number {
-    return ((item.tags || []).reduce((prev, cur) => prev + this.contentService.getTag(cur).loadMod || 0, 0));
+    return (item.extraLoad || 0)
+         + ((item.tags || []).reduce((prev, cur) => prev + (this.contentService.getTag(cur)?.loadMod || 0), 0));
   }
 }

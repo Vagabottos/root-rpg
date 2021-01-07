@@ -64,8 +64,8 @@ export class ContentService {
     return this.content.core.itemtags[name];
   }
 
-  getTags(): string[] {
-    return Object.keys(this.content.core.itemtags);
+  getTags(tagSet: string): string[] {
+    return Object.keys(this.content.core.itemtags).filter(x => this.content.core.itemtags[x].tagSet === tagSet);
   }
 
   getWeaponSkills(): string[] {

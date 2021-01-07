@@ -292,15 +292,44 @@ Toolbox:
     You have a kit of tools and supplies with which you work on long-term projects. Choose two features:
 
 
-    assorted scrap wood, assorted gears and springs, esoteric hand tools, manuals, assorted medicines, portable alchemy kit, sewing kit, cookware, minor explosives
+    * assorted scrap wood
+
+    * assorted gears and springs
+
+    * esoteric hand tools
+    
+    * manuals
+
+    * assorted medicines
+
+    * portable alchemy kit
+
+    * sewing kit
+
+    * cookware
+
+    * minor explosives
 
 
     Choose one drawback:
 
-    heavy (counts as 2 Load instead of 1), bulky & obvious, stolen, fragile
+    * heavy (counts as 2 Load instead of 1)
+
+    * bulky & obvious
+
+    * stolen
+
+    * fragile
 
 
     When you **open up your toolkit and dedicate yourself to making a thing or to getting to the bottom of something**, decide what and tell the GM. The GM will give you between 1 to 4 conditions you must fulfill to accomplish your goal, including time taken, materials needed, help needed, facilities/tools needed, or the limits on the project. When you **accomplish the conditions**, you accomplish the goal.
+
+    The item will be created when you advance beyond move selection.
+
+  customItemData:
+    name: Trusty Toolkit
+    extraLoad: 1
+    tagSet: toolbox
   
 Repair:
   archetype: The Tinker

@@ -247,7 +247,7 @@ export class CreateCharacterPage implements OnInit {
     this.characterForm.get('name').setValue(sample(this.contentService.getNames()));
   }
 
-  private syncFormWithStep() {
+  private async syncFormWithStep() {
     if (!this.chosenVagabond) { return; }
 
     const bgArr = this.backgroundForm.get('backgrounds') as FormArray;
@@ -267,6 +267,11 @@ export class CreateCharacterPage implements OnInit {
       this.chosenVagabond.connections.forEach(() => {
         connArr.push(new FormControl('', [Validators.required]));
       });
+    }
+
+    const items = this.itemsForm.get('items').value;
+    if (items.length === 0 && moves.includes('Toolbox')) {
+      this.createItem(null, this.contentService.getMove('Toolbox').customItemData);
     }
 
   }
@@ -485,10 +490,10 @@ export class CreateCharacterPage implements OnInit {
   }
 
   // item functions
-  async createItem(item?: IItem) {
+  async createItem(item?: IItem, itemData?: any) {
     const modal = await this.modal.create({
       component: ItemCreatorComponent,
-      componentProps: { item: cloneDeep(item) }
+      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData), postProcess: true }
     });
 
     modal.onDidDismiss().then((res) => {
@@ -519,25 +524,30 @@ export class CreateCharacterPage implements OnInit {
   }
 
   async showItemEditActionSheet(item: IItem) {
+    const buttons: any[] = [
+      {
+        text: 'Edit',
+        icon: 'pencil',
+        handler: () => {
+          this.editItem(item);
+        }
+      }
+    ];
+
+    if (!item.tagSet) {
+      buttons.unshift({
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.removeItem(item);
+        }
+      });
+    }
+
     const actionSheet = await this.actionSheet.create({
       header: 'Actions',
-      buttons: [
-        {
-          text: 'Delete',
-          role: 'destructive',
-          icon: 'trash',
-          handler: () => {
-            this.removeItem(item);
-          }
-        },
-        {
-          text: 'Edit',
-          icon: 'pencil',
-          handler: () => {
-            this.editItem(item);
-          }
-        }
-      ]
+      buttons
     });
 
     actionSheet.present();

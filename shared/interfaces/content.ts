@@ -25,6 +25,11 @@ export interface IContentMove {
   addHarm?: Record<string, number>;
   addSkillChoose?: number;
   addSkill?: string[];
+  customItemData?: {
+    name: string;
+    tagDefs: IContentItemTag[] & { name: string };
+    extraLoad: number;
+  }
 }
 
 export interface IContentNature {
@@ -40,8 +45,9 @@ export interface IContentStat {
 }
 
 export interface IContentItemTag {
-  text: string;
-  valueMod: number;
+  tagSet: string;
+  text?: string;
+  valueMod?: number;
   loadMod?: number;
   input?: string;
 }

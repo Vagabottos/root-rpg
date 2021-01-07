@@ -19,7 +19,7 @@
         <ion-input type="text" formControlName="name" placeholder="Enter Item Name"></ion-input>
       </ion-item>
   
-      <ion-item class="wear" lines="none">
+      <ion-item class="wear" lines="none" *ngIf="!hideExtraData">
         <ion-button slot="start" color="secondary" (click)="wear(-1)" [disabled]="itemForm.get('wear').value <= 0">
           <ion-icon slot="icon-only" name="remove"></ion-icon>
         </ion-button>
@@ -39,7 +39,7 @@
       <ion-item class="hidden">
         <ion-label position="stacked">Add Item Tag</ion-label>
         <ion-select #itemTags (ionChange)="addItemTag($event)">
-          <ion-select-option *ngFor="let tag of contentService.getTags()"
+          <ion-select-option *ngFor="let tag of allItemTags"
                              [disabled]="itemForm.get('itemTags').value.includes(tag)"
                              [value]="tag">
             {{ tag }}
@@ -80,7 +80,7 @@
         </ion-select>
       </ion-item>
   
-      <ion-list-header>
+      <ion-list-header *ngIf="!hideExtraData">
         <ion-label>
           Weapon Skill Tags
         </ion-label>
@@ -90,7 +90,7 @@
         </ion-button>
       </ion-list-header>
 
-      <ion-item class="none" *ngIf="itemForm.get('skillTags').value.length === 0">
+      <ion-item class="none" *ngIf="itemForm.get('skillTags').value.length === 0 && !hideExtraData">
         None
       </ion-item>
 
@@ -113,7 +113,7 @@
         </ion-select>
       </ion-item>
   
-      <ion-list-header>
+      <ion-list-header *ngIf="!hideExtraData">
         <ion-label>
           Ranges
         </ion-label>
@@ -123,7 +123,7 @@
         </ion-button>
       </ion-list-header>
 
-      <ion-item class="none" *ngIf="itemForm.get('ranges').value.length === 0">
+      <ion-item class="none" *ngIf="itemForm.get('ranges').value.length === 0 && !hideExtraData">
         None
       </ion-item>
 

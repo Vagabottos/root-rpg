@@ -21,8 +21,14 @@
 </ion-header>
 
 <ion-content>
+
   <ng-container *ngIf="data.char$ | async as character">
-    <ion-list>
+
+    <div class="blank-slate" *ngIf="character.items.length === 0">
+      You have no items.
+    </div>
+
+    <ion-list *ngIf="character.items.length !== 0">
       <ion-list-header class="weight-header">
         <ion-row>
           <ion-col>
