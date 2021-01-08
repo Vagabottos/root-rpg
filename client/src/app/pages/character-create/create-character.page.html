@@ -773,7 +773,7 @@
 </ng-template>
 
 <ng-template #finalize>
-  <ion-card>
+  <ion-card #finalizeCard>
 
     <ion-card-header>
       <ion-card-title>
@@ -787,7 +787,7 @@
 
   </ion-card>
 
-  <ion-card>
+  <ion-card #characterCard>
     <ion-card-header>
       <ion-card-title>{{ characterForm.get('name').value }}</ion-card-title>
       <ion-card-subtitle>{{ archetypeForm.get('archetype').value }}</ion-card-subtitle>
@@ -804,7 +804,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #statsCard>
     <ion-card-header>
       <ion-card-title>Stats</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.BonusStats)">
@@ -823,7 +823,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #backgroundCard>
     <ion-card-header>
       <ion-card-title>Background</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Background)">
@@ -846,7 +846,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #natureCard>
     <ion-card-header>
       <ion-card-title>Nature</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Natures)">
@@ -862,7 +862,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #drivesCard>
     <ion-card-header>
       <ion-card-title>Drives</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Drives)">
@@ -880,7 +880,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #movesCard>
     <ion-card-header>
       <ion-card-title>Moves</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Moves)">
@@ -898,7 +898,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #featsCard>
     <ion-card-header>
       <ion-card-title>Roguish Feats</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Feats)">
@@ -929,7 +929,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #skillsCard>
     <ion-card-header>
       <ion-card-title>Weapon Skills</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Skills)">
@@ -947,7 +947,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #itemsCard>
     <ion-card-header>
       <ion-card-title>Items</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Items)">
@@ -968,7 +968,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #connectionsCard>
     <ion-card-header>
       <ion-card-title>Connections</ion-card-title>
       <ion-button class="edit-section" fill="clear" (click)="setStep(Step.Connections)">
@@ -988,7 +988,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card #finishCard>
 
     <ion-card-header>
       <ion-card-title>
