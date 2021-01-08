@@ -438,16 +438,25 @@
       <ion-card-content>
 
         <ion-list *ngIf="chosenVagabond">
-          <ion-item *ngFor="let drive of chosenVagabond.drives" 
-                    [disabled]="drivesForm.get('drives').value.length >= 2 && !drivesForm.get('drives').value.includes(drive.name)">
-            <ion-label class="ion-text-wrap">
-              <h2>{{ drive.name }}</h2>
-              <p>{{ getDriveDesc(drive.name) }}</p>
-            </ion-label>
-            <ion-checkbox slot="end" 
-                          (ionChange)="selectDrive(drive.name)" 
-                          [checked]="drivesForm.get('drives').value.includes(drive.name)"></ion-checkbox>
-          </ion-item>
+          <ng-container *ngFor="let drive of chosenVagabond.drives">
+            <ion-item [disabled]="drivesForm.get('drives').value.length >= 2 && !drivesForm.get('drives').value.includes(drive.name)">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ drive.name }}</h2>
+                <p>{{ getDriveDesc(drive.name) }}</p>
+              </ion-label>
+              <ion-checkbox slot="end" 
+                            (ionChange)="selectDrive(drive.name)" 
+                            [checked]="drivesForm.get('drives').value.includes(drive.name)"></ion-checkbox>
+            </ion-item>
+
+            <ion-item *ngIf="doesDriveName(drive.name) && drivesForm.get('drives').value.includes(drive.name)">
+              <ion-label position="stacked">Named Individual ({{ drive.name }})</ion-label>
+              <ion-input type="text" 
+                         placeholder="Enter Name" 
+                         [value]="drivesForm.get('driveTargets').value[drive.name]" 
+                         (ionChange)="updateDriveTarget($event, drive.name)"></ion-input>
+            </ion-item>
+          </ng-container>
 
           <ion-item lines="none">
             <ion-row class="action-row">
@@ -873,7 +882,7 @@
     <ion-card-content>
       <ion-row *ngFor="let drive of drivesForm.get('drives').value">
         <ion-col>
-          <strong>{{ drive }}</strong>: 
+          <strong>{{ drive }}<span *ngIf="drivesForm.get('driveTargets').value[drive] as target"> ({{ target }})</span></strong>: 
           <span [innerHTML]="getDriveDesc(drive) | markdown"></span>
         </ion-col>
       </ion-row>

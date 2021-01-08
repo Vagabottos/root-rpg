@@ -99,7 +99,7 @@ export class CreateCharacterPage implements OnInit {
 
   public drivesForm = new FormGroup({
     drives: new FormControl([], [Validators.required]),
-    driveTargets: new FormControl([])
+    driveTargets: new FormControl({})
   });
 
   public movesForm = new FormGroup({
@@ -343,6 +343,19 @@ export class CreateCharacterPage implements OnInit {
 
     drives.push(drive);
     this.drivesForm.get('drives').setValue(drives);
+  }
+
+  doesDriveName(drive: string): boolean {
+    return this.contentService.getDrive(drive)?.namedTarget;
+  }
+
+  updateDriveTarget(event, drive: string): void {
+    const control = this.drivesForm.get('driveTargets');
+    const val = control.value || {};
+
+    val[drive] = event.detail.value;
+
+    control.setValue(val);
   }
 
   // feat functions
@@ -637,7 +650,7 @@ export class CreateCharacterPage implements OnInit {
 
     loadObject.drives = loadObject.drives || {};
     loadObject.drives.drives = loadObject.drives.drives || [];
-    loadObject.drives.driveTargets = loadObject.drives.driveTargets || [];
+    loadObject.drives.driveTargets = loadObject.drives.driveTargets || {};
 
     loadObject.moves = loadObject.moves || {};
     loadObject.moves.moves = loadObject.moves.moves || [];

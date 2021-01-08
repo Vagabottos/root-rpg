@@ -37,7 +37,7 @@
       <ion-card-content>
         <ion-list>
           <ion-item *ngFor="let drive of character.drives" (click)="viewDrive(drive)">
-            {{ drive }}
+            {{ drive }}<span *ngIf="character.driveTargets[drive] as target">&nbsp;({{ target }})</span>
           </ion-item>
         </ion-list>
       </ion-card-content>
