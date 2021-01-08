@@ -3,8 +3,7 @@ archetype: The Ranger
 
 description: You are a capable, stealthy vagabond, centered on the forests that fill the Woodland between the clearings, more interested in the wilds than in the company of other Woodland denizens or their society.
 
-species:
-  - wolf
+species: []
 
 adjectives:
   - unkempt

@@ -3,8 +3,7 @@ archetype: The Exile
 
 description: You were once a prominent member of a powerful faction, but now you are exiled from it, and defined by what you do in relation to the group you once called your own.
 
-species:
-  - lizard
+species: []
 
 adjectives:
   - shabby

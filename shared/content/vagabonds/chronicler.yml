@@ -3,8 +3,7 @@ archetype: The Chronicler
 
 description: You are a sage who honors history and the written word, keeper of lost, banned, or forbidden texts of truths the great Woodland powers would rather be forgotten.
 
-species:
-  - otter
+species: []
 
 adjectives:
   - fastidious

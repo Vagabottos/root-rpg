@@ -3,8 +3,7 @@ archetype: The Adventurer
 
 description: You are a peaceful, diplomatic vagabond, making allies from those you aid, perhaps toppling greater powers by forging strong bonds with others from yourself.
 
-species:
-  - owl
+species: []
 
 adjectives:
   - formal

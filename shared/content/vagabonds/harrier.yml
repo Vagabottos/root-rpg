@@ -3,8 +3,7 @@ archetype: The Harrier
 
 description: You are a quick, enterprising vagabond, racing easily from building to building and clearing to clearing without anything stopping you, perhaps finding yourself in places others would rather keep secret or hidden.
 
-species:
-  - squirrel
+species: []
 
 adjectives:
   - roguish

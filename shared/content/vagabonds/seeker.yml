@@ -3,8 +3,7 @@ archetype: The Seeker
 
 description: You are an explorer by nature, interested in free-ranging discovery, delving into ruins, and uncovering whatever secret wonders and ancient truths lie hidden amid the Woodland.
 
-species:
-  - mole
+species: []
 
 adjectives:
   - honest

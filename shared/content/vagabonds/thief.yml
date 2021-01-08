@@ -3,8 +3,7 @@ archetype: The Thief
 
 description: You are a cunning, criminal vagabond, capable of stealing even the most well-guarded treasures, perhaps committed to crime and theft for its own sake.
 
-species:
-  - racoon
+species: []
 
 adjectives:
   - worn

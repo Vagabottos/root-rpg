@@ -3,8 +3,7 @@ archetype: The Scoundrel
 
 description: You are a lucky, dangerous vagabond, acting more as destroyer and troublemaker than anything else, perhaps creating chaos and destruction for its own sake.
 
-species:
-  - cat
+species: []
 
 adjectives:
   - suspicious

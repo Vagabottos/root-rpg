@@ -3,8 +3,7 @@ archetype: The Vagrant
 
 description: You are a charming, survivor vagabond, using words to get out of dangerous situations, perhaps even setting possible predators upon each other to keep them away from yourself.
 
-species:
-  - opossum
+species: []
 
 adjectives:
   - mangy

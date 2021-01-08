@@ -3,8 +3,7 @@ archetype: The Arbiter
 
 description: You are a powerful, obstinate vagabond, serving as somewhere between a mercenary and a protector, perhaps taking sides too easily in the greater conflict between the factions. 
 
-species:
-  - badger
+species: []
 
 adjectives:
   - large
