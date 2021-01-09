@@ -13,6 +13,384 @@
 
 <ion-content padding>
   <ng-container *ngIf="data.char$ | async as character">
-    
+    <ion-row>
+      <ion-col>
+        <div class="character-container">
+          <ng-container [ngSwitch]="currentStep">
+            <ng-container [ngTemplateOutlet]="choose" *ngSwitchCase="Step.Choose"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="stat" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.Stat"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="myplaybook" 
+                          [ngTemplateOutletContext]="{ character: character }"  
+                          *ngSwitchCase="Step.MyPlaybook"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="differentplaybook" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.DifferentPlaybook"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="weaponskills" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.WeaponSkills"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="roguishfeats" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.RoguishFeats"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="harmbox" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.HarmBox"></ng-container>
+
+            <ng-container [ngTemplateOutlet]="connections" 
+                          [ngTemplateOutletContext]="{ character: character }" 
+                          *ngSwitchCase="Step.Connections"></ng-container>
+
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
   </ng-container>
 </ion-content>
+    
+<ng-template #choose>
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Character Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Choose one type of advancement for your character.
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+        <ion-item *ngFor="let step of advancementTypes" detail="true" (click)="setAdvancementStep(step.step)">
+          {{ step.name }}
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #stat let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Stat Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take +1 to a stat (max +2)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #myplaybook let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        New Move: {{ character.archetype }}
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take a new move from your playbook (max 5)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #differentplaybook let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        New Move: Another Playbook
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take a new move from another playbook (max 2)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #weaponskills let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Weapon Skill Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take up to two new weapon skills (max 7)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #roguishfeats let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Roguish Feat Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take up to two new roguish feats (max 6)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #harmbox let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Harm Box Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Add one box to any one harm track (max 6 each)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>
+    
+<ng-template #connections let-character="character">
+  <ion-card>
+
+    <ion-card-header>
+      <ion-card-title>
+        Connections Advancement
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Take up to two new connections (max 6 total)
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item>
+          stats
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col size="12" size-sm="6">
+              <ion-button color="secondary" (click)="back()">
+                <ion-icon slot="start" name="caret-back"></ion-icon>
+                Back
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-sm="6" class="ion-text-right">
+              <ion-button color="primary" (click)="confirm()">
+                <ion-icon slot="end" name="caret-forward"></ion-icon>
+                Confirm
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+
+  </ion-card>
+</ng-template>

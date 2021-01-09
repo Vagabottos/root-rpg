@@ -1,0 +1,18 @@
+
+ion-item {
+  cursor: pointer;
+}
+
+.action-row {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 720px) {
+  .action-row ion-col {
+    text-align: center !important;
+
+    ion-button {
+      width: 100%;
+    }
+  }
+}
