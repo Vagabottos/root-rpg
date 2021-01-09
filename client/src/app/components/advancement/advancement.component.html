@@ -329,9 +329,14 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ion-radio-group [(ngModel)]="chosenHarm">
+          <ion-item *ngFor="let harm of ['Injury', 'Depletion', 'Exhaustion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
+            <ion-label class="ion-text-wrap">
+              <h3>{{ harm }} (Base: {{ (character.harmBoost[harm.toLowerCase()] || 0) | withPlus }})</h3>
+            </ion-label>
+            <ion-radio slot="end" [value]="harm.toLowerCase()"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -343,7 +348,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirm()">
+              <ion-button color="primary" (click)="confirmHarm(character)">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>

@@ -26,6 +26,7 @@ export class AdvancementComponent implements OnInit {
   public currentStep: AdvancementStep = AdvancementStep.Choose;
 
   public chosenStat: string;
+  public chosenHarm: string;
 
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2)',  },
@@ -54,6 +55,7 @@ export class AdvancementComponent implements OnInit {
     this.setAdvancementStep(AdvancementStep.Choose);
 
     this.chosenStat = '';
+    this.chosenHarm = '';
   }
 
   private save() {
@@ -70,6 +72,27 @@ export class AdvancementComponent implements OnInit {
           text: 'Yes, advance',
           handler: () => {
             character.stats[this.chosenStat] += 1;
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  async confirmHarm(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Advance Harm',
+      message: `Are you sure you want to advance the ${this.chosenHarm} harm track?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.harmBoost[this.chosenHarm] = character.harmBoost[this.chosenHarm] || 0;
+            character.harmBoost[this.chosenHarm] += 1;
             this.save();
             this.modal.dismiss();
           }

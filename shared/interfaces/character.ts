@@ -46,9 +46,17 @@ export interface ICharacter {
   items: IItem[];
   reputation: Record<string, ICharacterReputation>;
 
-  injury: number;
-  exhaustion: number;
-  depletion: number;
+  harm: {
+    injury: number;
+    exhaustion: number;
+    depletion: number;
+  };
+
+  harmBoost: {
+    injury: number;
+    exhaustion: number;
+    depletion: number;
+  }
 
   createdAt?: number;
   updatedAt?: number;

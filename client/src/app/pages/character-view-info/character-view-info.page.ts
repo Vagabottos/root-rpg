@@ -117,7 +117,8 @@ export class CharacterViewInfoPage implements OnInit {
   // harm functions
   harmCount(character: ICharacter, harm: string): number {
     const boost = character.moves.reduce((prev, cur) => prev + (this.content.getMove(cur)?.addHarm?.[harm] ?? 0), 0);
-    return 4 + boost;
+    const advBoost = character.harmBoost?.[harm] ?? 0;
+    return 4 + advBoost + boost;
   }
 
   harmMax(character: ICharacter): number[] {
@@ -131,13 +132,15 @@ export class CharacterViewInfoPage implements OnInit {
   }
 
   adjustHarm(character: ICharacter, harm: string, newValue: number): void {
-    if (character[harm.toLowerCase()] === newValue) {
-      character[harm.toLowerCase()] = 0;
+    if (!character.harm) { character.harm = { injury: 0, depletion: 0, exhaustion: 0 }; }
+
+    if (character.harm[harm.toLowerCase()] === newValue) {
+      character.harm[harm.toLowerCase()] = 0;
       this.save();
       return;
     }
 
-    character[harm.toLowerCase()] = newValue;
+    character.harm[harm.toLowerCase()] = newValue;
     this.save();
   }
 
