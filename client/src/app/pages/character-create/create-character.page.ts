@@ -513,7 +513,7 @@ export class CreateCharacterPage implements OnInit {
   async createItem(item?: IItem, itemData?: any) {
     const modal = await this.modal.create({
       component: ItemCreatorComponent,
-      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData), postProcess: true }
+      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData) }
     });
 
     modal.onDidDismiss().then((res) => {
