@@ -271,7 +271,13 @@ export class CreateCharacterPage implements OnInit {
     }
 
     const items = this.itemsForm.get('items').value;
-    if (items.length === 0 && moves.includes('Toolbox')) {
+    const validToolboxSteps = [
+      CharacterCreateStep.Feats,
+      CharacterCreateStep.Skills,
+      CharacterCreateStep.Items
+    ];
+
+    if (validToolboxSteps.includes(this.currentStep) && items.length === 0 && moves.includes('Toolbox')) {
       this.createItem(null, this.contentService.getMove('Toolbox').customItemData);
     }
 

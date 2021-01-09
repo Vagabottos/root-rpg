@@ -501,7 +501,7 @@
 
         <ion-list *ngIf="chosenVagabond">
           <ng-container *ngFor="let move of chosenVagabond.moves">
-            <ion-item [disabled]="chosenVagabond.defaultMoves.includes(move.name) || movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name)">
+            <ion-item [disabled]="chosenVagabond.defaultMoves.includes(move.name) || (movesForm.get('moves').value.length >= 3 && !movesForm.get('moves').value.includes(move.name))">
               <ion-label class="ion-text-wrap">
                 <h2>{{ move.name }}</h2>
                 <p [innerHTML]="getMoveDesc(move.name) | markdown"></p>
