@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ICharacter } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
-
 
 enum AdvancementStep {
   Choose = 'choose',
@@ -25,6 +25,8 @@ export class AdvancementComponent implements OnInit {
   public readonly Step = AdvancementStep;
   public currentStep: AdvancementStep = AdvancementStep.Choose;
 
+  public chosenStat: string;
+
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2)',  },
     { step: AdvancementStep.MyPlaybook,         name: 'Take a new move from your playbook (max 5)' },
@@ -36,6 +38,7 @@ export class AdvancementComponent implements OnInit {
   ];
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController,
     public data: DataService,
     public content: ContentService
@@ -49,10 +52,32 @@ export class AdvancementComponent implements OnInit {
 
   back() {
     this.setAdvancementStep(AdvancementStep.Choose);
+
+    this.chosenStat = '';
   }
 
-  confirm() {
-    // TODO: alert then do stuff
+  private save() {
+    this.data.patchCharacter();
+  }
+
+  async confirmStat(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Advance Stat',
+      message: `Are you sure you want to advance the ${this.chosenStat} stat?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.stats[this.chosenStat] += 1;
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   dismiss() {

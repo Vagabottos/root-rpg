@@ -263,7 +263,7 @@
           <ion-radio-group formControlName="stat">
             <ion-item *ngFor="let stat of contentService.getStats()" [disabled]="chosenVagabond.stats[stat.toLowerCase()] >= 2">
               <ion-label class="ion-text-wrap">
-                <h2>{{ stat }} ({{ chosenVagabond.stats[stat.toLowerCase()] < 0 ? '' : '+' }}{{ chosenVagabond.stats[stat.toLowerCase()] }})</h2>
+                <h2>{{ stat }} ({{ chosenVagabond.stats[stat.toLowerCase()] | withPlus }})</h2>
                 <p>{{ getStatDesc(stat) }}</p>
               </ion-label>
               <ion-radio [value]="stat.toLowerCase()"></ion-radio>
@@ -825,7 +825,7 @@
       <ion-row *ngIf="chosenVagabond">
         <ion-col *ngFor="let stat of chosenVagabond.stats | keyvalue" size="3" size-xs="6">
           <span class="stat-name"><strong>{{ getStatName(stat.key) }}</strong>:</span> 
-          <span>{{ getTotalStat(stat.key) < 0 ? '' : '+' }}{{ getTotalStat(stat.key) }}</span>
+          <span>{{ getTotalStat(stat.key) | withPlus }}</span>
           <span *ngIf="stat.key === bonusForm.get('stat').value"> (Bonus)</span>
         </ion-col>
       </ion-row>

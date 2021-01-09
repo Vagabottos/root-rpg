@@ -17,6 +17,7 @@
       <ion-col>
         <div class="character-container">
           <ng-container [ngSwitch]="currentStep">
+
             <ng-container [ngTemplateOutlet]="choose" *ngSwitchCase="Step.Choose"></ng-container>
 
             <ng-container [ngTemplateOutlet]="stat" 
@@ -97,9 +98,15 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ion-radio-group [(ngModel)]="chosenStat">
+          <ion-item *ngFor="let stat of content.getStats()" [disabled]="character.stats[stat.toLowerCase()] >= 2">
+            <ion-label class="ion-text-wrap">
+              <h3>{{ stat }} (Base: {{ character.stats[stat.toLowerCase()] | withPlus }})</h3>
+              <p>{{ content.getStat(stat).text }}</p>
+            </ion-label>
+            <ion-radio slot="end" [value]="stat.toLowerCase()"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -111,7 +118,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirm()">
+              <ion-button color="primary" (click)="confirmStat(character)" [disabled]="!chosenStat">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>

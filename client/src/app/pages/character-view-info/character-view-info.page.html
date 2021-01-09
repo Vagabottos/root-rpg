@@ -45,7 +45,7 @@
             </div>
 
             <div class="stat-value">
-              {{ getStatTotal(character, stat.toLowerCase()) > 0 ? '+' : '' }}{{ getStatTotal(character, stat.toLowerCase()) }}
+              {{ getStatTotal(character, stat.toLowerCase()) | withPlus }}
             </div>
           </ion-col>
         </ion-row>
@@ -91,7 +91,7 @@
               </ion-col>
   
               <ion-col class="current-level">
-                {{ character.reputation[faction.name].total < 0 ? '' : '+' }}{{ character.reputation[faction.name].total || 0 }}
+                {{ (character.reputation[faction.name].total || 0) | withPlus }}
               </ion-col>
   
               <ion-col class="prestige-track">

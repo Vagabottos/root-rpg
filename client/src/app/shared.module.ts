@@ -15,8 +15,9 @@ import { MarkdownPipe } from './pipes/markdown.pipe';
 import { AdvancementComponent } from './components/advancement/advancement.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { ForceSelectorComponent } from './components/force-selector/force-selector.component';
+import { NumberWithPlus } from './pipes/number-with-plus';
 
-const pipes = [MarkdownPipe];
+const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
 const components = [ItemComponent];
 const modals = [
