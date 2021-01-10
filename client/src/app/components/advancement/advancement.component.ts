@@ -27,15 +27,29 @@ export class AdvancementComponent implements OnInit {
 
   public chosenStat: string;
   public chosenHarm: string;
+  public chosenConnections = [{ name: '', target: '' }, { name: '', target: '' }];
 
   public readonly advancementTypes = [
-    { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2)',  },
-    { step: AdvancementStep.MyPlaybook,         name: 'Take a new move from your playbook (max 5)' },
-    { step: AdvancementStep.DifferentPlaybook,  name: 'Take a new move from another playbook (max 2)' },
-    { step: AdvancementStep.WeaponSkills,       name: 'Take up to two new weapon skills (max 7)' },
-    { step: AdvancementStep.RoguishFeats,       name: 'Take up to two new roguish feats (max 6)' },
-    { step: AdvancementStep.HarmBox,            name: 'Add one box to any one harm track (max 6 each)' },
-    { step: AdvancementStep.Connections,        name: 'Take up to two new connections (max 6 total)' }
+    { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2 each)',
+      disabled: (character: ICharacter) => Object.values(character.stats).every(x => x >= 2)  },
+
+    { step: AdvancementStep.MyPlaybook,         name: 'Take a new move from your playbook (max 5)',
+      disabled: (character: ICharacter) => false },
+
+    { step: AdvancementStep.DifferentPlaybook,  name: 'Take a new move from another playbook (max 2)',
+      disabled: (character: ICharacter) => false },
+
+    { step: AdvancementStep.WeaponSkills,       name: 'Take up to two new weapon skills (max 7)',
+      disabled: (character: ICharacter) => false },
+
+    { step: AdvancementStep.RoguishFeats,       name: 'Take up to two new roguish feats (max 6)',
+      disabled: (character: ICharacter) => false },
+
+    { step: AdvancementStep.HarmBox,            name: 'Add one box to any one harm track (max 6 each)',
+      disabled: (character: ICharacter) => ['injury', 'exhaustion', 'depletion'].every(h => character.harmBoost[h] >= 2) },
+
+    { step: AdvancementStep.Connections,        name: 'Take up to two new connections (max 6 total)',
+      disabled: (character: ICharacter) => character.connections.length >= 6 }
   ];
 
   constructor(
@@ -101,6 +115,43 @@ export class AdvancementComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  async confirmConnections(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Advance Connections',
+      message: `Are you sure you want to add these two new connections?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.connections.push(...this.chosenConnections);
+
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  async confirmMyMove(character: ICharacter) {
+
+  }
+
+  async confirmOtherMove(character: ICharacter) {
+
+  }
+
+  async confirmSkills(character: ICharacter) {
+
+  }
+
+  async confirmFeats(character: ICharacter) {
+
   }
 
   dismiss() {

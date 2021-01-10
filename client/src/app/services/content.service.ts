@@ -95,4 +95,12 @@ export class ContentService {
   getSkill(name: string): IContentSkill {
     return this.content.core.skills[name];
   }
+
+  getConnections(): string[] {
+    return Object.keys(this.content.core.connections);
+  }
+
+  getConnectionText(name: string): IContentConnection {
+    return this.content.core.connections[name];
+  }
 }
