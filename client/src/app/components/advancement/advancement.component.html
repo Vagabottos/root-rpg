@@ -241,9 +241,22 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ng-container *ngFor="let x of [0, 1]">
+          <ion-item [class.hidden]="x === 1 && character.skills.length >= 6">
+            <ion-label position="stacked">New Weapon Skill {{ x + 1 }}</ion-label>
+            <ion-select [(ngModel)]="chosenSkills[x]" placeholder="Choose weapon skill">
+              <ion-select-option *ngFor="let choice of content.getWeaponSkills()" [value]="choice" [disabled]="allSkills(character).includes(choice) || chosenSkills[x === 0 ? 1 : 0] === choice">
+                {{ choice }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="chosenSkills[x]">
+            <ion-label class="ion-text-wrap">
+              <p [innerHTML]="content.getSkill(chosenSkills[x])?.text | markdown"></p>
+            </ion-label>
+          </ion-item>
+        </ng-container>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -255,7 +268,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirmSkills(character)">
+              <ion-button color="primary" (click)="confirmSkills(character)" [disabled]="!chosenSkills[0] && !chosenSkills[1]">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>
@@ -286,9 +299,22 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ng-container *ngFor="let x of [0, 1]">
+          <ion-item [class.hidden]="x === 1 && character.feats.length >= 5">
+            <ion-label position="stacked">New Roguish Feat {{ x + 1 }}</ion-label>
+            <ion-select [(ngModel)]="chosenFeats[x]" placeholder="Choose roguish feat">
+              <ion-select-option *ngFor="let choice of content.getFeats()" [value]="choice" [disabled]="allFeats(character).includes(choice) || chosenFeats[x === 0 ? 1 : 0] === choice">
+                {{ choice }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="chosenFeats[x]">
+            <ion-label class="ion-text-wrap">
+              <p [innerHTML]="content.getFeat(chosenFeats[x])?.text | markdown"></p>
+            </ion-label>
+          </ion-item>
+        </ng-container>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -300,7 +326,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirmFeats(character)">
+              <ion-button color="primary" (click)="confirmFeats(character)" [disabled]="!chosenFeats[0] && !chosenFeats[1]">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>

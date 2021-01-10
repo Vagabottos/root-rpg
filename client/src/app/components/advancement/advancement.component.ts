@@ -28,6 +28,8 @@ export class AdvancementComponent implements OnInit {
   public chosenStat: string;
   public chosenHarm: string;
   public chosenConnections = [{ name: '', target: '' }, { name: '', target: '' }];
+  public chosenSkills: string[] = [];
+  public chosenFeats: string[] = [];
 
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2 each)',
@@ -40,10 +42,10 @@ export class AdvancementComponent implements OnInit {
       disabled: (character: ICharacter) => false },
 
     { step: AdvancementStep.WeaponSkills,       name: 'Take up to two new weapon skills (max 7)',
-      disabled: (character: ICharacter) => false },
+      disabled: (character: ICharacter) => character.skills.length >= 7 },
 
     { step: AdvancementStep.RoguishFeats,       name: 'Take up to two new roguish feats (max 6)',
-      disabled: (character: ICharacter) => false },
+      disabled: (character: ICharacter) => character.feats.length >= 6 },
 
     { step: AdvancementStep.HarmBox,            name: 'Add one box to any one harm track (max 6 each)',
       disabled: (character: ICharacter) => ['injury', 'exhaustion', 'depletion'].every(h => character.harmBoost[h] >= 2) },
@@ -120,7 +122,7 @@ export class AdvancementComponent implements OnInit {
   async confirmConnections(character: ICharacter) {
     const alert = await this.alert.create({
       header: 'Advance Connections',
-      message: `Are you sure you want to add these two new connections?`,
+      message: `Are you sure you want to add these two new connections (${this.chosenConnections[0].name}, ${this.chosenConnections[1].name})?`,
       buttons: [
         'Cancel',
         {
@@ -147,12 +149,63 @@ export class AdvancementComponent implements OnInit {
   }
 
   async confirmSkills(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Advance Skills',
+      message: `Are you sure you want to add these new weapon skills (${this.chosenSkills.filter(Boolean).join(', ')})?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.skills.push(...this.chosenSkills.filter(Boolean));
 
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   async confirmFeats(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Advance Feats',
+      message: `Are you sure you want to add these new roguish feats (${this.chosenFeats.filter(Boolean).join(', ')})?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.feats.push(...this.chosenFeats.filter(Boolean));
 
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
+
+  allSkills(character: ICharacter): string[] {
+    return character.skills.concat(character.moveSkills).concat(this.skillsFromMoves(character));
+  }
+
+  allFeats(character: ICharacter): string[] {
+    return character.feats.concat(this.featsFromMoves(character));
+  }
+
+  skillsFromMoves(character: ICharacter): string[] {
+    return character.moves.map(x => this.content.getMove(x)?.addSkill).flat().filter(Boolean);
+  }
+
+  featsFromMoves(character: ICharacter): string[] {
+    return character.moves.map(x => this.content.getMove(x)?.addFeat).flat().filter(Boolean);
+  }
+
 
   dismiss() {
     this.modal.dismiss();
