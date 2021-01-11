@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActionSheetController, AlertController, IonCheckbox, IonSelect, ModalController, PopoverController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonCheckbox, ModalController, PopoverController } from '@ionic/angular';
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, cloneDeep, sample, sumBy } from 'lodash';
+import { capitalize, sample, sumBy } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
@@ -14,9 +14,9 @@ import { CharacterAPIService } from '../../services/character.api.service';
 import { IContentBackgroundQuestion, IContentVagabond, IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
-import { ItemCreatorComponent } from '../../components/item-creator/item-creator.component';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NotificationService } from '../../services/notification.service';
+import { ItemCreatorService } from '../../services/item-creator.service';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -160,10 +160,10 @@ export class CreateCharacterPage implements OnInit {
   constructor(
     private actionSheet: ActionSheetController,
     private alert: AlertController,
-    private modal: ModalController,
     private popover: PopoverController,
     private router: Router,
     private notification: NotificationService,
+    private itemCreator: ItemCreatorService,
     public contentService: ContentService,
     private itemService: ItemService,
     private campaignAPI: CampaignAPIService,
@@ -510,11 +510,8 @@ export class CreateCharacterPage implements OnInit {
   }
 
   // item functions
-  async createItem(item?: IItem, itemData?: any) {
-    const modal = await this.modal.create({
-      component: ItemCreatorComponent,
-      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData) }
-    });
+  async createItem(item?: IItem, itemData?: any): Promise<any> {
+    const modal = await this.itemCreator.createItem(item, itemData);
 
     modal.onDidDismiss().then((res) => {
       const resItem = res.data;
@@ -531,7 +528,7 @@ export class CreateCharacterPage implements OnInit {
       }
     });
 
-    await modal.present();
+    modal.present();
   }
 
   editItem(item: IItem): void {

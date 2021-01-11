@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IItem } from '../../../../shared/interfaces';
+
+import { IItem } from '../../interfaces';
 import { ContentService } from './content.service';
 
 @Injectable({
@@ -7,7 +8,9 @@ import { ContentService } from './content.service';
 })
 export class ItemService {
 
-  constructor(private contentService: ContentService) { }
+  constructor(
+    private contentService: ContentService
+  ) { }
 
   public value(item: IItem): number {
     return item.wear

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
-import { ICharacter } from '../../../interfaces';
+
+import { ICharacter, IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { ItemCreatorService } from '../../services/item-creator.service';
 import { NotificationService } from '../../services/notification.service';
 
 enum AdvancementStep {
@@ -33,6 +35,7 @@ export class AdvancementComponent implements OnInit {
   public chosenFeats: string[] = [];
   public chosenMove: string;
   public bonusSkills: string[] = [];
+  public bonusItem: IItem = null;
 
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2 each)',
@@ -63,6 +66,7 @@ export class AdvancementComponent implements OnInit {
     private alert: AlertController,
     private modal: ModalController,
     private notification: NotificationService,
+    private itemCreator: ItemCreatorService,
     public data: DataService,
     public content: ContentService
   ) { }
@@ -85,6 +89,7 @@ export class AdvancementComponent implements OnInit {
     this.chosenFeats = [];
     this.chosenSkills = [];
     this.bonusSkills = [];
+    this.bonusItem = null;
   }
 
   private save() {
@@ -102,7 +107,7 @@ export class AdvancementComponent implements OnInit {
           handler: () => {
             character.stats[this.chosenStat] += 1;
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -123,7 +128,7 @@ export class AdvancementComponent implements OnInit {
             character.harmBoost[this.chosenHarm] = character.harmBoost[this.chosenHarm] || 0;
             character.harmBoost[this.chosenHarm] += 1;
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -144,7 +149,7 @@ export class AdvancementComponent implements OnInit {
             character.connections.push(...this.chosenConnections);
 
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -154,8 +159,6 @@ export class AdvancementComponent implements OnInit {
   }
 
   async confirmMove(character: ICharacter) {
-    // TODO: toolbox
-
     const alert = await this.alert.create({
       header: 'Advance: Move',
       message: `Are you sure you want to add the move "${this.chosenMove}"?`,
@@ -169,8 +172,12 @@ export class AdvancementComponent implements OnInit {
               character.moveSkills.push(...this.bonusSkills);
             }
 
+            if (this.bonusItem) {
+              character.items.push(this.bonusItem);
+            }
+
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -191,7 +198,7 @@ export class AdvancementComponent implements OnInit {
             character.skills.push(...this.chosenSkills.filter(Boolean));
 
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -212,7 +219,7 @@ export class AdvancementComponent implements OnInit {
             character.feats.push(...this.chosenFeats.filter(Boolean));
 
             this.save();
-            this.modal.dismiss();
+            this.dismiss();
           }
         }
       ]
@@ -226,6 +233,7 @@ export class AdvancementComponent implements OnInit {
     const move = event.detail.value;
 
     this.bonusSkills = [];
+    this.bonusItem = null;
 
     const moveData = this.content.getMove(move);
     if (!moveData) { return; }
@@ -250,6 +258,24 @@ export class AdvancementComponent implements OnInit {
 
         this.bonusSkills = data;
       });
+    }
+
+    if (moveData.customItemData) {
+      const modal = await this.itemCreator.createItem(null, moveData.customItemData);
+
+      modal.onDidDismiss().then((res) => {
+        const resItem = res.data;
+        if (!resItem) {
+          setTimeout(() => {
+            this.chosenMove = '';
+          }, 0);
+          return;
+        }
+
+        this.bonusItem = resItem;
+      });
+
+      modal.present();
     }
   }
 

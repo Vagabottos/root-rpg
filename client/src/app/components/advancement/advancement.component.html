@@ -206,7 +206,9 @@
 
         <ion-radio-group [(ngModel)]="chosenMove" (ionChange)="changeMove($event, character)">
           <ng-container *ngFor="let archMoves of allMoves | keyvalue">
-            <ion-list-header [class.hidden]="archMoves.key === character.archetype">{{ archMoves.key }}</ion-list-header>
+            <ion-list-header [class.hidden]="archMoves.key === character.archetype">
+              <strong>{{ archMoves.key }}</strong>
+            </ion-list-header>
 
             <ion-item [class.hidden]="archMoves.key === character.archetype" 
                       *ngFor="let move of archMoves.value" 
