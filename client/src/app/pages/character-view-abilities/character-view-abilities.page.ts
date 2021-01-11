@@ -66,12 +66,12 @@ export class CharacterViewAbilitiesPage implements OnInit {
 
   getFeats(character: ICharacter): string[] {
     const addedFeats = character.moves.map(x => this.content.getMove(x)?.addFeat).flat().filter(Boolean);
-    return character.feats.concat(addedFeats).sort();
+    return [...new Set(character.feats.concat(addedFeats).sort())];
   }
 
   getSkills(character: ICharacter): string[] {
     const addedSkills = character.moves.map(x => this.content.getMove(x)?.addSkill).flat().filter(Boolean);
-    return character.skills.concat(addedSkills).sort();
+    return [...new Set(character.skills.concat(addedSkills).sort())];
   }
 
   getMoves(character: ICharacter): string[] {
