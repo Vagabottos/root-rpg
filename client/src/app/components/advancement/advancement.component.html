@@ -151,7 +151,7 @@
 
       <ion-list>
 
-        <ion-radio-group [(ngModel)]="chosenMove" (ionChange)="changeMove($event)">
+        <ion-radio-group [(ngModel)]="chosenMove" (ionChange)="changeMove($event, character)">
           <ion-item *ngFor="let move of allMoves[character.archetype]"
                     [disabled]="character.moves.includes(move)">
             <ion-label class="ion-text-wrap">
