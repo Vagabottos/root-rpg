@@ -745,7 +745,7 @@
           <ng-container *ngFor="let conn of chosenVagabond.connections; let i = index">
             <ion-item>
               <ion-label class="ion-text-wrap">
-                <h3>{{ conn.name }}</h3>
+                <h2>{{ conn.name }}</h2>
                 <p>{{ conn.text }}</p>
                 <p class="sub-desc" [innerHTML]="getConnectionDesc(conn.name) | markdown"></p>
               </ion-label>

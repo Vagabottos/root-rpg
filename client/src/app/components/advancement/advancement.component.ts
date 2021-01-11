@@ -30,16 +30,17 @@ export class AdvancementComponent implements OnInit {
   public chosenConnections = [{ name: '', target: '' }, { name: '', target: '' }];
   public chosenSkills: string[] = [];
   public chosenFeats: string[] = [];
+  public chosenMove: string;
 
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2 each)',
       disabled: (character: ICharacter) => Object.values(character.stats).every(x => x >= 2)  },
 
     { step: AdvancementStep.MyPlaybook,         name: 'Take a new move from your playbook (max 5)',
-      disabled: (character: ICharacter) => false },
+      disabled: (character: ICharacter) => character.moves.filter(x => this.content.getMove(x)?.archetype === character.archetype).length >= 5 },
 
     { step: AdvancementStep.DifferentPlaybook,  name: 'Take a new move from another playbook (max 2)',
-      disabled: (character: ICharacter) => false },
+      disabled: (character: ICharacter) => character.moves.filter(x => this.content.getMove(x)?.archetype !== character.archetype).length >= 2 },
 
     { step: AdvancementStep.WeaponSkills,       name: 'Take up to two new weapon skills (max 7)',
       disabled: (character: ICharacter) => character.skills.length >= 7 },
@@ -54,6 +55,8 @@ export class AdvancementComponent implements OnInit {
       disabled: (character: ICharacter) => character.connections.length >= 6 }
   ];
 
+  public allMoves: Record<string, any[]> = {};
+
   constructor(
     private alert: AlertController,
     private modal: ModalController,
@@ -61,7 +64,9 @@ export class AdvancementComponent implements OnInit {
     public content: ContentService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.allMoves = this.content.getMovesByArchetype();
+  }
 
   setAdvancementStep(step: AdvancementStep) {
     this.currentStep = step;
@@ -72,6 +77,10 @@ export class AdvancementComponent implements OnInit {
 
     this.chosenStat = '';
     this.chosenHarm = '';
+    this.chosenMove = '';
+    this.chosenConnections = [];
+    this.chosenFeats = [];
+    this.chosenSkills = [];
   }
 
   private save() {
@@ -80,7 +89,7 @@ export class AdvancementComponent implements OnInit {
 
   async confirmStat(character: ICharacter) {
     const alert = await this.alert.create({
-      header: 'Advance Stat',
+      header: 'Advance: Stat',
       message: `Are you sure you want to advance the ${this.chosenStat} stat?`,
       buttons: [
         'Cancel',
@@ -100,7 +109,7 @@ export class AdvancementComponent implements OnInit {
 
   async confirmHarm(character: ICharacter) {
     const alert = await this.alert.create({
-      header: 'Advance Harm',
+      header: 'Advance: Harm',
       message: `Are you sure you want to advance the ${this.chosenHarm} harm track?`,
       buttons: [
         'Cancel',
@@ -121,7 +130,7 @@ export class AdvancementComponent implements OnInit {
 
   async confirmConnections(character: ICharacter) {
     const alert = await this.alert.create({
-      header: 'Advance Connections',
+      header: 'Advance: Connections',
       message: `Are you sure you want to add these two new connections (${this.chosenConnections[0].name}, ${this.chosenConnections[1].name})?`,
       buttons: [
         'Cancel',
@@ -140,17 +149,33 @@ export class AdvancementComponent implements OnInit {
     alert.present();
   }
 
-  async confirmMyMove(character: ICharacter) {
+  async confirmMove(character: ICharacter) {
+    // TODO: toolbox
+    // TODO: moves that let you choose skills (dirty fighter)
 
-  }
+    const alert = await this.alert.create({
+      header: 'Advance: Move',
+      message: `Are you sure you want to add the move "${this.chosenMove}"?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, advance',
+          handler: () => {
+            character.moves.push(this.chosenMove);
 
-  async confirmOtherMove(character: ICharacter) {
+            this.save();
+            this.modal.dismiss();
+          }
+        }
+      ]
+    });
 
+    alert.present();
   }
 
   async confirmSkills(character: ICharacter) {
     const alert = await this.alert.create({
-      header: 'Advance Skills',
+      header: 'Advance: Skills',
       message: `Are you sure you want to add these new weapon skills (${this.chosenSkills.filter(Boolean).join(', ')})?`,
       buttons: [
         'Cancel',
@@ -171,7 +196,7 @@ export class AdvancementComponent implements OnInit {
 
   async confirmFeats(character: ICharacter) {
     const alert = await this.alert.create({
-      header: 'Advance Feats',
+      header: 'Advance: Feats',
       message: `Are you sure you want to add these new roguish feats (${this.chosenFeats.filter(Boolean).join(', ')})?`,
       buttons: [
         'Cancel',
@@ -205,7 +230,6 @@ export class AdvancementComponent implements OnInit {
   featsFromMoves(character: ICharacter): string[] {
     return character.moves.map(x => this.content.getMove(x)?.addFeat).flat().filter(Boolean);
   }
-
 
   dismiss() {
     this.modal.dismiss();

@@ -4,7 +4,7 @@
       Advancement
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismiss()" *ngIf="currentStep === Step.Choose">
         Close
       </ion-button>
     </ion-buttons>
@@ -103,7 +103,7 @@
         <ion-radio-group [(ngModel)]="chosenStat">
           <ion-item *ngFor="let stat of content.getStats()" [disabled]="character.stats[stat.toLowerCase()] >= 2">
             <ion-label class="ion-text-wrap">
-              <h3>{{ stat }} (Base: {{ character.stats[stat.toLowerCase()] | withPlus }})</h3>
+              <h2>{{ stat }} (Base: {{ character.stats[stat.toLowerCase()] | withPlus }})</h2>
               <p>{{ content.getStat(stat).text }}</p>
             </ion-label>
             <ion-radio slot="end" [value]="stat.toLowerCase()"></ion-radio>
@@ -151,9 +151,17 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ion-radio-group [(ngModel)]="chosenMove">
+          <ion-item *ngFor="let move of allMoves[character.archetype]"
+                    [disabled]="character.moves.includes(move)">
+            <ion-label class="ion-text-wrap">
+              <h2>{{ move }}</h2>
+              <p [innerHTML]="content.getMove(move)?.text | markdown"></p>
+            </ion-label>
+
+            <ion-radio slot="end" [value]="move"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -165,7 +173,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirmMyMove(character)">
+              <ion-button color="primary" (click)="confirmMove(character)" [disabled]="!chosenMove">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>
@@ -196,9 +204,22 @@
 
       <ion-list>
 
-        <ion-item>
-          stats
-        </ion-item>
+        <ion-radio-group [(ngModel)]="chosenMove">
+          <ng-container *ngFor="let archMoves of allMoves | keyvalue">
+            <ion-list-header [class.hidden]="archMoves.key === character.archetype">{{ archMoves.key }}</ion-list-header>
+
+            <ion-item [class.hidden]="archMoves.key === character.archetype" 
+                      *ngFor="let move of archMoves.value" 
+                      [disabled]="character.moves.includes(move)">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ move }}</h2>
+                <p [innerHTML]="content.getMove(move)?.text | markdown"></p>
+              </ion-label>
+
+              <ion-radio slot="end" [value]="move"></ion-radio>
+            </ion-item>
+          </ng-container>
+        </ion-radio-group>
 
         <ion-item lines="none">
           <ion-row class="action-row">
@@ -210,7 +231,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirmOtherMove(character)">
+              <ion-button color="primary" (click)="confirmMove(character)" [disabled]="!chosenMove">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>
@@ -360,7 +381,7 @@
         <ion-radio-group [(ngModel)]="chosenHarm">
           <ion-item *ngFor="let harm of ['Injury', 'Depletion', 'Exhaustion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
             <ion-label class="ion-text-wrap">
-              <h3>{{ harm }} (Base: {{ (character.harmBoost[harm.toLowerCase()] || 0) | withPlus }})</h3>
+              <h2>{{ harm }} (Base: {{ (character.harmBoost[harm.toLowerCase()] || 0) | withPlus }})</h2>
             </ion-label>
             <ion-radio slot="end" [value]="harm.toLowerCase()"></ion-radio>
           </ion-item>

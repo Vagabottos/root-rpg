@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { cloneDeep } from 'lodash';
-import { IContentStat } from '../../../../shared/interfaces';
-import { IContentConnection, IContentDrive, IContentFaction,
-  IContentFeat, IContentItemTag, IContentMove, IContentNature,
-  IContentSkill, IContentVagabond
-} from '../../interfaces';
+import { cloneDeep, groupBy } from 'lodash';
 
-import { IContent, content } from '../../interfaces';
+import { IContentConnection, IContentDrive, IContentFaction,
+  IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
+  IContentSkill, IContentVagabond, IContent, content
+} from '../../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -80,8 +78,20 @@ export class ContentService {
     return this.content.core.drives[name];
   }
 
+  getConnections(): string[] {
+    return Object.keys(this.content.core.connections);
+  }
+
   getConnection(name: string): IContentConnection {
     return this.content.core.connections[name];
+  }
+
+  getMovesByArchetype(): Record<string, Array<{ name: string, text: string }>> {
+    return groupBy(this.getMoves().sort(), key => this.getMove(key).archetype);
+  }
+
+  getMoves(): string[] {
+    return Object.keys(this.content.core.moves);
   }
 
   getMove(name: string): IContentMove {
@@ -94,13 +104,5 @@ export class ContentService {
 
   getSkill(name: string): IContentSkill {
     return this.content.core.skills[name];
-  }
-
-  getConnections(): string[] {
-    return Object.keys(this.content.core.connections);
-  }
-
-  getConnectionText(name: string): IContentConnection {
-    return this.content.core.connections[name];
   }
 }
