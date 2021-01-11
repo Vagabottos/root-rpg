@@ -22,9 +22,10 @@
 
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let choice of choices; let i = index" [disabled]="numSelected >= numChoices && !selected[i]">
+        <ion-item *ngFor="let choice of choices; let i = index" [disabled]="(numSelected >= numChoices && !selected[i])">
           <ion-label class="ion-text-wrap">
             <h2>{{ choice }}</h2>
+            <p *ngIf="bannedChoices.includes(choice)"><em>Warning: You already have this.</em></p>
           </ion-label>
 
           <ion-checkbox #checkbox slot="end" (ionChange)="selectItem(checkbox, i)" [checked]="selected[i]"></ion-checkbox>

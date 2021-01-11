@@ -12,6 +12,7 @@ export class ForceSelectorComponent implements OnInit {
   @Input() public message: string;
   @Input() public numChoices = 1;
   @Input() public choices: string[] = [];
+  @Input() public bannedChoices: string[] = [];
 
   public selected: boolean[] = [];
 

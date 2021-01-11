@@ -3,6 +3,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { ICharacter } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { NotificationService } from '../../services/notification.service';
 
 enum AdvancementStep {
   Choose = 'choose',
@@ -31,6 +32,7 @@ export class AdvancementComponent implements OnInit {
   public chosenSkills: string[] = [];
   public chosenFeats: string[] = [];
   public chosenMove: string;
+  public bonusSkills: string[] = [];
 
   public readonly advancementTypes = [
     { step: AdvancementStep.Stat,               name: 'Take +1 to a stat (max +2 each)',
@@ -60,6 +62,7 @@ export class AdvancementComponent implements OnInit {
   constructor(
     private alert: AlertController,
     private modal: ModalController,
+    private notification: NotificationService,
     public data: DataService,
     public content: ContentService
   ) { }
@@ -81,6 +84,7 @@ export class AdvancementComponent implements OnInit {
     this.chosenConnections = [];
     this.chosenFeats = [];
     this.chosenSkills = [];
+    this.bonusSkills = [];
   }
 
   private save() {
@@ -151,7 +155,6 @@ export class AdvancementComponent implements OnInit {
 
   async confirmMove(character: ICharacter) {
     // TODO: toolbox
-    // TODO: moves that let you choose skills (dirty fighter)
 
     const alert = await this.alert.create({
       header: 'Advance: Move',
@@ -162,6 +165,9 @@ export class AdvancementComponent implements OnInit {
           text: 'Yes, advance',
           handler: () => {
             character.moves.push(this.chosenMove);
+            if (this.bonusSkills?.length > 0) {
+              character.moveSkills.push(...this.bonusSkills);
+            }
 
             this.save();
             this.modal.dismiss();
@@ -213,6 +219,38 @@ export class AdvancementComponent implements OnInit {
     });
 
     alert.present();
+  }
+
+  async changeMove(event, character: ICharacter): Promise<void> {
+
+    const move = event.detail.value;
+
+    this.bonusSkills = [];
+
+    const moveData = this.content.getMove(move);
+    if (!moveData) { return; }
+
+    if (moveData.addSkillChoose > 0 && moveData.addSkill) {
+
+      const modal = await this.notification.loadForcedChoiceModal(
+        `Choose ${moveData.addSkillChoose} Skills`,
+        `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
+        moveData.addSkill || [],
+        moveData.addSkillChoose || 1,
+        character.moveSkills.concat(character.skills)
+      );
+
+      modal.onDidDismiss().then(({ data }) => {
+        if (!data) {
+          setTimeout(() => {
+            this.chosenMove = '';
+          }, 0);
+          return;
+        }
+
+        this.bonusSkills = data;
+      });
+    }
   }
 
   allSkills(character: ICharacter): string[] {
