@@ -79,6 +79,7 @@ export class CreateCharacterPage implements OnInit {
   public characterForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     species: new FormControl('', [Validators.required]),
+    customspecies: new FormControl(''),
     pronouns: new FormControl('', [Validators.required]),
     adjectives: new FormControl([], [Validators.required]),
     demeanor: new FormControl([], [Validators.required])
@@ -139,6 +140,9 @@ export class CreateCharacterPage implements OnInit {
     ],
     species: [
       { type: 'required', message: 'Species is required.' },
+    ],
+    customspecies: [
+      { type: 'required', message: 'Custom species is required.' },
     ],
     pronouns: [
       { type: 'required', message: 'Pronouns are required.' },
@@ -246,6 +250,21 @@ export class CreateCharacterPage implements OnInit {
 
   pickRandomName() {
     this.characterForm.get('name').setValue(sample(this.contentService.getNames()));
+  }
+
+  changeSpecies(event) {
+    const isCustom = event.detail.value === 'custom';
+    setTimeout(() => {
+      if (isCustom) {
+        this.characterForm.get('customspecies').setValidators([Validators.required]);
+        this.characterForm.get('customspecies').updateValueAndValidity();
+        return;
+      }
+
+      this.characterForm.get('customspecies').setValue('');
+      this.characterForm.get('customspecies').setValidators([]);
+      this.characterForm.get('customspecies').updateValueAndValidity();
+    }, 0);
   }
 
   private async syncFormWithStep() {
@@ -637,6 +656,7 @@ export class CreateCharacterPage implements OnInit {
     loadObject.character = loadObject.character || {};
     loadObject.character.name = loadObject.character.name || '';
     loadObject.character.species = loadObject.character.species || '';
+    loadObject.character.customspecies = loadObject.character.customspecies || '';
     loadObject.character.pronouns = loadObject.character.pronouns || '';
     loadObject.character.adjectives = loadObject.character.adjectives || [];
     loadObject.character.demeanor = loadObject.character.demeanor || [];

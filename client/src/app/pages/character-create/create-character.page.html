@@ -180,12 +180,17 @@
 
           <ion-item>
             <ion-label position="stacked">Species</ion-label>
-            <ion-select placeholder="Select Species" formControlName="species">
+            <ion-select placeholder="Select Species" formControlName="species" (ionChange)="changeSpecies($event)">
               <ion-select-option *ngFor="let species of validSpecies"
                                  [value]="species">
                 {{ species }}
               </ion-select-option>
             </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="characterForm.get('species').value === 'custom'">
+            <ion-label position="stacked">Custom Species</ion-label>
+            <ion-input type="text" formControlName="customspecies" placeholder="Enter Custom Species"></ion-input>
           </ion-item>
 
           <ion-item>
