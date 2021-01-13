@@ -114,6 +114,7 @@ export class AdvancementComponent implements OnInit {
   }
 
   back() {
+    this.closeSearch();
     this.setAdvancementStep(AdvancementStep.Choose);
 
     this.chosenStat = '';
