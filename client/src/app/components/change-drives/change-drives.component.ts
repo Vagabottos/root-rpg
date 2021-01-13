@@ -31,9 +31,9 @@ export class ChangeDrivesComponent implements OnInit, OnDestroy {
   }
 
   public get driveData() {
-    return { 
-      drives: Object.keys(this.drives).filter(x => this.drives[x]), 
-      driveTargets: this.driveTargets 
+    return {
+      drives: Object.keys(this.drives).filter(x => this.drives[x]),
+      driveTargets: this.driveTargets
     };
   }
 
