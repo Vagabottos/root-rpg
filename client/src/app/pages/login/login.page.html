@@ -6,6 +6,14 @@
     <ion-row>
       <ion-col class="login-container">
         <form [formGroup]="authForm">
+          <ion-card *ngIf="isStaging" color="warning">
+            <ion-card-content>
+              <strong>Warning:</strong> Your characters and campaigns may get edited or deleted while the app is being developed. I'll do my best to avoid deleting, but if something breaks please let me know.
+              <br><br>
+              - Seiyria#3457
+            </ion-card-content>
+          </ion-card>
+
           <ion-card>
 
             <ion-card-header>

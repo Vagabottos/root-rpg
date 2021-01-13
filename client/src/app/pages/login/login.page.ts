@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { UserAPIService } from '../../services/user.api.service';
 
 @Component({
@@ -9,6 +10,10 @@ import { UserAPIService } from '../../services/user.api.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  public get isStaging(): boolean {
+    return environment.staging;
+  }
 
   public isRegistering = false;
   public isDoing = false;
