@@ -172,7 +172,7 @@
         <ion-list *ngIf="chosenVagabond">
           <ion-item class="has-suffix">
             <ion-label position="stacked">Name</ion-label>
-            <ion-input type="text" formControlName="name" placeholder="Enter Name"></ion-input>
+            <ion-input type="text" formControlName="name" placeholder="Enter Name" maxlength="25"></ion-input>
             <ion-button slot="end" (click)="pickRandomName()">
               <ion-icon slot="icon-only" name="sync"></ion-icon>
             </ion-button>
@@ -190,7 +190,7 @@
 
           <ion-item *ngIf="characterForm.get('species').value === 'custom'">
             <ion-label position="stacked">Custom Species</ion-label>
-            <ion-input type="text" formControlName="customspecies" placeholder="Enter Custom Species"></ion-input>
+            <ion-input type="text" formControlName="customspecies" placeholder="Enter Custom Species" maxlength="25"></ion-input>
           </ion-item>
 
           <ion-item>
@@ -343,6 +343,7 @@
             <ion-item *ngIf="backgroundForm.get('backgrounds').value && backgroundForm.get('backgrounds').value[i]?.input === 'text'">
 
               <ion-input type="text"
+                         maxlength="25"
                          [(ngModel)]="backgroundForm.get('backgrounds').value[i].realText"
                          [ngModelOptions]="{ standalone: true }"
                          [placeholder]="backgroundForm.get('backgrounds').value[i]?.text"></ion-input>
@@ -457,6 +458,7 @@
             <ion-item *ngIf="doesDriveName(drive.name) && drivesForm.get('drives').value.includes(drive.name)">
               <ion-label position="stacked">Named Individual ({{ drive.name }})</ion-label>
               <ion-input type="text" 
+                         maxlength="25"
                          placeholder="Enter Name" 
                          [value]="drivesForm.get('driveTargets').value[drive.name]" 
                          (ionChange)="updateDriveTarget($event, drive.name)"></ion-input>
@@ -757,7 +759,7 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" [formControlName]="i" placeholder="Enter Player Name"></ion-input>
+              <ion-input type="text" [formControlName]="i" placeholder="Enter Player Name" maxlength="25"></ion-input>
             </ion-item>
           </ng-container>
 

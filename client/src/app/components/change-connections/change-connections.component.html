@@ -39,7 +39,7 @@
             </ion-item>
   
             <ion-item *ngIf="conn.name">
-              <ion-input type="text" [placeholder]="'Choose ' + conn.name + ' target'" [(ngModel)]="conn.target"></ion-input>
+              <ion-input type="text" [placeholder]="'Choose ' + conn.name + ' target'" [(ngModel)]="conn.target" maxlength="25"></ion-input>
             </ion-item>
           </ng-container>
         </ion-list>

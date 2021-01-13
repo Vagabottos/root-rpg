@@ -33,7 +33,7 @@
             </ion-item>
   
             <ion-item *ngIf="content.getDrive(drive.name)?.namedTarget && drives[drive.name]">
-              <ion-input type="text" [placeholder]="'Choose ' + drive.name + ' target'" [(ngModel)]="driveTargets[drive.name]"></ion-input>
+              <ion-input type="text" [placeholder]="'Choose ' + drive.name + ' target'" [(ngModel)]="driveTargets[drive.name]" maxlength="25"></ion-input>
             </ion-item>
           </ng-container>
         </ion-list>
