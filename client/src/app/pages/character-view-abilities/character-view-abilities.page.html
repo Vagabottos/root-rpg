@@ -14,7 +14,7 @@
                    color="primary"
                    showCancelButton="true"
                    debounce="300"
-                   (ionCancel)="setSearchValue(null)"
+                   (ionCancel)="closeSearch()"
                    (ionClear)="setSearchValue(null)"
                    (ionChange)="setSearchValue($event.detail.value)"
                    placeholder="Search Abilities"></ion-searchbar>
