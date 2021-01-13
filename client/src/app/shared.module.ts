@@ -17,13 +17,14 @@ import { CampaignComponent } from './components/campaign/campaign.component';
 import { ForceSelectorComponent } from './components/force-selector/force-selector.component';
 import { NumberWithPlus } from './pipes/number-with-plus';
 import { ChangeConnectionsComponent } from './components/change-connections/change-connections.component';
+import { ChangeDrivesComponent } from './components/change-drives/change-drives.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
 const components = [ItemComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
-  CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent
+  CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent
 ];
 
 @NgModule({

@@ -18,15 +18,11 @@
 <ion-content padding>
   <ng-container *ngIf="data.char$ | async as character">
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>Change Connections</ion-card-subtitle>
-      </ion-card-header>
-
+    <ion-card *ngFor="let conn of connections; let i = index">
       <ion-card-content>
 
         <ion-list>
-          <ng-container *ngFor="let conn of connections; let i = index">
+          <ng-container>
             <ion-item>
               <ion-label position="stacked">Connection {{ i + 1 }}</ion-label>
               <ion-select [(ngModel)]="conn.name" placeholder="Choose connection type">

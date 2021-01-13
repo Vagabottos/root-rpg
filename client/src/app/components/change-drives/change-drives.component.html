@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Change Drives
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(driveData)" [disabled]="!canSave">
+        Confirm
+      </ion-button>
+
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="data.char$ | async as character">
+
+    <ion-card>
+      <ion-card-content>
+
+        <ion-list>
+          <ng-container *ngFor="let drive of content.getVagabond(character.archetype).drives">
+            <ion-item [disabled]="!drives[drive.name] && !canSelectMore">
+              <ion-label class="ion-text-wrap">
+                <h2>{{ drive.name }}</h2>
+                <p>{{ content.getDrive(drive.name)?.text | markdown }}</p>
+              </ion-label>
+
+              <ion-checkbox slot="end" [(ngModel)]="drives[drive.name]"></ion-checkbox>
+            </ion-item>
+  
+            <ion-item *ngIf="content.getDrive(drive.name)?.namedTarget && drives[drive.name]">
+              <ion-input type="text" [placeholder]="'Choose ' + drive.name + ' target'" [(ngModel)]="driveTargets[drive.name]"></ion-input>
+            </ion-item>
+          </ng-container>
+        </ion-list>
+        
+      </ion-card-content>
+    </ion-card>
+    
+  </ng-container>
+</ion-content>

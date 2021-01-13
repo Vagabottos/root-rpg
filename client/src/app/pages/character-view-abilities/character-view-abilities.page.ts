@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 import { ICharacter } from '../../../interfaces';
+import { ChangeDrivesComponent } from '../../components/change-drives/change-drives.component';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -19,6 +20,7 @@ export class CharacterViewAbilitiesPage implements OnInit {
 
   constructor(
     private markdown: MarkdownPipe,
+    private modal: ModalController,
     private alert: AlertController,
     private notification: NotificationService,
     public content: ContentService,
@@ -136,6 +138,24 @@ export class CharacterViewAbilitiesPage implements OnInit {
       this.data.patchCharacter();
     });
 
+  }
+
+  async changeDrives(character: ICharacter): Promise<void> {
+    const modal = await this.modal.create({
+      component: ChangeDrivesComponent
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      const { drives, driveTargets } = data;
+      character.drives = drives;
+      character.driveTargets = driveTargets;
+
+      this.data.patchCharacter();
+    });
+
+    modal.present();
   }
 
 }
