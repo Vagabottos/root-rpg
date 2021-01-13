@@ -135,3 +135,11 @@ ion-card-title, ion-card-subtitle {
 .big-alert .alert-wrapper {
   min-width: 80%;
 }
+
+.change {
+  cursor: pointer;
+  position: absolute;
+  right: 1em;
+  top: 0.8em;
+  font-size: 20px;
+}
