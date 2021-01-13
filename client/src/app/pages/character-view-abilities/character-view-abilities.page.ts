@@ -14,6 +14,9 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class CharacterViewAbilitiesPage implements OnInit {
 
+  public isSearchOpen: boolean;
+  public searchQuery: string;
+
   constructor(
     private markdown: MarkdownPipe,
     private alert: AlertController,
@@ -23,6 +26,34 @@ export class CharacterViewAbilitiesPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  toggleSearch() {
+    if (this.isSearchOpen) {
+      this.closeSearch();
+      return;
+    }
+
+    this.openSearch();
+  }
+
+  openSearch() {
+    this.isSearchOpen = true;
+    this.searchQuery = '';
+  }
+
+  closeSearch() {
+    this.isSearchOpen = false;
+    this.searchQuery = '';
+  }
+
+  setSearchValue(value: string) {
+    this.searchQuery = value;
+  }
+
+  filterArray(arr: string[]): string[] {
+    if (!this.searchQuery || !this.isSearchOpen) { return arr; }
+    return arr.filter(s => s.toLowerCase().includes(this.searchQuery.toLowerCase()));
   }
 
   parseMarkdown(md: string): string {
