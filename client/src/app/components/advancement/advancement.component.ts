@@ -243,7 +243,7 @@ export class AdvancementComponent implements OnInit {
       const modal = await this.notification.loadForcedChoiceModal(
         `Choose ${moveData.addSkillChoose} Skills`,
         `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
-        moveData.addSkill || [],
+        moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
         moveData.addSkillChoose || 1,
         character.moveSkills.concat(character.skills)
       );

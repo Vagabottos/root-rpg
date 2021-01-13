@@ -28,7 +28,13 @@ export class NotificationService {
     await toast.present();
   }
 
-  async loadForcedChoiceModal(title: string, message: string, choices: string[], numChoices: number, bannedChoices = []): Promise<any> {
+  async loadForcedChoiceModal(
+    title: string,
+    message: string,
+    choices: Array<{ name: string, text: string }>,
+    numChoices: number,
+    bannedChoices = []
+  ): Promise<any> {
     const modal = await this.modal.create({
       component: ForceSelectorComponent,
       componentProps: {

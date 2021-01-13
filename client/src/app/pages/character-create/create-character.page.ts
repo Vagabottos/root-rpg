@@ -320,7 +320,7 @@ export class CreateCharacterPage implements OnInit {
       const modal = await this.notification.loadForcedChoiceModal(
         `Choose Faction`,
         `Choose a faction for the background question.`,
-        this.validFactions.map(x => x.name),
+        this.validFactions.map(x => ({ name: x.name, text: '' })),
         1
       );
 
@@ -436,7 +436,7 @@ export class CreateCharacterPage implements OnInit {
         const modal = await this.notification.loadForcedChoiceModal(
           `Choose ${moveData.addSkillChoose} Skills`,
           `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
-          moveData.addSkill || [],
+          moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
           moveData.addSkillChoose || 1
         );
 
