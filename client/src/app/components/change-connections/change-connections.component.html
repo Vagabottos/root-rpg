@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Change Connections
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(connections)" [disabled]="!unableToSave">
+        Confirm
+      </ion-button>
+
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="data.char$ | async as character">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Change Connections</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-list>
+          <ng-container *ngFor="let conn of connections; let i = index">
+            <ion-item>
+              <ion-label position="stacked">Connection {{ i + 1 }}</ion-label>
+              <ion-select [(ngModel)]="conn.name" placeholder="Choose connection type">
+                <ion-select-option *ngFor="let choice of content.getConnections()" [value]="choice">
+                  {{ choice }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="ion-text-wrap">
+                <p [innerHTML]="content.getConnection(conn.name)?.text | markdown"></p>
+              </ion-label>
+            </ion-item>
+  
+            <ion-item *ngIf="conn.name">
+              <ion-input type="text" [placeholder]="'Choose ' + conn.name + ' target'" [(ngModel)]="conn.target"></ion-input>
+            </ion-item>
+          </ng-container>
+        </ion-list>
+        
+      </ion-card-content>
+    </ion-card>
+    
+  </ng-container>
+</ion-content>

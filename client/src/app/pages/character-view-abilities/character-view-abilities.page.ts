@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ICharacter } from '../../../../../shared/interfaces';
+
+import { ICharacter } from '../../../interfaces';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-character-view-abilities',
@@ -12,14 +14,46 @@ import { DataService } from '../../services/data.service';
 })
 export class CharacterViewAbilitiesPage implements OnInit {
 
+  public isSearchOpen: boolean;
+  public searchQuery: string;
+
   constructor(
     private markdown: MarkdownPipe,
     private alert: AlertController,
+    private notification: NotificationService,
     public content: ContentService,
     public data: DataService
   ) { }
 
   ngOnInit() {
+  }
+
+  toggleSearch() {
+    if (this.isSearchOpen) {
+      this.closeSearch();
+      return;
+    }
+
+    this.openSearch();
+  }
+
+  openSearch() {
+    this.isSearchOpen = true;
+    this.searchQuery = '';
+  }
+
+  closeSearch() {
+    this.isSearchOpen = false;
+    this.searchQuery = '';
+  }
+
+  setSearchValue(value: string) {
+    this.searchQuery = value;
+  }
+
+  filterArray(arr: string[]): string[] {
+    if (!this.searchQuery || !this.isSearchOpen) { return arr; }
+    return arr.filter(s => s.toLowerCase().includes(this.searchQuery.toLowerCase()));
   }
 
   parseMarkdown(md: string): string {
@@ -80,6 +114,28 @@ export class CharacterViewAbilitiesPage implements OnInit {
 
   getDrives(character: ICharacter): string[] {
     return character.drives.sort();
+  }
+
+  async changeNature(character: ICharacter): Promise<void> {
+    const natures = this.content.getVagabond(character.archetype).natures
+      .map(({ name }) => ({ name, text: this.content.getNature(name)?.text }));
+
+    const modal = await this.notification.loadForcedChoiceModal(
+      `Change Nature`,
+      `Choose a new nature.`,
+      natures,
+      1
+    );
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      const { name } = data[0];
+      character.nature = name;
+
+      this.data.patchCharacter();
+    });
+
   }
 
 }

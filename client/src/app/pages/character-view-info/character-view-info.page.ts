@@ -6,6 +6,7 @@ import { ICharacter } from '../../../interfaces';
 import { AdvancementComponent } from '../../components/advancement/advancement.component';
 import { BackgroundComponent } from '../../components/background/background.component';
 import { CampaignComponent } from '../../components/campaign/campaign.component';
+import { ChangeConnectionsComponent } from '../../components/change-connections/change-connections.component';
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -165,6 +166,21 @@ export class CharacterViewInfoPage implements OnInit {
   viewConnection(connection: string) {
     const md = this.content.getConnection(connection)?.text;
     this.viewHTML(connection, md);
+  }
+
+  async changeConnections(character: ICharacter) {
+    const modal = await this.modal.create({
+      component: ChangeConnectionsComponent
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      character.connections = data;
+      this.data.patchCharacter();
+    });
+
+    modal.present();
   }
 
 }

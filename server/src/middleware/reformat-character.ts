@@ -24,7 +24,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     name: context.data.character.name,
     campaign: context.data.campaignId,
     archetype: context.data.archetype.archetype,
-    species: context.data.character.species,
+    species: context.data.character.customspecies || context.data.character.species,
     adjectives: context.data.character.adjectives,
     demeanor: context.data.character.demeanor,
     pronouns: context.data.character.pronouns,

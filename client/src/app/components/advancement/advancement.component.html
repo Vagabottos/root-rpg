@@ -1,9 +1,23 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
+    <ion-title *ngIf="!isSearchOpen">
       Advancement
     </ion-title>
+
+    <ion-searchbar *ngIf="isSearchOpen" 
+                   color="primary"
+                   showCancelButton="true"
+                   debounce="300"
+                   (ionCancel)="closeSearch()"
+                   (ionClear)="setSearchValue(null)"
+                   (ionChange)="setSearchValue($event.detail.value)"
+                   placeholder="Search Moves"></ion-searchbar>
+
     <ion-buttons slot="end">
+      <ion-button (click)="toggleSearch()" *ngIf="currentStep === Step.DifferentPlaybook">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+
       <ion-button (click)="dismiss()" *ngIf="currentStep === Step.Choose">
         Close
       </ion-button>
@@ -211,7 +225,7 @@
             </ion-list-header>
 
             <ion-item [class.hidden]="archMoves.key === character.archetype" 
-                      *ngFor="let move of archMoves.value" 
+                      *ngFor="let move of filterArray(archMoves.value)" 
                       [disabled]="character.moves.includes(move)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ move }}</h2>

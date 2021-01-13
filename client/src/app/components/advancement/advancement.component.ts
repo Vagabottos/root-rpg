@@ -62,6 +62,9 @@ export class AdvancementComponent implements OnInit {
 
   public allMoves: Record<string, any[]> = {};
 
+  public isSearchOpen: boolean;
+  public searchQuery: string;
+
   constructor(
     private alert: AlertController,
     private modal: ModalController,
@@ -75,11 +78,43 @@ export class AdvancementComponent implements OnInit {
     this.allMoves = this.content.getMovesByArchetype();
   }
 
+  toggleSearch() {
+    if (this.isSearchOpen) {
+      this.closeSearch();
+      return;
+    }
+
+    this.openSearch();
+  }
+
+  openSearch() {
+    this.isSearchOpen = true;
+    this.searchQuery = '';
+  }
+
+  closeSearch() {
+    this.isSearchOpen = false;
+    this.searchQuery = '';
+  }
+
+  setSearchValue(value: string) {
+    this.searchQuery = value;
+  }
+
+  filterArray(arr: string[]): string[] {
+    if (!this.searchQuery || !this.isSearchOpen) { return arr; }
+    return arr.filter(s => {
+      return s.toLowerCase().includes(this.searchQuery.toLowerCase())
+          || this.content.getMove(s)?.text.toLowerCase().includes(this.searchQuery.toLowerCase());
+    });
+  }
+
   setAdvancementStep(step: AdvancementStep) {
     this.currentStep = step;
   }
 
   back() {
+    this.closeSearch();
     this.setAdvancementStep(AdvancementStep.Choose);
 
     this.chosenStat = '';
@@ -243,7 +278,7 @@ export class AdvancementComponent implements OnInit {
       const modal = await this.notification.loadForcedChoiceModal(
         `Choose ${moveData.addSkillChoose} Skills`,
         `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
-        moveData.addSkill || [],
+        moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
         moveData.addSkillChoose || 1,
         character.moveSkills.concat(character.skills)
       );
