@@ -34,7 +34,7 @@ export class ForceSelectorComponent implements OnInit {
     this.selected[index] = checkbox.checked;
   }
 
-  dismiss(choices?: string[]) {
+  dismiss(choices?: Array<{ name: string, text: string }>) {
     this.modal.dismiss(choices);
   }
 
