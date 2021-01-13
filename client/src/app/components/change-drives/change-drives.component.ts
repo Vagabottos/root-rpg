@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { cloneDeep } from 'lodash';
 
-import { ICharacterConnection } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 
@@ -57,7 +56,7 @@ export class ChangeDrivesComponent implements OnInit, OnDestroy {
     this.char$?.unsubscribe();
   }
 
-  dismiss(data?: ICharacterConnection[]) {
+  dismiss(data?: any) {
     this.modal.dismiss(data);
   }
 
