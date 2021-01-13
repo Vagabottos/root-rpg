@@ -41,4 +41,8 @@ export class CharacterAPIService {
   patchCharacter(id: string, patches: jsonpatch.Operation[]): Observable<ICharacter> {
     return this.http.patch(this.api.apiUrl(`/character/${id}`), patches) as Observable<ICharacter>;
   }
+
+  deleteCharacter(id: string): Observable<any> {
+    return this.http.delete(this.api.apiUrl(`/character/${id}`));
+  }
 }

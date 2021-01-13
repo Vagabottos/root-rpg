@@ -34,20 +34,30 @@
   </div>
 
   <ion-list *ngIf="characters?.length > 0">
-    <ion-item *ngFor="let character of characters" lines="none" [routerLink]="['view', character._id]">
-      <ion-card class="character-card">
-        <ion-card-header>
-          <ion-card-title>{{ character.name }}, {{ character.archetype }}</ion-card-title>
-        </ion-card-header>
 
-        <ion-card-content>
-          <p>{{ character.species }} / {{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</p>
-          <p *ngIf="character.campaign">Part of a campaign</p>
-          <p>{{ character.nature }} Nature</p>
-          <p>Driven by {{ character.drives.join(' & ') }}</p>
-        </ion-card-content>
-      </ion-card>
+    <ion-item *ngFor="let character of characters" 
+              lines="none" 
+              class="ion-hide-md-up"
+              appLongPress="500" 
+              (release)="showDeleteActionSheet(character)"
+              [routerLink]="['view', character._id]">
+
+      <ng-container [ngTemplateOutlet]="characterCard"
+                    [ngTemplateOutletContext]="{ character: character }"></ng-container>
+
     </ion-item>
+
+
+    <ion-item *ngFor="let character of characters" 
+              lines="none" 
+              class="ion-hide-md-down"
+              [routerLink]="['view', character._id]">
+
+      <ng-container [ngTemplateOutlet]="characterCard"
+                    [ngTemplateOutletContext]="{ character: character, big: true }"></ng-container>
+
+    </ion-item>
+
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="loadMoreCharacters($event)">
@@ -57,3 +67,24 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+
+<ng-template #characterCard let-character="character" let-big="big">
+
+  <ion-card class="character-card">
+    <ion-card-header>
+      <ion-card-title>{{ character.name }}, {{ character.archetype }}</ion-card-title>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, character)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ character.species }} / {{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</p>
+      <p *ngIf="character.campaign">Part of a campaign</p>
+      <p>{{ character.nature }} Nature</p>
+      <p>Driven by {{ character.drives.join(' & ') }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>

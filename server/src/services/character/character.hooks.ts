@@ -1,4 +1,5 @@
 import * as authentication from '@feathersjs/authentication';
+import { blockDeleteWithCampaign } from '../../middleware/block-character-delete';
 import { fixObjectId } from '../../middleware/convert-id';
 import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
 import { attachOwner, validateOwner } from '../../middleware/owner';
@@ -15,7 +16,7 @@ export default {
     create: [reformatCharacter, attachOwner, attachCreatedAt, attachUpdatedAt],
     update: [validateOwner, attachUpdatedAt],
     patch: [validateOwner, attachUpdatedAt],
-    remove: [validateOwner]
+    remove: [validateOwner, blockDeleteWithCampaign]
   },
 
   after: {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionSheetController, AlertController, PopoverController } from '@ionic/angular';
 import { ICharacter } from '../../../interfaces';
+import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { CharacterAPIService } from '../../services/character.api.service';
 
 @Component({
@@ -13,7 +15,12 @@ export class DashboardCharactersPage implements OnInit {
 
   private page = 0;
 
-  constructor(private characterAPI: CharacterAPIService) { }
+  constructor(
+    private alert: AlertController,
+    private popover: PopoverController,
+    private actionSheet: ActionSheetController,
+    private characterAPI: CharacterAPIService
+  ) { }
 
   ngOnInit() {
     this.loadCharacters(0);
@@ -40,6 +47,66 @@ export class DashboardCharactersPage implements OnInit {
   loadMoreCharacters($event) {
     this.page += 1;
     this.loadCharacters(this.page, $event);
+  }
+
+  async showDeleteActionSheet(char: ICharacter) {
+    const actionSheet = await this.actionSheet.create({
+      header: 'Actions',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.attemptDeleteCharacter(char);
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
+
+  async showDeletePopover(event, char: ICharacter) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const popover = await this.popover.create({
+      component: EditDeletePopoverComponent,
+      componentProps: { showEdit: false },
+      event
+    });
+
+    popover.onDidDismiss().then((res) => {
+      const resAct = res.data;
+      if (!resAct) { return; }
+
+      if (resAct === 'delete') {
+        this.attemptDeleteCharacter(char);
+      }
+    });
+
+    popover.present();
+  }
+
+  async attemptDeleteCharacter(char: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Delete Character',
+      message: `Are you sure you want to delete the character ${char.name}, ${char.archetype}? This is permanent and not reversible!`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, delete',
+          handler: () => {
+            this.characterAPI.deleteCharacter(char._id).subscribe(() => {
+              this.characters = this.characters.filter(c => c._id !== char._id);
+            });
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }
