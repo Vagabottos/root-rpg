@@ -62,6 +62,9 @@ export class AdvancementComponent implements OnInit {
 
   public allMoves: Record<string, any[]> = {};
 
+  public isSearchOpen: boolean;
+  public searchQuery: string;
+
   constructor(
     private alert: AlertController,
     private modal: ModalController,
@@ -73,6 +76,37 @@ export class AdvancementComponent implements OnInit {
 
   ngOnInit() {
     this.allMoves = this.content.getMovesByArchetype();
+  }
+
+  toggleSearch() {
+    if (this.isSearchOpen) {
+      this.closeSearch();
+      return;
+    }
+
+    this.openSearch();
+  }
+
+  openSearch() {
+    this.isSearchOpen = true;
+    this.searchQuery = '';
+  }
+
+  closeSearch() {
+    this.isSearchOpen = false;
+    this.searchQuery = '';
+  }
+
+  setSearchValue(value: string) {
+    this.searchQuery = value;
+  }
+
+  filterArray(arr: string[]): string[] {
+    if (!this.searchQuery || !this.isSearchOpen) { return arr; }
+    return arr.filter(s => {
+      return s.toLowerCase().includes(this.searchQuery.toLowerCase())
+          || this.content.getMove(s)?.text.toLowerCase().includes(this.searchQuery.toLowerCase());
+    });
   }
 
   setAdvancementStep(step: AdvancementStep) {
