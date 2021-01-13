@@ -48,7 +48,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="loadMoreCampaigns($event)">
+  <ion-infinite-scroll (ionInfinite)="loadMoreCampaigns($event)" *ngIf="campaigns?.length !== 0">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more campaigns...">
