@@ -1,4 +1,5 @@
 import * as authentication from '@feathersjs/authentication';
+import { cleanCampaign } from '../../middleware/clean-campaign';
 import { fixObjectId } from '../../middleware/convert-id';
 import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
 import { disallow } from '../../middleware/disallow';
@@ -15,7 +16,7 @@ export default {
     get: [fixObjectId],
     create: [attachOwner, attachCreatedAt, attachUpdatedAt],
     update: [disallow],
-    patch: [validateOwner, stripUneditableProps, attachUpdatedAt],
+    patch: [validateOwner, stripUneditableProps, cleanCampaign, attachUpdatedAt],
     remove: [validateOwner]
   },
 
