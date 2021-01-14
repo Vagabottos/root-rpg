@@ -36,32 +36,51 @@
           </ion-col>
         </ion-row>
       </ion-list-header>
+    </ion-list>
 
-      <ion-item *ngFor="let item of character.items; let i = index" class="ion-hide-md-up">
-        <app-item [item]="item" 
+    <ion-list class="ion-hide-md-up">
+
+      <ion-item *ngFor="let item of character.items; let i = index">
+        <app-item [item]="item"
                   appSwipe
-                  (swipeLeft)="wear(item, -1)" 
-                  (swipeRight)="wear(item, 1)" 
+                  (swipeLeft)="wear(item, -1)"
+                  (swipeRight)="wear(item, 1)"
                   appLongPress="500"
                   (release)="itemOptions(character, item, i)"></app-item>
       </ion-item>
-
-      <ion-item *ngFor="let item of character.items; let i = index" class="ion-hide-md-down">
-        <app-item [item]="item"></app-item>
-
-        <ion-button slot="end" color="secondary" (click)="wear(item, -1)" [disabled]="item.wearUsed <= 0">
-          <ion-icon slot="icon-only" name="remove"></ion-icon>
-        </ion-button>
-
-        <ion-button slot="end" color="secondary" (click)="wear(item, 1)" [disabled]="item.wearUsed >= item.wear">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-        </ion-button>
-        
-        <ion-button slot="end" fill="clear" (click)="showItemEditPopover(character, item, i, $event)">
-          <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-        </ion-button>
-      </ion-item>
-
     </ion-list>
+
+    <ion-row>
+
+      <ion-col *ngFor="let item of character.items; let i = index" class="ion-hide-md-down" size-lg="6" size-xl="6">
+
+        <ion-card class="item-card">
+
+          <ion-row>
+            <ion-col>
+              <app-item [item]="item"></app-item>
+            </ion-col>
+
+            <ion-col class="actions">
+
+              <ion-button color="secondary" (click)="wear(item, -1)" [disabled]="item.wearUsed <= 0">
+                <ion-icon slot="icon-only" name="remove"></ion-icon>
+              </ion-button>
+
+              <ion-button color="secondary" (click)="wear(item, 1)" [disabled]="item.wearUsed >= item.wear">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+              </ion-button>
+
+              <ion-button fill="clear" (click)="showItemEditPopover(character, item, i, $event)">
+                <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+              </ion-button>
+
+            </ion-col>
+          </ion-row>
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
   </ng-container>
 </ion-content>

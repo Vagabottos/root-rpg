@@ -33,8 +33,8 @@
     You have no campaigns.
   </div>
 
-  <ion-list *ngIf="campaigns?.length > 0">
-    <ion-item *ngFor="let campaign of campaigns" lines="none" [routerLink]="['view', campaign._id]">
+  <ion-row *ngIf="campaigns?.length > 0">
+    <ion-col *ngFor="let campaign of campaigns" lines="none" [routerLink]="['view', campaign._id]" size-xs="12" size-md="6" size-lg="6" size-xl="3">
       <ion-card class="campaign-card">
         <ion-card-header>
           <ion-card-title>{{ campaign.name }}</ion-card-title>
@@ -45,8 +45,8 @@
 
         </ion-card-content>
       </ion-card>
-    </ion-item>
-  </ion-list>
+    </ion-col>
+  </ion-row>
 
   <ion-infinite-scroll (ionInfinite)="loadMoreCampaigns($event)" [class.hidden]="campaigns?.length === 0">
     <ion-infinite-scroll-content

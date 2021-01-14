@@ -23,7 +23,7 @@ export class CharacterAPIService {
   }
 
   getCharacters(page = 0): Observable<ITableData<ICharacter>> {
-    const limit = 10;
+    const limit = 20;
 
     const params = new HttpParams()
       .set('owner', this.userAPI.userId)

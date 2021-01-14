@@ -22,7 +22,7 @@
   </ion-header>
 
   <ion-row>
-    <ion-col>
+    <ion-col size="12" size-lg="8" offset-lg="2" size-xl="6" offset-xl="3">
       <div class="character-container">
         <ng-container [ngSwitch]="currentStep">
           <ng-container [ngTemplateOutlet]="campaigncode" *ngSwitchCase="Step.CampaignOrNo"></ng-container>
@@ -43,7 +43,7 @@
     </ion-col>
   </ion-row>
 </ion-content>
-    
+
 <ng-template #campaigncode>
   <form [formGroup]="campaignForm">
     <ion-card>
@@ -88,7 +88,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -146,7 +146,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -241,7 +241,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -293,7 +293,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -321,7 +321,7 @@
             <ion-item>
               <ion-label position="stacked" class="ion-text-wrap spaced-label">{{ qa.question }}</ion-label>
 
-              <ion-select placeholder="Select Answer" 
+              <ion-select placeholder="Select Answer"
                           [formControlName]="i"
                           [compareWith]="compareAnswer"
                           (ionChange)="changeAnswer($event, qa, i)"
@@ -368,7 +368,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -420,7 +420,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -450,17 +450,17 @@
                 <h2>{{ drive.name }}</h2>
                 <p>{{ getDriveDesc(drive.name) }}</p>
               </ion-label>
-              <ion-checkbox slot="end" 
-                            (ionChange)="selectDrive(drive.name)" 
+              <ion-checkbox slot="end"
+                            (ionChange)="selectDrive(drive.name)"
                             [checked]="drivesForm.get('drives').value.includes(drive.name)"></ion-checkbox>
             </ion-item>
 
             <ion-item *ngIf="doesDriveName(drive.name) && drivesForm.get('drives').value.includes(drive.name)">
               <ion-label position="stacked">Named Individual ({{ drive.name }})</ion-label>
-              <ion-input type="text" 
+              <ion-input type="text"
                          maxlength="25"
-                         placeholder="Enter Name" 
-                         [value]="drivesForm.get('driveTargets').value[drive.name]" 
+                         placeholder="Enter Name"
+                         [value]="drivesForm.get('driveTargets').value[drive.name]"
                          (ionChange)="updateDriveTarget($event, drive.name)"></ion-input>
             </ion-item>
           </ng-container>
@@ -483,7 +483,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -513,9 +513,9 @@
                 <h2>{{ move.name }}</h2>
                 <p [innerHTML]="getMoveDesc(move.name) | markdown"></p>
               </ion-label>
-              <ion-checkbox slot="end" 
+              <ion-checkbox slot="end"
                             #checkbox
-                            (ionChange)="selectMove(move.name, checkbox)" 
+                            (ionChange)="selectMove(move.name, checkbox)"
                             [checked]="movesForm.get('moves').value.includes(move.name)"></ion-checkbox>
             </ion-item>
           </ng-container>
@@ -538,7 +538,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -568,14 +568,14 @@
 
         <ion-list *ngIf="chosenVagabond">
           <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
-            <ion-item *ngFor="let feat of contentService.getFeats()" 
+            <ion-item *ngFor="let feat of contentService.getFeats()"
                       [disabled]="(featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)) || getBonusFeats().includes(feat)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ feat }}</h2>
                 <p>{{ getFeatDesc(feat) }}</p>
               </ion-label>
-              <ion-checkbox slot="end" 
-                            (ionChange)="selectFeat(feat)" 
+              <ion-checkbox slot="end"
+                            (ionChange)="selectFeat(feat)"
                             [checked]="featsForm.get('feats').value.includes(feat)"></ion-checkbox>
             </ion-item>
           </ng-container>
@@ -586,7 +586,7 @@
                 <h2>{{ feat }}</h2>
                 <p>{{ getFeatDesc(feat) }}</p>
               </ion-label>
-              <ion-checkbox slot="end" 
+              <ion-checkbox slot="end"
                             [disabled]="true"
                             [checked]="true"></ion-checkbox>
             </ion-item>
@@ -610,7 +610,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -634,14 +634,14 @@
       <ion-card-content>
 
         <ion-list *ngIf="chosenVagabond">
-          <ion-item *ngFor="let skill of chosenVagabond.skills" 
+          <ion-item *ngFor="let skill of chosenVagabond.skills"
                     [disabled]="(skillsForm.get('skills').value.length >= chosenVagabond.numSkills && !skillsForm.get('skills').value.includes(skill.name)) || getBonusSkills().includes(skill.name) || skillsForm.get('bonusSkills').value.includes(skill.name)">
             <ion-label class="ion-text-wrap">
               <h2>{{ skill.name }}</h2>
               <p [innerHTML]="getSkillDesc(skill.name) | markdown"></p>
             </ion-label>
-            <ion-checkbox slot="end" 
-                          (ionChange)="selectSkill(skill.name)" 
+            <ion-checkbox slot="end"
+                          (ionChange)="selectSkill(skill.name)"
                           [checked]="skillsForm.get('skills').value.includes(skill.name) || getBonusSkills().includes(skill.name)"></ion-checkbox>
           </ion-item>
 
@@ -663,7 +663,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -725,7 +725,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -781,7 +781,7 @@
             </ion-row>
           </ion-item>
         </ion-list>
-        
+
       </ion-card-content>
 
     </ion-card>
@@ -831,7 +831,7 @@
     <ion-card-content>
       <ion-row *ngIf="chosenVagabond">
         <ion-col *ngFor="let stat of chosenVagabond.stats | keyvalue" size="3" size-xs="6">
-          <span class="stat-name"><strong>{{ getStatName(stat.key) }}</strong>:</span> 
+          <span class="stat-name"><strong>{{ getStatName(stat.key) }}</strong>:</span>
           <span>{{ getTotalStat(stat.key) | withPlus }}</span>
           <span *ngIf="stat.key === bonusForm.get('stat').value"> (Bonus)</span>
         </ion-col>
@@ -889,7 +889,7 @@
     <ion-card-content>
       <ion-row *ngFor="let drive of drivesForm.get('drives').value">
         <ion-col>
-          <strong>{{ drive }}<span *ngIf="drivesForm.get('driveTargets').value[drive] as target"> ({{ target }})</span></strong>: 
+          <strong>{{ drive }}<span *ngIf="drivesForm.get('driveTargets').value[drive] as target"> ({{ target }})</span></strong>:
           <span [innerHTML]="getDriveDesc(drive) | markdown"></span>
         </ion-col>
       </ion-row>
@@ -903,11 +903,11 @@
         <ion-icon slot="icon-only" name="create"></ion-icon>
       </ion-button>
     </ion-card-header>
-    
+
     <ion-card-content>
       <ion-row *ngFor="let move of movesForm.get('moves').value">
         <ion-col>
-          <strong>{{ move }}</strong>: 
+          <strong>{{ move }}</strong>:
           <span [innerHTML]="getMoveDesc(move) | markdown"></span>
         </ion-col>
       </ion-row>
@@ -927,16 +927,16 @@
         <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
           <ion-row *ngFor="let feat of getBonusFeatsAndFormData()">
             <ion-col>
-              <strong>{{ feat }}</strong>: 
+              <strong>{{ feat }}</strong>:
               <span [innerHTML]="getFeatDesc(feat) | markdown"></span>
             </ion-col>
           </ion-row>
         </ng-container>
-  
+
         <ng-container *ngIf="!chosenVagabond.chooseFeats">
           <ion-row *ngFor="let feat of getAllFeats()">
             <ion-col>
-              <strong>{{ feat }}</strong>: 
+              <strong>{{ feat }}</strong>:
               <span [innerHTML]="getFeatDesc(feat) | markdown"></span>
             </ion-col>
           </ion-row>
@@ -956,7 +956,7 @@
     <ion-card-content>
       <ion-row *ngFor="let skill of getBonusSkillsAndFormData()">
         <ion-col>
-          <strong>{{ skill }}</strong>: 
+          <strong>{{ skill }}</strong>:
           <span [innerHTML]="getSkillDesc(skill) | markdown"></span>
         </ion-col>
       </ion-row>
@@ -996,7 +996,7 @@
       <ng-container *ngIf="chosenVagabond">
         <ion-row *ngFor="let conn of connectionsForm.get('connections').value; let i = index">
           <ion-col>
-            <strong>{{ chosenVagabond.connections[i].name }} ({{ conn }})</strong>: 
+            <strong>{{ chosenVagabond.connections[i].name }} ({{ conn }})</strong>:
             <span [innerHTML]="getConnectionDesc(chosenVagabond.connections[i].name) | markdown"></span>
           </ion-col>
         </ion-row>
@@ -1038,7 +1038,7 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>

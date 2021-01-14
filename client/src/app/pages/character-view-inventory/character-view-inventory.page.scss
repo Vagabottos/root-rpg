@@ -9,3 +9,12 @@
     }
   }
 }
+
+.item-card {
+  padding: 1em;
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

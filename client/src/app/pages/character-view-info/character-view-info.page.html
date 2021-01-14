@@ -30,99 +30,119 @@
 
 <ion-content>
   <ng-container *ngIf="data.char$ | async as character">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ character.archetype }}</ion-card-title>
-        <ion-card-subtitle>{{ character.species }} / {{ character.pronouns }}</ion-card-subtitle>
-        <ion-card-subtitle>{{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</ion-card-subtitle>
-      </ion-card-header>
+    <ion-row>
+      <ion-col size="12" size-lg="6">
 
-      <ion-card-content>
-        <ion-row>
-          <ion-col class="stat" *ngFor="let stat of content.getStats()">
-            <div class="stat-name">
-              {{ stat }}
-            </div>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ character.archetype }}</ion-card-title>
+            <ion-card-subtitle>{{ character.species }} / {{ character.pronouns }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</ion-card-subtitle>
+          </ion-card-header>
 
-            <div class="stat-value">
-              {{ getStatTotal(character, stat.toLowerCase()) | withPlus }}
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Harm</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
-          <ion-col class="harm-label" (click)="adjustHarm(character, harm, 0)">{{ harm }}</ion-col>
-          <ion-col class="harm-box" 
-                   *ngFor="let i of harmMax(character)" 
-                   (click)="adjustHarm(character, harm.toLowerCase(), i + 1)">
-            <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
-                      *ngIf="i < harmCount(character, harm.toLowerCase())"></ion-icon>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Reputation</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-row *ngFor="let faction of content.getFactions()" class="reputation-row">
-          <ion-col class="reputation-label">{{ faction.name }}</ion-col>
-          <ion-col class="reputation-box">
+          <ion-card-content>
             <ion-row>
-              <ion-col class="notoriety-level" (click)="lowerNotoriety(character, faction.name)">
-                -1
-              </ion-col>
-  
-              <ion-col class="notoriety-track">
-                <ion-icon *ngFor="let i of [0, 1, 2]"
-                          (click)="setNotoriety(character, faction.name, i + 1)"
-                          [name]="getNotoriety(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-              </ion-col>
-  
-              <ion-col class="current-level">
-                {{ (character.reputation[faction.name].total || 0) | withPlus }}
-              </ion-col>
-  
-              <ion-col class="prestige-track">
-                <ion-icon *ngFor="let i of [0, 1, 2, 3, 4]"
-                          (click)="setPrestige(character, faction.name, i + 1)"
-                          [name]="getPrestige(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-              </ion-col>
-  
-              <ion-col class="prestige-level" (click)="increasePrestige(character, faction.name)">
-                +1
+              <ion-col class="stat" *ngFor="let stat of content.getStats()">
+                <div class="stat-name">
+                  {{ stat }}
+                </div>
+
+                <div class="stat-value">
+                  {{ getStatTotal(character, stat.toLowerCase()) | withPlus }}
+                </div>
               </ion-col>
             </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
+          </ion-card-content>
+        </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Connections</ion-card-title>
-        <ion-icon class="change" name="reload" (click)="changeConnections(character)"></ion-icon>
-      </ion-card-header>
+      </ion-col>
 
-      <ion-card-content>
-        <ion-list>
-          <ion-item *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
-            {{ connection.name }} ({{ connection.target }})
-          </ion-item>
-        </ion-list>
-      </ion-card-content>
-    </ion-card>
+      <ion-col size="12" size-lg="6">
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Harm</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
+              <ion-col class="harm-label" (click)="adjustHarm(character, harm, 0)">{{ harm }}</ion-col>
+              <ion-col class="harm-box"
+                       *ngFor="let i of harmMax(character)"
+                       (click)="adjustHarm(character, harm.toLowerCase(), i + 1)">
+                <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
+                          *ngIf="i < harmCount(character, harm.toLowerCase())"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-lg="6">
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Reputation</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row *ngFor="let faction of content.getFactions()" class="reputation-row">
+              <ion-col class="reputation-label">{{ faction.name }}</ion-col>
+              <ion-col class="reputation-box">
+                <ion-row>
+                  <ion-col class="notoriety-level" (click)="lowerNotoriety(character, faction.name)">
+                    -1
+                  </ion-col>
+
+                  <ion-col class="notoriety-track">
+                    <ion-icon *ngFor="let i of [0, 1, 2]"
+                              (click)="setNotoriety(character, faction.name, i + 1)"
+                              [name]="getNotoriety(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+                  </ion-col>
+
+                  <ion-col class="current-level">
+                    {{ (character.reputation[faction.name].total || 0) | withPlus }}
+                  </ion-col>
+
+                  <ion-col class="prestige-track">
+                    <ion-icon *ngFor="let i of [0, 1, 2, 3, 4]"
+                              (click)="setPrestige(character, faction.name, i + 1)"
+                              [name]="getPrestige(character, faction.name) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+                  </ion-col>
+
+                  <ion-col class="prestige-level" (click)="increasePrestige(character, faction.name)">
+                    +1
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+
+      <ion-col size="12" size-lg="6">
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Connections</ion-card-title>
+            <ion-icon class="change" name="reload" (click)="changeConnections(character)"></ion-icon>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
+                {{ connection.name }} ({{ connection.target }})
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
 
   </ng-container>
 </ion-content>
