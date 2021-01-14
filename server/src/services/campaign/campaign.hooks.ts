@@ -1,7 +1,9 @@
 import * as authentication from '@feathersjs/authentication';
 import { fixObjectId } from '../../middleware/convert-id';
 import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
+import { disallow } from '../../middleware/disallow';
 import { attachOwner, validateOwner } from '../../middleware/owner';
+import { stripUneditableProps } from '../../middleware/strip-uneditable-props';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -12,8 +14,8 @@ export default {
     find: [fixObjectId],
     get: [fixObjectId],
     create: [attachOwner, attachCreatedAt, attachUpdatedAt],
-    update: [validateOwner, attachUpdatedAt],
-    patch: [validateOwner, attachUpdatedAt],
+    update: [disallow],
+    patch: [validateOwner, stripUneditableProps, attachUpdatedAt],
     remove: [validateOwner]
   },
 

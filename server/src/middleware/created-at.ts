@@ -8,16 +8,7 @@ export async function attachCreatedAt(context: HookContext): Promise<HookContext
 }
 
 export async function attachUpdatedAt(context: HookContext): Promise<HookContext> {
-  if(context.method === 'patch') {
-    context.data.push({
-      op: 'replace',
-      path: '/updatedAt',
-      value: Date.now()
-    });
-
-  } else {
-    context.data.updatedAt = Date.now();
-  }
+  context.data.updatedAt = Date.now();
 
   return context;
 }

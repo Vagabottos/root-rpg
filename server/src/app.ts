@@ -10,7 +10,6 @@ import socketio from '@feathersjs/socketio';
 
 import { Application } from './declarations';
 import logger from './logger';
-import middleware from './middleware';
 import services from './services';
 import appHooks from './app.hooks';
 import channels from './channels';
@@ -40,7 +39,6 @@ app.configure(socketio());
 app.configure(mongodb);
 
 // Configure other middleware (see `middleware/index.ts`)
-app.configure(middleware);
 app.configure(authentication);
 
 // Set up our services (see `services/index.ts`)

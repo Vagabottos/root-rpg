@@ -51,7 +51,8 @@ export class DataService {
     const patches = this.getCharacterDiff();
     if (patches.length === 0 || !id) { return; }
 
-    this.characterAPI.patchCharacter(id, patches).subscribe(() => {});
+    const patched = jsonpatch.applyPatch(this.char.getValue(), patches, false, false, true).newDocument;
+    this.characterAPI.patchCharacter(id, patched).subscribe(() => {});
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
@@ -75,6 +76,7 @@ export class DataService {
     const patches = this.getCampaignDiff();
     if (patches.length === 0 || !id) { return; }
 
-    this.campaignAPI.patchCampaign(id, patches).subscribe(() => {});
+    const patched = jsonpatch.applyPatch(this.campaign.getValue(), patches, false, false, true).newDocument;
+    this.campaignAPI.patchCampaign(id, patched).subscribe(() => {});
   }
 }

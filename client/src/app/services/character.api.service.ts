@@ -38,8 +38,8 @@ export class CharacterAPIService {
     return this.http.get(this.api.apiUrl(`/character/${id}`)) as Observable<ICharacter>;
   }
 
-  patchCharacter(id: string, patches: jsonpatch.Operation[]): Observable<ICharacter> {
-    return this.http.patch(this.api.apiUrl(`/character/${id}`), patches) as Observable<ICharacter>;
+  patchCharacter(id: string, char: Partial<ICharacter>): Observable<ICharacter> {
+    return this.http.patch(this.api.apiUrl(`/character/${id}`), char) as Observable<ICharacter>;
   }
 
   deleteCharacter(id: string): Observable<any> {
