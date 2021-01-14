@@ -60,7 +60,7 @@
 
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="loadMoreCharacters($event)" *ngIf="characters?.length !== 0">
+  <ion-infinite-scroll (ionInfinite)="loadMoreCharacters($event)" [class.hidden]="characters?.length === 0">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more characters...">
