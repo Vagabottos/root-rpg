@@ -51,6 +51,7 @@ export interface IClearingVisitedEvent {
 
 export interface ICampaign {
   name: string;
+  locked: boolean;
   factions: string[];
 
   clearings: Record<string, IClearing>;

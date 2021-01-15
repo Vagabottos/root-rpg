@@ -7,6 +7,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
 
   const newCampaign: ICampaign = {
     name: context.data.name,
+    locked: false,
     factions: [
       'Denizens',
       'The Marquisate',
