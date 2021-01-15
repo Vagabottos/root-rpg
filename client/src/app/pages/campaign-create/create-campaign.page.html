@@ -16,7 +16,7 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="dashboard/campaigns"></ion-back-button>
       </ion-buttons>
-      
+
       <ion-title size="large">Create Campaign</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -32,13 +32,13 @@
                 Create New Campaign
               </ion-card-title>
             </ion-card-header>
-    
+
             <ion-card-content>
 
               <ion-list>
                 <ion-item>
                   <ion-label position="stacked">Campaign Name</ion-label>
-                  <ion-input type="text" formControlName="campaignName"></ion-input>
+                  <ion-input type="text" formControlName="campaignName" maxlength="25"></ion-input>
                 </ion-item>
 
                 <div class="validation-errors">
@@ -63,7 +63,7 @@
                   </ion-row>
                 </ion-item>
               </ion-list>
-              
+
             </ion-card-content>
 
           </ion-card>
