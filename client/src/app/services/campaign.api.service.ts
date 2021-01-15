@@ -18,7 +18,7 @@ export class CampaignAPIService {
     private http: HttpClient
   ) { }
 
-  createCampaign(opts: ICampaign): Observable<ICampaign> {
+  createCampaign(opts: Partial<ICampaign>): Observable<ICampaign> {
     return this.http.post(this.api.apiUrl('/campaign'), opts) as Observable<ICampaign>;
   }
 

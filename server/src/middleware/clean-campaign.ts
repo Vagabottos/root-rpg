@@ -16,5 +16,9 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
     campaign.name = clean(campaign.name || 'Name');
   }
 
+  if(campaign.factions) {
+    campaign.factions = campaign.factions.map(f => clean(f));
+  }
+
   return context;
 }
