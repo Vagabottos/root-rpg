@@ -34,18 +34,32 @@
   </div>
 
   <ion-row *ngIf="campaigns?.length > 0">
-    <ion-col *ngFor="let campaign of campaigns" lines="none" [routerLink]="['view', campaign._id]" size-xs="12" size-md="6" size-lg="6" size-xl="3">
-      <ion-card class="campaign-card">
-        <ion-card-header>
-          <ion-card-title>{{ campaign.name }}</ion-card-title>
-          <ion-card-subtitle>Last updated {{ campaign.updatedAt | date:'medium' }}</ion-card-subtitle>
-        </ion-card-header>
 
-        <ion-card-content>
+    <ion-col *ngFor="let campaign of campaigns"
+             size-xs="12" size-md="6" size-lg="6" size-xl="3"
+             lines="none"
+             class="ion-hide-md-up"
+             appLongPress="500"
+             (release)="showDeleteActionSheet(campaign)"
+             [routerLink]="['view', campaign._id]">
 
-        </ion-card-content>
-      </ion-card>
+      <ng-container [ngTemplateOutlet]="campaignCard"
+                    [ngTemplateOutletContext]="{ campaign: campaign }"></ng-container>
+
     </ion-col>
+
+
+    <ion-col *ngFor="let campaign of campaigns"
+             size-xs="12" size-md="6" size-lg="6" size-xl="3"
+             lines="none"
+             class="ion-hide-md-down"
+             [routerLink]="['view', campaign._id]">
+
+      <ng-container [ngTemplateOutlet]="campaignCard"
+                    [ngTemplateOutletContext]="{ campaign: campaign, big: true }"></ng-container>
+
+    </ion-col>
+
   </ion-row>
 
   <ion-infinite-scroll (ionInfinite)="loadMoreCampaigns($event)" [class.hidden]="campaigns?.length === 0">
@@ -56,3 +70,20 @@
   </ion-infinite-scroll>
 
 </ion-content>
+
+<ng-template #campaignCard let-campaign="campaign" let-big="big">
+
+  <ion-card class="campaign-card">
+    <ion-card-header>
+      <ion-card-title>{{ campaign.name }}</ion-card-title>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>
