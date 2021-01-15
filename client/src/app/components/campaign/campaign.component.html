@@ -12,9 +12,65 @@
 </ion-header>
 
 <ion-content padding>
-  <ng-container *ngIf="data.char$ | async as character">
-    <div class="blank-slate">
-      Character campaign join/leave in this area is not ready yet.
-    </div>
-  </ng-container>
+
+  <ion-card *ngIf="!character.campaign">
+
+    <ion-card-header>
+      <ion-card-title>
+        Join Campaign
+      </ion-card-title>
+
+      <ion-card-subtitle>
+        Joining a campaign will let the GM interact with and view your character more directly, as well as integrate factions and other critical information with your character.
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Campaign ID</ion-label>
+          <ion-input type="text" [(ngModel)]="joinCampaignId" maxlength="24"></ion-input>
+        </ion-item>
+
+        <div class="validation-errors" *ngIf="joinCampaignError">
+          That campaign could not be joined. It either doesn't exist or is locked.
+        </div>
+
+        <ion-item lines="none">
+          <ion-row class="action-row">
+            <ion-col>
+            </ion-col>
+
+            <ion-col class="ion-text-right">
+              <ion-button color="primary" (click)="tryJoinCampaign(character)" [disabled]="joinCampaignId?.length !== 24">
+                Join Campaign
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-card *ngIf="campaign">
+
+    <ion-card-header>
+      <ion-card-title>
+        {{ campaign.name }}
+      </ion-card-title>
+
+      <ion-card-content>
+        <ion-button color="primary" (click)="leaveCampaign(character)">
+          Leave Campaign
+        </ion-button>
+
+        {{ campaign | json }}
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+
 </ion-content>

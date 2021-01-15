@@ -54,7 +54,7 @@ export class CharacterViewInfoPage implements OnInit {
   }
 
   private save(): void {
-    this.data.patchCharacter();
+    this.data.patchCharacter().subscribe(() => {});
   }
 
   // reputation functions
@@ -177,7 +177,7 @@ export class CharacterViewInfoPage implements OnInit {
       if (!data) { return; }
 
       character.connections = data;
-      this.data.patchCharacter();
+      this.save();
     });
 
     modal.present();

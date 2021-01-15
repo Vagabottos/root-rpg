@@ -39,8 +39,8 @@ export class CampaignAPIService {
     return this.http.get(this.api.apiUrl(`/campaign/${id}`)) as Observable<ICampaign>;
   }
 
-  patchCampaign(id: string, patched: Partial<ICampaign>): Observable<ICampaign> {
-    return this.http.patch(this.api.apiUrl(`/campaign/${id}`), patched) as Observable<ICampaign>;
+  patchCampaign(id: string, campaign: Partial<ICampaign>): Observable<ICampaign> {
+    return this.http.patch(this.api.apiUrl(`/campaign/${id}`), campaign) as Observable<ICampaign>;
   }
 
   deleteCampaign(id: string): Observable<any> {

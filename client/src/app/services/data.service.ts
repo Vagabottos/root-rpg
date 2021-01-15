@@ -46,13 +46,18 @@ export class DataService {
     return jsonpatch.generate(this.charObs);
   }
 
-  public patchCharacter(): void {
-    const id = this.char.getValue()?._id;
+  public patchCharacter() {
+    const baseChar = this.char.getValue();
+    const id = baseChar?._id;
     const patches = this.getCharacterDiff();
     if (patches.length === 0 || !id) { return; }
 
-    const patched = jsonpatch.applyPatch(this.char.getValue(), patches, false, false, true).newDocument;
-    this.characterAPI.patchCharacter(id, patched).subscribe(() => {});
+    const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {
+      prev[cur[0]] = baseChar[cur[0]];
+      return prev;
+    }, {});
+
+    return this.characterAPI.patchCharacter(id, patchObj);
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
@@ -71,12 +76,17 @@ export class DataService {
     return jsonpatch.generate(this.campaignObs);
   }
 
-  public patchCampaign(): void {
-    const id = this.campaign.getValue()?._id;
+  public patchCampaign() {
+    const baseCamp = this.campaign.getValue();
+    const id = baseCamp?._id;
     const patches = this.getCampaignDiff();
     if (patches.length === 0 || !id) { return; }
 
-    const patched = jsonpatch.applyPatch(this.campaign.getValue(), patches, false, false, true).newDocument;
-    this.campaignAPI.patchCampaign(id, patched).subscribe(() => {});
+    const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {
+      prev[cur[0]] = baseCamp[cur[0]];
+      return prev;
+    }, {});
+
+    return this.campaignAPI.patchCampaign(id, patchObj);
   }
 }

@@ -135,7 +135,7 @@ export class CharacterViewAbilitiesPage implements OnInit {
       const { name } = data[0];
       character.nature = name;
 
-      this.data.patchCharacter();
+      this.data.patchCharacter().subscribe(() => {});
     });
 
   }
@@ -152,7 +152,7 @@ export class CharacterViewAbilitiesPage implements OnInit {
       character.drives = drives;
       character.driveTargets = driveTargets;
 
-      this.data.patchCharacter();
+      this.data.patchCharacter().subscribe(() => {});
     });
 
     modal.present();

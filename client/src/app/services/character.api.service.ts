@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import * as jsonpatch from 'fast-json-patch';
 
 import { ICharacter, ITableData } from '../../interfaces';
 import { APIService } from './api.service';

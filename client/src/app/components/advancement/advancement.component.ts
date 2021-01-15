@@ -128,7 +128,7 @@ export class AdvancementComponent implements OnInit {
   }
 
   private save() {
-    this.data.patchCharacter();
+    this.data.patchCharacter().subscribe(() => {});
   }
 
   async confirmStat(character: ICharacter) {
