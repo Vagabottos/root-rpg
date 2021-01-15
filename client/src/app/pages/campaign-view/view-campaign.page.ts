@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICampaign } from '../../../interfaces';
 import { CampaignAPIService } from '../../services/campaign.api.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-view-campaign',
@@ -14,7 +15,8 @@ export class ViewCampaignPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private campaignAPI: CampaignAPIService
+    private campaignAPI: CampaignAPIService,
+    private dataService: DataService
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,12 @@ export class ViewCampaignPage implements OnInit {
     this.campaignAPI.loadCampaign(id)
       .subscribe(campaign => {
         this.campaign = campaign;
+        this.dataService.setActiveCampaign(campaign);
       });
+  }
+
+  ionViewDidLeave() {
+    this.dataService.setActiveCampaign(null);
   }
 
 }

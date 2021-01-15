@@ -1,27 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="dashboard/campaigns"></ion-back-button>
-    </ion-buttons>
-    
-    <ion-title>
-      View Campaign
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="dashboard/campaigns"></ion-back-button>
-      </ion-buttons>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="info">
+        <ion-icon name="reader"></ion-icon>
+        <ion-label>Campaign</ion-label>
+      </ion-tab-button>
 
-      <ion-title size="large">View Campaign</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-tab-button tab="clearings">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Clearings</ion-label>
+      </ion-tab-button>
 
-  <div class="container">
-    {{ campaign | json }}
-  </div>
+      <ion-tab-button tab="players">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Players</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="npcs">
+        <ion-icon name="paw"></ion-icon>
+        <ion-label>NPCs</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="forest">
+        <ion-icon name="leaf"></ion-icon>
+        <ion-label>Forest</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

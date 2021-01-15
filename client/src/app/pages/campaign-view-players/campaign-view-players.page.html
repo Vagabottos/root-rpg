@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/campaigns"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        {{ campaign?.name || 'Loading...' }}
+      </ng-container>
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="data.campaign$ | async as campaign">
+    players {{ campaign | json }}
+  </ng-container>
+</ion-content>

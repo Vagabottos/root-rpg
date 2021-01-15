@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ViewCampaignPageRoutingModule } from './view-campaign-routing.module';
+import { CampaignViewForestPageRoutingModule } from './campaign-view-forest-routing.module';
 
-import { ViewCampaignPage } from './view-campaign.page';
+import { CampaignViewForestPage } from './campaign-view-forest.page';
 import { SharedModule } from '../../shared.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { SharedModule } from '../../shared.module';
     FormsModule,
     IonicModule,
     SharedModule,
-    ViewCampaignPageRoutingModule
+    CampaignViewForestPageRoutingModule
   ],
-  declarations: [ViewCampaignPage]
+  declarations: [CampaignViewForestPage]
 })
-export class ViewCampaignPageModule {}
+export class CampaignViewForestPageModule {}
