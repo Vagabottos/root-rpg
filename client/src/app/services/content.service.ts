@@ -50,6 +50,10 @@ export class ContentService {
     return this.content.core.species;
   }
 
+  getDefaultFactions(): IContentFaction[] {
+    return this.getFactions().filter(x => x.isDefault);
+  }
+
   getFactions(): IContentFaction[] {
     return this.content.core.factions;
   }

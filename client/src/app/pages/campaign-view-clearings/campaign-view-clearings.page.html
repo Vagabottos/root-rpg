@@ -15,6 +15,24 @@
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
-    clearings {{ campaign | json }}
+
+    <ion-row>
+      <ion-col *ngFor="let clearkv of campaign.clearings | keyvalue" size-xs="12" size-md="6">
+        <ion-card class="clearing-card" *ngIf="asClearing(clearkv.value) as clearing">
+          <ion-card-header>
+            <ion-card-title>
+              {{ clearing.name }} ({{ clearing.status }})
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p><strong>Ruled By:</strong> {{ clearing.current.ruler }}</p>
+            <p><strong>Contested By:</strong> {{ clearing.contestedBy }}</p>
+            <p><strong>Dominant Faction:</strong> {{ clearing.current.dominantFaction }}</p>
+            <p><strong>Conflicts:</strong> {{ clearing.current.conflicts }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ng-container>
 </ion-content>

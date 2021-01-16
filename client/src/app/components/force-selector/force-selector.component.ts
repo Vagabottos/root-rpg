@@ -13,6 +13,8 @@ export class ForceSelectorComponent implements OnInit {
   @Input() public numChoices = 1;
   @Input() public choices: Array<{ name: string, text: string }> = [];
   @Input() public bannedChoices: string[] = [];
+  @Input() public disableBanned = false;
+  @Input() public defaultSelected: string[] = [];
 
   public selected: boolean[] = [];
 
@@ -28,7 +30,9 @@ export class ForceSelectorComponent implements OnInit {
     private modal: ModalController
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selected = this.choices.map(({ name }) => this.defaultSelected.includes(name));
+  }
 
   selectItem(checkbox: IonCheckbox, index: number): void {
     this.selected[index] = checkbox.checked;

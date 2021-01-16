@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { ForceSelectorComponent } from '../components/force-selector/force-selector.component';
 
+interface ForcedChoiceOpts {
+  title: string,
+  message: string,
+  choices: Array<{ name: string, text: string }>,
+  numChoices?: number,
+  bannedChoices?: string[];
+  disableBanned?: boolean;
+  defaultSelected?: string[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,17 +38,27 @@ export class NotificationService {
     await toast.present();
   }
 
-  async loadForcedChoiceModal(
-    title: string,
-    message: string,
-    choices: Array<{ name: string, text: string }>,
-    numChoices: number,
-    bannedChoices = []
-  ): Promise<any> {
+  async loadForcedChoiceModal({
+    title,
+    message,
+    choices,
+    numChoices,
+    bannedChoices,
+    disableBanned,
+    defaultSelected
+  }: ForcedChoiceOpts = {
+    title: '',
+    message: '',
+    choices: [],
+    numChoices: 0,
+    bannedChoices: [],
+    disableBanned: false,
+    defaultSelected: []
+  }): Promise<any> {
     const modal = await this.modal.create({
       component: ForceSelectorComponent,
       componentProps: {
-        title, message, choices, numChoices, bannedChoices
+        title, message, choices, numChoices, bannedChoices, disableBanned, defaultSelected
       }
     });
 

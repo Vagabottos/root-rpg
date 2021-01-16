@@ -12,6 +12,7 @@ export interface IContentDrive {
 
 export interface IContentFaction {
   name: string;
+  isDefault?: boolean;
 }
 
 export interface IContentFeat {
@@ -53,7 +54,15 @@ export interface IContentItemTag {
   input?: string;
 }
 
+export interface IContentClearingGen {
+  town: {
+    start: string[];
+    end: string[];
+  }
+}
+
 export interface IContentCore {
+  clearinggen: IContentClearingGen;
   connections: Record<string, IContentConnection>;
   drives: Record<string, IContentDrive>;
   factions: IContentFaction[];

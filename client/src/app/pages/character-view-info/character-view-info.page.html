@@ -89,7 +89,7 @@
           </ion-card-header>
 
           <ion-card-content>
-            <ion-row *ngFor="let faction of content.getFactions()" class="reputation-row">
+            <ion-row *ngFor="let faction of content.getDefaultFactions()" class="reputation-row">
               <ion-col class="reputation-label">{{ faction.name }}</ion-col>
               <ion-col class="reputation-box">
                 <ion-row>

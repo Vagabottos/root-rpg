@@ -55,7 +55,7 @@ export class CreateCharacterPage implements OnInit {
 
   public get validFactions() {
     return [
-      ...this.contentService.getFactions()
+      ...this.contentService.getDefaultFactions()
     ];
   }
 
@@ -317,12 +317,12 @@ export class CreateCharacterPage implements OnInit {
       value[index] = null;
       updControl.setValue(value);
 
-      const modal = await this.notification.loadForcedChoiceModal(
-        `Choose Faction`,
-        `Choose a faction for the background question.`,
-        this.validFactions.map(x => ({ name: x.name, text: '' })),
-        1
-      );
+      const modal = await this.notification.loadForcedChoiceModal({
+        title: `Choose Faction`,
+        message: `Choose a faction for the background question.`,
+        choices: this.validFactions.map(x => ({ name: x.name, text: '' })),
+        numChoices: 1
+      });
 
       modal.onDidDismiss().then(({ data }) => {
         if (!data) {
@@ -433,12 +433,12 @@ export class CreateCharacterPage implements OnInit {
     const moveData = this.contentService.getMove(move);
     if (moveData.addSkill && moveData.addSkillChoose) {
       if (checkbox.checked) {
-        const modal = await this.notification.loadForcedChoiceModal(
-          `Choose ${moveData.addSkillChoose} Skills`,
-          `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
-          moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
-          moveData.addSkillChoose || 1
-        );
+        const modal = await this.notification.loadForcedChoiceModal({
+          title: `Choose ${moveData.addSkillChoose} Skills`,
+          message: `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
+          choices: moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
+          numChoices: moveData.addSkillChoose || 1
+        });
 
         modal.onDidDismiss().then(({ data }) => {
           if (!data) {

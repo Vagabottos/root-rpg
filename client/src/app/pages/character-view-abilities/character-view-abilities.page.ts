@@ -122,12 +122,12 @@ export class CharacterViewAbilitiesPage implements OnInit {
     const natures = this.content.getVagabond(character.archetype).natures
       .map(({ name }) => ({ name, text: this.content.getNature(name)?.text }));
 
-    const modal = await this.notification.loadForcedChoiceModal(
-      `Change Nature`,
-      `Choose a new nature.`,
-      natures,
-      1
-    );
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Change Nature`,
+      message: `Choose a new nature.`,
+      choices: natures,
+      numChoices: 1
+    });
 
     modal.onDidDismiss().then(({ data }) => {
       if (!data) { return; }

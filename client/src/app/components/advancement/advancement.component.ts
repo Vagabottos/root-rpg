@@ -275,13 +275,13 @@ export class AdvancementComponent implements OnInit {
 
     if (moveData.addSkillChoose > 0 && moveData.addSkill) {
 
-      const modal = await this.notification.loadForcedChoiceModal(
-        `Choose ${moveData.addSkillChoose} Skills`,
-        `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
-        moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
-        moveData.addSkillChoose || 1,
-        character.moveSkills.concat(character.skills)
-      );
+      const modal = await this.notification.loadForcedChoiceModal({
+        title: `Choose ${moveData.addSkillChoose} Skills`,
+        message: `Choose ${moveData.addSkillChoose} skills from the following list for the move ${move}.`,
+        choices: moveData.addSkill.map(c => ({ name: c, text: '' })) || [],
+        numChoices: moveData.addSkillChoose || 1,
+        bannedChoices: character.moveSkills.concat(character.skills)
+      });
 
       modal.onDidDismiss().then(({ data }) => {
         if (!data) {

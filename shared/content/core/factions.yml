@@ -1,4 +1,11 @@
 
 - name: Denizens
+  isDefault: true
 - name: The Marquisate
+  isDefault: true
 - name: The Eyrie
+  isDefault: true
+- name: The Lizard Cult
+- name: The Riverfolk Company
+- name: The Underground Duchy
+- name: The Corvid Conspiracy

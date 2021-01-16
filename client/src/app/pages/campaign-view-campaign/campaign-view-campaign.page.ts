@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ICampaign } from '../../../interfaces';
+import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-campaign-view-campaign',
@@ -8,9 +11,35 @@ import { DataService } from '../../services/data.service';
 })
 export class CampaignViewCampaignPage implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(
+    private notification: NotificationService,
+    private content: ContentService,
+    public data: DataService
+  ) { }
 
   ngOnInit() {
+  }
+
+  async addFaction(campaign: ICampaign) {
+
+    console.log(this.content.getFactions().map(c => ({ name: c.name, text: '' })) , campaign.factions)
+
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Faction`,
+      message: `Choose a faction from the following list to add to your campaign.`,
+      choices: this.content.getFactions().map(c => ({ name: c.name, text: '' })) || [],
+      numChoices: 0,
+      bannedChoices: [],
+      disableBanned: false,
+      defaultSelected: campaign.factions
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if(!data) return;
+      campaign.factions = data.map(x => x.name);
+
+      this.data.patchCampaign().subscribe(() => {});
+    });
   }
 
 }

@@ -71,12 +71,12 @@ export class DataService {
     return jsonpatch.generate(this.campaignObs);
   }
 
-  public patchCampaign(): void {
+  public patchCampaign() {
     const id = this.campaign.getValue()?._id;
     const patches = this.getCampaignDiff();
     if (patches.length === 0 || !id) { return; }
 
     const patched = jsonpatch.applyPatch(this.campaign.getValue(), patches, false, false, true).newDocument;
-    this.campaignAPI.patchCampaign(id, patched).subscribe(() => {});
+    return this.campaignAPI.patchCampaign(id, patched);
   }
 }
