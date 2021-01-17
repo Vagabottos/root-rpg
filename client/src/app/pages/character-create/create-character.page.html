@@ -332,21 +332,45 @@
                 </ion-select-option>
               </ion-select>
 
-              <ion-select placeholder="Select Faction" [formControlName]="i" *ngIf="qa.type === 'faction'">
+              <!-- faction selector, no campaign -->
+              <ion-select placeholder="Select Faction" [formControlName]="i" *ngIf="qa.type === 'faction' && !campaign">
                 <ion-select-option *ngFor="let faction of validFactions"
                                    [value]="faction.name">
                   {{ faction.name }}
                 </ion-select-option>
               </ion-select>
+
+              <!-- faction selector, with campaign -->
+              <ion-select placeholder="Select Faction" [formControlName]="i" *ngIf="qa.type === 'faction' && campaign">
+                <ion-select-option *ngFor="let faction of campaign.factions"
+                                   [value]="faction">
+                  {{ faction }}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
 
-            <ion-item *ngIf="backgroundForm.get('backgrounds').value && backgroundForm.get('backgrounds').value[i]?.input === 'text'">
+            <!-- clearing selector, we have a campaign -->
+            <ion-item *ngIf="backgroundForm.get('backgrounds').value && backgroundForm.get('backgrounds').value[i]?.type === 'clearing' && campaign">
+              <ion-label position="stacked" class="ion-text-wrap spaced-label">Choose Clearing</ion-label>
+
+              <ion-select placeholder="Select Clearing" [(ngModel)]="backgroundForm.get('backgrounds').value[i].realText" [ngModelOptions]="{ standalone: true }">
+                <ion-select-option *ngFor="let clearing of campaign.clearings | keyvalue"
+                                   [value]="clearing.key">
+                  {{ clearing.key }}
+                </ion-select-option>
+              </ion-select>
+
+            </ion-item>
+
+            <!-- clearing selector, we do not have a campaign -->
+            <ion-item *ngIf="backgroundForm.get('backgrounds').value && backgroundForm.get('backgrounds').value[i]?.type === 'clearing' && !campaign">
 
               <ion-input type="text"
                          maxlength="25"
                          [(ngModel)]="backgroundForm.get('backgrounds').value[i].realText"
                          [ngModelOptions]="{ standalone: true }"
                          [placeholder]="backgroundForm.get('backgrounds').value[i]?.text"></ion-input>
+
             </ion-item>
           </ng-container>
 

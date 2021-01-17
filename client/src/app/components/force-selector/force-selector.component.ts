@@ -35,7 +35,7 @@ export class ForceSelectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.selected = this.choices.map(({ name }) => this.defaultSelected.includes(name));
+    this.selected = this.choices.map(({ name }) => (this.defaultSelected || []).includes(name));
     const extraChoices = difference(this.defaultSelected, this.choices.map(x => x.name));
     extraChoices.forEach(name => {
       this.choices.push({ name, text: '' });

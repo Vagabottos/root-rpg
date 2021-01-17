@@ -2,8 +2,9 @@
 import { HookContext } from '@feathersjs/feathers';
 import { NotAcceptable } from '@feathersjs/errors';
 import { cloneDeep } from 'lodash';
+import { ObjectId } from 'mongodb';
 
-import { ICharacter, IContent, Stat, IItem, content } from '../interfaces';
+import { ICharacter, IContent, Stat, IItem, ICampaign, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
 
 export function reformatItem(item: IItem): void {
@@ -22,7 +23,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
 
   const newChar: ICharacter = {
     name: context.data.character.name,
-    campaign: context.data.campaignId,
+    campaign: context.data.campaign.campaignId,
     archetype: context.data.archetype.archetype,
     species: context.data.character.customspecies || context.data.character.species,
     adjectives: context.data.character.adjectives,
@@ -58,6 +59,23 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     }
   };
 
+  const campaignService = context.app.service('campaign');
+  let campaign!: ICampaign;
+
+  if(newChar.campaign) {
+    const { data } = await campaignService.find({
+      query: {
+        _id: new ObjectId(newChar.campaign),
+        locked: { $ne: true },
+        $limit: 1
+      }
+    });
+
+    if(data) {
+      campaign = data[0];
+    }
+  }
+
   // post-process items
   newChar.items.forEach(item => {
     reformatItem(item);
@@ -67,10 +85,18 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
   newChar.stats[context.data.bonus.stat as Stat] += 1;
 
   // set base reps
-  allContent.core.factions.forEach(fact => {
-    if(!fact.isDefault) return;
-    newChar.reputation[fact.name] = { notoriety: 0, prestige: 0, total: 0 };
-  });
+  if(campaign) {
+    campaign.factions.forEach(fact => {
+      newChar.reputation[fact] = { notoriety: 0, prestige: 0, total: 0 };
+    });
+
+  } else {
+    allContent.core.factions.forEach(fact => {
+      if(!fact.isDefault) return;
+      newChar.reputation[fact.name] = { notoriety: 0, prestige: 0, total: 0 };
+    });
+
+  }
 
   // set background answers
   archetypeData.background.forEach((bg, i) => {

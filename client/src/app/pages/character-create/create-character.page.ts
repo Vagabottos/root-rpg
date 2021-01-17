@@ -17,6 +17,7 @@ import { ItemService } from '../../services/item.service';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NotificationService } from '../../services/notification.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
+import { ICampaign } from '../../../../../shared/interfaces';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
@@ -63,6 +64,7 @@ export class CreateCharacterPage implements OnInit {
     return sumBy(this.itemsForm.get('items').value, i => this.itemService.value(i));
   }
 
+  public campaign: ICampaign;
   public validatingCampaignId = false;
 
   public campaignForm = new FormGroup({
@@ -267,6 +269,16 @@ export class CreateCharacterPage implements OnInit {
     }, 0);
   }
 
+  private loadLinkedCampaign() {
+    const campaignId = this.campaignForm.get('campaignId').value;
+    if (!campaignId) { return; }
+
+    this.campaignAPI.loadCampaign(campaignId)
+      .subscribe(campaign => {
+        this.campaign = campaign;
+      });
+  }
+
   private async syncFormWithStep() {
     if (!this.chosenVagabond) { return; }
 
@@ -300,6 +312,8 @@ export class CreateCharacterPage implements OnInit {
       this.createItem(null, this.contentService.getMove('Toolbox').customItemData);
     }
 
+    this.loadLinkedCampaign();
+
   }
 
   // background functions
@@ -317,10 +331,12 @@ export class CreateCharacterPage implements OnInit {
       value[index] = null;
       updControl.setValue(value);
 
+      const factions = this.campaign ? this.campaign.factions : this.validFactions.map(f => f.name);
+
       const modal = await this.notification.loadForcedChoiceModal({
         title: `Choose Faction`,
         message: `Choose a faction for the background question.`,
-        choices: this.validFactions.map(x => ({ name: x.name, text: '' })),
+        choices: factions.map(x => ({ name: x, text: '' })),
         numChoices: 1
       });
 
@@ -330,7 +346,7 @@ export class CreateCharacterPage implements OnInit {
           return;
         }
 
-        this.changeBackgroundRep(data[0], qa, index);
+        this.changeBackgroundRep(data[0].name, qa, index);
       });
     }
   }
@@ -441,16 +457,16 @@ export class CreateCharacterPage implements OnInit {
         });
 
         modal.onDidDismiss().then(({ data }) => {
-          if (!data) {
-            setTimeout(() => {
+          setTimeout(() => {
+            if (!data || !data.length) {
               checkbox.checked = false;
-            }, 0);
-            return;
-          }
+              return;
+            }
 
-          this.skillsForm.get('bonusSkills').setValue(data);
-          moves.push(move);
-          this.movesForm.get('moves').setValue(moves);
+            this.skillsForm.get('bonusSkills').setValue(data.map(x => x.name));
+            moves.push(move);
+            this.movesForm.get('moves').setValue(moves);
+          }, 0);
         });
 
       } else {
@@ -717,6 +733,8 @@ export class CreateCharacterPage implements OnInit {
     this.connectionsForm.setValue(loadObject.connections || {});
 
     this.setStep(loadObject._currentStep || CharacterCreateStep.CampaignOrNo);
+
+    this.loadLinkedCampaign();
   }
 
   private getSaveObject() {

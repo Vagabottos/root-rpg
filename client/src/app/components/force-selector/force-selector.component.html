@@ -26,7 +26,7 @@
                   [disabled]="(numChoices > 0 && numSelected >= numChoices && !selected[i]) || disableBanned && bannedChoices.includes(choice.name)">
           <ion-label class="ion-text-wrap">
             <h2>{{ choice.name }}</h2>
-            <p *ngIf="!disableBanned && bannedChoices.includes(choice.name)"><em>Warning: You already have this.</em></p>
+            <p *ngIf="!disableBanned && bannedChoices?.includes(choice.name)"><em>Warning: You already have this.</em></p>
             <p *ngIf="choice.text" [innerHTML]="choice.text | markdown"></p>
           </ion-label>
 
