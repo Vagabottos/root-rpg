@@ -33,7 +33,8 @@ export class CampaignViewCampaignPage implements OnInit {
     });
 
     modal.onDidDismiss().then(({ data }) => {
-      if(!data) return;
+      if (!data) { return; }
+
       campaign.factions = data.map(x => x.name);
 
       this.data.patchCampaign().subscribe(() => {});
