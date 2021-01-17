@@ -3,10 +3,10 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { ForceSelectorComponent } from '../components/force-selector/force-selector.component';
 
 interface ForcedChoiceOpts {
-  title: string,
-  message: string,
-  choices: Array<{ name: string, text: string }>,
-  numChoices?: number,
+  title: string;
+  message: string;
+  choices: Array<{ name: string, text: string }>;
+  numChoices?: number;
   bannedChoices?: string[];
   disableBanned?: boolean;
   defaultSelected?: string[];
