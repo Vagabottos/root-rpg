@@ -22,11 +22,9 @@ export class CampaignViewCampaignPage implements OnInit {
 
   async addFaction(campaign: ICampaign) {
 
-    console.log(this.content.getFactions().map(c => ({ name: c.name, text: '' })) , campaign.factions)
-
     const modal = await this.notification.loadForcedChoiceModal({
-      title: `Choose Faction`,
-      message: `Choose a faction from the following list to add to your campaign.`,
+      title: `Choose Factions`,
+      message: `Choose factions from the following list to add to your campaign.`,
       choices: this.content.getFactions().map(c => ({ name: c.name, text: '' })) || [],
       numChoices: 0,
       bannedChoices: [],
