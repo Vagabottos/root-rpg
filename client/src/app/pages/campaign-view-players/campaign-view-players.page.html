@@ -15,6 +15,113 @@
 
 <ion-content>
   <ng-container *ngIf="data.campaignCharacters$ | async as campaignCharacters">
-    {{ campaignCharacters | json }}
+    <div class="blank-slate" *ngIf="campaignCharacters.length === 0">
+      There are no players in your campaign... yet!
+    </div>
+
+    <ion-row>
+      <ion-col size-xs="12" size-lg="4" *ngFor="let character of campaignCharacters">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ character.name }}</ion-card-title>
+            <ion-card-subtitle>{{ character.archetype }}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-row class="stat-row">
+              <ion-col class="stat" *ngFor="let stat of content.getStats()">
+                <div class="stat-name">
+                  {{ stat }}
+                </div>
+
+                <div class="stat-value">
+                  {{ characterHelper.getStatTotal(character, stat.toLowerCase()) | withPlus }}
+                </div>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row class="row-header">
+              <ion-col class="row-header-label">
+                Harm
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
+              <ion-col class="harm-label">{{ harm }}</ion-col>
+              <ion-col class="harm-box"
+                       *ngFor="let i of characterHelper.harmMax(character)">
+                <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
+                          *ngIf="i < characterHelper.harmCount(character, harm.toLowerCase())"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="row-header">
+              <ion-col class="row-header-label">
+                Reputation
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="reputation-row" *ngFor="let rep of character.reputation | keyvalue">
+              <ion-col class="reputation-label">{{ rep.key }}</ion-col>
+              <ion-col class="reputation-value">{{ getRepTotal(rep.value) | withPlus }}</ion-col>
+            </ion-row>
+
+            <ion-row class="row-header">
+              <ion-col class="row-header-label">
+                Items
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="character.items.length === 0">
+              <ion-col class="ion-text-center">None</ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let item of character.items">
+              <ion-col>
+                <app-item [item]="item"></app-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="row-header">
+              <ion-col class="row-header-label">
+                Connections
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let conn of character.connections">
+              <ion-col class="ion-text-center"><strong>{{ conn.name }}:</strong> {{ conn.target }}</ion-col>
+            </ion-row>
+
+            <ion-row class="row-header">
+              <ion-col class="row-header-label">
+                Miscellaneous
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="misc-row">
+              <ion-col size="6">
+                <ion-list>
+                  <ion-list-header>Nature</ion-list-header>
+                  <ion-item lines="none" class="thin-item">
+                    {{ character.nature }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+
+              <ion-col size="6">
+                <ion-list>
+                  <ion-list-header>Drives</ion-list-header>
+                  <ion-item lines="none" class="thin-item" *ngFor="let drive of character.drives">
+                    {{ drive }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ng-container>
 </ion-content>

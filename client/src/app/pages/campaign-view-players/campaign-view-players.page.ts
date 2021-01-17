@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { CharacterHelperService } from '../../services/character.helper.service';
 
 @Component({
   selector: 'app-campaign-view-players',
@@ -8,9 +10,17 @@ import { DataService } from '../../services/data.service';
 })
 export class CampaignViewPlayersPage implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(
+    public content: ContentService,
+    public data: DataService,
+    public characterHelper: CharacterHelperService
+  ) { }
 
   ngOnInit() {
+  }
+
+  getRepTotal(rep): number {
+    return rep.total;
   }
 
 }

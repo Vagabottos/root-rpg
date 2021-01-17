@@ -10,6 +10,7 @@ import { ChangeConnectionsComponent } from '../../components/change-connections/
 import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
+import { CharacterHelperService } from '../../services/character.helper.service';
 
 @Component({
   selector: 'app-character-view-info',
@@ -23,7 +24,8 @@ export class CharacterViewInfoPage implements OnInit {
     private alert: AlertController,
     private modal: ModalController,
     public data: DataService,
-    public content: ContentService
+    public content: ContentService,
+    public characterHelper: CharacterHelperService
   ) { }
 
   ngOnInit() {
@@ -106,30 +108,6 @@ export class CharacterViewInfoPage implements OnInit {
     character.reputation[faction].prestige = 0;
 
     this.save();
-  }
-
-  // stat functions
-  getStatTotal(character: ICharacter, stat: string): number {
-    const base = character.stats[stat];
-    const bonus = character.moves.reduce((prev, cur) => prev + (this.content.getMove(cur)?.addStat?.[stat] ?? 0), 0);
-    return base + bonus;
-  }
-
-  // harm functions
-  harmCount(character: ICharacter, harm: string): number {
-    const boost = character.moves.reduce((prev, cur) => prev + (this.content.getMove(cur)?.addHarm?.[harm] ?? 0), 0);
-    const advBoost = character.harmBoost?.[harm] ?? 0;
-    return 4 + advBoost + boost;
-  }
-
-  harmMax(character: ICharacter): number[] {
-    const max = Math.max(
-      this.harmCount(character, 'injury'),
-      this.harmCount(character, 'exhaustion'),
-      this.harmCount(character, 'depletion')
-    );
-
-    return Array(max).fill(0).map((x, i) => i);
   }
 
   adjustHarm(character: ICharacter, harm: string, newValue: number): void {

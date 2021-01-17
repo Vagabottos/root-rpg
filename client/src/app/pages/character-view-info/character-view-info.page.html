@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="stat-value">
-                  {{ getStatTotal(character, stat.toLowerCase()) | withPlus }}
+                  {{ characterHelper.getStatTotal(character, stat.toLowerCase()) | withPlus }}
                 </div>
               </ion-col>
             </ion-row>
@@ -68,10 +68,10 @@
             <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
               <ion-col class="harm-label" (click)="adjustHarm(character, harm, 0)">{{ harm }}</ion-col>
               <ion-col class="harm-box"
-                       *ngFor="let i of harmMax(character)"
+                       *ngFor="let i of characterHelper.harmMax(character)"
                        (click)="adjustHarm(character, harm.toLowerCase(), i + 1)">
                 <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
-                          *ngIf="i < harmCount(character, harm.toLowerCase())"></ion-icon>
+                          *ngIf="i < characterHelper.harmCount(character, harm.toLowerCase())"></ion-icon>
               </ion-col>
             </ion-row>
           </ion-card-content>
