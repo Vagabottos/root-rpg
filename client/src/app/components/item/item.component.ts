@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
   }
 
   changeWear(wear: number): void {
-    if(this.item.wearUsed === wear) {
+    if (this.item.wearUsed === wear) {
       this.item.wearUsed = 0;
       this.updateWear.emit(this.item.wearUsed);
       return;
