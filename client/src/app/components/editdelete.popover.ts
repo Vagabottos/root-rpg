@@ -18,7 +18,7 @@ import { PopoverController } from '@ionic/angular';
   </ion-content>
   `,
   styles: [
-    ``
+    `ion-item { cursor: pointer; }`
   ]
 })
 export class EditDeletePopoverComponent {

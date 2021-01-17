@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as jsonpatch from 'fast-json-patch';
 
 import { Observable } from 'rxjs';
+import { ICharacter } from '../../../../shared/interfaces';
 import { ICampaign, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
 import { UserAPIService } from './user.api.service';
@@ -23,7 +24,7 @@ export class CampaignAPIService {
   }
 
   getCampaigns(page = 0): Observable<ITableData<ICampaign>> {
-    const limit = 10;
+    const limit = 20;
 
     const params = new HttpParams()
       .set('owner', this.userAPI.userId)
@@ -38,8 +39,19 @@ export class CampaignAPIService {
     return this.http.get(this.api.apiUrl(`/campaign/${id}`)) as Observable<ICampaign>;
   }
 
-  patchCampaign(id: string, patched: Partial<ICampaign>): Observable<ICampaign> {
-    return this.http.patch(this.api.apiUrl(`/character/${id}`), patched) as Observable<ICampaign>;
+  patchCampaign(id: string, campaign: Partial<ICampaign>): Observable<ICampaign> {
+    return this.http.patch(this.api.apiUrl(`/campaign/${id}`), campaign) as Observable<ICampaign>;
+  }
+
+  deleteCampaign(id: string): Observable<any> {
+    return this.http.delete(this.api.apiUrl(`/campaign/${id}`));
+  }
+
+  getCampaignCharacters(id: string): Observable<ICharacter[]> {
+    const params = new HttpParams()
+      .set('campaign', id);
+
+    return this.http.get(this.api.apiUrl('/campaign'), { params }) as Observable<ICharacter[]>;
   }
 
 }

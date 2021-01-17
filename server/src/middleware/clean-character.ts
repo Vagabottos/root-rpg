@@ -1,6 +1,9 @@
 
-import { HookContext } from '@feathersjs/feathers';
+import { Forbidden } from '@feathersjs/errors';
+import { HookContext, Service } from '@feathersjs/feathers';
 import { truncate } from 'lodash';
+import { ObjectId } from 'mongodb';
+import { ICampaign } from '../../../shared/interfaces';
 
 import { ICharacter, IItem } from '../interfaces';
 
@@ -51,6 +54,31 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   if(character.campaign?.length !== 24) {
     character.campaign = '';
+  }
+
+  if(character.campaign) {
+    const campaignService = context.app.service('campaign');
+
+    let res = null;
+
+    try {
+      res = await campaignService.find({
+        query: {
+          _id: new ObjectId(character.campaign),
+          locked: { $ne: true },
+          $limit: 0
+        }
+      });
+
+    } catch {
+      throw new Error('Could not join that campaign.');
+    }
+
+    if(res) {
+      const { total } = res;
+      if(total === 0) throw new Forbidden('Could not join that campaign.');
+    }
+
   }
 
   return context;
