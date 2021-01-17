@@ -1,9 +1,8 @@
 
 import { Forbidden } from '@feathersjs/errors';
-import { HookContext, Service } from '@feathersjs/feathers';
+import { HookContext } from '@feathersjs/feathers';
 import { truncate } from 'lodash';
 import { ObjectId } from 'mongodb';
-import { ICampaign } from '../../../shared/interfaces';
 
 import { ICharacter, IItem } from '../interfaces';
 
