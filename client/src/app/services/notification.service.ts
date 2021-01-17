@@ -10,6 +10,7 @@ interface ForcedChoiceOpts {
   bannedChoices?: string[];
   disableBanned?: boolean;
   defaultSelected?: string[];
+  allowCustom?: boolean;
 }
 
 @Injectable({
@@ -45,7 +46,8 @@ export class NotificationService {
     numChoices,
     bannedChoices,
     disableBanned,
-    defaultSelected
+    defaultSelected,
+    allowCustom
   }: ForcedChoiceOpts = {
     title: '',
     message: '',
@@ -53,12 +55,14 @@ export class NotificationService {
     numChoices: 0,
     bannedChoices: [],
     disableBanned: false,
-    defaultSelected: []
+    defaultSelected: [],
+    allowCustom: false
   }): Promise<any> {
     const modal = await this.modal.create({
       component: ForceSelectorComponent,
       componentProps: {
-        title, message, choices, numChoices, bannedChoices, disableBanned, defaultSelected
+        title, message, choices, numChoices, bannedChoices,
+        disableBanned, defaultSelected, allowCustom
       }
     });
 

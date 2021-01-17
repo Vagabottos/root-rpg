@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonCheckbox, ModalController } from '@ionic/angular';
+import { AlertController, IonCheckbox, ModalController } from '@ionic/angular';
+
+import { difference } from 'lodash';
 
 @Component({
   selector: 'app-force-selector',
@@ -15,6 +17,7 @@ export class ForceSelectorComponent implements OnInit {
   @Input() public bannedChoices: string[] = [];
   @Input() public disableBanned = false;
   @Input() public defaultSelected: string[] = [];
+  @Input() public allowCustom: boolean;
 
   public selected: boolean[] = [];
 
@@ -27,11 +30,17 @@ export class ForceSelectorComponent implements OnInit {
   }
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController
   ) { }
 
   ngOnInit() {
     this.selected = this.choices.map(({ name }) => this.defaultSelected.includes(name));
+    const extraChoices = difference(this.defaultSelected, this.choices.map(x => x.name));
+    extraChoices.forEach(name => {
+      this.choices.push({ name, text: '' });
+      this.selected.push(true);
+    });
   }
 
   selectItem(checkbox: IonCheckbox, index: number): void {
@@ -40,6 +49,31 @@ export class ForceSelectorComponent implements OnInit {
 
   dismiss(choices?: Array<{ name: string, text: string }>) {
     this.modal.dismiss(choices);
+  }
+
+  async addCustom() {
+    const alert = await this.alert.create({
+      header: 'Add Custom Choice',
+      inputs: [
+        {
+          name: 'customChoice',
+          type: 'text',
+          placeholder: 'Enter Custom Choice'
+        },
+      ],
+      buttons: [
+        'Cancel',
+        {
+          text: 'Confirm',
+          handler: (data) => {
+            this.choices.push({ name: data?.customChoice, text: '' });
+            this.selected.push(true);
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }

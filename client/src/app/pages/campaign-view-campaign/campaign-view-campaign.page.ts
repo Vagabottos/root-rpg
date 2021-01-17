@@ -29,7 +29,8 @@ export class CampaignViewCampaignPage implements OnInit {
       numChoices: 0,
       bannedChoices: [],
       disableBanned: false,
-      defaultSelected: campaign.factions
+      defaultSelected: campaign.factions,
+      allowCustom: true
     });
 
     modal.onDidDismiss().then(({ data }) => {
