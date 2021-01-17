@@ -51,31 +51,34 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     character.items.forEach(item => cleanItem(item));
   }
 
-  if(character.campaign?.length !== 24) {
-    character.campaign = '';
-  }
-
   if(character.campaign) {
-    const campaignService = context.app.service('campaign');
 
-    let res = null;
-
-    try {
-      res = await campaignService.find({
-        query: {
-          _id: new ObjectId(character.campaign),
-          locked: { $ne: true },
-          $limit: 0
-        }
-      });
-
-    } catch {
-      throw new Error('Could not join that campaign.');
+    if(character.campaign.length !== 24) {
+      character.campaign = '';
     }
 
-    if(res) {
-      const { total } = res;
-      if(total === 0) throw new Forbidden('Could not join that campaign.');
+    if(character.campaign) {
+      const campaignService = context.app.service('campaign');
+
+      let res = null;
+
+      try {
+        res = await campaignService.find({
+          query: {
+            _id: new ObjectId(character.campaign),
+            locked: { $ne: true },
+            $limit: 0
+          }
+        });
+
+      } catch {
+        throw new Error('Could not join that campaign.');
+      }
+
+      if(res) {
+        const { total } = res;
+        if(total === 0) throw new Forbidden('Could not join that campaign.');
+      }
     }
 
   }
