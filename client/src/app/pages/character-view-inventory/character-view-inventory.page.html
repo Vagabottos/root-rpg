@@ -42,9 +42,7 @@
 
       <ion-item *ngFor="let item of character.items; let i = index">
         <app-item [item]="item"
-                  appSwipe
-                  (swipeLeft)="wear(item, -1)"
-                  (swipeRight)="wear(item, 1)"
+                  (updateWear)="save()"
                   appLongPress="500"
                   (release)="itemOptions(character, item, i)"></app-item>
       </ion-item>
@@ -58,18 +56,11 @@
 
           <ion-row>
             <ion-col>
-              <app-item [item]="item"></app-item>
+              <app-item [item]="item"
+                        (updateWear)="save()"></app-item>
             </ion-col>
 
             <ion-col class="actions">
-
-              <ion-button color="secondary" (click)="wear(item, -1)" [disabled]="item.wearUsed <= 0">
-                <ion-icon slot="icon-only" name="remove"></ion-icon>
-              </ion-button>
-
-              <ion-button color="secondary" (click)="wear(item, 1)" [disabled]="item.wearUsed >= item.wear">
-                <ion-icon slot="icon-only" name="add"></ion-icon>
-              </ion-button>
 
               <ion-button fill="clear" (click)="showItemEditPopover(character, item, i, $event)">
                 <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>

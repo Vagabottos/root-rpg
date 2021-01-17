@@ -2,7 +2,13 @@
 <ion-row class="header-row">
   <ion-col class="vertical-center">
     <span class="name label">{{ item.name }}</span>
+  </ion-col>
+</ion-row>
+
+<ion-row class="header-row">
+  <ion-col>
     <ion-icon *ngFor="let slot of boxSlots; let i = index"
+              (click)="changeWear(i + 1)"
               [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
   </ion-col>
 </ion-row>

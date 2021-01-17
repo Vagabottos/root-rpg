@@ -127,8 +127,8 @@ export class CharacterViewInventoryPage implements OnInit {
     this.save();
   }
 
-  private save() {
-    this.data.patchCharacter();
+  public save() {
+    this.data.patchCharacter().subscribe(() => {});
   }
 
 }
