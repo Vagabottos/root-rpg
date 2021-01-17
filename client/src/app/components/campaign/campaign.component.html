@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      Campaign Info
+      {{ campaign?.name || 'Campaign Info' }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
@@ -60,15 +60,33 @@
 
     <ion-card-header>
       <ion-card-title>
-        {{ campaign.name }}
+        Fellow Players
       </ion-card-title>
 
       <ion-card-content>
-        <ion-button color="primary" (click)="leaveCampaign(character)">
-          Leave Campaign
-        </ion-button>
+        <ion-list>
+          <ion-item *ngFor="let char of campaignCharacters">
+            <ion-label class="ion-text-wrap">
+              <h2>{{ char.name }} <small>({{ char.pronouns }})</small></h2>
+              <p>{{ char.archetype }}</p>
+              <p>{{ char.adjectives.join(', ') }} / {{ char.demeanor.join(', ') }}</p>
+            </ion-label>
+          </ion-item>
 
-        {{ campaign | json }}
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col>
+              </ion-col>
+
+              <ion-col class="ion-text-right">
+                <ion-button color="warning" (click)="leaveCampaign(character)">
+                  Leave Campaign
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+
       </ion-card-content>
     </ion-card-header>
   </ion-card>

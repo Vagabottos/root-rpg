@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { ICampaign, ICharacter } from '../../../../../shared/interfaces';
 import { CampaignAPIService } from '../../services/campaign.api.service';
@@ -16,12 +16,14 @@ export class CampaignComponent implements OnInit, OnDestroy {
 
   public character$: Subscription;
   public character: ICharacter;
+  public campaignCharacters: ICharacter[];
   public campaign: ICampaign;
 
   public joinCampaignId: string;
   public joinCampaignError: boolean;
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController,
     private notify: NotificationService,
     private campaignAPI: CampaignAPIService,
@@ -53,6 +55,11 @@ export class CampaignComponent implements OnInit, OnDestroy {
     this.campaignAPI.loadCampaign(this.character.campaign)
       .subscribe(campaign => {
         this.campaign = campaign;
+
+        this.campaignAPI.getCampaignCharacters(this.character.campaign)
+          .subscribe(chars => {
+            this.campaignCharacters = chars.data;
+          });
       });
   }
 
@@ -73,10 +80,24 @@ export class CampaignComponent implements OnInit, OnDestroy {
     );
   }
 
-  leaveCampaign(character: ICharacter) {
-    character.campaign = '';
+  async leaveCampaign(character: ICharacter) {
+    const alert = await this.alert.create({
+      header: 'Leave Campaign',
+      message: `Are you sure you want to leave your campaign?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, leave campaign',
+          handler: () => {
+            character.campaign = '';
 
-    this.data.patchCharacter().subscribe(() => {});
+            this.data.patchCharacter().subscribe(() => {});
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }
