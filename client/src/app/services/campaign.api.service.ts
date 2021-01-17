@@ -47,11 +47,11 @@ export class CampaignAPIService {
     return this.http.delete(this.api.apiUrl(`/campaign/${id}`));
   }
 
-  getCampaignCharacters(id: string): Observable<ICharacter[]> {
+  getCampaignCharacters(id: string): Observable<ITableData<ICharacter>> {
     const params = new HttpParams()
       .set('campaign', id);
 
-    return this.http.get(this.api.apiUrl('/campaign'), { params }) as Observable<ICharacter[]>;
+    return this.http.get(this.api.apiUrl('/character'), { params }) as Observable<ITableData<ICharacter>>;
   }
 
 }

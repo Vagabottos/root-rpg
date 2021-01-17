@@ -16,6 +16,7 @@ export class DataService {
 
   private char: BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
   private campaign: BehaviorSubject<ICampaign> = new BehaviorSubject<ICampaign>(null);
+  private campaignCharacters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
 
   public get char$(): Observable<ICharacter> {
     return this.char.asObservable();
@@ -23,6 +24,10 @@ export class DataService {
 
   public get campaign$(): Observable<ICampaign> {
     return this.campaign.asObservable();
+  }
+
+  public get campaignCharacters$(): Observable<ICharacter[]> {
+    return this.campaignCharacters.asObservable();
   }
 
   constructor(
@@ -65,10 +70,16 @@ export class DataService {
 
     if (!campaign && this.campaignObs) {
       this.campaignObs.unobserve();
+      this.campaignCharacters.next([]);
     }
 
     if (campaign && !this.campaignObs) {
       this.campaignObs = jsonpatch.observe(campaign);
+
+      this.campaignAPI.getCampaignCharacters(campaign._id)
+        .subscribe(chars => {
+          this.campaignCharacters.next(chars.data);
+        });
     }
   }
 

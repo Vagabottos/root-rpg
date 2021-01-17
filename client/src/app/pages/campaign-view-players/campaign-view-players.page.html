@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="data.campaign$ | async as campaign">
-    players {{ campaign | json }}
+  <ng-container *ngIf="data.campaignCharacters$ | async as campaignCharacters">
+    {{ campaignCharacters | json }}
   </ng-container>
 </ion-content>
