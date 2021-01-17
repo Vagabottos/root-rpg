@@ -18,7 +18,7 @@
         <ion-label position="stacked">Item Name</ion-label>
         <ion-input type="text" formControlName="name" placeholder="Enter Item Name" maxlength="25"></ion-input>
       </ion-item>
-  
+
       <ion-item class="wear" lines="none" *ngIf="!hideExtraData">
         <ion-button slot="start" color="secondary" (click)="wear(-1)" [disabled]="itemForm.get('wear').value <= 0">
           <ion-icon slot="icon-only" name="remove"></ion-icon>
@@ -46,7 +46,7 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-  
+
       <ion-list-header>
         <ion-label>
           Item Tags
@@ -79,7 +79,7 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-  
+
       <ion-list-header *ngIf="!hideExtraData">
         <ion-label>
           Weapon Skill Tags
@@ -112,7 +112,7 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-  
+
       <ion-list-header *ngIf="!hideExtraData">
         <ion-label>
           Ranges
@@ -139,7 +139,7 @@
         <p>Value: {{ itemService.value(this.formItem) }} | Load: {{ itemService.load(this.formItem) }}</p>
       </ion-item>
 
-      <ion-item color="success" (click)="dismiss(this.formItem)" [disabled]="itemForm.invalid">
+      <ion-item color="tertiary" (click)="dismiss(this.formItem)" [disabled]="itemForm.invalid">
         <ion-icon slot="start" name="add"></ion-icon>
         {{ item ? 'Update' : 'Create' }} Item
       </ion-item>
