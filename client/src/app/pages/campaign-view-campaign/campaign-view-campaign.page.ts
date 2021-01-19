@@ -50,4 +50,9 @@ export class CampaignViewCampaignPage implements OnInit {
     this.notification.notify('Copied ID successfully!');
   }
 
+  toggleLock(campaign: ICampaign) {
+    campaign.locked = !campaign.locked;
+    this.data.patchCampaign().subscribe(() => {});
+  }
+
 }

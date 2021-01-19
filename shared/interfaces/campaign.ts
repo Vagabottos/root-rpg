@@ -51,7 +51,7 @@ export interface IClearingVisitedEvent {
 
 export interface ICampaign {
   name: string;
-  locked: boolean;
+  locked?: boolean;
   factions: string[];
   characterNames?: string[];
 
