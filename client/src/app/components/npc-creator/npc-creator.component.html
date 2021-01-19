@@ -19,9 +19,9 @@
         <ion-input type="text" formControlName="name" placeholder="Enter NPC Name" maxlength="25"></ion-input>
       </ion-item>
 
-      <ion-item color="tertiary" (click)="dismiss(this.formItem)" [disabled]="npcForm.invalid">
+      <ion-item color="tertiary" (click)="dismiss(this.formNPC)" [disabled]="npcForm.invalid">
         <ion-icon slot="start" name="add"></ion-icon>
-        {{ item ? 'Update' : 'Create' }} NPC
+        {{ npc ? 'Update' : 'Create' }} NPC
       </ion-item>
     </ion-list>
   </form>
