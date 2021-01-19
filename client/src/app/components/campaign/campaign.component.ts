@@ -56,6 +56,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
       .subscribe(campaign => {
         this.campaign = campaign;
 
+        this.character.reputation = {};
         campaign.factions.forEach(fact => {
           this.character.reputation[fact] = { notoriety: 0, prestige: 0, total: 0 };
         });
@@ -75,7 +76,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
     this.data.patchCharacter().subscribe(
       () => {
         this.joinCampaignId = '';
-        this.notify.notify('Successfully joined campaign!');
+        this.notify.notify('Successfully joined campaign! Double check your reputation and make sure all the marks are there.');
 
         this.loadCampaign();
       },
