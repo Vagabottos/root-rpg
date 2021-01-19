@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
+import { ClipboardModule } from 'ngx-clipboard';
+
 import { ItemCreatorComponent } from './components/item-creator/item-creator.component';
 import { ItemComponent } from './components/item/item.component';
 import { EditDeletePopoverComponent } from './components/editdelete.popover';
@@ -38,7 +40,7 @@ const modals = [
     ...modals
   ],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot()
+    CommonModule, FormsModule, ReactiveFormsModule, ClipboardModule, IonicModule.forRoot()
   ],
   providers: [MarkdownPipe],
   bootstrap: [],

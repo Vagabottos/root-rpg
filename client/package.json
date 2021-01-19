@@ -19,6 +19,7 @@
     "@ionic/angular": "^5.0.0",
     "fast-json-patch": "^3.0.0-1",
     "marked": "^1.2.7",
+    "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClipboardService } from 'ngx-clipboard';
+
 import { ICampaign } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -12,6 +14,7 @@ import { NotificationService } from '../../services/notification.service';
 export class CampaignViewCampaignPage implements OnInit {
 
   constructor(
+    private clipboard: ClipboardService,
     private notification: NotificationService,
     private content: ContentService,
     public data: DataService
@@ -40,6 +43,11 @@ export class CampaignViewCampaignPage implements OnInit {
 
       this.data.patchCampaign().subscribe(() => {});
     });
+  }
+
+  copyID(campaign: ICampaign) {
+    this.clipboard.copy(campaign._id);
+    this.notification.notify('Copied ID successfully!');
   }
 
 }
