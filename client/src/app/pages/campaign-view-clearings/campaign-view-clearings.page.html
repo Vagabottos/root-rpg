@@ -18,7 +18,7 @@
 
     <ion-row>
       <ion-col *ngFor="let clearkv of campaign.clearings | keyvalue" size-xs="12" size-md="6">
-        <ion-card class="clearing-card" *ngIf="asClearing(clearkv.value) as clearing">
+        <ion-card class="clearing-card pointer" *ngIf="asClearing(clearkv.value) as clearing">
           <ion-card-header>
             <ion-card-title>
               {{ clearing.name }} ({{ clearing.status }})

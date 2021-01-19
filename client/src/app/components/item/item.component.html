@@ -8,6 +8,7 @@
 <ion-row class="header-row">
   <ion-col>
     <ion-icon *ngFor="let slot of boxSlots; let i = index"
+              class="pointer"
               (click)="changeWear(i + 1)"
               [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
   </ion-col>

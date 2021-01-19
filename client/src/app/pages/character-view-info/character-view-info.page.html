@@ -134,7 +134,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
+              <ion-item class="pointer" *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
                 {{ connection.name }} ({{ connection.target }})
               </ion-item>
             </ion-list>

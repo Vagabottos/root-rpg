@@ -4,7 +4,7 @@
       Advancement
     </ion-title>
 
-    <ion-searchbar *ngIf="isSearchOpen" 
+    <ion-searchbar *ngIf="isSearchOpen"
                    color="primary"
                    showCancelButton="true"
                    debounce="300"
@@ -33,35 +33,35 @@
           <ng-container [ngSwitch]="currentStep">
 
             <ng-container [ngTemplateOutlet]="choose"
-                          [ngTemplateOutletContext]="{ character: character }" 
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.Choose"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="stat" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="stat"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.Stat"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="myplaybook" 
-                          [ngTemplateOutletContext]="{ character: character }"  
+            <ng-container [ngTemplateOutlet]="myplaybook"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.MyPlaybook"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="differentplaybook" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="differentplaybook"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.DifferentPlaybook"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="weaponskills" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="weaponskills"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.WeaponSkills"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="roguishfeats" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="roguishfeats"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.RoguishFeats"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="harmbox" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="harmbox"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.HarmBox"></ng-container>
 
-            <ng-container [ngTemplateOutlet]="connections" 
-                          [ngTemplateOutletContext]="{ character: character }" 
+            <ng-container [ngTemplateOutlet]="connections"
+                          [ngTemplateOutletContext]="{ character: character }"
                           *ngSwitchCase="Step.Connections"></ng-container>
 
           </ng-container>
@@ -70,7 +70,7 @@
     </ion-row>
   </ng-container>
 </ion-content>
-    
+
 <ng-template #choose let-character="character">
   <ion-card>
 
@@ -87,16 +87,16 @@
     <ion-card-content>
 
       <ion-list>
-        <ion-item *ngFor="let step of advancementTypes" detail="true" (click)="setAdvancementStep(step.step)" [disabled]="step.disabled(character)">
+        <ion-item class="pointer" *ngFor="let step of advancementTypes" detail="true" (click)="setAdvancementStep(step.step)" [disabled]="step.disabled(character)">
           {{ step.name }}
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #stat let-character="character">
   <ion-card>
 
@@ -115,7 +115,7 @@
       <ion-list>
 
         <ion-radio-group [(ngModel)]="chosenStat">
-          <ion-item *ngFor="let stat of content.getStats()" [disabled]="character.stats[stat.toLowerCase()] >= 2">
+          <ion-item class="pointer" *ngFor="let stat of content.getStats()" [disabled]="character.stats[stat.toLowerCase()] >= 2">
             <ion-label class="ion-text-wrap">
               <h2>{{ stat }} (Base: {{ character.stats[stat.toLowerCase()] | withPlus }})</h2>
               <p>{{ content.getStat(stat).text }}</p>
@@ -142,12 +142,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #myplaybook let-character="character">
   <ion-card>
 
@@ -195,12 +195,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #differentplaybook let-character="character">
   <ion-card>
 
@@ -224,8 +224,9 @@
               <strong>{{ archMoves.key }}</strong>
             </ion-list-header>
 
-            <ion-item [class.hidden]="archMoves.key === character.archetype" 
-                      *ngFor="let move of filterArray(archMoves.value)" 
+            <ion-item class="pointer"
+                      [class.hidden]="archMoves.key === character.archetype"
+                      *ngFor="let move of filterArray(archMoves.value)"
                       [disabled]="character.moves.includes(move)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ move }}</h2>
@@ -255,12 +256,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #weaponskills let-character="character">
   <ion-card>
 
@@ -279,7 +280,7 @@
       <ion-list>
 
         <ng-container *ngFor="let x of [0, 1]">
-          <ion-item [class.hidden]="x === 1 && character.skills.length >= 6">
+          <ion-item class="pointer" [class.hidden]="x === 1 && character.skills.length >= 6">
             <ion-label position="stacked">New Weapon Skill {{ x + 1 }}</ion-label>
             <ion-select [(ngModel)]="chosenSkills[x]" placeholder="Choose weapon skill">
               <ion-select-option *ngFor="let choice of content.getWeaponSkills()" [value]="choice" [disabled]="allSkills(character).includes(choice) || chosenSkills[x === 0 ? 1 : 0] === choice">
@@ -313,12 +314,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #roguishfeats let-character="character">
   <ion-card>
 
@@ -337,7 +338,7 @@
       <ion-list>
 
         <ng-container *ngFor="let x of [0, 1]">
-          <ion-item [class.hidden]="x === 1 && character.feats.length >= 5">
+          <ion-item class="pointer" [class.hidden]="x === 1 && character.feats.length >= 5">
             <ion-label position="stacked">New Roguish Feat {{ x + 1 }}</ion-label>
             <ion-select [(ngModel)]="chosenFeats[x]" placeholder="Choose roguish feat">
               <ion-select-option *ngFor="let choice of content.getFeats()" [value]="choice" [disabled]="allFeats(character).includes(choice) || chosenFeats[x === 0 ? 1 : 0] === choice">
@@ -371,12 +372,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #harmbox let-character="character">
   <ion-card>
 
@@ -395,7 +396,7 @@
       <ion-list>
 
         <ion-radio-group [(ngModel)]="chosenHarm">
-          <ion-item *ngFor="let harm of ['Injury', 'Depletion', 'Exhaustion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
+          <ion-item class="pointer" *ngFor="let harm of ['Injury', 'Depletion', 'Exhaustion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
             <ion-label class="ion-text-wrap">
               <h2>{{ harm }} (Base: {{ (character.harmBoost[harm.toLowerCase()] || 0) | withPlus }})</h2>
             </ion-label>
@@ -421,12 +422,12 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>
 </ng-template>
-    
+
 <ng-template #connections let-character="character">
   <ion-card>
 
@@ -445,7 +446,7 @@
       <ion-list>
 
         <ng-container *ngFor="let x of [0, 1]">
-          <ion-item>
+          <ion-item class="pointer">
             <ion-label position="stacked">New Connection {{ x + 1 }}</ion-label>
             <ion-select [(ngModel)]="chosenConnections[x].name" placeholder="Choose connection type">
               <ion-select-option *ngFor="let choice of content.getConnections()" [value]="choice">
@@ -460,7 +461,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-item *ngIf="chosenConnections[x].name">
+          <ion-item class="pointer" *ngIf="chosenConnections[x].name">
             <ion-input type="text" [placeholder]="'Choose ' + chosenConnections[x].name + ' target'" [(ngModel)]="chosenConnections[x].target" maxlength="25"></ion-input>
           </ion-item>
         </ng-container>
@@ -483,7 +484,7 @@
           </ion-row>
         </ion-item>
       </ion-list>
-      
+
     </ion-card-content>
 
   </ion-card>

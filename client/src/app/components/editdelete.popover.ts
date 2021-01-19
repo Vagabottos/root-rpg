@@ -6,20 +6,17 @@ import { PopoverController } from '@ionic/angular';
   template: `
   <ion-content>
     <ion-list>
-      <ion-item (click)="dismiss('edit')" *ngIf="showEdit">
+      <ion-item class="pointer" (click)="dismiss('edit')" *ngIf="showEdit">
         <ion-icon slot="start" name="pencil"></ion-icon>
         Edit
       </ion-item>
-      <ion-item (click)="dismiss('delete')" *ngIf="showDelete">
+      <ion-item class="pointer" (click)="dismiss('delete')" *ngIf="showDelete">
         <ion-icon slot="start" name="trash"></ion-icon>
         Delete
       </ion-item>
     </ion-list>
   </ion-content>
-  `,
-  styles: [
-    `ion-item { cursor: pointer; }`
-  ]
+  `
 })
 export class EditDeletePopoverComponent {
   @Input() public showEdit = true;

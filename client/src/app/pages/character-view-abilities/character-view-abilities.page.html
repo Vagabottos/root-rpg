@@ -40,7 +40,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item (click)="viewNature(character.nature)" *ngIf="filterArray([character.nature]).length > 0">
+              <ion-item class="pointer" (click)="viewNature(character.nature)" *ngIf="filterArray([character.nature]).length > 0">
                 {{ character.nature }}
               </ion-item>
             </ion-list>
@@ -55,7 +55,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let drive of filterArray(getDrives(character))" (click)="viewDrive(drive)">
+              <ion-item class="pointer" *ngFor="let drive of filterArray(getDrives(character))" (click)="viewDrive(drive)">
                 {{ drive }}<span *ngIf="character.driveTargets && character.driveTargets[drive] as target">&nbsp;({{ target }})</span>
               </ion-item>
             </ion-list>
@@ -75,7 +75,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let move of filterArray(getMoves(character))" (click)="viewMove(move)">
+              <ion-item class="pointer" *ngFor="let move of filterArray(getMoves(character))" (click)="viewMove(move)">
                 {{ move }}
               </ion-item>
             </ion-list>
@@ -93,7 +93,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let skill of filterArray(getSkills(character))" (click)="viewSkill(skill)">
+              <ion-item class="pointer" *ngFor="let skill of filterArray(getSkills(character))" (click)="viewSkill(skill)">
                 {{ skill }}
               </ion-item>
             </ion-list>
@@ -111,7 +111,7 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-item *ngFor="let feat of filterArray(getFeats(character))" (click)="viewFeat(feat)">
+              <ion-item class="pointer" *ngFor="let feat of filterArray(getFeats(character))" (click)="viewFeat(feat)">
                 {{ feat }}
               </ion-item>
             </ion-list>
