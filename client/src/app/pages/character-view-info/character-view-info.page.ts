@@ -183,7 +183,7 @@ export class CharacterViewInfoPage implements OnInit {
       character.reputation = {};
 
       data.forEach(({ name }) => {
-        if(reputationCopy[name]) {
+        if (reputationCopy[name]) {
           character.reputation[name] = reputationCopy[name];
           return;
         }
