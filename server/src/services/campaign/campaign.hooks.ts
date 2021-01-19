@@ -9,6 +9,7 @@ import { disallow } from '../../middleware/disallow';
 import { reformatCampaign } from '../../middleware/reformat-campaign';
 import { attachOwner, validateOwner } from '../../middleware/owner';
 import { stripUneditableProps } from '../../middleware/strip-uneditable-props';
+import { removeLinkedPlayers } from '../../middleware/remove-linked-players';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
@@ -48,7 +49,7 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [removeLinkedPlayers]
   },
 
   error: {
