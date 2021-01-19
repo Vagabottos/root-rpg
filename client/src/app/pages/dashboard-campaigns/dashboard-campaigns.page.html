@@ -83,6 +83,10 @@
     </ion-card-header>
 
     <ion-card-content>
+      <p>{{ campaign.characterNames.length }} character(s) joined:</p>
+      <ul>
+        <li *ngFor="let name of campaign.characterNames">{{ name }}</li>
+      </ul>
     </ion-card-content>
   </ion-card>
 

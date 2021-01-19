@@ -53,6 +53,7 @@ export interface ICampaign {
   name: string;
   locked: boolean;
   factions: string[];
+  characterNames?: string[];
 
   clearings: Record<string, IClearing>;
   forests: Record<string, IForest>;
