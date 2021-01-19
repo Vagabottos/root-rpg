@@ -11,9 +11,11 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="addNewNPC(campaign)">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        <ion-button (click)="addNewNPC(campaign)">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ng-container>
     </ion-buttons>
 
   </ion-toolbar>
