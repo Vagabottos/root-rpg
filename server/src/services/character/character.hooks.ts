@@ -16,7 +16,7 @@ import { stripUneditableProps } from '../../middleware/strip-uneditable-props';
 const resolvers = {
   joins: {
     campaignName: () => async (player, ctx) => {
-      if(!player.campaign) return;
+      if(!player.campaign || player.campaign.length !== 24) return;
 
       const res = await ctx.app.service('campaign').find({
         query: { _id: new ObjectId(player.campaign), $select: ['name'] },
