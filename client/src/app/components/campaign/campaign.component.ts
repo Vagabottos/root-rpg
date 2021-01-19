@@ -56,6 +56,12 @@ export class CampaignComponent implements OnInit, OnDestroy {
       .subscribe(campaign => {
         this.campaign = campaign;
 
+        campaign.factions.forEach(fact => {
+          this.character.reputation[fact] = { notoriety: 0, prestige: 0, total: 0 };
+        });
+
+        this.data.patchCharacter().subscribe(() => {});
+
         this.campaignAPI.getCampaignCharacters(this.character.campaign)
           .subscribe(chars => {
             this.campaignCharacters = chars.data;
