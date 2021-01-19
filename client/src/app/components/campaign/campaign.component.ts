@@ -67,6 +67,10 @@ export class CampaignComponent implements OnInit, OnDestroy {
           .subscribe(chars => {
             this.campaignCharacters = chars.data;
           });
+
+      }, () => {
+        this.character.campaign = '';
+        this.data.patchCharacter().subscribe(() => {});
       });
   }
 
