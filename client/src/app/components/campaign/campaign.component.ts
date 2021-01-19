@@ -89,6 +89,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
         {
           text: 'Yes, leave campaign',
           handler: () => {
+            this.campaign = null;
+            this.campaignCharacters = [];
             character.campaign = '';
 
             this.data.patchCharacter().subscribe(() => {});
