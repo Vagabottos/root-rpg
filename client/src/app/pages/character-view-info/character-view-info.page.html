@@ -86,6 +86,7 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>Reputation</ion-card-title>
+            <ion-icon class="change" name="refresh" (click)="changeFactions(character)" *ngIf="!character.campaign"></ion-icon>
           </ion-card-header>
 
           <ion-card-content>

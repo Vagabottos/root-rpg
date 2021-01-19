@@ -11,6 +11,7 @@ import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 import { CharacterHelperService } from '../../services/character.helper.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-character-view-info',
@@ -21,6 +22,7 @@ export class CharacterViewInfoPage implements OnInit {
 
   constructor(
     private markdown: MarkdownPipe,
+    private notification: NotificationService,
     private alert: AlertController,
     private modal: ModalController,
     public data: DataService,
@@ -159,6 +161,38 @@ export class CharacterViewInfoPage implements OnInit {
     });
 
     modal.present();
+  }
+
+  async changeFactions(character: ICharacter) {
+
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Factions`,
+      message: `Choose factions from the following list to track reputation for.`,
+      choices: this.content.getFactions().map(c => ({ name: c.name, text: '' })) || [],
+      numChoices: 0,
+      bannedChoices: [],
+      disableBanned: false,
+      defaultSelected: Object.keys(character.reputation),
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      const reputationCopy = character.reputation;
+      character.reputation = {};
+
+      data.forEach(({ name }) => {
+        if(reputationCopy[name]) {
+          character.reputation[name] = reputationCopy[name];
+          return;
+        }
+
+        character.reputation[name] = { notoriety: 0, prestige: 0, total: 0 };
+      });
+
+      this.data.patchCampaign().subscribe(() => {});
+    });
   }
 
 }
