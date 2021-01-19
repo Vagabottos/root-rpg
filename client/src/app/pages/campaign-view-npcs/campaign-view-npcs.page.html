@@ -10,11 +10,23 @@
       </ng-container>
     </ion-title>
 
+    <ion-buttons slot="end">
+      <ion-button (click)="addNewNPC(campaign)">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
-    npcs {{ campaign | json }}
+    <div class="blank-slate" *ngIf="!campaign.npcs || campaign.npcs.length === 0">You do not have any unattached NPCs.</div>
+
+    <ion-row>
+      <ion-col *ngFor="let npc of campaign.npcs">
+        <app-npc [npc]="npc"></app-npc>
+      </ion-col>
+    </ion-row>
   </ng-container>
 </ion-content>

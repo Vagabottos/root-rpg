@@ -65,7 +65,8 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     locked: false,
     factions: context.data.factions,
     clearings: {},
-    forests: {}
+    forests: {},
+    npcs: []
   };
 
   for(let i = 0; i < 12; i++) {

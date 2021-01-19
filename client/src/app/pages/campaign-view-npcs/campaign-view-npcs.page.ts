@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
+import { cloneDeep } from 'lodash';
+
+import { ICampaign, INPC } from '../../../interfaces';
+import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -8,9 +14,30 @@ import { DataService } from '../../services/data.service';
 })
 export class CampaignViewNpcsPage implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(
+    private modal: ModalController,
+    public data: DataService
+  ) { }
 
   ngOnInit() {
+  }
+
+  async addNewNPC(campaign: ICampaign, npc?: INPC) {
+
+    const modal = await this.modal.create({
+      component: NPCCreatorComponent,
+      componentProps: { npc: cloneDeep(npc) }
+    });
+
+    modal.onDidDismiss().then((res) => {
+      const resnpc = res.data;
+      if (!resnpc) { return; }
+
+      console.log(resnpc);
+    });
+
+    await modal.present();
+
   }
 
 }

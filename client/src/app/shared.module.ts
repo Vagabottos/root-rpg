@@ -20,13 +20,16 @@ import { ForceSelectorComponent } from './components/force-selector/force-select
 import { NumberWithPlus } from './pipes/number-with-plus';
 import { ChangeConnectionsComponent } from './components/change-connections/change-connections.component';
 import { ChangeDrivesComponent } from './components/change-drives/change-drives.component';
+import { NPCComponent } from './components/npc/npc.component';
+import { NPCCreatorComponent } from './components/npc-creator/npc-creator.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
-const components = [ItemComponent];
+const components = [ItemComponent, NPCComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
-  CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent
+  CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
+  NPCCreatorComponent
 ];
 
 @NgModule({

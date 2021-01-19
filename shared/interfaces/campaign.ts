@@ -1,3 +1,4 @@
+import { INPC } from './npc';
 
 export type ClearingStatus = 'pristine' | 'damaged' | 'wrecked' | 'destroyed';
 export type ForestType = 'ruins' | 'creature' | 'mystery';
@@ -57,6 +58,7 @@ export interface ICampaign {
 
   clearings: Record<string, IClearing>;
   forests: Record<string, IForest>;
+  npcs: INPC[];
 
   createdAt?: number;
   updatedAt?: number;
