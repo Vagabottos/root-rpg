@@ -28,6 +28,7 @@ export interface ICharacterReputation {
 export interface ICharacter {
   name: string;
   campaign?: string;
+  campaignName?: string;
   archetype: string;
   species: string;
   adjectives: string[];

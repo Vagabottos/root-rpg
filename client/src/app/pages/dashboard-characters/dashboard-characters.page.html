@@ -83,7 +83,7 @@
 
     <ion-card-content>
       <p>{{ character.species }} / {{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</p>
-      <p *ngIf="character.campaign">Part of a campaign</p>
+      <p *ngIf="character.campaign">Part of "{{ character.campaignName || 'unknown campaign' }}"</p>
       <p>{{ character.nature }} Nature</p>
       <p>Driven by {{ character.drives.join(' & ') }}</p>
     </ion-card-content>
