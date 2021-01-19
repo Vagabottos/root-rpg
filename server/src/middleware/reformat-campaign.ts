@@ -1,6 +1,7 @@
 
+import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { capitalize, cloneDeep, sample } from 'lodash';
+import { capitalize, cloneDeep, isArray, sample } from 'lodash';
 
 import { ICampaign, IClearing, IContent, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
@@ -55,14 +56,14 @@ function createClearing(): IClearing {
 
 export async function reformatCampaign(context: HookContext): Promise<HookContext> {
 
+  if(!context.data.factions || context.data.factions.length === 0 || !isArray(context.data.factions)) {
+    throw new NotAcceptable('No factions specified for campaign gen.');
+  }
+
   const newCampaign: ICampaign = {
     name: context.data.name,
     locked: false,
-    factions: [
-      'Denizens',
-      'The Marquisate',
-      'The Eyrie'
-    ],
+    factions: context.data.factions,
     clearings: {},
     forests: {}
   };

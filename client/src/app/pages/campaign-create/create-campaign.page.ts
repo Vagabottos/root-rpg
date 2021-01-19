@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CampaignAPIService } from '../../services/campaign.api.service';
+import { ContentService } from '../../services/content.service';
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
@@ -14,7 +15,11 @@ export class CreateCampaignPage implements OnInit {
   public isDoing = false;
 
   public campaignForm = new FormGroup({
-    campaignName: new FormControl('', [Validators.required, Validators.minLength(4)])
+    campaignName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    campaignFactions: new FormControl(
+      ['Denizens', 'The Marquisate', 'The Eyrie'],
+      [Validators.required]
+    )
   });
 
   public validationMessages = {
@@ -26,6 +31,7 @@ export class CreateCampaignPage implements OnInit {
 
   constructor(
     private router: Router,
+    private content: ContentService,
     private notification: NotificationService,
     private campaignAPI: CampaignAPIService
   ) { }
@@ -37,7 +43,8 @@ export class CreateCampaignPage implements OnInit {
     this.isDoing = true;
 
     const args = {
-      name: this.campaignForm.get('campaignName').value
+      name: this.campaignForm.get('campaignName').value,
+      factions: this.campaignForm.get('campaignFactions').value
     };
 
     this.campaignAPI.createCampaign(args)
@@ -48,6 +55,26 @@ export class CreateCampaignPage implements OnInit {
       }, () => {
         this.isDoing = false;
       });
+  }
+
+  async changeFactions() {
+    console.log(this.campaignForm.get('campaignFactions').value);
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Factions`,
+      message: `Choose factions from the following list to add to your campaign.`,
+      choices: this.content.getFactions().map(c => ({ name: c.name, text: '' })),
+      numChoices: 0,
+      bannedChoices: [],
+      disableBanned: false,
+      defaultSelected: this.campaignForm.get('campaignFactions').value,
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.campaignForm.get('campaignFactions').setValue(data.map(x => x.name));
+    });
   }
 
 }

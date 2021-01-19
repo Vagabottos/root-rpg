@@ -49,7 +49,30 @@
                   </ng-container>
                 </div>
 
+                <ion-list-header>
+                  <ion-label>
+                    Campaign Factions
+                  </ion-label>
+
+                  <ion-button (click)="changeFactions()">
+                    <ion-icon slot="icon-only" name="refresh"></ion-icon>
+                  </ion-button>
+                </ion-list-header>
+
+                <ion-item *ngFor="let faction of campaignForm.get('campaignFactions').value">
+                  {{ faction }}
+                </ion-item>
+
+                <ion-list-header class="margin-top-2">Confirm</ion-list-header>
                 <ion-item lines="none">
+                  <ion-label class="ion-text-wrap">
+                    The rest of your world will be generated based on these parameters. Your factions will be changeable post-create, but will not retroactively affect the created clearings.
+                    Make sure you finalize your factions and clearings before giving any players your campaign ID, as their character creation process is tied to those specific pieces of information.
+                    You also <strong>cannot change factions or clearing names</strong> when you have players in your campaign.
+                  </ion-label>
+                </ion-item>
+
+                <ion-item class="margin-top-2" lines="none">
                   <ion-row class="action-row">
                     <ion-col>
                     </ion-col>
