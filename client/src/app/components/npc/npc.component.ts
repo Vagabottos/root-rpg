@@ -10,6 +10,7 @@ import { INPC } from '../../../interfaces';
 export class NPCComponent implements OnInit {
 
   @Input() npc: INPC;
+  @Output() update = new EventEmitter();
 
   constructor(
   ) { }

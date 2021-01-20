@@ -1,1 +1,19 @@
-{{ npc | json }}
+
+<ion-row>
+  <ion-col>{{ npc.name }}</ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>{{ npc.faction }} / {{ npc.drive }}</ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col>
+    <ion-list>
+      <ion-item></ion-item>
+    </ion-list>
+  </ion-col>
+</ion-row>
+
+<!-- faction, drive, equipment, harm -->
+<!-- look / notes in popup ? maybe truncate ion-label and click to alert the whole thing -->

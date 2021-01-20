@@ -21,7 +21,7 @@ export class NPCCreatorComponent implements OnInit {
     look:         new FormControl('', [Validators.required, Validators.maxLength(1000)]),
     faction:      new FormControl('', [Validators.required, Validators.maxLength(25)]),
     drive:        new FormControl('', [Validators.required, Validators.maxLength(25)]),
-    notes:        new FormControl('', [Validators.required, Validators.maxLength(1000)]),
+    notes:        new FormControl('', [Validators.maxLength(1000)]),
     equipment:    new FormControl([]),
   });
 

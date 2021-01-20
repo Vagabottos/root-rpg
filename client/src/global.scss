@@ -25,7 +25,7 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-$sizes: 1, 2, 3;
+$sizes: 0, 1, 2, 3;
 
 @each $size in $sizes {
   .margin-#{$size} {
@@ -46,6 +46,26 @@ $sizes: 1, 2, 3;
 
   .margin-right-#{$size} {
     margin-right: #{$size}rem;
+  }
+
+  .padding-#{$size} {
+    padding: #{$size}rem;
+  }
+
+  .padding-top-#{$size} {
+    padding-top: #{$size}rem;
+  }
+
+  .padding-bottom-#{$size} {
+    padding-bottom: #{$size}rem;
+  }
+
+  .padding-left-#{$size} {
+    padding-left: #{$size}rem;
+  }
+
+  .padding-right-#{$size} {
+    padding-right: #{$size}rem;
   }
 }
 

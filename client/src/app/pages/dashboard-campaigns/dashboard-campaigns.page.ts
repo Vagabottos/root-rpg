@@ -58,7 +58,7 @@ export class DashboardCampaignsPage implements OnInit {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            this.attemptDeleteCharacter(camp);
+            this.attemptDeleteCampaign(camp);
           }
         }
       ]
@@ -82,16 +82,16 @@ export class DashboardCampaignsPage implements OnInit {
       if (!resAct) { return; }
 
       if (resAct === 'delete') {
-        this.attemptDeleteCharacter(camp);
+        this.attemptDeleteCampaign(camp);
       }
     });
 
     popover.present();
   }
 
-  async attemptDeleteCharacter(camp: ICampaign) {
+  async attemptDeleteCampaign(camp: ICampaign) {
     const alert = await this.alert.create({
-      header: 'Delete Character',
+      header: 'Delete Campaign',
       message: `Are you sure you want to delete the campaign ${camp.name}? This is permanent and not reversible!`,
       buttons: [
         'Cancel',

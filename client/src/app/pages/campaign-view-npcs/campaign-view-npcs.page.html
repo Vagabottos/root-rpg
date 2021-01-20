@@ -25,10 +25,110 @@
   <ng-container *ngIf="data.campaign$ | async as campaign">
     <div class="blank-slate" *ngIf="!campaign.npcs || campaign.npcs.length === 0">You do not have any unattached NPCs.</div>
 
-    <ion-row>
-      <ion-col *ngFor="let npc of campaign.npcs">
-        <app-npc [npc]="npc"></app-npc>
+    <ion-row *ngIf="campaign.npcs?.length > 0">
+
+      <ion-col *ngFor="let npc of campaign.npcs"
+              size-xs="12" size-md="6" size-lg="6" size-xl="4"
+              lines="none"
+              class="ion-hide-md-up"
+              appLongPress="500"
+              (release)="showDeleteActionSheet(npc)">
+
+        <ng-container [ngTemplateOutlet]="npcCard"
+                      [ngTemplateOutletContext]="{ campaign: campaign, npc: npc }"></ng-container>
+
       </ion-col>
+
+
+      <ion-col *ngFor="let npc of campaign.npcs"
+              size-xs="12" size-md="6" size-lg="6" size-xl="4"
+              lines="none"
+              class="ion-hide-md-down">
+
+        <ng-container [ngTemplateOutlet]="npcCard"
+                      [ngTemplateOutletContext]="{ campaign: campaign, npc: npc, big: true }"></ng-container>
+
+      </ion-col>
+
     </ion-row>
   </ng-container>
 </ion-content>
+
+<ng-template #npcCard let-campaign="campaign" let-npc="npc" let-big="big">
+
+  <ion-card class="npc-card pointer">
+    <ion-card-header>
+      <ion-card-title>{{ npc.name }}</ion-card-title>
+      <ion-card-subtitle>{{ npc.faction }} / {{ npc.drive }}</ion-card-subtitle>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign, npc)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <strong>Equipment</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="npc.equipment.length === 0">
+        <ion-col>
+          None
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of npc.equipment">
+        <ion-col class="padding-left-0">
+          <app-item [item]="item" (updateWear)="save()"></app-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Looks Like</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          {{ npc.look }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Notes</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          {{ npc.notes || 'no notes' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Harm</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion', 'Morale']" class="harm-row">
+            <ion-col class="harm-label" (click)="adjustHarm(npc, harm.toLowerCase(), 0)">{{ harm }}</ion-col>
+            <ion-col class="harm-box"
+                     *ngFor="let i of [0, 1, 2, 3]"
+                     (click)="adjustHarm(npc, harm.toLowerCase(), i + 1)">
+              <ion-icon [name]="npc.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>
