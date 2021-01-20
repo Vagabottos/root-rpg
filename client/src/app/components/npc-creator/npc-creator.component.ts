@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+
+import { sample } from 'lodash';
+
 import { INPC, IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
@@ -43,12 +46,15 @@ export class NPCCreatorComponent implements OnInit {
   }
 
   constructor(
-    private alert: AlertController,
     private modal: ModalController,
     public contentService: ContentService,
     private itemCreator: ItemCreatorService,
     public itemService: ItemService
   ) { }
+
+  pickRandomName() {
+    this.npcForm.get('name').setValue(sample(this.contentService.getNames()));
+  }
 
   ngOnInit() {
     if (this.npc) {
