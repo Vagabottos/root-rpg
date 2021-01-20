@@ -32,7 +32,7 @@
               lines="none"
               class="ion-hide-md-up"
               appLongPress="500"
-              (release)="showDeleteActionSheet(npc)">
+              (release)="showDeleteActionSheet(campaign, npc)">
 
         <ng-container [ngTemplateOutlet]="npcCard"
                       [ngTemplateOutletContext]="{ campaign: campaign, npc: npc }"></ng-container>
