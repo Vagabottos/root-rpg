@@ -112,7 +112,7 @@ export class CampaignViewNpcsPage implements OnInit {
         {
           text: 'Yes, delete',
           handler: () => {
-            campaign.npcs = campaign.npcs.filter(x => x === npc);
+            campaign.npcs = campaign.npcs.filter(x => x !== npc);
 
             this.save();
           }
