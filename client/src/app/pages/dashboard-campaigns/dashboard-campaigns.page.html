@@ -83,10 +83,16 @@
     </ion-card-header>
 
     <ion-card-content>
-      <p>{{ campaign.characterNames.length }} character(s) joined:</p>
-      <ul>
-        <li *ngFor="let name of campaign.characterNames">{{ name }}</li>
-      </ul>
+      <ng-container *ngIf="campaign.characterNames?.length > 0">
+        <p>{{ campaign.characterNames.length }} character(s) joined:</p>
+        <ul>
+          <li *ngFor="let name of campaign.characterNames">{{ name }}</li>
+        </ul>
+      </ng-container>
+
+      <ng-container *ngIf="!campaign.characterNames || campaign.characterNames.length === 0">
+        No characters have joined.
+      </ng-container>
     </ion-card-content>
   </ion-card>
 
