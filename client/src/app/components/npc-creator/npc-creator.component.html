@@ -15,11 +15,59 @@
   <form [formGroup]="npcForm">
     <ion-list>
       <ion-item>
-        <ion-label position="stacked">NPC Name</ion-label>
-        <ion-input type="text" formControlName="name" placeholder="Enter NPC Name" maxlength="25"></ion-input>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input type="text" formControlName="name" placeholder="Enter NPC name" maxlength="25"></ion-input>
       </ion-item>
 
-      <ion-item color="tertiary" (click)="dismiss(this.formNPC)" [disabled]="npcForm.invalid">
+      <ion-item>
+        <ion-label position="stacked">Look</ion-label>
+        <ion-textarea formControlName="look" placeholder="Enter NPC look" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Faction</ion-label>
+        <ion-select formControlName="faction" placeholder="Choose NPC faction">
+          <ion-select-option *ngFor="let choice of validFactions" [value]="choice">
+            {{ choice }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Drive</ion-label>
+        <ion-select formControlName="drive" placeholder="Choose NPC drive">
+          <ion-select-option *ngFor="let choice of contentService.getDrives()" [value]="choice">
+            {{ choice }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Notes</ion-label>
+        <ion-textarea formControlName="notes" placeholder="Enter NPC notes" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-list-header>
+        <ion-label>
+          Items
+        </ion-label>
+
+        <ion-button (click)="addItem()">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-list-header>
+
+      <ion-item *ngIf="npcForm.get('equipment').value.length === 0">No items</ion-item>
+
+      <ion-item *ngFor="let item of npcForm.get('equipment').value">
+        <app-item [item]="item"></app-item>
+
+        <ion-button slot="end" color="danger" (click)="removeItem(item)">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item color="tertiary" class="pointer" (click)="dismiss(this.formNPC)" [disabled]="npcForm.invalid">
         <ion-icon slot="start" name="add"></ion-icon>
         {{ npc ? 'Update' : 'Create' }} NPC
       </ion-item>

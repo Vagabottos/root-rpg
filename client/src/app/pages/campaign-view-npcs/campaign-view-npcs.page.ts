@@ -26,14 +26,17 @@ export class CampaignViewNpcsPage implements OnInit {
 
     const modal = await this.modal.create({
       component: NPCCreatorComponent,
-      componentProps: { npc: cloneDeep(npc) }
+      componentProps: { npc: cloneDeep(npc), validFactions: campaign.factions }
     });
 
     modal.onDidDismiss().then((res) => {
       const resnpc = res.data;
       if (!resnpc) { return; }
 
-      console.log(resnpc);
+      campaign.npcs = campaign.npcs || [];
+      campaign.npcs.push(resnpc);
+
+      this.data.patchCampaign().subscribe(() => {});
     });
 
     await modal.present();

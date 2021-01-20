@@ -33,7 +33,7 @@
           <ion-checkbox #checkbox slot="end" (ionChange)="selectItem(checkbox, i)" [checked]="selected[i]"></ion-checkbox>
         </ion-item>
 
-        <ion-item color="tertiary" (click)="addCustom()" *ngIf="allowCustom">
+        <ion-item color="tertiary" class="pointer" (click)="addCustom()" *ngIf="allowCustom">
           <ion-icon slot="start" name="add"></ion-icon>
           Add Custom
         </ion-item>

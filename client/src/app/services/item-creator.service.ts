@@ -15,7 +15,7 @@ export class ItemCreatorService {
     private modal: ModalController
   ) { }
 
-  async createItem(item: IItem, itemData?: any) {
+  async createItem(item?: IItem, itemData?: any) {
     const modal = await this.modal.create({
       component: ItemCreatorComponent,
       componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData) }

@@ -78,6 +78,10 @@ export class ContentService {
     return this.content.core.natures[name];
   }
 
+  getDrives(): string[] {
+    return Object.keys(this.content.core.drives).sort();
+  }
+
   getDrive(name: string): IContentDrive {
     return this.content.core.drives[name];
   }
