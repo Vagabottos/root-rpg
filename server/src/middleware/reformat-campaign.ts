@@ -24,6 +24,7 @@ function createClearing(): IClearing {
     status: 'pristine',
     contestedBy: 'Denizens',
     controlledBy: 'The Marquise',
+    npcs: [],
     eventRecord: {
       beforePlay: 'Something happened here.',
       visited: []

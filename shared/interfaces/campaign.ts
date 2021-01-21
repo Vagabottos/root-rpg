@@ -9,6 +9,7 @@ export interface IClearing {
   status: ClearingStatus;
   contestedBy: string;
   controlledBy: string;
+  npcs: INPC[];
 
   eventRecord: {
     beforePlay: string;

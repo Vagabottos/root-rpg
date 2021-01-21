@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActionSheetController, AlertController, ModalController, PopoverController } from '@ionic/angular';
+
+import { cloneDeep } from 'lodash';
+import { IClearing } from '../../../../../shared/interfaces';
+
+import { ICampaign, INPC } from '../../../interfaces';
+import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
+import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -9,10 +17,128 @@ import { DataService } from '../../services/data.service';
 export class ClearingViewNpcsPage implements OnInit {
 
   constructor(
+    private actionSheet: ActionSheetController,
+    private alert: AlertController,
+    private popover: PopoverController,
+    private modal: ModalController,
     public data: DataService
   ) { }
 
   ngOnInit() {
+  }
+
+  async addNewNPC(campaign: ICampaign, clearing: IClearing, npc?: INPC) {
+
+    const modal = await this.modal.create({
+      component: NPCCreatorComponent,
+      componentProps: { npc: cloneDeep(npc), validFactions: campaign.factions }
+    });
+
+    modal.onDidDismiss().then((res) => {
+      const resnpc = res.data;
+      if (!resnpc) { return; }
+
+      clearing.npcs = clearing.npcs || [];
+      const prevIndex = clearing.npcs.findIndex(n => n === npc);
+
+      if (prevIndex === -1) {
+        clearing.npcs.push(resnpc);
+      } else {
+        clearing.npcs[prevIndex] = resnpc;
+      }
+
+      this.save();
+    });
+
+    await modal.present();
+
+  }
+
+  async showDeleteActionSheet(campaign: ICampaign, clearing: IClearing, npc: INPC) {
+    const actionSheet = await this.actionSheet.create({
+      header: 'Actions',
+      buttons: [
+        {
+          text: 'Edit',
+          icon: 'pencil',
+          handler: () => {
+            this.addNewNPC(campaign, clearing, npc);
+          }
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => {
+            this.attemptDeleteNPC(clearing, npc);
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
+
+  async showDeletePopover(event, campaign: ICampaign, clearing: IClearing, npc: INPC) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const popover = await this.popover.create({
+      component: EditDeletePopoverComponent,
+      event
+    });
+
+    popover.onDidDismiss().then((res) => {
+      const resAct = res.data;
+      if (!resAct) { return; }
+
+      if (resAct === 'edit') {
+        this.addNewNPC(campaign, clearing, npc);
+      }
+
+      if (resAct === 'delete') {
+        this.attemptDeleteNPC(clearing, npc);
+      }
+    });
+
+    popover.present();
+  }
+
+  async attemptDeleteNPC(clearing: IClearing, npc: INPC) {
+    const alert = await this.alert.create({
+      header: 'Delete NPC',
+      message: `Are you sure you want to delete the NPC ${npc.name}? This is permanent and not reversible!`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Yes, delete',
+          handler: () => {
+            clearing.npcs = clearing.npcs.filter(x => x !== npc);
+
+            this.save();
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  adjustHarm(npc: INPC, harm: string, newValue: number): void {
+    if (!npc.harm) { npc.harm = { injury: 0, depletion: 0, exhaustion: 0, morale: 0 }; }
+
+    if (npc.harm[harm.toLowerCase()] === newValue) {
+      npc.harm[harm.toLowerCase()] = 0;
+      this.save();
+      return;
+    }
+
+    npc.harm[harm.toLowerCase()] = newValue;
+    this.save();
+  }
+
+  public save() {
+    this.data.patchCampaign().subscribe(() => {});
   }
 
 }

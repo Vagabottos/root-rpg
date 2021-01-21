@@ -2,9 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import * as jsonpatch from 'fast-json-patch';
 
-import { ICampaign, ICharacter } from '../../interfaces';
+import { ICampaign, ICharacter, IClearing } from '../../interfaces';
 import { CharacterAPIService } from './character.api.service';
 import { CampaignAPIService } from './campaign.api.service';
+
+interface IClearingData {
+  index: number;
+  clearing: IClearing;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +22,7 @@ export class DataService {
   private char: BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
   private campaign: BehaviorSubject<ICampaign> = new BehaviorSubject<ICampaign>(null);
   private campaignCharacters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
-  private campaignClearing: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  private campaignClearing: BehaviorSubject<IClearingData> = new BehaviorSubject<IClearingData>({ index: -1, clearing: null });
 
   public get char$(): Observable<ICharacter> {
     return this.char.asObservable();
@@ -31,7 +36,7 @@ export class DataService {
     return this.campaignCharacters.asObservable();
   }
 
-  public get campaignClearing$(): Observable<number> {
+  public get campaignClearing$(): Observable<IClearingData> {
     return this.campaignClearing.asObservable();
   }
 
@@ -108,7 +113,7 @@ export class DataService {
     return this.campaignAPI.patchCampaign(id, patchObj);
   }
 
-  public setActiveCampaignClearing(clearing: number) {
-    this.campaignClearing.next(clearing);
+  public setActiveCampaignClearing(clearingData: IClearingData) {
+    this.campaignClearing.next(clearingData);
   }
 }

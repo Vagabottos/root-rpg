@@ -5,10 +5,131 @@
     </ion-buttons>
 
     <ion-title>
-      Clearing NPCs
+      {{ (data.campaignClearing$ | async).clearing?.name }} Notable NPCs
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+          <ion-button (click)="addNewNPC(campaign, clearing)">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ng-container>
+      </ng-container>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="data.campaign$ | async as campaign">
+    <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+      <div class="blank-slate" *ngIf="!clearing.npcs || clearing.npcs.length === 0">You do not have any NPCs in this clearing.</div>
+
+      <ion-row *ngIf="clearing.npcs?.length > 0">
+
+        <ion-col *ngFor="let npc of clearing.npcs"
+                size-xs="12" size-md="6" size-lg="6" size-xl="4"
+                lines="none"
+                class="ion-hide-md-up"
+                appLongPress="500"
+                (release)="showDeleteActionSheet(campaign, clearing, npc)">
+
+          <ng-container [ngTemplateOutlet]="npcCard"
+                        [ngTemplateOutletContext]="{ campaign: campaign, clearing: clearing, npc: npc }"></ng-container>
+
+        </ion-col>
+
+
+        <ion-col *ngFor="let npc of clearing.npcs"
+                size-xs="12" size-md="6" size-lg="6" size-xl="4"
+                lines="none"
+                class="ion-hide-md-down">
+
+          <ng-container [ngTemplateOutlet]="npcCard"
+                        [ngTemplateOutletContext]="{ campaign: campaign, clearing: clearing, npc: npc, big: true }"></ng-container>
+
+        </ion-col>
+
+      </ion-row>
+    </ng-container>
+  </ng-container>
 </ion-content>
+
+<ng-template #npcCard let-campaign="campaign" let-clearing="clearing" let-npc="npc" let-big="big">
+
+  <ion-card class="npc-card pointer">
+    <ion-card-header>
+      <ion-card-title>{{ npc.name }}</ion-card-title>
+      <ion-card-subtitle>{{ npc.faction }} / {{ npc.drive }}</ion-card-subtitle>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign, clearing, npc)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <strong>Equipment</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="npc.equipment.length === 0">
+        <ion-col>
+          None
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of npc.equipment">
+        <ion-col class="padding-left-0">
+          <app-item [item]="item" (updateWear)="save()"></app-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Looks Like</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          {{ npc.look }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Notes</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          {{ npc.notes || 'no notes' }}
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center margin-top-1">
+          <strong>Harm</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion', 'Morale']" class="harm-row">
+            <ion-col class="harm-label" (click)="adjustHarm(npc, harm.toLowerCase(), 0)">{{ harm }}</ion-col>
+            <ion-col class="harm-box"
+                     *ngFor="let i of [0, 1, 2, 3]"
+                     (click)="adjustHarm(npc, harm.toLowerCase(), i + 1)">
+              <ion-icon [name]="npc.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>

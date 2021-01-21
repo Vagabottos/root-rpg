@@ -22,13 +22,13 @@ export class ClearingViewPage implements OnInit {
 
     this.campaignAPI.loadCampaign(id)
       .subscribe(campaign => {
-        this.data.setActiveCampaignClearing(+clearing);
+        this.data.setActiveCampaignClearing({ index: +clearing, clearing: campaign.clearings[+clearing] });
         this.data.setActiveCampaign(campaign);
       });
   }
 
   ionViewDidLeave() {
-    this.data.setActiveCampaignClearing(-1);
+    this.data.setActiveCampaignClearing({ index: -1, clearing: null });
   }
 
 }
