@@ -59,6 +59,8 @@ export interface IContentClearingGen {
     start: string[];
     end: string[];
   }
+
+  forest: string[];
 }
 
 export interface IContentCore {

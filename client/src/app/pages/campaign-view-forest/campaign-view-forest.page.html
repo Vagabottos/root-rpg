@@ -10,11 +10,66 @@
       </ng-container>
     </ion-title>
 
+    <ion-buttons slot="end">
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        <ion-button (click)="addNewForest(campaign)">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
-    forest {{ campaign | json }}
+    <div class="blank-slate" *ngIf="!campaign.forests || campaign.forests.length === 0">You do not have any forests.</div>
+
+    <ion-row *ngIf="campaign.forests?.length > 0">
+
+      <ion-col *ngFor="let forest of campaign.forests"
+              size-xs="12" size-md="6" size-lg="6" size-xl="4"
+              lines="none"
+              class="ion-hide-md-up"
+              appLongPress="500"
+              (release)="showDeleteActionSheet(campaign, forest)">
+
+        <ng-container [ngTemplateOutlet]="forestCard"
+                      [ngTemplateOutletContext]="{ campaign: campaign, forest: forest }"></ng-container>
+
+      </ion-col>
+
+
+      <ion-col *ngFor="let forest of campaign.forests"
+              size-xs="12" size-md="6" size-lg="6" size-xl="4"
+              lines="none"
+              class="ion-hide-md-down">
+
+        <ng-container [ngTemplateOutlet]="forestCard"
+                      [ngTemplateOutletContext]="{ campaign: campaign, forest: forest, big: true }"></ng-container>
+
+      </ion-col>
+
+    </ion-row>
   </ng-container>
 </ion-content>
+
+<ng-template #forestCard let-campaign="campaign" let-forest="forest" let-big="big">
+
+  <ion-card class="npc-card pointer">
+    <ion-card-header>
+      <ion-card-title>{{ forest.name }}</ion-card-title>
+      <ion-card-subtitle>{{ forest.type }}</ion-card-subtitle>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign, forest)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <strong>Location:</strong> {{ forest.location }}
+      <hr>
+      {{ forest.details }}
+    </ion-card-content>
+  </ion-card>
+</ng-template>

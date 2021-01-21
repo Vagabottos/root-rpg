@@ -6,7 +6,7 @@ import { ActionSheetController, AlertController, IonCheckbox, ModalController, P
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, sample, sumBy } from 'lodash';
+import { capitalize, sumBy } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
@@ -251,7 +251,7 @@ export class CreateCharacterPage implements OnInit {
   }
 
   pickRandomName() {
-    this.characterForm.get('name').setValue(sample(this.contentService.getNames()));
+    this.characterForm.get('name').setValue(this.contentService.getRandomName());
   }
 
   changeSpecies(event) {

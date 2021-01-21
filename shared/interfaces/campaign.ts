@@ -57,7 +57,7 @@ export interface ICampaign {
   characterNames?: string[];
 
   clearings: Record<string, IClearing>;
-  forests: Record<string, IForest>;
+  forests: IForest[];
   npcs: INPC[];
 
   createdAt?: number;

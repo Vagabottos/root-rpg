@@ -285,3 +285,14 @@ town:
     - wind
     - wood
     - yard
+
+forest:
+  - glade
+  - forest
+  - park
+  - woodland
+  - jungle
+  - wood
+  - thicket
+  - grove
+  - weald

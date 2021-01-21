@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Forest Creator
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="forestForm">
+    <ion-list>
+      <ion-item class="has-suffix">
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input type="text" formControlName="name" placeholder="Enter Forest name" maxlength="25"></ion-input>
+        <ion-button slot="end" (click)="pickRandomName()">
+          <ion-icon slot="icon-only" name="sync"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Forest Type</ion-label>
+        <ion-select formControlName="type" placeholder="Choose Forest type">
+          <ion-select-option *ngFor="let choice of ['creature', 'mystery', 'ruins']" [value]="choice">
+            {{ choice }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Location</ion-label>
+        <ion-textarea formControlName="location" placeholder="Enter Forest location" maxlength="1000" rows="3"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Details</ion-label>
+        <ion-textarea formControlName="details" placeholder="Enter Forest details" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-item color="tertiary" class="pointer" (click)="dismiss(this.formForest)" [disabled]="forestForm.invalid">
+        <ion-icon slot="start" name="add"></ion-icon>
+        {{ forest ? 'Update' : 'Create' }} Forest
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

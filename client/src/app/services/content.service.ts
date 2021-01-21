@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { cloneDeep, groupBy } from 'lodash';
+import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
 
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
@@ -20,6 +20,20 @@ export class ContentService {
 
   getAllContent(): IContent {
     return this.content;
+  }
+
+  getRandomTownName(): string {
+    const { start, end } = this.content.core.clearinggen.town;
+
+    return capitalize(sample(start) + sample(end));
+  }
+
+  getRandomForestName(): string {
+    return this.getRandomTownName() + ' ' + capitalize(sample(this.content.core.clearinggen.forest));
+  }
+
+  getRandomName(): string {
+    return sample(this.content.core.names);
   }
 
   getVagabonds(): string[] {
