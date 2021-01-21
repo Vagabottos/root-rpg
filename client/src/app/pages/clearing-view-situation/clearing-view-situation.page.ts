@@ -15,4 +15,8 @@ export class ClearingViewSituationPage implements OnInit {
   ngOnInit() {
   }
 
+  async openBackground() {
+
+  }
+
 }

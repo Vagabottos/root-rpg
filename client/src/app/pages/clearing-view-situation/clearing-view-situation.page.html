@@ -5,8 +5,16 @@
     </ion-buttons>
 
     <ion-title>
-      Clearing Situation
+      {{ (data.campaignClearing$ | async).clearing?.name }} Situation
     </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button (click)="openBackground()">
+        <ion-icon slot="icon-only" name="book"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
