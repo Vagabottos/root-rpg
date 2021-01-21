@@ -43,11 +43,11 @@ function createClearing(campaign: ICampaign): IClearing {
     },
     history: {
       founder: 'Founder bon Varenstein',
-      legendaryFigures: [
-        'Co-founder bon co-enstein',
-        'Figureheadus Oblivious',
-        'Captain Founderpants'
-      ],
+      legendaryFigures: `
+        Co-founder bon co-enstein
+        Figureheadus Oblivious
+        Captain Founderpants
+      `,
       civilWarEvents: 'A war happened',
       interregnumEvents: 'A coup happened'
     }

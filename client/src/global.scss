@@ -192,3 +192,7 @@ ion-list-header {
   color: var(--color) !important;
   font-size: 75% !important;
 }
+
+.can-be-preformatted {
+  white-space: pre;
+}

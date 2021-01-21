@@ -31,7 +31,7 @@ export interface IClearing {
 
   history: {
     founder: string;
-    legendaryFigures: string[];
+    legendaryFigures: string;
     civilWarEvents: string;
     interregnumEvents: string;
   };

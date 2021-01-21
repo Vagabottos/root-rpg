@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ (data.campaignClearing$ | async).clearing?.name }} History
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleEdit()">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ clearing.name }} History</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+
+          <!-- historical founder -->
+          <ion-item *ngIf="!isEditing">
+            <ion-label>
+              <p class="fake-form-label">Founder</p>
+              <h2>{{ clearing.history.founder }}</h2>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="isEditing">
+            <ion-label position="stacked">Founder</ion-label>
+            <ion-input type="text" [(ngModel)]="clearing.history.founder" placeholder="Enter Clearing founder"></ion-input>
+          </ion-item>
+
+          <!-- historical figures -->
+          <ion-item *ngIf="!isEditing">
+            <ion-label class="ion-text-wrap">
+              <p class="fake-form-label">Legendary Figures</p>
+              <h2 class="can-be-preformatted">{{ clearing.history.legendaryFigures }}</h2>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="isEditing">
+            <ion-label position="stacked">Legendary Figures</ion-label>
+            <ion-textarea [(ngModel)]="clearing.history.legendaryFigures" placeholder="Enter Clearing legendary figures" maxlength="1000" rows="7"></ion-textarea>
+          </ion-item>
+
+          <!-- historical civil war events -->
+          <ion-item *ngIf="!isEditing">
+            <ion-label class="ion-text-wrap">
+              <p class="fake-form-label">Civil War Events</p>
+              <h2 class="can-be-preformatted">{{ clearing.history.civilWarEvents }}</h2>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="isEditing">
+            <ion-label position="stacked">Civil War Events</ion-label>
+            <ion-textarea [(ngModel)]="clearing.history.civilWarEvents" placeholder="Enter Clearing civil war events" maxlength="1000" rows="7"></ion-textarea>
+          </ion-item>
+
+          <!-- historical interregnum events -->
+          <ion-item *ngIf="!isEditing">
+            <ion-label class="ion-text-wrap">
+              <p class="fake-form-label">Interregnum Events</p>
+              <h2 class="can-be-preformatted">{{ clearing.history.interregnumEvents }}</h2>
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="isEditing">
+            <ion-label position="stacked">Interregnum Events</ion-label>
+            <ion-textarea [(ngModel)]="clearing.history.interregnumEvents" placeholder="Enter Clearing interregnum events" maxlength="1000" rows="7"></ion-textarea>
+          </ion-item>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+</ion-content>

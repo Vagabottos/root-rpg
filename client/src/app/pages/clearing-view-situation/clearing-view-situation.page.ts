@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ClearingBackgroundComponent } from '../../components/clearing-background/clearing-background.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,6 +13,7 @@ export class ClearingViewSituationPage implements OnInit {
   public isEditing: boolean;
 
   constructor(
+    private modal: ModalController,
     public data: DataService
   ) { }
 
@@ -27,6 +30,11 @@ export class ClearingViewSituationPage implements OnInit {
 
   async openBackground() {
 
+    const modal = await this.modal.create({
+      component: ClearingBackgroundComponent
+    });
+
+    await modal.present();
   }
 
 }
