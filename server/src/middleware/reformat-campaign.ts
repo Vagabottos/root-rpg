@@ -2,6 +2,7 @@
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
 import { capitalize, cloneDeep, isArray, sample } from 'lodash';
+import { ClearingStatus } from '../../../shared/interfaces';
 
 import { ICampaign, IClearing, IContent, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
@@ -18,12 +19,12 @@ export function randomTownName(): string {
   return name;
 }
 
-function createClearing(): IClearing {
+function createClearing(campaign: ICampaign): IClearing {
   const clearing: IClearing = {
     name: randomTownName(),
-    status: 'pristine',
-    contestedBy: 'Denizens',
-    controlledBy: 'The Marquise',
+    status: sample(['pristine', 'damaged', 'wrecked', 'destroyed']) as ClearingStatus,
+    contestedBy: sample(campaign.factions) as string,
+    controlledBy: sample(campaign.factions) as string,
     npcs: [],
     eventRecord: {
       beforePlay: 'Something happened here.',
@@ -38,7 +39,7 @@ function createClearing(): IClearing {
       ruler: 'Some Big Guy',
       conflicts: 'There is probably some stuff going down here.',
       overarchingIssue: 'We need to figure out why stuff is going down here.',
-      dominantFaction: 'The Eyrie'
+      dominantFaction: sample(campaign.factions) as string
     },
     history: {
       founder: 'Founder bon Varenstein',
@@ -71,7 +72,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   };
 
   for(let i = 0; i < 12; i++) {
-    const clearing = createClearing();
+    const clearing = createClearing(newCampaign);
     newCampaign.clearings.push(clearing) ;
   }
 

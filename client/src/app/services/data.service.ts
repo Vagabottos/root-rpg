@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import * as jsonpatch from 'fast-json-patch';
 
 import { ICampaign, ICharacter, IClearing } from '../../interfaces';
@@ -103,7 +103,7 @@ export class DataService {
     const baseCamp = this.campaign.getValue();
     const id = baseCamp?._id;
     const patches = this.getCampaignDiff();
-    if (patches.length === 0 || !id) { return; }
+    if (patches.length === 0 || !id) { return of(null); }
 
     const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {
       prev[cur[0]] = baseCamp[cur[0]];

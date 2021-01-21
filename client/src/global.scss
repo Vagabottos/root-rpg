@@ -187,3 +187,8 @@ ion-list-header {
 .pointer {
   cursor: pointer;
 }
+
+.fake-form-label {
+  color: var(--color) !important;
+  font-size: 75% !important;
+}

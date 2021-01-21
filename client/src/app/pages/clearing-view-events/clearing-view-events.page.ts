@@ -8,11 +8,21 @@ import { DataService } from '../../services/data.service';
 })
 export class ClearingViewEventsPage implements OnInit {
 
+  public isEditing: boolean;
+
   constructor(
     public data: DataService
   ) { }
 
   ngOnInit() {
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
+
+    if (!this.isEditing) {
+      this.data.patchCampaign().subscribe(() => {});
+    }
   }
 
 }

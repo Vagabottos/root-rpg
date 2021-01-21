@@ -7,6 +7,14 @@
     <ion-title>
       {{ (data.campaignClearing$ | async).clearing?.name }} Events
     </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button (click)="toggleEdit()">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
