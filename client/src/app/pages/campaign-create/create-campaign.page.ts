@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { ContentService } from '../../services/content.service';
+import { DataService } from '../../services/data.service';
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class CreateCampaignPage implements OnInit {
 
   constructor(
     private router: Router,
+    private data: DataService,
     private content: ContentService,
     private notification: NotificationService,
     private campaignAPI: CampaignAPIService
@@ -58,7 +60,6 @@ export class CreateCampaignPage implements OnInit {
   }
 
   async changeFactions() {
-    console.log(this.campaignForm.get('campaignFactions').value);
     const modal = await this.notification.loadForcedChoiceModal({
       title: `Choose Factions`,
       message: `Choose factions from the following list to add to your campaign.`,

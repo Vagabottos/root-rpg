@@ -45,6 +45,7 @@ export class DataService {
 
     if (!char && this.charObs) {
       this.charObs.unobserve();
+      this.charObs = null;
     }
 
     if (char && !this.charObs) {
@@ -75,6 +76,7 @@ export class DataService {
 
     if (!campaign && this.campaignObs) {
       this.campaignObs.unobserve();
+      this.campaignObs = null;
       this.campaignCharacters.next([]);
     }
 

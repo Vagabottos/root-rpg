@@ -11,8 +11,6 @@ import { DataService } from '../../services/data.service';
 })
 export class ViewCampaignPage implements OnInit {
 
-  public campaign: ICampaign;
-
   constructor(
     private route: ActivatedRoute,
     private campaignAPI: CampaignAPIService,
@@ -24,7 +22,6 @@ export class ViewCampaignPage implements OnInit {
 
     this.campaignAPI.loadCampaign(id)
       .subscribe(campaign => {
-        this.campaign = campaign;
         this.dataService.setActiveCampaign(campaign);
       });
   }
