@@ -56,7 +56,7 @@ export interface ICampaign {
   factions: string[];
   characterNames?: string[];
 
-  clearings: Record<string, IClearing>;
+  clearings: IClearing[];
   forests: IForest[];
   npcs: INPC[];
 

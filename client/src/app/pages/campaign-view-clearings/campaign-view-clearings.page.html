@@ -17,8 +17,9 @@
   <ng-container *ngIf="data.campaign$ | async as campaign">
 
     <ion-row>
-      <ion-col *ngFor="let clearkv of campaign.clearings | keyvalue" size-xs="12" size-md="6">
-        <ion-card class="clearing-card pointer" *ngIf="asClearing(clearkv.value) as clearing">
+      <ion-col *ngFor="let clearing of campaign.clearings; let i = index" size-xs="12" size-md="6"
+               [routerLink]="[i]">
+        <ion-card class="clearing-card pointer">
           <ion-card-header>
             <ion-card-title>
               {{ clearing.name }} ({{ clearing.status }})

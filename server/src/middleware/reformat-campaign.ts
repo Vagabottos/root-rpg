@@ -64,14 +64,14 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     name: context.data.name,
     locked: false,
     factions: context.data.factions,
-    clearings: {},
+    clearings: [],
     forests: [],
     npcs: []
   };
 
   for(let i = 0; i < 12; i++) {
     const clearing = createClearing();
-    newCampaign.clearings[clearing.name] = clearing;
+    newCampaign.clearings.push(clearing) ;
   }
 
   // write this copy to the db

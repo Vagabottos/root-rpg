@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'dashboard/campaigns/view/:id/clearings/:clearing',
+    loadChildren: () => import('./pages/clearing-view/clearing-view.module').then( m => m.ClearingViewPageModule)
+  },
+  {
     path: 'dashboard/campaigns/view/:id',
     loadChildren: () => import('./pages/campaign-view/view-campaign.module').then( m => m.ViewCampaignPageModule),
     canActivate: [AuthGuard, CampaignGuard]

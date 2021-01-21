@@ -1,0 +1,22 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { ClearingViewEventsPageRoutingModule } from './clearing-view-events-routing.module';
+
+import { ClearingViewEventsPage } from './clearing-view-events.page';
+import { SharedModule } from '../../shared.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    SharedModule,
+    ClearingViewEventsPageRoutingModule
+  ],
+  declarations: [ClearingViewEventsPage]
+})
+export class ClearingViewEventsPageModule {}

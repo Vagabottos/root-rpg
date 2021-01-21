@@ -17,6 +17,7 @@ export class DataService {
   private char: BehaviorSubject<ICharacter> = new BehaviorSubject<ICharacter>(null);
   private campaign: BehaviorSubject<ICampaign> = new BehaviorSubject<ICampaign>(null);
   private campaignCharacters: BehaviorSubject<ICharacter[]> = new BehaviorSubject<ICharacter[]>([]);
+  private campaignClearing: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
 
   public get char$(): Observable<ICharacter> {
     return this.char.asObservable();
@@ -28,6 +29,10 @@ export class DataService {
 
   public get campaignCharacters$(): Observable<ICharacter[]> {
     return this.campaignCharacters.asObservable();
+  }
+
+  public get campaignClearing$(): Observable<number> {
+    return this.campaignClearing.asObservable();
   }
 
   constructor(
@@ -99,5 +104,9 @@ export class DataService {
     }, {});
 
     return this.campaignAPI.patchCampaign(id, patchObj);
+  }
+
+  public setActiveCampaignClearing(clearing: number) {
+    this.campaignClearing.next(clearing);
   }
 }
