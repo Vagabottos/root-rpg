@@ -19,4 +19,38 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+
+    <ion-row>
+      <ion-col size-xs="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Overall Status</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>Clearing Status: {{ clearing.status }}</p>
+            <p>Ruler: {{ clearing.current.ruler }}</p>
+            <p>Controlled By: {{ clearing.controlledBy }}</p>
+            <p>Contested By: {{ clearing.contestedBy }}</p>
+            <p>Dominant Faction: {{ clearing.current.dominantFaction }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-xs="12" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Conflicts & Issues</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>Conflicts: {{ clearing.current.conflicts }}</p>
+            <p>Overarching Issue: {{ clearing.current.overarchingIssue }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ng-container>
 </ion-content>

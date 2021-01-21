@@ -11,4 +11,39 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="data.campaign$ | async as campaign">
+    <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+      <ion-row>
+        <ion-col size-xs="12" size-lg="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Landmarks & Locations</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <p>Landmarks: {{ clearing.landscape.landmarks }}</p>
+              <p>Locations: {{ clearing.landscape.locations }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size-xs="12" size-lg="6">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Clearing Connections</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-item *ngIf="clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                <ion-item *ngFor="let clearingId of clearing.landscape.clearingConnections">
+                  {{ campaign.clearings[clearingId]?.name }}
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ng-container>
 </ion-content>
