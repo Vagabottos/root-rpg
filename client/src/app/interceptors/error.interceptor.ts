@@ -23,7 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(catchError((error: HttpErrorResponse) => {
         const errorMsg = error?.error?.message ?? 'Unknown error.';
 
-        if(error?.error.code === 401) {
+        if (error?.error.code === 401) {
           this.router.navigate(['/login']);
           this.notification.notify('Your previous session has expired. Redirecting to login.');
           return;
