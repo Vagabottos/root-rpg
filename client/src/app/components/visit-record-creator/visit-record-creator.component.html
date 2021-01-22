@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Visit Record Creator
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="visitForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Visit Events</ion-label>
+        <ion-textarea formControlName="visitText" placeholder="Enter what transpired here" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">War Continuation Type</ion-label>
+        <ion-select formControlName="warContinuesType" placeholder="Choose War Continuation Type">
+          <ion-select-option *ngFor="let choice of ['assault', 'negotiation', 'sabotage', 'scarcity', 'subversion', 'minor ripples']" [value]="choice">
+            {{ choice }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">War Continuation Description</ion-label>
+        <ion-textarea formControlName="warContinuesText" placeholder="Enter what led to the war continuing" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-item color="tertiary" class="pointer" (click)="dismiss(this.formRecord)" [disabled]="visitForm.invalid">
+        <ion-icon slot="start" name="add"></ion-icon>
+        {{ visitRecord ? 'Update' : 'Create' }} Visit Record
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

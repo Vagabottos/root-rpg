@@ -43,12 +43,31 @@
       </ion-row>
 
       <ion-row>
-        <ion-col size-xs="12" size-md="6" size-lg="4" *ngFor="let record of clearing.eventRecord.visited">
-          {{ record | json }}
+        <ion-col *ngFor="let visit of clearing.eventRecord.visited; let i = index"
+                 size-xs="12" size-md="6" size-lg="4"
+                 lines="none"
+                 class="ion-hide-md-up"
+                 appLongPress="500"
+                 (release)="showDeleteActionSheet(clearing, visit)">
+
+          <ng-container [ngTemplateOutlet]="visitCard"
+                        [ngTemplateOutletContext]="{ clearing: clearing, record: visit, index: i }"></ng-container>
+
+        </ion-col>
+
+
+        <ion-col *ngFor="let visit of clearing.eventRecord.visited; let i = index"
+                 size-xs="12" size-md="6" size-lg="4"
+                 lines="none"
+                 class="ion-hide-md-down">
+
+          <ng-container [ngTemplateOutlet]="visitCard"
+                        [ngTemplateOutletContext]="{ clearing: clearing, record: visit, index: i, big: true }"></ng-container>
+
         </ion-col>
 
         <ion-col size-xs="12" size-md="6" size-lg="4">
-          <ion-card class="new-record">
+          <ion-card class="new-record" (click)="addNewVisitRecord(clearing)">
             <ion-row class="icon-row">
               <ion-col>
                 <ion-icon name="add"></ion-icon>
@@ -65,3 +84,36 @@
       </ion-row>
   </ng-container>
 </ion-content>
+
+<ng-template #visitCard let-clearing="clearing" let-record="record" let-index="index" let-big="big">
+
+  <ion-card class="record-card">
+    <ion-card-header>
+      <ion-card-title>Vagabond Visit #{{ index + 1 }}</ion-card-title>
+      <ion-card-subtitle>Recorded {{ record.timestamp | date:'medium' }}</ion-card-subtitle>
+
+      <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, clearing, record)" *ngIf="big">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label class="ion-text-wrap">
+            <p class="fake-form-label">Vagabond Actions</p>
+            <h2 class="can-be-preformatted">{{ record.visitText }}</h2>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label class="ion-text-wrap">
+            <p class="fake-form-label">War Continuation Actions ({{ record.warContinuesType }})</p>
+            <h2 class="can-be-preformatted">{{ record.warContinuesText }}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ng-template>

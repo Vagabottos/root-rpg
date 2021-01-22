@@ -24,6 +24,7 @@ import { NPCComponent } from './components/npc/npc.component';
 import { NPCCreatorComponent } from './components/npc-creator/npc-creator.component';
 import { ForestCreatorComponent } from './components/forest-creator/forest-creator.component';
 import { ClearingBackgroundComponent } from './components/clearing-background/clearing-background.component';
+import { VisitRecordCreatorComponent } from './components/visit-record-creator/visit-record-creator.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
@@ -31,7 +32,7 @@ const components = [ItemComponent, NPCComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
-  NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent
+  NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent, VisitRecordCreatorComponent
 ];
 
 @NgModule({

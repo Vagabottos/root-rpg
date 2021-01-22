@@ -1,4 +1,14 @@
 
+.record-card, .new-record {
+  min-height: 250px;
+}
+
+.record-card {
+  ion-card-title, ion-card-subtitle {
+    text-align: left;
+  }
+}
+
 .new-record {
   padding-top: 1rem;
   padding-bottom: 3rem;
@@ -13,7 +23,7 @@
 
   .icon-row {
     text-align: center;
-    padding-top: 1rem;
+    padding-top: 2rem;
 
     ion-icon {
       font-size: 3rem;
