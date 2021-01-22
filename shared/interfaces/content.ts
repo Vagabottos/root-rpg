@@ -63,8 +63,17 @@ export interface IContentClearingGen {
   forest: string[];
 }
 
+export interface IContentMapLayout {
+  maxX: number;
+  maxY: number;
+
+  nodePositions: Array<{ x: number, y: number }>;
+  connections: Array<{ path: string, blocks: string[] }>;
+}
+
 export interface IContentCore {
   clearinggen: IContentClearingGen;
+  maplayouts: Record<string, IContentMapLayout>;
   connections: Record<string, IContentConnection>;
   drives: Record<string, IContentDrive>;
   factions: IContentFaction[];

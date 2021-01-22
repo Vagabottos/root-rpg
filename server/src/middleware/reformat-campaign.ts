@@ -1,11 +1,14 @@
 
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { capitalize, cloneDeep, isArray, sample } from 'lodash';
-import { ClearingStatus } from '../../../shared/interfaces';
-
-import { ICampaign, IClearing, IContent, content } from '../interfaces';
+import { capitalize, cloneDeep, isArray, sample, shuffle, random } from 'lodash';
+import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
+
+const NUM_CLEARINGS = 12;
+const MAX_ATTEMPTS = 25;
+const MIN_CONNECTIONS = 2;
+const MAX_CONNECTIONS = 5;
 
 export function randomTownName(): string {
   const firstNames = allContent.core.clearinggen.town.start;
@@ -56,6 +59,86 @@ function createClearing(campaign: ICampaign): IClearing {
   return clearing;
 }
 
+function generateConnections(campaign: ICampaign) {
+  const layoutName = sample(Object.keys(content.core.maplayouts)) as string;
+  const layout: IContentMapLayout = content.core.maplayouts[layoutName];
+
+  campaign.mapGenLayout = layoutName;
+
+  const potentialEdges = {};
+
+  layout.connections.forEach(({ path, blocks }) => {
+    const [start, end] = path.split('-');
+    const allBlocks = (blocks || [])
+      .map((b) => [b, b.split('-').reverse().join('-')])
+      .flat(Infinity);
+
+    potentialEdges[start] = potentialEdges[start] || {};
+    potentialEdges[start][end] = allBlocks;
+
+    potentialEdges[end] = potentialEdges[end] || {};
+    potentialEdges[end][start] = allBlocks;
+  });
+
+  let attempts = 0;
+  let chosenEdges = {};
+  let blockedEdges = {};
+  let edgesPerClearing = {};
+
+  while (attempts++ < MAX_ATTEMPTS) {
+    chosenEdges = {};
+    blockedEdges = {};
+    edgesPerClearing = Object.fromEntries(Array(NUM_CLEARINGS).fill(0).map((x, i) => [i, 0]));
+
+    let isValid = true;
+
+    // create paths for each node
+    shuffle(Array(NUM_CLEARINGS).fill(0).map((x, i) => i)).forEach((i) => {
+      const paths = random(MIN_CONNECTIONS, MAX_CONNECTIONS);
+      for (let p = 0; p < paths; p++) {
+        const curNodeEdges = potentialEdges[i];
+        const possibleNewEdges = Object.keys(curNodeEdges || {})
+          .filter((e) => !blockedEdges[`${e}-${i}`] && !blockedEdges[`${i}-${e}`]
+                      && !chosenEdges[`${e}-${i}`] && !chosenEdges[`${i}-${e}`]
+                      && edgesPerClearing[e] < MAX_CONNECTIONS && edgesPerClearing[i] < MAX_CONNECTIONS);
+        const edge = sample(possibleNewEdges);
+
+        if (edge) {
+          chosenEdges[`${i}-${edge}`] = true;
+          chosenEdges[`${edge}-${i}`] = true;
+
+          edgesPerClearing[i]++;
+          edgesPerClearing[edge]++;
+
+          potentialEdges[i][edge].forEach((block) => {
+            blockedEdges[block] = true;
+          });
+        }
+      }
+    });
+
+    // validate # connections per clearing
+    if (Object.values(edgesPerClearing).some((v: any) => v < MIN_CONNECTIONS || v > MAX_CONNECTIONS)) {
+      isValid = false;
+    }
+
+    if (isValid) { break; }
+  }
+
+  const oneWayEdges = {};
+  Object.keys(chosenEdges).forEach((key) => {
+    const [start, end] = key.split('-');
+    if (oneWayEdges[`${end}-${start}`]) { return; }
+    oneWayEdges[`${start}-${end}`] = true;
+  });
+
+  Object.keys(oneWayEdges).forEach(edge => {
+    const [start, end] = edge.split('-').map(x => +x);
+    campaign.clearings[start].landscape.clearingConnections.push(end);
+    campaign.clearings[end].landscape.clearingConnections.push(start);
+  });
+}
+
 export async function reformatCampaign(context: HookContext): Promise<HookContext> {
 
   if(!context.data.factions || context.data.factions.length === 0 || !isArray(context.data.factions)) {
@@ -65,16 +148,19 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   const newCampaign: ICampaign = {
     name: context.data.name,
     locked: false,
+    mapGenLayout: '',
     factions: context.data.factions,
     clearings: [],
     forests: [],
     npcs: []
   };
 
-  for(let i = 0; i < 12; i++) {
+  for(let i = 0; i < NUM_CLEARINGS; i++) {
     const clearing = createClearing(newCampaign);
     newCampaign.clearings.push(clearing) ;
   }
+
+  generateConnections(newCampaign);
 
   // write this copy to the db
   context.data = newCampaign;

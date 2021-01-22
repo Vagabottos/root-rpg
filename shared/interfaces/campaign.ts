@@ -17,7 +17,7 @@ export interface IClearing {
   };
 
   landscape: {
-    clearingConnections: string[];
+    clearingConnections: number[];
     landmarks: string;
     locations: string;
   };
@@ -57,6 +57,7 @@ export interface ICampaign {
   factions: string[];
   characterNames?: string[];
 
+  mapGenLayout: string;
   clearings: IClearing[];
   forests: IForest[];
   npcs: INPC[];
