@@ -157,7 +157,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
 
   for(let i = 0; i < NUM_CLEARINGS; i++) {
     const clearing = createClearing(newCampaign);
-    newCampaign.clearings.push(clearing) ;
+    newCampaign.clearings.push(clearing);
   }
 
   generateConnections(newCampaign);

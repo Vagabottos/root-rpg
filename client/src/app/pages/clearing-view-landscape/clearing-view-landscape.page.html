@@ -29,8 +29,36 @@
             </ion-card-header>
 
             <ion-card-content>
-              <p>Landmarks: {{ clearing.landscape.landmarks }}</p>
-              <p>Locations: {{ clearing.landscape.locations }}</p>
+              <ion-list>
+
+                <!-- landmarks -->
+                <ion-item *ngIf="!isEditing">
+                  <ion-label class="ion-text-wrap">
+                    <p class="fake-form-label">Landmarks</p>
+                    <h2 class="can-be-preformatted">{{ clearing.landscape.landmarks }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing">
+                  <ion-label position="stacked">Landmarks</ion-label>
+                  <ion-textarea [(ngModel)]="clearing.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="7"></ion-textarea>
+                </ion-item>
+
+
+                <!-- locations -->
+                <ion-item *ngIf="!isEditing">
+                  <ion-label class="ion-text-wrap">
+                    <p class="fake-form-label">Locations</p>
+                    <h2 class="can-be-preformatted">{{ clearing.landscape.locations }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing">
+                  <ion-label position="stacked">Locations</ion-label>
+                  <ion-textarea [(ngModel)]="clearing.landscape.locations" placeholder="Enter Clearing locations" maxlength="1000" rows="7"></ion-textarea>
+                </ion-item>
+
+              </ion-list>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -44,7 +72,9 @@
             <ion-card-content>
               <ion-list>
                 <ion-item *ngIf="clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
-                <ion-item *ngFor="let clearingId of clearing.landscape.clearingConnections">
+                <ion-item class="pointer"
+                          [routerLink]="['/dashboard/campaigns/view', (data.campaign$ | async)?._id, 'clearings', clearingId, 'landscape']"
+                          *ngFor="let clearingId of clearing.landscape.clearingConnections">
                   {{ campaign.clearings[clearingId]?.name }}
                 </ion-item>
               </ion-list>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class ClearingViewLandscapePage implements OnInit {
   public isEditing: boolean;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     public data: DataService
   ) { }
 
