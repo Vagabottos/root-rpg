@@ -28,7 +28,15 @@
             </ion-card-header>
 
             <ion-card-content>
-              {{ clearing.eventRecord.beforePlay }}
+              <p *ngIf="!isEditing">{{ clearing.eventRecord.beforePlay }}</p>
+
+              <!-- before play history -->
+              <ion-list *ngIf="isEditing">
+                <ion-item>
+                  <ion-label position="stacked">Before Play History</ion-label>
+                  <ion-textarea [(ngModel)]="clearing.eventRecord.beforePlay" placeholder="Enter Clearing pre-play history" maxlength="1000" rows="7"></ion-textarea>
+                </ion-item>
+              </ion-list>
             </ion-card-content>
           </ion-card>
         </ion-col>
