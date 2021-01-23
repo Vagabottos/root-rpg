@@ -4,7 +4,7 @@ import { truncate } from 'lodash';
 
 import { ICampaign } from '../interfaces';
 
-const TRUNC_OPTS = () => ({ length: 25, omission: '' });
+const TRUNC_OPTS = () => ({ length: 50, omission: '' });
 
 const clean = (str: string) => truncate(str, TRUNC_OPTS());
 

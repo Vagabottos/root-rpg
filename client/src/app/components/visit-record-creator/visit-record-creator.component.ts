@@ -17,7 +17,7 @@ export class VisitRecordCreatorComponent implements OnInit {
   public visitForm = new FormGroup({
     visitText:         new FormControl('', [Validators.required, Validators.maxLength(1000)]),
     warContinuesText:  new FormControl('', [Validators.required, Validators.maxLength(1000)]),
-    warContinuesType:  new FormControl('', [Validators.required, Validators.maxLength(25)]),
+    warContinuesType:  new FormControl('', [Validators.required, Validators.maxLength(50)]),
   });
 
   public get formRecord(): IClearingVisitedEvent {

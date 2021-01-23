@@ -18,10 +18,10 @@ export class NPCCreatorComponent implements OnInit {
   @Input() validFactions: string[] = [];
 
   public npcForm = new FormGroup({
-    name:         new FormControl('', [Validators.required, Validators.maxLength(25)]),
+    name:         new FormControl('', [Validators.required, Validators.maxLength(50)]),
     look:         new FormControl('', [Validators.required, Validators.maxLength(1000)]),
-    faction:      new FormControl('', [Validators.required, Validators.maxLength(25)]),
-    drive:        new FormControl('', [Validators.required, Validators.maxLength(25)]),
+    faction:      new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    drive:        new FormControl('', [Validators.required, Validators.maxLength(50)]),
     notes:        new FormControl('', [Validators.maxLength(1000)]),
     equipment:    new FormControl([]),
   });

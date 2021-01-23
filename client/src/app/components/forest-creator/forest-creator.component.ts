@@ -15,10 +15,10 @@ export class ForestCreatorComponent implements OnInit {
   @Input() forest: IForest;
 
   public forestForm = new FormGroup({
-    name:         new FormControl('', [Validators.required, Validators.maxLength(25)]),
+    name:         new FormControl('', [Validators.required, Validators.maxLength(50)]),
     location:     new FormControl('', [Validators.required, Validators.maxLength(1000)]),
     details:      new FormControl('', [Validators.required, Validators.maxLength(1000)]),
-    type:         new FormControl('', [Validators.required, Validators.maxLength(25)]),
+    type:         new FormControl('', [Validators.required, Validators.maxLength(50)]),
   });
 
   public get formForest(): IForest {
