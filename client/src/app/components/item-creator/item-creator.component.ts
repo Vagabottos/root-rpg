@@ -114,7 +114,10 @@ export class ItemCreatorComponent implements OnInit {
           {
             name: 'designation',
             type: 'text',
-            placeholder: 'Enter Faction'
+            placeholder: 'Enter Faction',
+            attributes: {
+              maxLength: 50
+            }
           },
         ],
         buttons: [
