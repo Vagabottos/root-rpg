@@ -57,7 +57,12 @@ export interface ICampaign {
   factions: string[];
   characterNames?: string[];
 
-  mapGenLayout: string;
+  mapGen: {
+    layout: string;
+    flipX: boolean;
+    flipY: boolean;
+  };
+
   clearings: IClearing[];
   forests: IForest[];
   npcs: INPC[];

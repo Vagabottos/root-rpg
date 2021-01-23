@@ -63,7 +63,7 @@ function generateConnections(campaign: ICampaign) {
   const layoutName = sample(Object.keys(content.core.maplayouts)) as string;
   const layout: IContentMapLayout = content.core.maplayouts[layoutName];
 
-  campaign.mapGenLayout = layoutName;
+  campaign.mapGen.layout = layoutName;
 
   const potentialEdges = {};
 
@@ -148,7 +148,11 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   const newCampaign: ICampaign = {
     name: context.data.name,
     locked: false,
-    mapGenLayout: '',
+    mapGen: {
+      layout: '',
+      flipX: sample([true, false]) as boolean,
+      flipY: sample([true, false]) as boolean
+    },
     factions: context.data.factions,
     clearings: [],
     forests: [],

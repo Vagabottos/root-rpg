@@ -1,4 +1,3 @@
-import { capitalize, random, sample, shuffle } from 'lodash';
 
 import { IEdge, INode } from './woodland-graph-creator';
 import { ICampaign } from '../../../interfaces';
@@ -13,10 +12,10 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
 
   const nodes = [];
 
-  const layout = mapLayouts[campaign.mapGenLayout];
+  const layout = mapLayouts[campaign.mapGen.layout];
 
-  const flipX = sample([true, false]);
-  const flipY = sample([true, false]);
+  const flipX = campaign.mapGen.flipY;
+  const flipY = campaign.mapGen.flipX;
 
   layout.nodePositions.forEach((pos, i) => {
     nodes.push({
