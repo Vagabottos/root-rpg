@@ -1,7 +1,6 @@
 
 import { IEdge, INode } from './woodland-graph-creator';
-import { ICampaign } from '../../../interfaces';
-import { IContentMapLayout } from '../../../../../shared/interfaces';
+import { ICampaign, IContentMapLayout } from '../../../interfaces';
 
 export interface IGraphResult {
   nodes: INode[];

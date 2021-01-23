@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'"></ion-back-button>
+      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'" *ngIf="!isEditing"></ion-back-button>
     </ion-buttons>
 
     <ion-title>
@@ -9,12 +9,17 @@
     </ion-title>
 
     <ion-buttons slot="end">
+      <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+        <ion-button (click)="toggleEdit(clearing)" *ngIf="!isEditing">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
 
-      <ion-button (click)="toggleEdit()">
-        <ion-icon slot="icon-only" name="pencil"></ion-icon>
-      </ion-button>
+        <ion-button (click)="confirmEdit(clearing)" *ngIf="isEditing">
+          <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+        </ion-button>
+      </ng-container>
 
-      <ion-button (click)="openBackground()">
+      <ion-button (click)="openBackground()" *ngIf="!isEditing">
         <ion-icon slot="icon-only" name="book"></ion-icon>
       </ion-button>
 
@@ -39,7 +44,7 @@
                 <!-- change clearing name (edit only) -->
                 <ion-item *ngIf="isEditing && !campaign.characterNames">
                   <ion-label position="stacked">Clearing Name</ion-label>
-                  <ion-input type="text" [(ngModel)]="clearing.name" placeholder="Enter Clearing name"></ion-input>
+                  <ion-input type="text" [(ngModel)]="clearingCopy.name" placeholder="Enter Clearing name"></ion-input>
                 </ion-item>
 
                 <!-- clearing ruler -->
@@ -52,7 +57,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Clearing Ruler</ion-label>
-                  <ion-input type="text" [(ngModel)]="clearing.current.ruler" placeholder="Enter Clearing ruler"></ion-input>
+                  <ion-input type="text" [(ngModel)]="clearingCopy.current.ruler" placeholder="Enter Clearing ruler"></ion-input>
                 </ion-item>
 
                 <!-- clearing status -->
@@ -65,7 +70,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Clearing Status</ion-label>
-                  <ion-select [(ngModel)]="clearing.status" placeholder="Choose Clearing status">
+                  <ion-select [(ngModel)]="clearingCopy.status" placeholder="Choose Clearing status">
                     <ion-select-option *ngFor="let choice of ['pristine', 'damaged', 'wrecked', 'destroyed']" [value]="choice">
                       {{ choice }}
                     </ion-select-option>
@@ -82,7 +87,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Controlled By</ion-label>
-                  <ion-select [(ngModel)]="clearing.controlledBy" placeholder="Choose Clearing controlling faction">
+                  <ion-select [(ngModel)]="clearingCopy.controlledBy" placeholder="Choose Clearing controlling faction">
                     <ion-select-option *ngFor="let choice of campaign.factions" [value]="choice">
                       {{ choice }}
                     </ion-select-option>
@@ -99,7 +104,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Contested By</ion-label>
-                  <ion-select [(ngModel)]="clearing.contestedBy" placeholder="Choose Clearing contesting faction">
+                  <ion-select [(ngModel)]="clearingCopy.contestedBy" placeholder="Choose Clearing contesting faction">
                     <ion-select-option *ngFor="let choice of campaign.factions" [value]="choice">
                       {{ choice }}
                     </ion-select-option>
@@ -116,7 +121,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Dominant Faction</ion-label>
-                  <ion-select [(ngModel)]="clearing.current.dominantFaction" placeholder="Choose Clearing dominant faction">
+                  <ion-select [(ngModel)]="clearingCopy.current.dominantFaction" placeholder="Choose Clearing dominant faction">
                     <ion-select-option *ngFor="let choice of campaign.factions" [value]="choice">
                       {{ choice }}
                     </ion-select-option>
@@ -148,7 +153,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Conflicts</ion-label>
-                  <ion-textarea [(ngModel)]="clearing.current.conflicts" placeholder="Enter Clearing conflicts" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.current.conflicts" placeholder="Enter Clearing conflicts" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
                 <!-- overarching issue -->
@@ -161,7 +166,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Overarching Issue</ion-label>
-                  <ion-textarea [(ngModel)]="clearing.current.overarchingIssue" placeholder="Enter Clearing issue" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.current.overarchingIssue" placeholder="Enter Clearing issue" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
               </ion-list>

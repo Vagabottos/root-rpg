@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'"></ion-back-button>
+      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'" *ngIf="!isEditing"></ion-back-button>
     </ion-buttons>
 
     <ion-title>
@@ -9,10 +9,15 @@
     </ion-title>
 
     <ion-buttons slot="end">
+      <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+        <ion-button (click)="toggleEdit(clearing)" *ngIf="!isEditing">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
 
-      <ion-button (click)="toggleEdit()">
-        <ion-icon slot="icon-only" name="pencil"></ion-icon>
-      </ion-button>
+        <ion-button (click)="confirmEdit(clearing)" *ngIf="isEditing">
+          <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+        </ion-button>
+      </ng-container>
 
     </ion-buttons>
   </ion-toolbar>
@@ -34,7 +39,7 @@
               <ion-list *ngIf="isEditing">
                 <ion-item>
                   <ion-label position="stacked">Before Play History</ion-label>
-                  <ion-textarea [(ngModel)]="clearing.eventRecord.beforePlay" placeholder="Enter Clearing pre-play history" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.eventRecord.beforePlay" placeholder="Enter Clearing pre-play history" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
               </ion-list>
             </ion-card-content>

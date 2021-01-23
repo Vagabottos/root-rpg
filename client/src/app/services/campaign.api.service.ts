@@ -2,8 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { ICharacter } from '../../../../shared/interfaces';
-import { ICampaign, ITableData } from '../../interfaces';
+import { ICampaign, ICharacter, ITableData } from '../../interfaces';
 import { APIService } from './api.service';
 import { UserAPIService } from './user.api.service';
 

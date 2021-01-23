@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'"></ion-back-button>
+      <ion-back-button [defaultHref]="'dashboard/campaigns/view/' + (data.campaign$ | async)?._id + '/clearings'" *ngIf="!isEditing"></ion-back-button>
     </ion-buttons>
 
     <ion-title>
@@ -9,10 +9,17 @@
     </ion-title>
 
     <ion-buttons slot="end">
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        <ng-container *ngIf="(data.campaignClearing$ | async) as clearingData">
+          <ion-button (click)="toggleEdit(campaign, clearingData.index)" *ngIf="!isEditing">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
 
-      <ion-button (click)="toggleEdit()">
-        <ion-icon slot="icon-only" name="pencil"></ion-icon>
-      </ion-button>
+          <ion-button (click)="confirmEdit(campaign)" *ngIf="isEditing">
+            <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+          </ion-button>
+        </ng-container>
+      </ng-container>
 
     </ion-buttons>
   </ion-toolbar>
@@ -42,7 +49,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Landmarks</ion-label>
-                  <ion-textarea [(ngModel)]="clearingData.clearing.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
 
@@ -56,7 +63,7 @@
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Locations</ion-label>
-                  <ion-textarea [(ngModel)]="clearingData.clearing.landscape.locations" placeholder="Enter Clearing locations" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.landscape.locations" placeholder="Enter Clearing locations" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
               </ion-list>
@@ -72,32 +79,42 @@
 
             <ion-card-content>
               <ion-list>
-                <ion-item *ngIf="clearingData.clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
-                <ion-item class="pointer"
-                          (click)="navigateTo(campaign, clearingId)"
-                          *ngFor="let clearingId of clearingData.clearing.landscape.clearingConnections">
-                  {{ campaign.clearings[clearingId]?.name }}
+                <ng-container *ngIf="!isEditing">
+                  <ion-item *ngIf="clearingData.clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                  <ion-item class="pointer"
+                            (click)="navigateTo(campaign, clearingId)"
+                            *ngFor="let clearingId of clearingData.clearing.landscape.clearingConnections">
+                    {{ campaign.clearings[clearingId]?.name }}
+                  </ion-item>
+                </ng-container>
 
-                  <ion-button slot="end" color="danger" (click)="removeConnection(campaign, clearingData.index, clearingId)" *ngIf="isEditing">
-                    <ion-icon slot="icon-only" name="remove"></ion-icon>
-                  </ion-button>
-                </ion-item>
+                <ng-container *ngIf="isEditing">
+                  <ion-item *ngIf="clearingCopy.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                  <ion-item class="pointer"
+                            *ngFor="let clearingId of clearingCopy.landscape.clearingConnections">
+                    {{ campaignCopy.clearings[clearingId]?.name }}
 
-                <ion-item class="hidden">
-                  <ion-label position="stacked">Choose Clearing Connection</ion-label>
-                  <ion-select #otherClearings (ionChange)="addConnection($event, campaign, clearingData.index)">
-                    <ion-select-option *ngFor="let subClearing of campaign.clearings; let i = index"
-                                       [value]="i"
-                                       [disabled]="subClearing.name === clearingData.clearing.name || clearingData.clearing.landscape.clearingConnections.includes(i)">
-                      {{ subClearing.name }}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
+                    <ion-button slot="end" color="danger" (click)="removeConnection(campaignCopy, clearingData.index, clearingId)" *ngIf="isEditing">
+                      <ion-icon slot="icon-only" name="remove"></ion-icon>
+                    </ion-button>
+                  </ion-item>
 
-                <ion-item color="tertiary" class="pointer" (click)="otherClearings.open()" *ngIf="isEditing">
-                  <ion-icon slot="start" name="add"></ion-icon>
-                  Add Connection
-                </ion-item>
+                  <ion-item class="hidden">
+                    <ion-label position="stacked">Choose Clearing Connection</ion-label>
+                    <ion-select #otherClearings (ionChange)="addConnection($event, campaignCopy, clearingData.index)">
+                      <ion-select-option *ngFor="let subClearing of campaignCopy.clearings; let i = index"
+                                         [value]="i"
+                                         [disabled]="subClearing.name === clearingCopy.name || clearingCopy.landscape.clearingConnections.includes(i)">
+                        {{ subClearing.name }}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+
+                  <ion-item color="tertiary" class="pointer" (click)="otherClearings.open()">
+                    <ion-icon slot="start" name="add"></ion-icon>
+                    Add Connection
+                  </ion-item>
+                </ng-container>
               </ion-list>
             </ion-card-content>
           </ion-card>

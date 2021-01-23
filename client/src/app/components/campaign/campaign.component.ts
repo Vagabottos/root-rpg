@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { AlertController, ModalController } from '@ionic/angular';
 import { Observable, of, Subscription, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { ICampaign, ICharacter } from '../../../../../shared/interfaces';
+import { ICampaign, ICharacter } from '../../../interfaces';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';

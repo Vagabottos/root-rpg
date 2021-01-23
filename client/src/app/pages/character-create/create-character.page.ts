@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActionSheetController, AlertController, IonCheckbox, ModalController, PopoverController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonCheckbox, PopoverController } from '@ionic/angular';
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -11,13 +11,12 @@ import { capitalize, sumBy } from 'lodash';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { IContentBackgroundQuestion, IContentVagabond, IItem } from '../../../interfaces';
+import { IContentBackgroundQuestion, IContentVagabond, IItem, ICampaign } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NotificationService } from '../../services/notification.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
-import { ICampaign } from '../../../../../shared/interfaces';
 
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',

@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { CampaignAPIService } from '../../services/campaign.api.service';
+import { AlertController, ModalController } from '@ionic/angular';
+
+import { cloneDeep, merge } from 'lodash';
+
+import { IClearing } from '../../../interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,10 +14,11 @@ import { DataService } from '../../services/data.service';
 export class ClearingBackgroundComponent implements OnInit, OnDestroy {
 
   public isEditing: boolean;
+  public clearingCopy: IClearing;
 
   constructor(
+    private alert: AlertController,
     private modal: ModalController,
-    private campaignAPI: CampaignAPIService,
     public data: DataService
   ) { }
 
@@ -24,12 +28,38 @@ export class ClearingBackgroundComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  toggleEdit() {
+  toggleEdit(clearing: IClearing) {
+    this.clearingCopy = cloneDeep(clearing);
     this.isEditing = !this.isEditing;
+  }
 
-    if (!this.isEditing) {
-      this.data.patchCampaign().subscribe(() => {});
-    }
+  async confirmEdit(clearing: IClearing) {
+    const alert = await this.alert.create({
+      header: 'Confirm Changes',
+      message: `Are you sure you want to make these history changes?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Discard changes',
+          handler: () => {
+            this.isEditing = false;
+          }
+        },
+        {
+          text: 'Yes, confirm',
+          handler: () => {
+            merge(clearing, this.clearingCopy);
+
+            this.isEditing = false;
+            this.clearingCopy = null;
+            this.data.patchCampaign().subscribe(() => {});
+            this.dismiss();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   dismiss() {

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ICampaign, IClearing } from '../../../../../shared/interfaces';
+import { AlertController } from '@ionic/angular';
+
+import { cloneDeep, merge } from 'lodash';
+
+import { ICampaign, IClearing } from '../../../interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -11,21 +15,51 @@ import { DataService } from '../../services/data.service';
 export class ClearingViewLandscapePage implements OnInit {
 
   public isEditing: boolean;
+  public campaignCopy: ICampaign;
+  public clearingCopy: IClearing;
 
   constructor(
     private router: Router,
+    private alert: AlertController,
     public data: DataService
   ) { }
 
   ngOnInit() {
   }
 
-  toggleEdit() {
+  toggleEdit(campaign: ICampaign, clearingIdx: number) {
+    this.campaignCopy = cloneDeep(campaign);
+    this.clearingCopy = this.campaignCopy.clearings[clearingIdx];
     this.isEditing = !this.isEditing;
+  }
 
-    if (!this.isEditing) {
-      this.save();
-    }
+  async confirmEdit(campaign: ICampaign) {
+    const alert = await this.alert.create({
+      header: 'Confirm Changes',
+      message: `Are you sure you want to make these changes?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Discard changes',
+          handler: () => {
+            this.isEditing = false;
+          }
+        },
+        {
+          text: 'Yes, confirm',
+          handler: () => {
+            merge(campaign, this.campaignCopy);
+
+            this.isEditing = false;
+            this.campaignCopy = null;
+            this.clearingCopy = null;
+            this.save();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   navigateTo(campaign: ICampaign, clearingId: number): void {

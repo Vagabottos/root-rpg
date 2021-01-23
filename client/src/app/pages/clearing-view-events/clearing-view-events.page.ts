@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, ModalController, PopoverController } from '@ionic/angular';
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep, merge } from 'lodash';
 
 import { IClearing, IClearingVisitedEvent } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
@@ -16,6 +16,7 @@ import { DataService } from '../../services/data.service';
 export class ClearingViewEventsPage implements OnInit {
 
   public isEditing: boolean;
+  public clearingCopy: IClearing;
 
   constructor(
     private actionSheet: ActionSheetController,
@@ -28,12 +29,37 @@ export class ClearingViewEventsPage implements OnInit {
   ngOnInit() {
   }
 
-  toggleEdit() {
+  toggleEdit(clearing: IClearing) {
+    this.clearingCopy = cloneDeep(clearing);
     this.isEditing = !this.isEditing;
+  }
 
-    if (!this.isEditing) {
-      this.save();
-    }
+  async confirmEdit(clearing: IClearing) {
+    const alert = await this.alert.create({
+      header: 'Confirm Changes',
+      message: `Are you sure you want to make these changes?`,
+      buttons: [
+        'Cancel',
+        {
+          text: 'Discard changes',
+          handler: () => {
+            this.isEditing = false;
+          }
+        },
+        {
+          text: 'Yes, confirm',
+          handler: () => {
+            merge(clearing, this.clearingCopy);
+
+            this.isEditing = false;
+            this.clearingCopy = null;
+            this.save();
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
   async addNewVisitRecord(clearing: IClearing, visit?: IClearingVisitedEvent) {

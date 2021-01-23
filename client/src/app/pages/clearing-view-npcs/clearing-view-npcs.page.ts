@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, ModalController, PopoverController } from '@ionic/angular';
 
 import { cloneDeep } from 'lodash';
-import { IClearing } from '../../../../../shared/interfaces';
 
-import { ICampaign, INPC } from '../../../interfaces';
+import { ICampaign, INPC, IClearing } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
 import { DataService } from '../../services/data.service';
