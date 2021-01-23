@@ -66,7 +66,7 @@ export class DataService {
     const baseChar = this.char.getValue();
     const id = baseChar?._id;
     const patches = this.getCharacterDiff();
-    if (patches.length === 0 || !id) { return; }
+    if (patches.length === 0 || !id) { return of(null); }
 
     const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {
       prev[cur[0]] = baseChar[cur[0]];
