@@ -20,7 +20,7 @@
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
-    <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+    <ng-container *ngIf="(data.campaignClearing$ | async) as clearingData">
 
       <ion-row>
         <ion-col size-xs="12" size-lg="6">
@@ -36,13 +36,13 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label class="ion-text-wrap">
                     <p class="fake-form-label">Landmarks</p>
-                    <h2 class="can-be-preformatted">{{ clearing.landscape.landmarks }}</h2>
+                    <h2 class="can-be-preformatted">{{ clearingData.clearing.landscape.landmarks }}</h2>
                   </ion-label>
                 </ion-item>
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Landmarks</ion-label>
-                  <ion-textarea [(ngModel)]="clearing.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingData.clearing.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
 
@@ -50,13 +50,13 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label class="ion-text-wrap">
                     <p class="fake-form-label">Locations</p>
-                    <h2 class="can-be-preformatted">{{ clearing.landscape.locations }}</h2>
+                    <h2 class="can-be-preformatted">{{ clearingData.clearing.landscape.locations }}</h2>
                   </ion-label>
                 </ion-item>
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Locations</ion-label>
-                  <ion-textarea [(ngModel)]="clearing.landscape.locations" placeholder="Enter Clearing locations" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingData.clearing.landscape.locations" placeholder="Enter Clearing locations" maxlength="1000" rows="7"></ion-textarea>
                 </ion-item>
 
               </ion-list>
@@ -72,23 +72,23 @@
 
             <ion-card-content>
               <ion-list>
-                <ion-item *ngIf="clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                <ion-item *ngIf="clearingData.clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
                 <ion-item class="pointer"
                           (click)="navigateTo(campaign, clearingId)"
-                          *ngFor="let clearingId of clearing.landscape.clearingConnections">
+                          *ngFor="let clearingId of clearingData.clearing.landscape.clearingConnections">
                   {{ campaign.clearings[clearingId]?.name }}
 
-                  <ion-button slot="end" color="danger" (click)="removeConnection(clearing, clearingId)" *ngIf="isEditing">
+                  <ion-button slot="end" color="danger" (click)="removeConnection(campaign, clearingData.index, clearingId)" *ngIf="isEditing">
                     <ion-icon slot="icon-only" name="remove"></ion-icon>
                   </ion-button>
                 </ion-item>
 
                 <ion-item class="hidden">
                   <ion-label position="stacked">Choose Clearing Connection</ion-label>
-                  <ion-select #otherClearings (ionChange)="addConnection($event, clearing)">
+                  <ion-select #otherClearings (ionChange)="addConnection($event, campaign, clearingData.index)">
                     <ion-select-option *ngFor="let subClearing of campaign.clearings; let i = index"
                                        [value]="i"
-                                       [disabled]="subClearing.name === clearing.name || clearing.landscape.clearingConnections.includes(i)">
+                                       [disabled]="subClearing.name === clearingData.clearing.name || clearingData.clearing.landscape.clearingConnections.includes(i)">
                       {{ subClearing.name }}
                     </ion-select-option>
                   </ion-select>

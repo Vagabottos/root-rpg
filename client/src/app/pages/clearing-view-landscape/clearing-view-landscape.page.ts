@@ -24,7 +24,7 @@ export class ClearingViewLandscapePage implements OnInit {
     this.isEditing = !this.isEditing;
 
     if (!this.isEditing) {
-      this.data.patchCampaign().subscribe(() => {});
+      this.save();
     }
   }
 
@@ -33,21 +33,19 @@ export class ClearingViewLandscapePage implements OnInit {
     this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearingId, 'landscape']);
   }
 
-  addConnection(event, clearing: IClearing) {
+  addConnection(event, campaign: ICampaign, myId: number) {
     const clearingIdx = event.detail.value;
     if (!clearingIdx) { return; }
 
-    clearing.landscape.clearingConnections.push(clearingIdx);
+    campaign.clearings[myId].landscape.clearingConnections.push(clearingIdx);
+    campaign.clearings[clearingIdx].landscape.clearingConnections.push(myId);
 
     event.target.value = null;
-
-    this.save();
   }
 
-  removeConnection(clearing: IClearing, clearingIdx: number) {
-    clearing.landscape.clearingConnections = clearing.landscape.clearingConnections.filter(x => x !== clearingIdx);
-
-    this.save();
+  removeConnection(campaign: ICampaign, myId: number, newId: number) {
+    campaign.clearings[myId].landscape.clearingConnections = campaign.clearings[myId].landscape.clearingConnections.filter(x => x !== newId);
+    campaign.clearings[newId].landscape.clearingConnections = campaign.clearings[newId].landscape.clearingConnections.filter(x => x !== myId);
   }
 
   private save() {

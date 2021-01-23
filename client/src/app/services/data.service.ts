@@ -78,6 +78,7 @@ export class DataService {
 
   public setActiveCampaign(campaign: ICampaign): void {
     this.campaign.next(campaign);
+    console.log(campaign, 'load');
 
     if (!campaign && this.campaignObs) {
       this.campaignObs.unobserve();
@@ -103,6 +104,7 @@ export class DataService {
     const baseCamp = this.campaign.getValue();
     const id = baseCamp?._id;
     const patches = this.getCampaignDiff();
+    console.log(baseCamp?.name, patches);
     if (patches.length === 0 || !id) { return of(null); }
 
     const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {

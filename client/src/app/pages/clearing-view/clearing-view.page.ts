@@ -20,11 +20,19 @@ export class ClearingViewPage implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const clearing = this.route.snapshot.paramMap.get('clearing');
 
-    this.campaignAPI.loadCampaign(id)
-      .subscribe(campaign => {
-        this.data.setActiveCampaignClearing({ index: +clearing, clearing: campaign.clearings[+clearing] });
-        this.data.setActiveCampaign(campaign);
-      });
+    this.data.campaign$.subscribe(camp => {
+      if (camp) {
+        this.data.setActiveCampaignClearing({ index: +clearing, clearing: camp.clearings[+clearing] });
+        return;
+      }
+
+      this.campaignAPI.loadCampaign(id)
+        .subscribe(campaign => {
+          this.data.setActiveCampaignClearing({ index: +clearing, clearing: campaign.clearings[+clearing] });
+          this.data.setActiveCampaign(campaign);
+        });
+
+    });
   }
 
 }
