@@ -26,32 +26,43 @@
     </ion-card-header>
 
     <ion-card-content>
+      <form [formGroup]="campaignForm">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Campaign ID</ion-label>
+            <ion-input type="text" formControlName="campaignId" maxlength="24"></ion-input>
+          </ion-item>
 
-      <ion-list>
-        <ion-item>
-          <ion-label position="stacked">Campaign ID</ion-label>
-          <ion-input type="text" [(ngModel)]="joinCampaignId" maxlength="24"></ion-input>
-        </ion-item>
-
-        <div class="validation-errors" *ngIf="joinCampaignError">
-          <div class="message">
-            That campaign could not be joined. It either doesn't exist or is locked.
+          <div class="validation-success" *ngIf="joinCampaign && campaignForm.get('campaignId').valid">
+            <ng-container>
+              <div class="message">
+                <ion-icon slot="start" name="checkmark" color="success"></ion-icon> You will join the "{{ joinCampaign.name }}" campaign!
+              </div>
+            </ng-container>
           </div>
-        </div>
 
-        <ion-item lines="none">
-          <ion-row class="action-row">
-            <ion-col>
-            </ion-col>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.campaignId">
+              <div class="message" *ngIf="campaignForm.get('campaignId').hasError(validation.type) && (campaignForm.get('campaignId').dirty || campaignForm.get('campaignId').touched)">
+                <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
 
-            <ion-col class="ion-text-right">
-              <ion-button color="primary" (click)="tryJoinCampaign(character)" [disabled]="joinCampaignId?.length !== 24">
-                Join Campaign
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-item>
-      </ion-list>
+          <ion-item lines="none">
+            <ion-row class="action-row">
+              <ion-col>
+              </ion-col>
+
+              <ion-col class="ion-text-right">
+                <ion-button color="primary" (click)="tryJoinCampaign(character)" [disabled]="!campaignForm.valid">
+                  Join Campaign
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </form>
 
     </ion-card-content>
 

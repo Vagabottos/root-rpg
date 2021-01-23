@@ -128,10 +128,11 @@ export class CreateCharacterPage implements OnInit {
 
   public validationMessages = {
     campaignId: [
-      { type: 'required', message: 'Campaign ID is required.' },
+      { type: 'required',  message: 'Campaign ID is required.' },
       { type: 'minlength', message: 'Campaign ID must be exactly 24 characters long.' },
       { type: 'maxlength', message: 'Campaign ID must be exactly 24 characters long.' },
-      { type: 'notexists', message: 'Campaign does not exist.' }
+      { type: 'notexists', message: 'Campaign does not exist.' },
+      { type: 'locked',    message: 'Campaign is locked and cannot be joined.' }
     ],
     archetype: [
       { type: 'required', message: 'Archetype is required.' },
@@ -201,6 +202,10 @@ export class CreateCharacterPage implements OnInit {
 
             map(res => {
               if (res) {
+                if (res.locked) {
+                  return { locked: true };
+                }
+
                 this.campaign = res;
                 return null;
               }
