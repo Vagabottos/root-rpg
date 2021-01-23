@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ICampaign } from '../../../../../shared/interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -26,6 +27,11 @@ export class ClearingViewLandscapePage implements OnInit {
     if (!this.isEditing) {
       this.data.patchCampaign().subscribe(() => {});
     }
+  }
+
+  navigateTo(campaign: ICampaign, clearingId: number): void {
+    this.data.setActiveCampaignClearing({ index: clearingId, clearing: campaign.clearings[clearingId] });
+    this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearingId, 'landscape']);
   }
 
 }

@@ -21,6 +21,7 @@
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
     <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+
       <ion-row>
         <ion-col size-xs="12" size-lg="6">
           <ion-card>
@@ -70,12 +71,12 @@
             </ion-card-header>
 
             <ion-card-content>
-              <ion-list>
+              <ion-list U>
                 <ion-item *ngIf="clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
                 <ion-item class="pointer"
-                          [routerLink]="['/dashboard/campaigns/view', (data.campaign$ | async)?._id, 'clearings', clearingId, 'landscape']"
+                          (click)="navigateTo(campaign, clearingId)"
                           *ngFor="let clearingId of clearing.landscape.clearingConnections">
-                  {{ campaign.clearings[clearingId]?.name }}
+                  {{ campaign.clearings[clearingId]?.name }} ({{ clearingId }})
                 </ion-item>
               </ion-list>
             </ion-card-content>

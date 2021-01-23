@@ -26,8 +26,4 @@ export class ViewCampaignPage implements OnInit {
       });
   }
 
-  ionViewDidLeave() {
-    this.dataService.setActiveCampaign(null);
-  }
-
 }
