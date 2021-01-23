@@ -14,7 +14,6 @@ export class ClearingViewLandscapePage implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public data: DataService
   ) { }
 

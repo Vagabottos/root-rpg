@@ -37,7 +37,7 @@
               <ion-list>
 
                 <!-- change clearing name (edit only) -->
-                <ion-item *ngIf="isEditing">
+                <ion-item *ngIf="isEditing && !campaign.characterNames">
                   <ion-label position="stacked">Clearing Name</ion-label>
                   <ion-input type="text" [(ngModel)]="clearing.name" placeholder="Enter Clearing name"></ion-input>
                 </ion-item>
