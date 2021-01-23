@@ -35,7 +35,7 @@ export class ClearingViewLandscapePage implements OnInit {
 
   addConnection(event, clearing: IClearing) {
     const clearingIdx = event.detail.value;
-    if(!clearingIdx) return;
+    if (!clearingIdx) { return; }
 
     clearing.landscape.clearingConnections.push(clearingIdx);
 
