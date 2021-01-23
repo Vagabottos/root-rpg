@@ -16,7 +16,7 @@ export class CreateCampaignPage implements OnInit {
   public isDoing = false;
 
   public campaignForm = new FormGroup({
-    campaignName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    campaignName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     campaignFactions: new FormControl(
       ['Denizens', 'The Marquisate', 'The Eyrie'],
       [Validators.required]
@@ -26,7 +26,7 @@ export class CreateCampaignPage implements OnInit {
   public validationMessages = {
     campaignName: [
       { type: 'required', message: 'Campaign name is required.' },
-      { type: 'minlength', message: 'Campaign name must be at least 4 characters long.' }
+      { type: 'minlength', message: 'Campaign name must be at least 2 characters long.' }
     ]
   };
 

@@ -1,5 +1,5 @@
 
-import { Forbidden } from '@feathersjs/errors';
+import { Forbidden, NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
 import { truncate } from 'lodash';
 import { ObjectId } from 'mongodb';
@@ -8,10 +8,12 @@ import { ICharacter, IItem } from '../interfaces';
 
 const TRUNC_OPTS = () => ({ length: 50, omission: '' });
 
-const clean = (str: string) => truncate(str, TRUNC_OPTS());
+const clean = (str: string) => truncate(str, TRUNC_OPTS()).trim();
 
 export function cleanItem(item: IItem): void {
   item.name = clean(item.name || '');
+  if(!item.name) throw new NotAcceptable('No valid item name specified.');
+
   item.designation = clean(item.designation || '');
 }
 
@@ -21,15 +23,18 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   if(character.name) {
     character.name = clean(character.name || 'Name');
+    if(!character.name) throw new NotAcceptable('No valid character name specified.');
   }
 
   if(character.species) {
     character.species = clean(character.species || 'axolotl');
+    if(!character.species) throw new NotAcceptable('No valid character species specified.');
   }
 
   if(character.background) {
     character.background.forEach(bg => {
       bg.answer = clean(bg.answer);
+      if(!bg.answer) throw new NotAcceptable(`Invalid background answer specified for ${bg.question}.`);
     });
   }
 
@@ -44,6 +49,7 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
   if(character.connections) {
     character.connections.forEach(conn => {
       conn.target = clean(conn.target);
+      if(!conn.target) throw new NotAcceptable(`No valid connection target specified for ${conn.name}.`);
     });
   }
 

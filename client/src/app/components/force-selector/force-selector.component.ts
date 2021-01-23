@@ -58,7 +58,10 @@ export class ForceSelectorComponent implements OnInit {
         {
           name: 'customChoice',
           type: 'text',
-          placeholder: 'Enter Custom Choice'
+          placeholder: 'Enter Custom Choice',
+          attributes: {
+            maxLength: 50
+          }
         },
       ],
       buttons: [
