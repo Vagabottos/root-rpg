@@ -4,7 +4,7 @@ import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
 
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
-  IContentSkill, IContentVagabond, IContent, content
+  IContentSkill, IContentVagabond, IContent, IContentMapLayout, content
 } from '../../interfaces';
 
 @Injectable({
@@ -34,6 +34,10 @@ export class ContentService {
 
   getRandomName(): string {
     return sample(this.content.core.names);
+  }
+
+  getAllMapLayouts(): Record<string, IContentMapLayout> {
+    return this.content.core.maplayouts;
   }
 
   getVagabonds(): string[] {
