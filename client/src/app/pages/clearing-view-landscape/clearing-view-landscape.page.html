@@ -71,12 +71,32 @@
             </ion-card-header>
 
             <ion-card-content>
-              <ion-list U>
+              <ion-list>
                 <ion-item *ngIf="clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
                 <ion-item class="pointer"
                           (click)="navigateTo(campaign, clearingId)"
                           *ngFor="let clearingId of clearing.landscape.clearingConnections">
-                  {{ campaign.clearings[clearingId]?.name }} ({{ clearingId }})
+                  {{ campaign.clearings[clearingId]?.name }}
+
+                  <ion-button slot="end" color="danger" (click)="removeConnection(clearing, clearingId)" *ngIf="isEditing">
+                    <ion-icon slot="icon-only" name="remove"></ion-icon>
+                  </ion-button>
+                </ion-item>
+
+                <ion-item class="hidden">
+                  <ion-label position="stacked">Choose Clearing Connection</ion-label>
+                  <ion-select #otherClearings (ionChange)="addConnection($event, clearing)">
+                    <ion-select-option *ngFor="let subClearing of campaign.clearings; let i = index"
+                                       [value]="i"
+                                       [disabled]="subClearing.name === clearing.name || clearing.landscape.clearingConnections.includes(i)">
+                      {{ subClearing.name }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item color="tertiary" class="pointer" (click)="otherClearings.open()" *ngIf="isEditing">
+                  <ion-icon slot="start" name="add"></ion-icon>
+                  Add Connection
                 </ion-item>
               </ion-list>
             </ion-card-content>

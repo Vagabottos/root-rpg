@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ICampaign } from '../../../../../shared/interfaces';
+import { Router } from '@angular/router';
+import { ICampaign, IClearing } from '../../../../../shared/interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -31,6 +31,27 @@ export class ClearingViewLandscapePage implements OnInit {
   navigateTo(campaign: ICampaign, clearingId: number): void {
     this.data.setActiveCampaignClearing({ index: clearingId, clearing: campaign.clearings[clearingId] });
     this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearingId, 'landscape']);
+  }
+
+  addConnection(event, clearing: IClearing) {
+    const clearingIdx = event.detail.value;
+    if(!clearingIdx) return;
+
+    clearing.landscape.clearingConnections.push(clearingIdx);
+
+    event.target.value = null;
+
+    this.save();
+  }
+
+  removeConnection(clearing: IClearing, clearingIdx: number) {
+    clearing.landscape.clearingConnections = clearing.landscape.clearingConnections.filter(x => x !== clearingIdx);
+
+    this.save();
+  }
+
+  private save() {
+    this.data.patchCampaign().subscribe(() => {});
   }
 
 }
