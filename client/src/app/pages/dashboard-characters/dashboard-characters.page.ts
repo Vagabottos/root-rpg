@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ActionSheetController, AlertController, PopoverController } from '@ionic/angular';
+import { filter } from 'rxjs/operators';
 import { ICharacter } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { CharacterAPIService } from '../../services/character.api.service';
@@ -16,6 +18,7 @@ export class DashboardCharactersPage implements OnInit {
   private page = 0;
 
   constructor(
+    private router: Router,
     private alert: AlertController,
     private popover: PopoverController,
     private actionSheet: ActionSheetController,
@@ -23,7 +26,16 @@ export class DashboardCharactersPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadCharacters(0);
+    this.watchRouter();
+  }
+
+  private watchRouter() {
+    this.router.events
+    .pipe(filter(e => e instanceof NavigationEnd))
+    .subscribe((ev: NavigationEnd) => {
+      if (!ev.url.endsWith('/characters')) { return; }
+      this.loadCharacters(0);
+    });
   }
 
   loadCharacters(page = 0, $event = null): void {

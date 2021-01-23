@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ActionSheetController, AlertController, PopoverController } from '@ionic/angular';
+import { filter } from 'rxjs/operators';
 import { ICampaign } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { CampaignAPIService } from '../../services/campaign.api.service';
@@ -16,6 +18,7 @@ export class DashboardCampaignsPage implements OnInit {
   private page = 0;
 
   constructor(
+    private router: Router,
     private alert: AlertController,
     private popover: PopoverController,
     private actionSheet: ActionSheetController,
@@ -23,7 +26,16 @@ export class DashboardCampaignsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadCampaigns(0);
+    this.watchRouter();
+  }
+
+  private watchRouter() {
+    this.router.events
+    .pipe(filter(e => e instanceof NavigationEnd))
+    .subscribe((ev: NavigationEnd) => {
+      if (!ev.url.endsWith('/campaigns')) { return; }
+      this.loadCampaigns(0);
+    });
   }
 
   loadCampaigns(page = 0, $event = null): void {
