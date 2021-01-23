@@ -16,6 +16,7 @@ export class ForceSelectorComponent implements OnInit {
   @Input() public choices: Array<{ name: string, text: string }> = [];
   @Input() public bannedChoices: string[] = [];
   @Input() public disableBanned = false;
+  @Input() public disableChoices: string[] = [];
   @Input() public defaultSelected: string[] = [];
   @Input() public allowCustom: boolean;
 

@@ -23,7 +23,7 @@
     <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let choice of choices; let i = index"
-                  [disabled]="(numChoices > 0 && numSelected >= numChoices && !selected[i]) || disableBanned && bannedChoices.includes(choice.name)">
+                  [disabled]="disableChoices.includes(choice.name) || (numChoices > 0 && numSelected >= numChoices && !selected[i]) || disableBanned && bannedChoices.includes(choice.name)">
           <ion-label class="ion-text-wrap">
             <h2>{{ choice.name }}</h2>
             <p *ngIf="!disableBanned && bannedChoices?.includes(choice.name)"><em>Warning: You already have this.</em></p>

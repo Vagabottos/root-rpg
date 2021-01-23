@@ -9,6 +9,7 @@ interface ForcedChoiceOpts {
   numChoices?: number;
   bannedChoices?: string[];
   disableBanned?: boolean;
+  disableChoices?: string[];
   defaultSelected?: string[];
   allowCustom?: boolean;
 }
@@ -47,6 +48,7 @@ export class NotificationService {
     bannedChoices,
     disableBanned,
     defaultSelected,
+    disableChoices,
     allowCustom
   }: ForcedChoiceOpts = {
     title: '',
@@ -55,6 +57,7 @@ export class NotificationService {
     numChoices: 0,
     bannedChoices: [],
     disableBanned: false,
+    disableChoices: [],
     defaultSelected: [],
     allowCustom: false
   }): Promise<any> {
@@ -62,7 +65,8 @@ export class NotificationService {
       component: ForceSelectorComponent,
       componentProps: {
         title, message, choices, numChoices, bannedChoices,
-        disableBanned, defaultSelected, allowCustom
+        disableBanned, defaultSelected, allowCustom,
+        disableChoices
       }
     });
 
