@@ -66,9 +66,17 @@
             <ion-input type="text" formControlName="campaignId" placeholder="Enter Campaign ID" maxlength="24"></ion-input>
           </ion-item>
 
+          <div class="validation-success" *ngIf="campaign && campaignForm.get('campaignId').valid">
+            <ng-container>
+              <div class="message">
+                <ion-icon slot="start" name="checkmark" color="success"></ion-icon> You will join the "{{ campaign.name }}" campaign!
+              </div>
+            </ng-container>
+          </div>
+
           <div class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.campaignId">
-              <div class="error-message" *ngIf="campaignForm.get('campaignId').hasError(validation.type) && (campaignForm.get('campaignId').dirty || campaignForm.get('campaignId').touched)">
+              <div class="message" *ngIf="campaignForm.get('campaignId').hasError(validation.type) && (campaignForm.get('campaignId').dirty || campaignForm.get('campaignId').touched)">
                 <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
               </div>
             </ng-container>
@@ -354,9 +362,9 @@
               <ion-label position="stacked" class="ion-text-wrap spaced-label">Choose Clearing</ion-label>
 
               <ion-select placeholder="Select Clearing" [(ngModel)]="backgroundForm.get('backgrounds').value[i].realText" [ngModelOptions]="{ standalone: true }">
-                <ion-select-option *ngFor="let clearing of campaign.clearings | keyvalue"
-                                   [value]="clearing.key">
-                  {{ clearing.key }}
+                <ion-select-option *ngFor="let clearing of campaign.clearings"
+                                   [value]="clearing.name">
+                  {{ clearing.name }}
                 </ion-select-option>
               </ion-select>
 

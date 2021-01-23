@@ -185,6 +185,8 @@ export class CreateCharacterPage implements OnInit {
   }
 
   validateCampaignId(control: AbstractControl): Observable<{ [key: string]: any } | null> {
+    this.campaign = null;
+
     if (control.value === null || control.value.length !== 24) {
       return of(null);
     }
@@ -199,6 +201,7 @@ export class CreateCharacterPage implements OnInit {
 
             map(res => {
               if (res) {
+                this.campaign = res;
                 return null;
               }
 

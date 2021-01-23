@@ -102,21 +102,32 @@ $sizes: 0, 1, 2, 3;
   width: 100%;
 }
 
-.validation-errors {
+.validation-errors, .validation-warnings, .validation-success {
   min-height: 30px;
   padding-top: 5px;
 
-  .error-message {
+  .message {
     display: flex;
     align-items: center;
 
-    color: #f00;
     opacity: 0.7;
 
     ion-icon {
       margin-right: 5px;
     }
   }
+}
+
+.validation-errors .message {
+  color: var(--ion-color-danger);
+}
+
+.validation-warnings .message {
+  color: var(--ion-color-warning);
+}
+
+.validation-success .message {
+  color: var(--ion-color-success);
 }
 
 ion-list {

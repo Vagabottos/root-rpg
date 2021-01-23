@@ -43,7 +43,7 @@
 
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validationMessages.campaignName">
-                    <div class="error-message" *ngIf="campaignForm.get('campaignName').hasError(validation.type) && (campaignForm.get('campaignName').dirty || campaignForm.get('campaignName').touched)">
+                    <div class="message" *ngIf="campaignForm.get('campaignName').hasError(validation.type) && (campaignForm.get('campaignName').dirty || campaignForm.get('campaignName').touched)">
                       <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
                     </div>
                   </ng-container>

@@ -21,7 +21,7 @@
                 {{ isRegistering ? 'Sign Up' : 'Log In' }}
               </ion-card-title>
             </ion-card-header>
-    
+
             <ion-card-content>
 
               <ion-list>
@@ -32,12 +32,12 @@
 
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validationMessages.email">
-                    <div class="error-message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
+                    <div class="message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
                       <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
                     </div>
                   </ng-container>
                 </div>
-      
+
                 <ion-item>
                   <ion-label position="stacked">Password</ion-label>
                   <ion-input type="password" formControlName="password"></ion-input>
@@ -45,7 +45,7 @@
 
                 <div class="validation-errors">
                   <ng-container *ngFor="let validation of validationMessages.password">
-                    <div class="error-message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
+                    <div class="message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
                       <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
                     </div>
                   </ng-container>
@@ -68,7 +68,7 @@
                   </ion-row>
                 </ion-item>
               </ion-list>
-              
+
             </ion-card-content>
 
           </ion-card>
