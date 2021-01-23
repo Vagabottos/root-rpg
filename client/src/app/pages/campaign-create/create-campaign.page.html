@@ -59,6 +59,10 @@
                   </ion-button>
                 </ion-list-header>
 
+                <ion-item *ngIf="campaignForm.get('campaignFactions').value.length === 0" color="danger">
+                  You must have at least one faction to create a campaign.
+                </ion-item>
+
                 <ion-item *ngFor="let faction of campaignForm.get('campaignFactions').value">
                   {{ faction }}
                 </ion-item>
