@@ -20,13 +20,10 @@ export class ClearingViewPage implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const clearing = this.route.snapshot.paramMap.get('clearing');
 
-    console.log('init')
-
     this.campaignAPI.loadCampaign(id)
       .subscribe(campaign => {
         this.data.setActiveCampaignClearing({ index: +clearing, clearing: campaign.clearings[+clearing] });
         this.data.setActiveCampaign(campaign);
-        console.log(+clearing, campaign.clearings[+clearing])
       });
   }
 
