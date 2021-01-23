@@ -1,7 +1,7 @@
 
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { capitalize, cloneDeep, isArray, sample, shuffle, random } from 'lodash';
+import { capitalize, cloneDeep, isArray, sample, shuffle, random, uniq } from 'lodash';
 import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
 
@@ -159,6 +159,13 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     const clearing = createClearing(newCampaign);
     newCampaign.clearings.push(clearing);
   }
+
+  let names = Array(12).fill(null).map(() => randomTownName());
+  while(!uniq(names)) {
+    names = Array(12).fill(null).map(() => randomTownName());
+  }
+
+  newCampaign.clearings.forEach((x, i) => x.name = names[i]);
 
   generateConnections(newCampaign);
 
