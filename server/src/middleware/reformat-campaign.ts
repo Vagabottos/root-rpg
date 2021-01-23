@@ -145,6 +145,8 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     throw new NotAcceptable('No factions specified for campaign gen.');
   }
 
+  if(context.data.factions.some(f => f.includes('.'))) throw new NotAcceptable('Campaign factions cannot have a period in them.');
+
   const newCampaign: ICampaign = {
     name: context.data.name,
     locked: false,

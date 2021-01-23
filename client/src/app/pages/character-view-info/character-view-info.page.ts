@@ -191,7 +191,7 @@ export class CharacterViewInfoPage implements OnInit {
         character.reputation[name] = { notoriety: 0, prestige: 0, total: 0 };
       });
 
-      this.data.patchCampaign().subscribe(() => {});
+      this.data.patchCharacter().subscribe(() => {});
     });
   }
 

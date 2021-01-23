@@ -89,5 +89,12 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   }
 
+  if(character.reputation) {
+    Object.keys(character.reputation).forEach(repKey => {
+      if(!repKey.includes('.')) return;
+      throw new NotAcceptable('Faction names cannot have periods in them.');
+    });
+  }
+
   return context;
 }

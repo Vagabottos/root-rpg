@@ -5,6 +5,7 @@ import * as jsonpatch from 'fast-json-patch';
 import { ICampaign, ICharacter, IClearing } from '../../interfaces';
 import { CharacterAPIService } from './character.api.service';
 import { CampaignAPIService } from './campaign.api.service';
+import { catchError } from 'rxjs/operators';
 
 interface IClearingData {
   index: number;
@@ -48,6 +49,12 @@ export class DataService {
   public setActiveCharacter(char: ICharacter): void {
     this.char.next(char);
 
+    if (char && this.charObs) {
+      this.charObs.unobserve();
+      this.charObs = null;
+      this.charObs = jsonpatch.observe(char);
+    }
+
     if (!char && this.charObs) {
       this.charObs.unobserve();
       this.charObs = null;
@@ -73,12 +80,31 @@ export class DataService {
       return prev;
     }, {});
 
-    return this.characterAPI.patchCharacter(id, patchObj);
+    return this.characterAPI.patchCharacter(id, patchObj)
+      .pipe(catchError((err) => {
+
+        // revert on error
+        this.characterAPI.loadCharacter(id)
+          .subscribe(char => this.setActiveCharacter(char));
+
+        return err;
+      }));
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
     this.campaign.next(campaign);
-    console.log(campaign, 'load');
+
+    if (campaign && this.campaignObs) {
+      this.campaignObs.unobserve();
+      this.campaignObs = null;
+      this.campaignObs = jsonpatch.observe(campaign);
+      this.campaignCharacters.next([]);
+
+      this.campaignAPI.getCampaignCharacters(campaign._id)
+        .subscribe(chars => {
+          this.campaignCharacters.next(chars.data);
+        });
+    }
 
     if (!campaign && this.campaignObs) {
       this.campaignObs.unobserve();
@@ -104,7 +130,6 @@ export class DataService {
     const baseCamp = this.campaign.getValue();
     const id = baseCamp?._id;
     const patches = this.getCampaignDiff();
-    console.log(baseCamp?.name, patches);
     if (patches.length === 0 || !id) { return of(null); }
 
     const patchObj = patches.map(x => x.path.substring(1).split('/')).reduce((prev, cur) => {
@@ -112,7 +137,15 @@ export class DataService {
       return prev;
     }, {});
 
-    return this.campaignAPI.patchCampaign(id, patchObj);
+    return this.campaignAPI.patchCampaign(id, patchObj)
+      .pipe(catchError((err) => {
+
+        // revert on error
+        this.campaignAPI.loadCampaign(id)
+          .subscribe(char => this.setActiveCampaign(char));
+
+        return err;
+      }));
   }
 
   public setActiveCampaignClearing(clearingData: IClearingData) {

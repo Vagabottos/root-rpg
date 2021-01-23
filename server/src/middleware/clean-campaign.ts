@@ -36,6 +36,7 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
   if(campaign.factions) {
     campaign.factions = campaign.factions.map(f => clean(f)).filter(Boolean);
     if(!campaign.factions || campaign.factions.length === 0) throw new NotAcceptable('No valid campaign factions specified.');
+    if(campaign.factions.some(f => f.includes('.'))) throw new NotAcceptable('Campaign factions cannot have a period in them.');
   }
 
   if(hasPlayers) {
