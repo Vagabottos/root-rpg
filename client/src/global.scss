@@ -208,11 +208,17 @@ ion-list-header {
   white-space: pre-line;
 }
 
+@media screen and (min-width: 720px) {
+  .medium-modal {
+    --width: 50%;
+    --height: 90%;
+  }
+}
+
 .big-modal {
   --width: 90%;
   --height: 90%;
 }
-
 
 svg.woodland-overview {
   .conceptG text {

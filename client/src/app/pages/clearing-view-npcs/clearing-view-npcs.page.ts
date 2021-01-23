@@ -31,7 +31,8 @@ export class ClearingViewNpcsPage implements OnInit {
 
     const modal = await this.modal.create({
       component: NPCCreatorComponent,
-      componentProps: { npc: cloneDeep(npc), validFactions: campaign.factions }
+      componentProps: { npc: cloneDeep(npc), validFactions: campaign.factions },
+      cssClass: 'medium-modal'
     });
 
     modal.onDidDismiss().then((res) => {
