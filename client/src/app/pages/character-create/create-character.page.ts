@@ -109,7 +109,7 @@ export class CreateCharacterPage implements OnInit {
   });
 
   public featsForm = new FormGroup({
-    feats: new FormControl([], [Validators.required])
+    feats: new FormControl([], [Validators.required, ])
   });
 
   public skillsForm = new FormGroup({
@@ -162,6 +162,57 @@ export class CreateCharacterPage implements OnInit {
 
   public readonly Step = CharacterCreateStep;
   public currentStep: CharacterCreateStep = CharacterCreateStep.CampaignOrNo;
+
+  public stepHelper = [
+    { name: 'Join Campaign?',
+      step: CharacterCreateStep.CampaignOrNo,
+      isValid: () => this.campaignForm.valid },
+    { name: 'Archetype',
+      step: CharacterCreateStep.Archetype,
+      isValid: () => this.archetypeForm.valid },
+    { name: 'Name, Species, Look',
+      step: CharacterCreateStep.NameSpecies,
+      isValid: () => this.characterForm.valid },
+    { name: 'Bonus Stat',
+      step: CharacterCreateStep.BonusStats,
+      isValid: () => this.bonusForm.valid },
+    { name: 'Background',
+      step: CharacterCreateStep.Background,
+      isValid: () => this.backgroundForm.valid },
+    { name: 'Nature',
+      step: CharacterCreateStep.Natures,
+      isValid: () => this.naturesForm.valid },
+    { name: 'Drives',
+      step: CharacterCreateStep.Drives,
+      isValid: () => this.drivesForm.valid && this.drivesForm.get('drives').value.length >= 2 },
+    { name: 'Moves',
+      step: CharacterCreateStep.Moves,
+      isValid: () => this.movesForm.valid && this.movesForm.get('moves').value.length >= 3 },
+    { name: 'Roguish Feats',
+      step: CharacterCreateStep.Feats,
+      isValid: () => [
+                      CharacterCreateStep.Skills,
+                      CharacterCreateStep.Items,
+                      CharacterCreateStep.Connections,
+                      CharacterCreateStep.Finalize
+                    ].includes(this.currentStep)
+                  && (this.chosenVagabond.chooseFeats === 0
+                    || (this.featsForm.get('feats').value.length >= this.chosenVagabond.chooseFeats)) },
+    { name: 'Weapon Skills',
+      step: CharacterCreateStep.Skills,
+      isValid: () => this.skillsForm.valid },
+    { name: 'Starting Items',
+      step: CharacterCreateStep.Items,
+      isValid: () => this.totalValueSpent < this.chosenVagabond.startingValue
+                  && [CharacterCreateStep.Connections, CharacterCreateStep.Finalize].includes(this.currentStep) },
+    { name: 'Connections',
+      step: CharacterCreateStep.Connections,
+      isValid: () => this.connectionsForm.valid },
+    { name: 'Finalize',
+      step: CharacterCreateStep.Finalize,
+      touched: () => false,
+      isValid: () => true },
+  ];
 
   constructor(
     private actionSheet: ActionSheetController,
@@ -665,6 +716,12 @@ export class CreateCharacterPage implements OnInit {
     this.skillsForm.get('skills').setValue([]);
     this.itemsForm.get('items').setValue([]);
     this.connectionsForm.get('connections').setValue([]);
+
+    this.connectionsForm.reset();
+
+    this.featsForm.setErrors({ fake: true });
+    this.backgroundForm.setErrors({ fake: true });
+    this.connectionsForm.setErrors({ fake: true });
   }
 
   load() {
