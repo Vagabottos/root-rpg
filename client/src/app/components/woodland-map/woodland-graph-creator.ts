@@ -41,21 +41,22 @@ class GraphState {
 
 export class GraphCreator {
 
-  private idct = 0;
   private state: GraphState = new GraphState();
+  private nodes: INode[] = [];
+  private edges: IEdge[] = [];
 
   private svgG;
-  private dragLine;
   private paths;
   private circles;
-
-  private drag: d3.drag;
 
   public get graph() {
     return { nodes: this.nodes, edges: this.edges };
   }
 
-  constructor(private svg, private nodes: INode[] = [], private edges: IEdge[] = []) {
+  constructor(
+    private svg,
+    private clickNode: (clearing) => void
+  ) {
     this.init();
   }
 
@@ -63,7 +64,6 @@ export class GraphCreator {
     this.nodes = nodes;
     this.edges = edges;
 
-    this.setIdCt(Math.max(...nodes.map((x) => x.id)) + 1);
     this.updateGraph();
   }
 
@@ -101,10 +101,6 @@ export class GraphCreator {
     this.svgG = this.svg.append('g')
       .classed(GraphConstants.graphClass, true);
 
-    this.dragLine = this.svgG.append('svg:path')
-      .attr('class', 'link dragline hidden')
-      .attr('d', 'M0,0L0,0');
-
     this.paths = this.svgG.append('g').selectAll('g');
     this.circles = this.svgG.append('g').selectAll('g');
   }
@@ -115,10 +111,6 @@ export class GraphCreator {
     window.onresize = () => {
       this.updateWindow();
     };
-  }
-
-  private setIdCt(idct) {
-    this.idct = idct;
   }
 
   private insertTitleLinebreaks(gEl, title = '') {
@@ -188,6 +180,9 @@ export class GraphCreator {
     newGs
       .classed(GraphConstants.circleGClass, true)
       .attr('transform', (d) => 'translate(' + d.x + ',' + d.y + ')')
+      .on('mousedown', (event, d) => {
+        this.circleMouseDown(event, d3.select(event.currentTarget), d);
+      })
       .each((d, i, nodes) => {
         const node = d3.select(nodes[i]);
         node
@@ -198,6 +193,12 @@ export class GraphCreator {
       });
 
     this.circles = newGs;
+  }
+
+  private circleMouseDown(event, d3node, d) {
+    event.stopPropagation();
+
+    this.clickNode(d.id);
   }
 
 }

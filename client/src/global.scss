@@ -233,6 +233,7 @@ svg.woodland-overview {
     fill: #F6FBFF;
     stroke: #333;
     stroke-width: 2px;
+    cursor: pointer;
   }
 
   g.conceptG:hover circle {
@@ -251,7 +252,7 @@ svg.woodland-overview {
     fill: none;
     stroke: #333;
     stroke-width: 6px;
-    cursor: default;
+    cursor: pointer;
   }
 
   path.link:hover {

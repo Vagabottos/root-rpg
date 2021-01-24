@@ -19,7 +19,6 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   layout.nodePositions.forEach((pos, i) => {
     nodes.push({
       id: i,
-      majority: 'marquise',
       r: 50,
       title: campaign.clearings[i].name,
       x: (flipX ? layout.maxX - pos.x : pos.x) * (width / layout.maxX),

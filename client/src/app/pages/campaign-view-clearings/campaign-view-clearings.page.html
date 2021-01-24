@@ -10,22 +10,15 @@
       </ng-container>
     </ion-title>
 
-    <ion-buttons slot="end">
-      <ng-container *ngIf="data.campaign$ | async as campaign">
-        <ion-button (click)="openWoodlandView(campaign)" class="ion-hide-lg-down">
-          <ion-icon slot="icon-only" name="earth"></ion-icon>
-        </ion-button>
-      </ng-container>
-    </ion-buttons>
-
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
 
-    <ion-row>
+    <app-woodland-map [campaign]="campaign" class="ion-hide-lg-down" (chooseClearing)="clickMapClearing($event, campaign)"></app-woodland-map>
+
+    <ion-row class="ion-hide-lg-up">
       <ion-col *ngFor="let clearing of campaign.clearings; let i = index" size-xs="12" size-md="6"
                [routerLink]="[i]">
         <ion-card class="clearing-card pointer">

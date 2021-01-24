@@ -26,10 +26,11 @@ import { ForestCreatorComponent } from './components/forest-creator/forest-creat
 import { ClearingBackgroundComponent } from './components/clearing-background/clearing-background.component';
 import { VisitRecordCreatorComponent } from './components/visit-record-creator/visit-record-creator.component';
 import { WoodlandOverviewComponent } from './components/woodland-overview/woodland-overview.component';
+import { WoodlandMapComponent } from './components/woodland-map/woodland-map.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
-const components = [ItemComponent, NPCComponent];
+const components = [ItemComponent, NPCComponent, WoodlandMapComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
