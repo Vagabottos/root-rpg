@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
+import { ICampaign } from '../../interfaces';
 import { ForceSelectorComponent } from '../components/force-selector/force-selector.component';
+import { WoodlandOverviewComponent } from '../components/woodland-overview/woodland-overview.component';
 
 interface ForcedChoiceOpts {
   title: string;
@@ -73,5 +75,15 @@ export class NotificationService {
     modal.present();
 
     return modal;
+  }
+
+  async loadWoodlandMap(campaign: ICampaign) {
+    const modal = await this.modal.create({
+      component: WoodlandOverviewComponent,
+      componentProps: { campaign },
+      cssClass: 'big-modal'
+    });
+
+    await modal.present();
   }
 }

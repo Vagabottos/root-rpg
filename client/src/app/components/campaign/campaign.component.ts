@@ -167,4 +167,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
     alert.present();
   }
 
+  async openWoodlandView(campaign: ICampaign) {
+    this.notify.loadWoodlandMap(campaign);
+  }
+
 }

@@ -104,4 +104,19 @@
     </ion-card-header>
   </ion-card>
 
+  <ion-card *ngIf="campaign" class="ion-hide-md-down">
+    <ion-card-header>
+      <ion-title>Campaign Map</ion-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item class="pointer" (click)="openWoodlandView(campaign)">
+          <ion-icon slot="start" name="earth"></ion-icon>
+          View Campaign Map
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
