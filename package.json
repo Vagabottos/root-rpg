@@ -14,8 +14,6 @@
     "lerna": "^3.22.1"
   },
   "dependencies": {
-    "feathers-hooks-common": "^5.0.4",
-    "lodash": "^4.17.20",
     "yamljs": "^0.3.0"
   }
 }

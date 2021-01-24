@@ -8,6 +8,7 @@ import { CampaignAPIService } from '../../services/campaign.api.service';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 import { NotificationService } from '../../services/notification.service';
+import { SocketService } from '../../services/socket.service';
 
 @Component({
   selector: 'app-campaign',
@@ -45,6 +46,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
     private alert: AlertController,
     private modal: ModalController,
     private notify: NotificationService,
+    private socket: SocketService,
     private campaignAPI: CampaignAPIService,
     public data: DataService,
     public content: ContentService
@@ -110,6 +112,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
     this.campaignAPI.loadCampaign(this.character.campaign)
       .subscribe(campaign => {
         this.campaign = campaign;
+        this.socket.joinChannel(this.character.campaign);
 
         this.character.reputation = {};
         campaign.factions.forEach(fact => {
@@ -157,6 +160,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
             this.campaign = null;
             this.campaignCharacters = [];
             character.campaign = '';
+            this.socket.leaveChannel();
 
             this.data.patchCharacter().subscribe(() => {});
           }

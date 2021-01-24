@@ -34,7 +34,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Set up Plugins and providers
 app.configure(express.rest());
-app.configure(socketio());
+app.configure(socketio(io => {
+  io.use((socket, next) => {
+    (socket as any).feathers.connectionId = socket.id;
+    next();
+  });
+}));
 
 app.configure(mongodb);
 

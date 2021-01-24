@@ -5,7 +5,8 @@ import * as jsonpatch from 'fast-json-patch';
 import { ICampaign, ICharacter, IClearing } from '../../interfaces';
 import { CharacterAPIService } from './character.api.service';
 import { CampaignAPIService } from './campaign.api.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { SocketService } from './socket.service';
 
 interface IClearingData {
   index: number;
@@ -42,11 +43,29 @@ export class DataService {
   }
 
   constructor(
+    private socket: SocketService,
     private characterAPI: CharacterAPIService,
     private campaignAPI: CampaignAPIService
   ) { }
 
+  public init() {
+    this.socket.campaignCharacterPatch$.subscribe(data => {
+      const characters = this.campaignCharacters.getValue();
+      const updateCharacter = characters.find(char => char._id === data.id);
+      if (updateCharacter) {
+        Object.assign(updateCharacter, data.patch);
+      }
+
+      this.campaignCharacters.next(characters);
+    });
+  }
+
   public setActiveCharacter(char: ICharacter): void {
+
+    const curChar = this.char.getValue();
+    if (curChar?.campaign) { this.socket.leaveChannel(); }
+    if (char?.campaign) { this.socket.joinChannel(char.campaign); }
+
     this.char.next(char);
 
     if (char && this.charObs) {
@@ -81,6 +100,7 @@ export class DataService {
     }, {});
 
     return this.characterAPI.patchCharacter(id, patchObj)
+      .pipe(tap(() => this.socket.sendCharacterUpdate(id, patchObj)))
       .pipe(catchError((err) => {
 
         // revert on error
@@ -92,6 +112,11 @@ export class DataService {
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
+
+    const curCamp = this.campaign.getValue();
+    if (curCamp?._id) { this.socket.leaveChannel(); }
+    if (campaign?._id) { this.socket.joinChannel(campaign._id); }
+
     this.campaign.next(campaign);
 
     if (campaign && this.campaignObs) {
