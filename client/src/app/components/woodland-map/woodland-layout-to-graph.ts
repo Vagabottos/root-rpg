@@ -21,6 +21,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       id: i,
       r: 50,
       title: campaign.clearings[i].name,
+      subtitle: campaign.clearings[i].status,
       x: (flipX ? layout.maxX - pos.x : pos.x) * (width / layout.maxX),
       y: (flipY ? layout.maxY - pos.y : pos.y) * (height / layout.maxY),
     });

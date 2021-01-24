@@ -35,7 +35,9 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.loadMap();
+    setTimeout(() => {
+      this.loadMap();
+    }, 0);
   }
 
   private getWidthHeightOfContainer() {
@@ -50,7 +52,7 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
 
     const { width, height } = this.getWidthHeightOfContainer();
 
-    const { nodes, edges } = generateLayout(this.campaign, this.contentService.getAllMapLayouts(), width, height);
+    const { nodes, edges } = generateLayout(this.campaign, this.contentService.getAllMapLayouts(), width, height - 20);
 
     const svg = d3.select('.map-editor').append('svg')
       .attr('class', 'woodland-overview')

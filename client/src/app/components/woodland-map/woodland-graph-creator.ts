@@ -80,6 +80,10 @@ export class GraphCreator {
     this.initG();
     this.initDrag();
     this.initKeybinds();
+
+    setTimeout(() => {
+      this.updateGraph();
+    }, 0);
   }
 
   private initDefs() {
@@ -139,9 +143,10 @@ export class GraphCreator {
       });
   }
 
-  private insertTitleLinebreaks(gEl, title = '') {
+  private insertTitleLinebreaks(gEl, title = '', subtitle = '') {
     const words = title.split(/\s+/g);
     const nwords = words.length;
+
     const el = gEl.append('text')
       .attr('text-anchor', 'middle')
       .attr('font-size', (d) => {
@@ -159,6 +164,15 @@ export class GraphCreator {
         tspan.attr('x', 0).attr('dy', '15');
       }
     }
+
+    const el2 = gEl.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('font-style', 'italic')
+      .attr('font-size', '10px')
+      .attr('dy', '-' + (nwords - 1) * 7.5);
+
+    const tspan2 = el2.append('tspan').text(subtitle);
+    tspan2.attr('x', 0).attr('dy', '15');
   }
 
   private updateGraph() {
@@ -226,7 +240,7 @@ export class GraphCreator {
           .append('circle')
           .attr('r', String(GraphConstants.nodeRadius));
 
-        this.insertTitleLinebreaks(d3.select(nodes[i]), d.title);
+        this.insertTitleLinebreaks(d3.select(nodes[i]), d.title, d.subtitle);
       });
 
     this.circles = newGs;
