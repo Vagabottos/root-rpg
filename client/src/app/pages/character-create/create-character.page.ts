@@ -11,7 +11,7 @@ import { capitalize, sumBy } from 'lodash';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
 
-import { IContentBackgroundQuestion, IContentVagabond, IItem, ICampaign } from '../../../interfaces';
+import { IContentBackgroundQuestion, IContentVagabond, IItem, ICampaign, BlocksLeave } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
@@ -39,7 +39,9 @@ enum CharacterCreateStep {
   templateUrl: './create-character.page.html',
   styleUrls: ['./create-character.page.scss'],
 })
-export class CreateCharacterPage implements OnInit {
+export class CreateCharacterPage implements OnInit, BlocksLeave {
+
+  public isDone = false;
 
   public get chosenVagabond(): IContentVagabond {
     return this.contentService.getVagabond(this.archetypeForm.get('archetype').value);
@@ -838,8 +840,10 @@ export class CreateCharacterPage implements OnInit {
             this.characterAPI.createCharacter(this.getSaveObject())
               .subscribe(char => {
                 this.reset();
+                this.isDone = true;
                 this.notification.notify('Created character successfully!');
                 this.router.navigate(['/dashboard', 'characters', 'view', char._id]);
+                this.isDone = false;
               });
           }
         }

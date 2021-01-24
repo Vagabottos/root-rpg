@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BlocksLeave } from '../../../interfaces';
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -11,8 +12,9 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './create-campaign.page.html',
   styleUrls: ['./create-campaign.page.scss'],
 })
-export class CreateCampaignPage implements OnInit {
+export class CreateCampaignPage implements OnInit, BlocksLeave {
 
+  public isDone = false;
   public isDoing = false;
 
   public campaignForm = new FormGroup({
@@ -51,9 +53,11 @@ export class CreateCampaignPage implements OnInit {
 
     this.campaignAPI.createCampaign(args)
       .subscribe((campaign) => {
+        this.isDone = true;
         this.notification.notify('Created campaign successfully!');
         this.router.navigate(['/dashboard', 'campaigns', 'view', campaign._id]);
         this.isDoing = false;
+        this.isDone = false;
       }, () => {
         this.isDoing = false;
       });
