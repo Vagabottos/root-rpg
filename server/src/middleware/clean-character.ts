@@ -3,9 +3,12 @@ import { Forbidden, NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
 import { ObjectId } from 'mongodb';
 
+import { cloneDeep } from 'lodash';
+
 import { clean } from '../helpers/clean-text';
 
-import { ICharacter, IItem } from '../interfaces';
+import { ICharacter, IItem, IContent, content } from '../interfaces';
+const allContent: IContent = cloneDeep(content);
 
 export function cleanItem(item: IItem): void {
   item.name = clean(item.name || '');
@@ -35,6 +38,47 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     });
   }
 
+  if(character.drives) {
+    character.drives.forEach(drive => {
+      if(content.core.drives[drive]) return;
+      throw new NotAcceptable(`Invalid drive: ${drive}`);
+    });
+  }
+
+  if(character.moves) {
+    character.moves.forEach(move => {
+      if(content.core.moves[move]) return;
+      throw new NotAcceptable(`Invalid move: ${move}`);
+    });
+  }
+
+  if(character.feats) {
+    character.feats.forEach(feat => {
+      if(content.core.feats[feat]) return;
+      throw new NotAcceptable(`Invalid feat: ${feat}`);
+    });
+  }
+
+  if(character.skills) {
+    character.skills.forEach(skill => {
+      if(content.core.skills[skill]) return;
+      throw new NotAcceptable(`Invalid skill: ${skill}`);
+    });
+  }
+
+  if(character.moveSkills) {
+    character.moveSkills.forEach(skill => {
+      if(content.core.skills[skill]) return;
+      throw new NotAcceptable(`Invalid skill: ${skill}`);
+    });
+  }
+
+  if(character.nature) {
+    if(!content.core.natures[character.nature]) {
+      throw new NotAcceptable(`Invalid nature: ${character.nature}`);
+    }
+  }
+
   if(character.driveTargets) {
     Object.keys(character.driveTargets).forEach(drive => {
       if(!character.driveTargets) return;
@@ -45,6 +89,7 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   if(character.connections) {
     character.connections.forEach(conn => {
+      if(!content.core.connections[conn.name]) throw new NotAcceptable(`Invalid connection: ${conn.name}`);
       conn.target = clean(conn.target);
       if(!conn.target) throw new NotAcceptable(`No valid connection target specified for ${conn.name}.`);
     });

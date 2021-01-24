@@ -15,7 +15,7 @@ export class UnsavedChangesGuard implements CanDeactivate<BlocksLeave> {
 
   // ask user if they want to leave a page before just doing it
   async canDeactivate(component: BlocksLeave): Promise<boolean> {
-    if(component.isDone) return true;
+    if (component.isDone) { return true; }
 
     const alert = await this.alert.create({
       header: 'Leave Page',
