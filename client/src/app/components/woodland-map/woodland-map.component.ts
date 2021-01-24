@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnDestroy, Output } from '@angular/core';
 
 import * as d3 from 'd3';
 
@@ -13,12 +13,14 @@ import { generateLayout } from './woodland-layout-to-graph';
   templateUrl: './woodland-map.component.html',
   styleUrls: ['./woodland-map.component.scss'],
 })
-export class WoodlandMapComponent implements AfterViewInit {
+export class WoodlandMapComponent implements AfterViewInit, OnChanges {
 
   @Input() campaign: ICampaign;
   @Input() editable: boolean;
 
   @Output() chooseClearing = new EventEmitter<number>();
+  @Output() addEdge = new EventEmitter<{ source: number, target: number }>();
+  @Output() removeEdge = new EventEmitter<{ source: number, target: number }>();
 
   private graph: GraphCreator;
 
@@ -32,6 +34,10 @@ export class WoodlandMapComponent implements AfterViewInit {
     }, 0);
   }
 
+  ngOnChanges() {
+    this.loadMap();
+  }
+
   private getWidthHeightOfContainer() {
     const containerEl = document.querySelector('.map-editor');
     const { width, height } = containerEl.getBoundingClientRect();
@@ -40,6 +46,8 @@ export class WoodlandMapComponent implements AfterViewInit {
   }
 
   loadMap() {
+    d3.select('.map-editor').selectAll('svg').remove();
+
     const { width, height } = this.getWidthHeightOfContainer();
 
     const { nodes, edges } = generateLayout(this.campaign, this.contentService.getAllMapLayouts(), width, height);
@@ -49,9 +57,16 @@ export class WoodlandMapComponent implements AfterViewInit {
       .attr('width', width)
       .attr('height', height);
 
-    const chooseClearing = (clearing) => this.chooseClearing.next(clearing);
+    const chooseClearing = (clearing: number) => this.chooseClearing.next(clearing);
+    const addEdge = (edge: { source: number, target: number }) => this.addEdge.next(edge);
+    const removeEdge = (edge: { source: number, target: number }) => this.removeEdge.next(edge);
 
-    this.graph = new GraphCreator(svg, chooseClearing);
+    this.graph = new GraphCreator(svg, this.editable, {
+      clickNode: chooseClearing,
+      addEdge,
+      removeEdge
+    });
+
     this.graph.loadGraph(nodes, edges);
   }
 

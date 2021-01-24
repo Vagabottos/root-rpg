@@ -10,13 +10,31 @@
       </ng-container>
     </ion-title>
 
+    <ion-buttons slot="end">
+      <ng-container *ngIf="(data.campaign$ | async) as campaign">
+        <ion-button (click)="toggleEdit(campaign)" *ngIf="!isEditing" class="ion-hide-lg-down">
+          <ion-icon slot="icon-only" name="pencil"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="confirmEdit(campaign)" *ngIf="isEditing" class="ion-hide-lg-down">
+          <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+        </ion-button>
+      </ng-container>
+
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
 
-    <app-woodland-map [campaign]="campaign" class="ion-hide-lg-down" (chooseClearing)="clickMapClearing($event, campaign)"></app-woodland-map>
+    <app-woodland-map [campaign]="isEditing ? campaignCopy : campaign"
+                      [editable]="isEditing"
+                      class="ion-hide-lg-down"
+                      (chooseClearing)="clickMapClearing($event, campaign)"
+                      (addEdge)="addEdge($event)"
+                      (removeEdge)="removeEdge($event)"></app-woodland-map>
 
     <ion-row class="ion-hide-lg-up">
       <ion-col *ngFor="let clearing of campaign.clearings; let i = index" size-xs="12" size-md="6"
