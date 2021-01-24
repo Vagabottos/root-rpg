@@ -1,13 +1,10 @@
 
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { truncate } from 'lodash';
 
 import { ICampaign } from '../interfaces';
 
-const TRUNC_OPTS = () => ({ length: 50, omission: '' });
-
-const clean = (str: string) => truncate(str, TRUNC_OPTS()).trim();
+import { clean } from '../helpers/clean-text';
 
 export async function cleanCampaign(context: HookContext): Promise<HookContext> {
   const characterService = context.app.service('character');

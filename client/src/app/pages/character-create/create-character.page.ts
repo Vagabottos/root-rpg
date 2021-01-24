@@ -203,7 +203,7 @@ export class CreateCharacterPage implements OnInit {
       isValid: () => this.skillsForm.valid },
     { name: 'Starting Items',
       step: CharacterCreateStep.Items,
-      isValid: () => this.totalValueSpent < this.chosenVagabond.startingValue
+      isValid: () => this.totalValueSpent < this.chosenVagabond?.startingValue
                   && [CharacterCreateStep.Connections, CharacterCreateStep.Finalize].includes(this.currentStep) },
     { name: 'Connections',
       step: CharacterCreateStep.Connections,

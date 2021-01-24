@@ -1,14 +1,11 @@
 
 import { Forbidden, NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { truncate } from 'lodash';
 import { ObjectId } from 'mongodb';
 
+import { clean } from '../helpers/clean-text';
+
 import { ICharacter, IItem } from '../interfaces';
-
-const TRUNC_OPTS = () => ({ length: 50, omission: '' });
-
-const clean = (str: string) => truncate(str, TRUNC_OPTS()).trim();
 
 export function cleanItem(item: IItem): void {
   item.name = clean(item.name || '');

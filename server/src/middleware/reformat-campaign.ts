@@ -141,7 +141,10 @@ function generateConnections(campaign: ICampaign) {
 
 export async function reformatCampaign(context: HookContext): Promise<HookContext> {
 
-  if(!context.data.factions || context.data.factions.length === 0 || !isArray(context.data.factions)) {
+  context.data.factions = context.data.factions || [];
+  context.data.factions = context.data.factions.filter(Boolean);
+
+  if(context.data.factions.length === 0 || !isArray(context.data.factions)) {
     throw new NotAcceptable('No factions specified for campaign gen.');
   }
 
