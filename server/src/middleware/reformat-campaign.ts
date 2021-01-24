@@ -60,8 +60,8 @@ Captain Founderpants
 }
 
 function generateConnections(campaign: ICampaign) {
-  const layoutName = sample(Object.keys(content.core.maplayouts)) as string;
-  const layout: IContentMapLayout = content.core.maplayouts[layoutName];
+  const layoutName = sample(Object.keys(allContent.core.maplayouts)) as string;
+  const layout: IContentMapLayout = allContent.core.maplayouts[layoutName];
 
   campaign.mapGen.layout = layoutName;
 

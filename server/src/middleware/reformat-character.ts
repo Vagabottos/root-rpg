@@ -68,11 +68,11 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
   if(!newChar.pronouns) throw new NotAcceptable('Character must have pronouns.');
 
   newChar.drives.forEach(drive => {
-    if(content.core.drives[drive]) return;
+    if(allContent.core.drives[drive]) return;
     throw new NotAcceptable(`Invalid drive: ${drive}`);
   });
 
-  if(!content.core.natures[newChar.nature]) throw new NotAcceptable(`Invalid nature: ${newChar.nature}`);
+  if(!allContent.core.natures[newChar.nature]) throw new NotAcceptable(`Invalid nature: ${newChar.nature}`);
 
   const campaignService = context.app.service('campaign');
   let campaign!: ICampaign;
@@ -165,10 +165,10 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
   }
 
   newChar.feats.forEach(feat => {
-    if(content.core.feats[feat]) return;
+    if(allContent.core.feats[feat]) return;
 
     throw new NotAcceptable(`Invalid feat: ${feat}.`);
-  })
+  });
 
   // set connections
   archetypeData.connections.forEach((conn, i) => {

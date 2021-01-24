@@ -40,41 +40,41 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   if(character.drives) {
     character.drives.forEach(drive => {
-      if(content.core.drives[drive]) return;
+      if(allContent.core.drives[drive]) return;
       throw new NotAcceptable(`Invalid drive: ${drive}`);
     });
   }
 
   if(character.moves) {
     character.moves.forEach(move => {
-      if(content.core.moves[move]) return;
+      if(allContent.core.moves[move]) return;
       throw new NotAcceptable(`Invalid move: ${move}`);
     });
   }
 
   if(character.feats) {
     character.feats.forEach(feat => {
-      if(content.core.feats[feat]) return;
+      if(allContent.core.feats[feat]) return;
       throw new NotAcceptable(`Invalid feat: ${feat}`);
     });
   }
 
   if(character.skills) {
     character.skills.forEach(skill => {
-      if(content.core.skills[skill]) return;
+      if(allContent.core.skills[skill]) return;
       throw new NotAcceptable(`Invalid skill: ${skill}`);
     });
   }
 
   if(character.moveSkills) {
     character.moveSkills.forEach(skill => {
-      if(content.core.skills[skill]) return;
+      if(allContent.core.skills[skill]) return;
       throw new NotAcceptable(`Invalid skill: ${skill}`);
     });
   }
 
   if(character.nature) {
-    if(!content.core.natures[character.nature]) {
+    if(!allContent.core.natures[character.nature]) {
       throw new NotAcceptable(`Invalid nature: ${character.nature}`);
     }
   }
@@ -89,7 +89,7 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
 
   if(character.connections) {
     character.connections.forEach(conn => {
-      if(!content.core.connections[conn.name]) throw new NotAcceptable(`Invalid connection: ${conn.name}`);
+      if(!allContent.core.connections[conn.name]) throw new NotAcceptable(`Invalid connection: ${conn.name}`);
       conn.target = clean(conn.target);
       if(!conn.target) throw new NotAcceptable(`No valid connection target specified for ${conn.name}.`);
     });
