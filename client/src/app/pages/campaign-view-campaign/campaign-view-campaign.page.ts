@@ -55,7 +55,9 @@ export class CampaignViewCampaignPage implements OnInit {
     const modal = await this.notification.loadForcedChoiceModal({
       title: `Choose Factions`,
       message: `Choose factions from the following list to add to your campaign.`,
-      choices: this.content.getFactions().map(c => ({ name: c.name, text: invalidFactions[c.name] ? `Invalid removal, used in: ${invalidFactions[c.name].join(', ')}` : '' })) || [],
+      choices: this.content
+        .getFactions()
+        .map(c => ({ name: c.name, text: invalidFactions[c.name] ? `Invalid removal, used in: ${invalidFactions[c.name].join(', ')}` : '' })) || [],
       numChoices: 0,
       bannedChoices: [],
       disableBanned: false,

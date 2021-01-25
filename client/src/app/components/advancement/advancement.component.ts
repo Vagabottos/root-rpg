@@ -7,6 +7,7 @@ import { DataService } from '../../services/data.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
 import { NotificationService } from '../../services/notification.service';
 
+// eslint-disable-next-line no-shadow
 enum AdvancementStep {
   Choose = 'choose',
   Stat = 'stat',
@@ -103,10 +104,8 @@ export class AdvancementComponent implements OnInit {
 
   filterArray(arr: string[]): string[] {
     if (!this.searchQuery || !this.isSearchOpen) { return arr; }
-    return arr.filter(s => {
-      return s.toLowerCase().includes(this.searchQuery.toLowerCase())
-          || this.content.getMove(s)?.text.toLowerCase().includes(this.searchQuery.toLowerCase());
-    });
+    return arr.filter(s => s.toLowerCase().includes(this.searchQuery.toLowerCase())
+          || this.content.getMove(s)?.text.toLowerCase().includes(this.searchQuery.toLowerCase()));
   }
 
   setAdvancementStep(step: AdvancementStep) {

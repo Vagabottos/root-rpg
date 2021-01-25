@@ -81,8 +81,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
 
     return timer(1000)
       .pipe(
-        switchMap(() => {
-          return this.campaignAPI.loadCampaign(control.value).pipe(
+        switchMap(() => this.campaignAPI.loadCampaign(control.value).pipe(
             tap(() => this.validatingCampaignId = false),
 
             map(res => {
@@ -98,11 +97,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
               return { notexists: true };
             }),
 
-            catchError(() => {
-              return of({ notexists: true });
-            })
-          );
-        })
+            catchError(() => of({ notexists: true }))
+          ))
       );
   }
 

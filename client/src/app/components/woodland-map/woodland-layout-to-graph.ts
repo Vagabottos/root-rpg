@@ -7,6 +7,7 @@ export interface IGraphResult {
   edges: IEdge[];
 }
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, IContentMapLayout>, width: number, height: number): IGraphResult {
 
   const nodes = [];

@@ -16,7 +16,7 @@ export class SocketService {
   // private client: any;
   private channel: string;
 
-  private campaignCharacterPatch: Subject<{ id: string, patch: Partial<ICharacter> }> = new Subject<{ id: string, patch: Partial<ICharacter> }>();
+  private campaignCharacterPatch: Subject<{ id: string; patch: Partial<ICharacter> }> = new Subject<{ id: string; patch: Partial<ICharacter> }>();
 
   public get campaignCharacterPatch$() {
     return this.campaignCharacterPatch.asObservable();

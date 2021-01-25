@@ -112,7 +112,7 @@ export class ContentService {
     return this.content.core.connections[name];
   }
 
-  getMovesByArchetype(): Record<string, Array<{ name: string, text: string }>> {
+  getMovesByArchetype(): Record<string, Array<{ name: string; text: string }>> {
     return groupBy(this.getMoves().sort(), key => this.getMove(key).archetype);
   }
 

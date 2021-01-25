@@ -13,7 +13,7 @@ export class ForceSelectorComponent implements OnInit {
   @Input() public title: string;
   @Input() public message: string;
   @Input() public numChoices = 1;
-  @Input() public choices: Array<{ name: string, text: string }> = [];
+  @Input() public choices: Array<{ name: string; text: string }> = [];
   @Input() public bannedChoices: string[] = [];
   @Input() public disableBanned = false;
   @Input() public disableChoices: string[] = [];
@@ -26,7 +26,7 @@ export class ForceSelectorComponent implements OnInit {
     return this.selected.filter(Boolean).length;
   }
 
-  public get formattedSelected(): Array<{ name: string, text: string }> {
+  public get formattedSelected(): Array<{ name: string; text: string }> {
     return this.choices.filter((x, i) => this.selected[i]);
   }
 
@@ -48,7 +48,7 @@ export class ForceSelectorComponent implements OnInit {
     this.selected[index] = checkbox.checked;
   }
 
-  dismiss(choices?: Array<{ name: string, text: string }>) {
+  dismiss(choices?: Array<{ name: string; text: string }>) {
     this.modal.dismiss(choices);
   }
 

@@ -19,8 +19,8 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
   @Input() editable: boolean;
 
   @Output() chooseClearing = new EventEmitter<number>();
-  @Output() addEdge = new EventEmitter<{ source: number, target: number }>();
-  @Output() removeEdge = new EventEmitter<{ source: number, target: number }>();
+  @Output() addEdge = new EventEmitter<{ source: number; target: number }>();
+  @Output() removeEdge = new EventEmitter<{ source: number; target: number }>();
 
   private graph: GraphCreator;
 
@@ -60,8 +60,8 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
       .attr('height', height);
 
     const chooseClearing = (clearing: number) => this.chooseClearing.next(clearing);
-    const addEdge = (edge: { source: number, target: number }) => this.addEdge.next(edge);
-    const removeEdge = (edge: { source: number, target: number }) => this.removeEdge.next(edge);
+    const addEdge = (edge: { source: number; target: number }) => this.addEdge.next(edge);
+    const removeEdge = (edge: { source: number; target: number }) => this.removeEdge.next(edge);
 
     this.graph = new GraphCreator(svg, this.editable, {
       clickNode: chooseClearing,

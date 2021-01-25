@@ -60,9 +60,9 @@ export class GraphCreator {
     private svg,
     private canEdit: boolean,
     private callbacks: {
-      clickNode: (clearing) => void,
-      addEdge: (edge) => void,
-      removeEdge: (edge) => void
+      clickNode: (clearing) => void;
+      addEdge: (edge) => void;
+      removeEdge: (edge) => void;
     }
   ) {
     this.init();
@@ -248,9 +248,7 @@ export class GraphCreator {
 
   private initDrag() {
     this.drag = d3.drag()
-      .subject((d) => {
-        return { x: d.x, y: d.y };
-      })
+      .subject((d) => ({ x: d.x, y: d.y }))
       .on('drag', (event, d) => {
         this.state.justDragged = true;
         this.dragMove(event, d);

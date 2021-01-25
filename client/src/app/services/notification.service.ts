@@ -8,7 +8,7 @@ import { WoodlandOverviewComponent } from '../components/woodland-overview/woodl
 interface ForcedChoiceOpts {
   title: string;
   message: string;
-  choices: Array<{ name: string, text: string }>;
+  choices: Array<{ name: string; text: string }>;
   numChoices?: number;
   bannedChoices?: string[];
   disableBanned?: boolean;

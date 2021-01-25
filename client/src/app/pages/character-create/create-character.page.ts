@@ -18,6 +18,7 @@ import { EditDeletePopoverComponent } from '../../components/editdelete.popover'
 import { NotificationService } from '../../services/notification.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
 
+// eslint-disable-next-line no-shadow
 enum CharacterCreateStep {
   CampaignOrNo = 'campaigncode',
   Archetype = 'archetype',
@@ -248,8 +249,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
     return timer(1000)
       .pipe(
-        switchMap(() => {
-          return this.campaignAPI.loadCampaign(control.value).pipe(
+        switchMap(() => this.campaignAPI.loadCampaign(control.value).pipe(
             tap(() => this.validatingCampaignId = false),
 
             map(res => {
@@ -265,11 +265,8 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
               return { notexists: true };
             }),
 
-            catchError(() => {
-              return of({ notexists: true });
-            })
-          );
-        })
+            catchError(() => of({ notexists: true }))
+          ))
       );
   }
 
