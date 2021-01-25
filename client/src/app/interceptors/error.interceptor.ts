@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         if (error?.error.code === 401) {
           this.router.navigate(['/login']);
-          this.notification.notify('Your previous session has expired. Redirecting to login.');
+          this.notification.notify('Your previous session has expired. Please login again.');
           return;
         }
 
