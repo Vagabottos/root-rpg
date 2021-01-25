@@ -28,6 +28,12 @@
         <ion-icon slot="icon-only" name="bonfire"></ion-icon>
       </ion-button>
 
+      <ng-container *ngIf="data.char$ | async as character">
+        <ion-button (click)="pdf.exportCharacter(character)">
+          <ion-icon slot="icon-only" name="download"></ion-icon>
+        </ion-button>
+      </ng-container>
+
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

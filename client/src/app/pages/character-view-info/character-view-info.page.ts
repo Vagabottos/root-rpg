@@ -12,6 +12,7 @@ import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 import { CharacterHelperService } from '../../services/character.helper.service';
 import { NotificationService } from '../../services/notification.service';
+import { PDFService } from '../../services/pdf.service';
 
 @Component({
   selector: 'app-character-view-info',
@@ -27,6 +28,7 @@ export class CharacterViewInfoPage implements OnInit {
     private modal: ModalController,
     public data: DataService,
     public content: ContentService,
+    public pdf: PDFService,
     public characterHelper: CharacterHelperService
   ) { }
 
