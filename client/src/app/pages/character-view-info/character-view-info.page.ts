@@ -22,7 +22,7 @@ export class CharacterViewInfoPage implements OnInit {
 
   constructor(
     private markdown: MarkdownPipe,
-    private notification: NotificationService,
+    public notification: NotificationService,
     private alert: AlertController,
     private modal: ModalController,
     public data: DataService,

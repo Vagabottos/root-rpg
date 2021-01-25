@@ -280,3 +280,16 @@ svg.woodland-overview {
   }
 
 }
+
+ion-modal.transparent {
+  background-color:rgba(0, 0, 0, 0) !important;
+  --background: transparent !important;
+
+  box-shadow: none !important;
+  --box-shadow: none !important;
+
+  .modal-wrapper {
+    background-color:rgba(0, 0, 0, 0) !important;
+    --background: transparent !important;
+  }
+}

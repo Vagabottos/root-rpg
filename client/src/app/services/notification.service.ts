@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { ICampaign } from '../../interfaces';
+import { DiceRollerComponent } from '../components/dice-roller/dice-roller.component';
 import { ForceSelectorComponent } from '../components/force-selector/force-selector.component';
 import { WoodlandOverviewComponent } from '../components/woodland-overview/woodland-overview.component';
 
@@ -85,5 +86,15 @@ export class NotificationService {
     });
 
     await modal.present();
+  }
+
+  async rollDice() {
+    const dice = await this.modal.create({
+      component: DiceRollerComponent,
+      cssClass: 'transparent',
+      showBackdrop: false
+    });
+
+    dice.present();
   }
 }

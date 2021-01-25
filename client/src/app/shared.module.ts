@@ -27,6 +27,7 @@ import { ClearingBackgroundComponent } from './components/clearing-background/cl
 import { VisitRecordCreatorComponent } from './components/visit-record-creator/visit-record-creator.component';
 import { WoodlandOverviewComponent } from './components/woodland-overview/woodland-overview.component';
 import { WoodlandMapComponent } from './components/woodland-map/woodland-map.component';
+import { DiceRollerComponent } from './components/dice-roller/dice-roller.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
@@ -35,7 +36,7 @@ const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
   NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent, VisitRecordCreatorComponent,
-  WoodlandOverviewComponent
+  WoodlandOverviewComponent, DiceRollerComponent
 ];
 
 @NgModule({
