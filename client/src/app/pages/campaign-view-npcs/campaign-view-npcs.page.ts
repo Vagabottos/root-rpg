@@ -137,12 +137,12 @@ export class CampaignViewNpcsPage implements OnInit {
     this.save();
   }
 
-  maxHarmBoxes(npc: INPC): number[] {
-    return Array(Math.max(...Object.values(npc.harmMax || {}), 1)).fill(false).map((x, i) => i);
+  maxHarmBoxes(): number[] {
+    return [0, 1, 2, 3, 4, 5];
   }
 
   harmBoxes(npc: INPC, harm: string): number[] {
-    return Array(npc.harmMax?.[harm.toLowerCase()] ?? 0).fill(false).map((x, i) => i);
+    return Array(npc.harmMax?.[harm.toLowerCase()] ?? 1).fill(false).map((x, i) => i);
   }
 
   public save() {
