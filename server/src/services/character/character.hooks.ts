@@ -3,7 +3,6 @@ import { ObjectId } from 'mongodb';
 
 import { fastJoin } from 'feathers-hooks-common';
 
-import { blockDeleteWithCampaign } from '../../middleware/block-character-delete';
 import { fixObjectId } from '../../middleware/convert-id';
 import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
 import { attachOwner, validateOwner } from '../../middleware/owner';
@@ -42,7 +41,7 @@ export default {
     create: [reformatCharacter, attachOwner, attachCreatedAt, attachUpdatedAt],
     update: [disallow],
     patch: [validateOwner, stripUneditableProps, cleanCharacter, attachUpdatedAt],
-    remove: [validateOwner, blockDeleteWithCampaign]
+    remove: [validateOwner]
   },
 
   after: {
