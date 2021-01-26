@@ -29,6 +29,7 @@ function createClearing(campaign: ICampaign): IClearing {
     contestedBy: sample(campaign.factions) as string,
     controlledBy: sample(campaign.factions) as string,
     npcs: [],
+    notes: '',
     eventRecord: {
       beforePlay: 'Something happened here.',
       visited: []
@@ -153,6 +154,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   const newCampaign: ICampaign = {
     name: context.data.name,
     locked: false,
+    notes: '',
     mapGen: {
       layout: '',
       flipX: sample([true, false]) as boolean,

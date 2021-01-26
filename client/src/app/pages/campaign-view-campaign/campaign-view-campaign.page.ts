@@ -85,4 +85,9 @@ export class CampaignViewCampaignPage implements OnInit {
     this.data.patchCampaign().subscribe(() => {});
   }
 
+  updateNotes(campaign: ICampaign, newNotes: string) {
+    campaign.notes = newNotes;
+    this.data.patchCampaign().subscribe(() => {});
+  }
+
 }

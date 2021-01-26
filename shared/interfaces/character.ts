@@ -46,6 +46,7 @@ export interface ICharacter {
   moves: string[];
   items: IItem[];
   reputation: Record<string, ICharacterReputation>;
+  notes: string;
 
   harm: {
     injury: number;

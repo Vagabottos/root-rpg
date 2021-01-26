@@ -195,4 +195,8 @@ export class CharacterViewInfoPage implements OnInit {
     });
   }
 
+  updateNotes(character: ICharacter, newNotes: string) {
+    character.notes = newNotes;
+    this.data.patchCharacter().subscribe(() => {});
+  }
 }

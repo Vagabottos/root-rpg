@@ -70,4 +70,9 @@ export class ClearingViewSituationPage implements OnInit {
     await modal.present();
   }
 
+  updateNotes(clearing: IClearing, newNotes: string) {
+    clearing.notes = newNotes;
+    this.data.patchCampaign().subscribe(() => {});
+  }
+
 }

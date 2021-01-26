@@ -138,5 +138,9 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     });
   }
 
+  if(character.notes) {
+    character.notes = clean(character.notes, 10000);
+  }
+
   return context;
 }

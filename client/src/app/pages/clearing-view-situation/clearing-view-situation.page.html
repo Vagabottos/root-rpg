@@ -173,6 +173,10 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
+
+        <ion-col size-xs="12" size-lg="6">
+          <app-notes [notes]="clearing.notes" (updateNotes)="updateNotes(clearing, $event)"></app-notes>
+        </ion-col>
       </ion-row>
 
     </ng-container>

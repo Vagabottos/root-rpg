@@ -1,0 +1,25 @@
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Notes</ion-card-title>
+    <ion-icon class="change" [name]="isEditing ? 'checkmark-circle' : 'pencil'" (click)="toggleEditing()"></ion-icon>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-list>
+      <ion-item lines="none" *ngIf="!isEditing && !notes">
+        <em>You have no notes entered.</em>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="!isEditing && notes">
+        <ion-label class="ion-text-wrap">
+          <h2 class="can-be-preformatted">{{ notes }}</h2>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="isEditing">
+        <ion-textarea [(ngModel)]="notes" placeholder="Enter notes" maxlength="10000" rows="7"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

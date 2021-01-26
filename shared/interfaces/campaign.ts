@@ -10,6 +10,7 @@ export interface IClearing {
   contestedBy: string;
   controlledBy: string;
   npcs: INPC[];
+  notes: string;
 
   eventRecord: {
     beforePlay: string;
@@ -56,6 +57,7 @@ export interface ICampaign {
   locked?: boolean;
   factions: string[];
   characterNames?: string[];
+  notes: string;
 
   mapGen: {
     layout: string;

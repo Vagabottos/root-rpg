@@ -32,6 +32,7 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     demeanor: context.data.character.demeanor.map(x => clean(x)),
     pronouns: clean(context.data.character.pronouns),
     background: [],
+    notes: '',
     drives: context.data.drives.drives,
     driveTargets: context.data.drives.driveTargets,
     nature: context.data.natures.nature,

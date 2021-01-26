@@ -28,10 +28,11 @@ import { VisitRecordCreatorComponent } from './components/visit-record-creator/v
 import { WoodlandOverviewComponent } from './components/woodland-overview/woodland-overview.component';
 import { WoodlandMapComponent } from './components/woodland-map/woodland-map.component';
 import { DiceRollerComponent } from './components/dice-roller/dice-roller.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
-const components = [ItemComponent, NPCComponent, WoodlandMapComponent];
+const components = [ItemComponent, NPCComponent, WoodlandMapComponent, NotesComponent];
 const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
