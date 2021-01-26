@@ -556,7 +556,7 @@
         </ion-card-title>
 
         <ion-card-subtitle>
-          Choose your character's starting moves.
+          Choose your character's starting 3 moves. <em *ngIf="chosenVagabond.defaultMoves.length > 0">This Vagabond starts with {{ chosenVagabond.defaultMoves.length }} moves chosen for you.</em>
         </ion-card-subtitle>
       </ion-card-header>
 
