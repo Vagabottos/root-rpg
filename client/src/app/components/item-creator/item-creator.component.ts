@@ -20,6 +20,7 @@ export class ItemCreatorComponent implements OnInit {
   public itemForm = new FormGroup({
     name:         new FormControl('', [Validators.required]),
     wear:         new FormControl(0, [Validators.required, Validators.min(0), Validators.max(10)]),
+    load:         new FormControl(0, [Validators.required, Validators.min(0), Validators.max(5)]),
     itemTags:     new FormControl([]),
     skillTags:    new FormControl([]),
     ranges:       new FormControl([]),
@@ -47,7 +48,7 @@ export class ItemCreatorComponent implements OnInit {
       ranges: this.itemForm.get('ranges').value,
       designation: this.itemForm.get('designation').value,
       extraValue: this.item?.extraValue,
-      extraLoad: this.customItemData?.extraLoad,
+      extraLoad: this.itemForm.get('load').value,
       tagSet: this.customItemData?.tagSet
     };
   }
@@ -66,7 +67,8 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('itemTags').setValue(this.item.tags || []);
       this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
       this.itemForm.get('ranges').setValue(this.item.ranges || []);
-      this.itemForm.get('designation').setValue(this.item.designation || '');
+      this.itemForm.get('designation').setValue(this.item.designation ?? '');
+      this.itemForm.get('load').setValue(this.item.extraLoad ?? 1);
 
       if (this.item.tagSet) {
         this.tagSet = this.item.tagSet;
@@ -75,6 +77,7 @@ export class ItemCreatorComponent implements OnInit {
 
     if (this.customItemData) {
       this.itemForm.get('name').setValue(this.customItemData.name);
+      this.itemForm.get('load').setValue(this.customItemData.extraLoad ?? 1);
       this.tagSet = this.customItemData.tagSet;
     }
   }
@@ -83,10 +86,6 @@ export class ItemCreatorComponent implements OnInit {
     if (item && this.postProcess) {
       item.extraValue = 0;
       if (item.tags?.includes('Luxury')) { item.extraValue = 3; }
-
-      if (this.customItemData) {
-
-      }
     }
 
     this.modal.dismiss(item);

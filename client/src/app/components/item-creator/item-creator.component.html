@@ -18,6 +18,10 @@
         <ion-label position="stacked">Item Name</ion-label>
         <ion-input type="text" formControlName="name" placeholder="Enter Item Name" maxlength="50"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Item Load</ion-label>
+        <ion-input type="number" formControlName="load" placeholder="Enter Item Load" min="0" max="5"></ion-input>
+      </ion-item>
 
       <ion-item class="wear" lines="none" *ngIf="!hideExtraData">
         <ion-button slot="start" color="secondary" (click)="wear(-1)" [disabled]="itemForm.get('wear').value <= 0">
