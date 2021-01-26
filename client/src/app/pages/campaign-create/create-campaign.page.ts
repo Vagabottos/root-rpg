@@ -43,6 +43,10 @@ export class CreateCampaignPage implements OnInit, BlocksLeave {
   ngOnInit() {
   }
 
+  ionViewDidEnter() {
+    this.isDone = false;
+  }
+
   create() {
     this.isDoing = true;
 
@@ -57,7 +61,6 @@ export class CreateCampaignPage implements OnInit, BlocksLeave {
         this.notification.notify('Created campaign successfully!');
         this.router.navigate(['/dashboard', 'campaigns', 'view', campaign._id]);
         this.isDoing = false;
-        this.isDone = false;
       }, () => {
         this.isDoing = false;
       });

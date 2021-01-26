@@ -6,7 +6,7 @@ import { ActionSheetController, AlertController, IonCheckbox, PopoverController 
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { capitalize, sumBy } from 'lodash';
+import { cloneDeep, capitalize, sumBy } from 'lodash';
 
 import { CampaignAPIService } from '../../services/campaign.api.service';
 import { CharacterAPIService } from '../../services/character.api.service';
@@ -234,6 +234,10 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     this.load();
   }
 
+  ionViewDidEnter() {
+    this.isDone = false;
+  }
+
   ionViewDidLeave() {
     this.reset();
   }
@@ -385,7 +389,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
     const moves = this.movesForm.get('moves').value || [];
     if (moves.length === 0 && this.chosenVagabond.defaultMoves?.length > 0) {
-      this.movesForm.get('moves').setValue(this.chosenVagabond.defaultMoves);
+      this.movesForm.get('moves').setValue(cloneDeep(this.chosenVagabond.defaultMoves));
     }
 
     const connArr = this.connectionsForm.get('connections') as FormArray;
@@ -877,7 +881,6 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
                 this.isDone = true;
                 this.notification.notify('Created character successfully!');
                 this.router.navigate(['/dashboard', 'characters', 'view', char._id]);
-                this.isDone = false;
               });
           }
         }
