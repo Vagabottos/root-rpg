@@ -311,6 +311,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     this.characterForm.get('name').setValue(this.contentService.getRandomName());
   }
 
+  // nsp functions
   changeSpecies(event) {
     const isCustom = event.detail.value === 'custom';
     setTimeout(() => {
@@ -324,6 +325,42 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       this.characterForm.get('customspecies').setValidators([]);
       this.characterForm.get('customspecies').updateValueAndValidity();
     }, 0);
+  }
+
+  async chooseAdjectives() {
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Adjectives`,
+      message: `Choose adjectives from the following list or make your own.`,
+      choices: this.chosenVagabond.adjectives.map(c => ({ name: c, text: '' })) || [],
+      numChoices: 0,
+      defaultSelected: this.characterForm.get('adjectives').value,
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.characterForm.get('adjectives').setValue(data.map(x => x.name));
+
+    });
+  }
+
+  async chooseDemeanor() {
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Demeanor`,
+      message: `Choose your demeanor from the following list or make your own.`,
+      choices: this.chosenVagabond.demeanor.map(c => ({ name: c, text: '' })) || [],
+      numChoices: 0,
+      defaultSelected: this.characterForm.get('demeanor').value,
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.characterForm.get('demeanor').setValue(data.map(x => x.name));
+
+    });
   }
 
   private loadLinkedCampaign() {

@@ -235,24 +235,20 @@
             </ion-select>
           </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Adjectives</ion-label>
-            <ion-select placeholder="Select Adjectives" multiple="true" formControlName="adjectives">
-              <ion-select-option *ngFor="let adjective of chosenVagabond.adjectives"
-                                 [value]="adjective">
-                {{ adjective }}
-              </ion-select-option>
-            </ion-select>
+          <ion-item class="pointer" (click)="chooseAdjectives()">
+            <ion-label>
+              <p class="fake-form-label">Adjectives</p>
+              <h2 *ngIf="characterForm.get('adjectives').value.length === 0">Choose adjectives</h2>
+              <h2 *ngIf="characterForm.get('adjectives').value.length !== 0">{{ characterForm.get('adjectives').value.join(', ') }}</h2>
+            </ion-label>
           </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Demeanor</ion-label>
-            <ion-select placeholder="Select Demeanor" multiple="true" formControlName="demeanor">
-              <ion-select-option *ngFor="let demeanor of chosenVagabond.demeanor"
-                                 [value]="demeanor">
-                {{ demeanor }}
-              </ion-select-option>
-            </ion-select>
+          <ion-item class="pointer" (click)="chooseDemeanor()">
+            <ion-label>
+              <p class="fake-form-label">Demeanor</p>
+              <h2 *ngIf="characterForm.get('demeanor').value.length === 0">Choose demeanor</h2>
+              <h2 *ngIf="characterForm.get('demeanor').value.length !== 0">{{ characterForm.get('demeanor').value.join(', ') }}</h2>
+            </ion-label>
           </ion-item>
 
           <ion-item lines="none">
