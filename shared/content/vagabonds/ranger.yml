@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -41,6 +43,9 @@ background:
       - text: I want to wander the Woodland
       - text: I need to find and save a loved one
       - text: I seek escape from the wars
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Whom have you left behind?
     type: answers
@@ -51,6 +56,9 @@ background:
       - text: My student
       - text: No one- I lost those who mattered to me (choose a faction and mark notoriety)
         factionDelta: -1
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction

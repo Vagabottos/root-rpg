@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -41,6 +43,9 @@ background:
       - text: I am mistrusted by other denizens
       - text: I am pursuing a treasure
       - text: I am being hunted by a powerful official
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Whom have you left behind?
     type: answers
@@ -50,6 +55,9 @@ background:
       - text: My loved one
       - text: My protector
       - text: My benefactor
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction

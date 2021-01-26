@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -41,6 +43,9 @@ background:
       - text: I am on the run for my crimes
       - text: I feel a deep wanderlust
       - text: I am on the run from a commitment at home
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Whom have you left behind?
     type: answers
@@ -50,6 +55,9 @@ background:
       - text: My loved one
       - text: My idol
       - text: My best friend
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction
@@ -76,7 +84,7 @@ connections:
     text: _ and I tried to blaze a new trail between two clearings; without the support of the major factions, it never fully came to fruition.
 
   - name: Friend
-    text: _ and I forged a bond while investigating a ruin deep in the woods. What strange minor trinkets do each of you carry from that expedition? 
+    text: _ and I forged a bond while investigating a ruin deep in the woods. What strange minor trinkets do each of you carry from that expedition?
 
 stats:
   charm: 0

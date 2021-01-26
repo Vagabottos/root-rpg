@@ -33,6 +33,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -42,6 +44,9 @@ background:
       - text: I aim to bring a hunted foe to justice
       - text: I am hunted by old foes
       - text: I need freedom to fulfill my master's last wish
+      - text: Custom...
+        type: text
+        input: text
 
   - question: What happened to your last master?
     type: answers
@@ -51,6 +56,9 @@ background:
       - text: Disappearance
       - text: Justified overthrow
       - text: Betrayal
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction

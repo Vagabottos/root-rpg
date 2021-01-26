@@ -1,7 +1,7 @@
 
 archetype: The Arbiter
 
-description: You are a powerful, obstinate vagabond, serving as somewhere between a mercenary and a protector, perhaps taking sides too easily in the greater conflict between the factions. 
+description: You are a powerful, obstinate vagabond, serving as somewhere between a mercenary and a protector, perhaps taking sides too easily in the greater conflict between the factions.
 
 species: []
 
@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -41,6 +43,9 @@ background:
       - text: I want to fight injustice
       - text: I must clear my tarnished name
       - text: I have been exiled from most clearings
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Whom have you left behind?
     type: answers
@@ -50,6 +55,9 @@ background:
       - text: My loved one
       - text: My ward
       - text: My commander
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction

@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: What caused your fall?
     type: answers
@@ -40,6 +42,9 @@ background:
       - text: I committed a terrible crime
       - text: I was betrayed by my closest allies
       - text: I fell prey to my rival's schemes
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Why were you exiled (not killed)?
     type: answers
@@ -48,6 +53,9 @@ background:
       - text: The last of my allies saved my life
       - text: My enemies granted me mercy
       - text: I fled before facing judgment
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers

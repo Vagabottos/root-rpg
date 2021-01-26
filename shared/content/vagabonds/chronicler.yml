@@ -32,6 +32,8 @@ background:
         input: text
       - text: the forest
       - text: a place far from here
+        type: text
+        input: text
 
   - question: Why are you a vagabond?
     type: answers
@@ -41,6 +43,9 @@ background:
       - text: I want to spread knowledge throughout the Woodland
       - text: I aim to change the Woodland by sharing its history
       - text: I crave adventure
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Who inspired your love of history?
     type: answers
@@ -50,6 +55,9 @@ background:
       - text: An old mentor
       - text: A lover or friend
       - text: A formal school
+      - text: Custom...
+        type: text
+        input: text
 
   - question: Which faction have you served the most?
     type: faction
