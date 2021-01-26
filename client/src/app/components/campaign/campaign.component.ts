@@ -27,7 +27,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
 
   public campaignForm = new FormGroup({
     campaignId: new FormControl('',
-      [Validators.minLength(24), Validators.maxLength(24)],
+      [Validators.minLength(24), Validators.maxLength(24), Validators.required],
       [this.validateCampaignId.bind(this)]
     )
   });
@@ -129,6 +129,8 @@ export class CampaignComponent implements OnInit, OnDestroy {
   }
 
   tryJoinCampaign(character: ICharacter) {
+    if(!this.campaignForm.get('campaignId').value) {return;}
+
     character.campaign = this.campaignForm.get('campaignId').value;
 
     this.data.patchCharacter().subscribe(
