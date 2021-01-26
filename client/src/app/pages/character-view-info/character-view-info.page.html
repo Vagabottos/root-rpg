@@ -46,7 +46,7 @@
 
           <ion-card-content>
             <ion-row>
-              <ion-col class="stat" *ngFor="let stat of content.getStats()">
+              <ion-col class="pointer stat" *ngFor="let stat of content.getStats()" (click)="notification.rollDice(stat, characterHelper.getStatTotal(character, stat.toLowerCase()))">
                 <div class="stat-name">
                   {{ stat }}
                 </div>

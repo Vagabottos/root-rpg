@@ -88,9 +88,10 @@ export class NotificationService {
     await modal.present();
   }
 
-  async rollDice() {
+  async rollDice(rollType?: string, rollBonus?: number) {
     const dice = await this.modal.create({
       component: DiceRollerComponent,
+      componentProps: { rollType, rollBonus },
       cssClass: 'transparent',
       showBackdrop: false
     });

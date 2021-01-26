@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { sample } from 'lodash';
+import { sample, sum } from 'lodash';
 
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
@@ -17,6 +17,12 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./dice-roller.component.scss'],
 })
 export class DiceRollerComponent implements OnInit {
+
+  @Input() public rollType: string;
+  @Input() public rollBonus = 0;
+  @Input() public showTotal = true;
+
+  public total = 0;
 
   constructor(
     private modal: ModalController,
@@ -40,6 +46,10 @@ export class DiceRollerComponent implements OnInit {
       this.toggleClasses(die);
       die.dataset.roll = sample([1, 2, 3, 4, 5, 6]);
     });
+
+    setTimeout(() => {
+      this.total = this.rollBonus + sum(dice.map(x => +x.dataset.roll));
+    }, 1500);
   }
 
   toggleClasses(die) {

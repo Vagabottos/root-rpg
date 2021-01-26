@@ -183,3 +183,15 @@
 [data-side="6"] .dot:nth-of-type(6) {
   grid-area: nine;
 }
+
+.total {
+  color: #666;
+  opacity: 0.7;
+  text-align: center;
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: 2rem;
+}
