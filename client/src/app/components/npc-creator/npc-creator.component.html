@@ -50,6 +50,23 @@
         <ion-textarea formControlName="notes" placeholder="Enter NPC notes" maxlength="1000" rows="7"></ion-textarea>
       </ion-item>
 
+      <ion-item class="harm" lines="none" *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion', 'Morale']">
+        <ion-button slot="start" color="secondary" (click)="adjustHarm(harm.toLowerCase(), -1)" [disabled]="npcForm.get(harm.toLowerCase()).value <= 0">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
+        </ion-button>
+
+        <div class="harm-center">
+          <div class="harm-label">{{ harm }}: {{ npcForm.get(harm.toLowerCase()).value }}</div>
+          <div class="harm-squares">
+            <ion-icon name="square-outline" *ngFor="let slot of boxSlots(harm.toLowerCase())"></ion-icon>
+          </div>
+        </div>
+
+        <ion-button slot="end" color="secondary" (click)="adjustHarm(harm.toLowerCase(), 1)" [disabled]="npcForm.get(harm.toLowerCase()).value >= 5">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+
       <ion-list-header>
         <ion-label>
           Items

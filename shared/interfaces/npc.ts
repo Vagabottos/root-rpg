@@ -9,6 +9,13 @@ export interface INPC {
   equipment: IItem[];
   notes: string;
 
+  harmMax: {
+    injury: number;
+    exhaustion: number;
+    depletion: number;
+    morale: number;
+  };
+
   harm: {
     injury: number;
     exhaustion: number;

@@ -1,0 +1,21 @@
+
+.harm-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .harm-label {
+    font-size: 80%;
+    font-style: italic;
+  }
+
+  .harm-squares, .harm-label {
+    text-align: center;
+    min-height: 20px;
+  }
+}
