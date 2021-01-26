@@ -121,7 +121,7 @@
           <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion', 'Morale']" class="harm-row">
             <ion-col class="harm-label" (click)="adjustHarm(npc, harm.toLowerCase(), 0)">{{ harm }}</ion-col>
             <ion-col class="harm-box"
-                     *ngFor="let i of maxHarmBoxes(npc)"
+                     *ngFor="let i of maxHarmBoxes()"
                      (click)="adjustHarm(npc, harm.toLowerCase(), i + 1)">
               <ion-icon [name]="npc.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
                         [class.hidden]="harmBoxes(npc, harm.toLowerCase()).length <= i"></ion-icon>
