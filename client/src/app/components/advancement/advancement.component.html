@@ -396,7 +396,7 @@
       <ion-list>
 
         <ion-radio-group [(ngModel)]="chosenHarm">
-          <ion-item class="pointer" *ngFor="let harm of ['Injury', 'Depletion', 'Exhaustion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
+          <ion-item class="pointer" *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" [disabled]="character.harmBoost[harm.toLowerCase()] >= 2">
             <ion-label class="ion-text-wrap">
               <h2>{{ harm }} (Base: {{ (character.harmBoost[harm.toLowerCase()] || 0) | withPlus }})</h2>
             </ion-label>
