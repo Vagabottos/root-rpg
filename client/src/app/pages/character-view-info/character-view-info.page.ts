@@ -70,23 +70,82 @@ export class CharacterViewInfoPage implements OnInit {
     return character.reputation[faction]?.prestige ?? 0;
   }
 
+  getLowerFactionTotal(character: ICharacter, faction: string): number {
+    return Math.max(-3, (character.reputation[faction]?.total || 0) - 1);
+  }
+
+  getHigherFactionTotal(character: ICharacter, faction: string): number {
+    return Math.min(3, (character.reputation[faction]?.total || 0) + 1);
+  }
+
+  getNotorietyBoxes(character: ICharacter, faction: string): number[] {
+    if(character.reputation[faction]?.total === -1) { return [0, 1, 2, null, null, null, 3, 4, 5, null, null]; }
+    if(character.reputation[faction]?.total <= -2)  { return [0, 1, 2, null, null, null, 3, 4, 5, null, null, null, 6, 7, 8]; }
+
+    return [0, 1, 2];
+  }
+
+  getPrestigeBoxes(character: ICharacter, faction: string): number[] {
+    if(character.reputation[faction]?.total === 1) { return [0, 1, 2, 3, 4, null, null, null, 5, 6, 7, 8, 9, null, null]; }
+    if(character.reputation[faction]?.total >= 2)  { return [0, 1, 2, 3, 4, null, null, null, 5, 6, 7, 8, 9, null, null, null, 10, 11, 12, 13, 14]; }
+
+    return [0, 1, 2, 3, 4];
+  }
+
   setNotoriety(character: ICharacter, faction: string, value: number): void {
+    if(value === null) { return; }
+
     character.reputation[faction] = character.reputation[faction] || { notoriety: 0, prestige: 0, total: 0 };
     character.reputation[faction].notoriety = value;
 
-    if (character.reputation[faction].notoriety >= 3) {
+    const curNotoriety = character.reputation[faction].notoriety;
+    const curPrestige = character.reputation[faction].prestige;
+    const curTotal = character.reputation[faction].total;
+
+    if ((curNotoriety >= 3 && curTotal >= 0)
+    ||  (curNotoriety >= 6 && curTotal === -1)
+    ||  (curNotoriety >= 9 && curTotal === -2)) {
       this.lowerNotoriety(character, faction);
+
+      if(curPrestige >= 10 && curTotal >= 2) {
+        character.reputation[faction].prestige -= 10;
+        character.reputation[faction].total += 1;
+      }
+
+      if(curPrestige >= 5 && curTotal === 1) {
+        character.reputation[faction].prestige -= 5;
+        character.reputation[faction].total += 1;
+      }
     }
 
     this.save();
   }
 
   setPrestige(character: ICharacter, faction: string, value: number): void {
+    if(value === null) { return; }
+
     character.reputation[faction] = character.reputation[faction] || { notoriety: 0, prestige: 0, total: 0 };
     character.reputation[faction].prestige = value;
 
-    if (character.reputation[faction].prestige >= 5) {
+    const curNotoriety = character.reputation[faction].notoriety;
+    const curPrestige = character.reputation[faction].prestige;
+    const curTotal = character.reputation[faction].total;
+
+
+    if ((curPrestige >= 5  && curTotal <= 0)
+    ||  (curPrestige >= 10 && curTotal === 1)
+    ||  (curPrestige >= 15 && curTotal === 2)) {
       this.increasePrestige(character, faction);
+
+      if(curNotoriety >= 6 && curTotal <= -2) {
+        character.reputation[faction].notoriety -= 6;
+        character.reputation[faction].total -= 1;
+      }
+
+      if(curNotoriety >= 3 && curTotal === -1) {
+        character.reputation[faction].notoriety -= 3;
+        character.reputation[faction].total -= 1;
+      }
     }
 
     this.save();
