@@ -7,15 +7,9 @@ import { cloneDeep } from 'lodash';
 
 import { clean } from '../helpers/clean-text';
 
-import { ICharacter, IItem, IContent, content } from '../interfaces';
+import { ICharacter, IContent, content } from '../interfaces';
+import { cleanItem } from '../helpers/clean-item';
 const allContent: IContent = cloneDeep(content);
-
-export function cleanItem(item: IItem): void {
-  item.name = clean(item.name || '');
-  if(!item.name) throw new NotAcceptable('No valid item name specified.');
-
-  item.designation = clean(item.designation || '');
-}
 
 export async function cleanCharacter(context: HookContext): Promise<HookContext> {
 

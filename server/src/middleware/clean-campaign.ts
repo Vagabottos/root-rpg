@@ -5,6 +5,8 @@ import { HookContext } from '@feathersjs/feathers';
 import { ICampaign } from '../interfaces';
 
 import { clean } from '../helpers/clean-text';
+import { ClearingStatus, WarType } from '../../../shared/interfaces';
+import { cleanNPC } from '../helpers/clean-npc';
 
 export async function cleanCampaign(context: HookContext): Promise<HookContext> {
   const characterService = context.app.service('character');
@@ -38,6 +40,41 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
 
   if(campaign.notes) {
     campaign.notes = clean(campaign.notes, 10000);
+  }
+
+  if(campaign.npcs) {
+    campaign.npcs.forEach(npc => cleanNPC(npc));
+  }
+
+  if(campaign.clearings) {
+    campaign.clearings.forEach(clearing => {
+      clearing.name = clean(clearing.name, 25);
+      clearing.status = clean(clearing.status, 15) as ClearingStatus;
+      clearing.contestedBy = clean(clearing.contestedBy);
+      clearing.controlledBy = clean(clearing.controlledBy);
+
+      clearing.current.dominantFaction = clean(clearing.current.dominantFaction);
+      clearing.current.overarchingIssue = clean(clearing.current.overarchingIssue, 1000);
+      clearing.current.conflicts = clean(clearing.current.conflicts, 1000);
+      clearing.current.ruler = clean(clearing.current.ruler);
+
+      clearing.landscape.landmarks = clean(clearing.landscape.landmarks, 1000);
+      clearing.landscape.locations = clean(clearing.landscape.locations, 1000);
+
+      clearing.history.founder = clean(clearing.history.founder);
+      clearing.history.legendaryFigures = clean(clearing.history.legendaryFigures, 1000);
+      clearing.history.civilWarEvents = clean(clearing.history.civilWarEvents, 1000);
+      clearing.history.interregnumEvents = clean(clearing.history.interregnumEvents, 1000);
+
+      clearing.eventRecord.beforePlay = clean(clearing.eventRecord.beforePlay);
+      clearing.eventRecord.visited.forEach(visitRecord => {
+        visitRecord.visitText = clean(visitRecord.visitText, 1000);
+        visitRecord.warContinuesType = clean(visitRecord.warContinuesType) as WarType;
+        visitRecord.warContinuesText = clean(visitRecord.warContinuesText, 1000);
+      });
+
+      clearing.npcs.forEach(npc => cleanNPC(npc));
+    });
   }
 
   if(hasPlayers) {
