@@ -29,6 +29,7 @@ import { WoodlandOverviewComponent } from './components/woodland-overview/woodla
 import { WoodlandMapComponent } from './components/woodland-map/woodland-map.component';
 import { DiceRollerComponent } from './components/dice-roller/dice-roller.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { GMPlayerPopoverComponent } from './components/gmplayer.popover';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
@@ -37,7 +38,7 @@ const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
   NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent, VisitRecordCreatorComponent,
-  WoodlandOverviewComponent, DiceRollerComponent
+  WoodlandOverviewComponent, DiceRollerComponent, GMPlayerPopoverComponent
 ];
 
 @NgModule({

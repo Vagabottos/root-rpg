@@ -7,6 +7,7 @@ import { ICampaign } from '../interfaces';
 import { clean } from '../helpers/clean-text';
 import { ClearingStatus, WarType } from '../../../shared/interfaces';
 import { cleanNPC } from '../helpers/clean-npc';
+import { ObjectId } from 'mongodb';
 
 export async function cleanCampaign(context: HookContext): Promise<HookContext> {
   const characterService = context.app.service('character');
@@ -26,6 +27,15 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
   } catch {}
 
   const campaign: Partial<ICampaign> = context.data;
+
+  if(hasPlayers && context.data.kickPlayer) {
+    const mongo = await context.app.get('mongoClient');
+    await mongo.collection('character').updateOne({ _id: new ObjectId(context.data.kickPlayer) }, { $set: { campaign: '' } });
+
+    delete context.data.kickPlayer;
+  }
+
+  // if campaign.data.kickplayer, kick and then delete
 
   if(campaign.name) {
     campaign.name = clean(campaign.name || 'Name');

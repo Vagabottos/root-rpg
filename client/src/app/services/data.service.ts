@@ -125,10 +125,7 @@ export class DataService {
       this.campaignObs = jsonpatch.observe(campaign);
       this.campaignCharacters.next([]);
 
-      this.campaignAPI.getCampaignCharacters(campaign._id)
-        .subscribe(chars => {
-          this.campaignCharacters.next(chars.data);
-        });
+      this.refreshCampaignPlayers(campaign._id);
     }
 
     if (!campaign && this.campaignObs) {
@@ -140,11 +137,15 @@ export class DataService {
     if (campaign && !this.campaignObs) {
       this.campaignObs = jsonpatch.observe(campaign);
 
-      this.campaignAPI.getCampaignCharacters(campaign._id)
-        .subscribe(chars => {
-          this.campaignCharacters.next(chars.data);
-        });
+      this.refreshCampaignPlayers(campaign._id);
     }
+  }
+
+  public refreshCampaignPlayers(id: string) {
+    this.campaignAPI.getCampaignCharacters(id)
+      .subscribe(chars => {
+        this.campaignCharacters.next(chars.data);
+      });
   }
 
   public getCampaignDiff(): jsonpatch.Operation[] {
