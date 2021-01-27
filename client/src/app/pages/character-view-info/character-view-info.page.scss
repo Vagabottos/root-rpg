@@ -32,6 +32,10 @@
     font-size: 2rem;
     text-align: center;
     cursor: pointer;
+
+    @media screen and (max-width: 960px) {
+      font-size: 1.5rem;
+    }
   }
 }
 
