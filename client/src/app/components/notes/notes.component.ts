@@ -22,7 +22,7 @@ export class NotesComponent implements OnInit {
   toggleEditing() {
     this.isEditing = !this.isEditing;
 
-    if(!this.isEditing) {
+    if (!this.isEditing) {
       this.updateNotes.emit(this.notes);
     }
   }

@@ -129,7 +129,7 @@ export class CampaignComponent implements OnInit, OnDestroy {
   }
 
   tryJoinCampaign(character: ICharacter) {
-    if(!this.campaignForm.get('campaignId').value) {return;}
+    if (!this.campaignForm.get('campaignId').value) {return;}
 
     character.campaign = this.campaignForm.get('campaignId').value;
 
