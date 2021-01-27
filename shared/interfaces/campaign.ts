@@ -12,6 +12,8 @@ export interface IClearing {
   npcs: INPC[];
   notes: string;
 
+  position?: { x: number, y: number };
+
   eventRecord: {
     beforePlay: string;
     visited: IClearingVisitedEvent[];

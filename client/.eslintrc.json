@@ -54,7 +54,14 @@
         ],
         "no-underscore-dangle": "off",
         "@typescript-eslint/naming-convention": "off",
-        "object-curly-spacing": ["error", "always"]
+        "object-curly-spacing": ["error", "always"],
+        "keyword-spacing": [
+          "error",
+          {
+            "before": true,
+            "after": true
+          }
+        ]
       }
     },
     {

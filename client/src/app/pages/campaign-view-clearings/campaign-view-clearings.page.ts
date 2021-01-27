@@ -76,4 +76,9 @@ export class CampaignViewClearingsPage implements OnInit {
     this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearing]);
   }
 
+  moveNode({ clearing, x, y }: { clearing: number; x: number; y: number }) {
+    const campaign = this.campaignCopy;
+    campaign.clearings[clearing].position = { x, y };
+  }
+
 }

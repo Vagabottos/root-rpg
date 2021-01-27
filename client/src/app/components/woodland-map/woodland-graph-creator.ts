@@ -63,6 +63,7 @@ export class GraphCreator {
       clickNode: (clearing) => void;
       addEdge: (edge) => void;
       removeEdge: (edge) => void;
+      moveNode: (node, { x, y }) => void;
     }
   ) {
     this.init();
@@ -261,6 +262,8 @@ export class GraphCreator {
   }
 
   private dragMove(event, d) {
+    if (!this.canEdit) { return; }
+
     if (this.state.shiftNodeDrag) {
       const [x, y] = d3.pointer(event, this.svgG.node());
       this.dragLine.attr(
@@ -270,9 +273,18 @@ export class GraphCreator {
 
     // this moves the circle
     } else {
-      // d.x += event.dx;
-      // d.y += event.dy;
-      // this.updateGraph();
+      const svgWidth = this.svg.node().width.baseVal.value;
+      const svgHeight = this.svg.node().height.baseVal.value;
+
+      d.x += event.dx;
+      d.y += event.dy;
+
+      const proportionalX = d.x / svgWidth;
+      const proportionalY = d.y / svgHeight;
+
+      this.callbacks.moveNode(d.id, { x: proportionalX, y: proportionalY });
+
+      this.updateGraph();
     }
   }
 

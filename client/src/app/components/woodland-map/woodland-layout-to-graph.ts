@@ -18,13 +18,27 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   const flipY = campaign.mapGen.flipX;
 
   layout.nodePositions.forEach((pos, i) => {
+
+    let clearingPos = {
+      x: (flipX ? layout.maxX - pos.x : pos.x) * (width / layout.maxX),
+      y: (flipY ? layout.maxY - pos.y : pos.y) * (height / layout.maxY)
+    };
+
+    if (campaign.clearings[i].position) {
+      const { x, y } = campaign.clearings[i].position;
+      clearingPos = {
+        x: width * x,
+        y: height * y
+      };
+    }
+
     nodes.push({
       id: i,
       r: 50,
       title: campaign.clearings[i].name,
       subtitle: campaign.clearings[i].status,
-      x: (flipX ? layout.maxX - pos.x : pos.x) * (width / layout.maxX),
-      y: (flipY ? layout.maxY - pos.y : pos.y) * (height / layout.maxY),
+      x: clearingPos.x,
+      y: clearingPos.y,
     });
   });
 
