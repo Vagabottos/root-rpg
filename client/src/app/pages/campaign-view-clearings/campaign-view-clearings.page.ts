@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-import { cloneDeep, merge, pull } from 'lodash';
+import { cloneDeep, pull } from 'lodash';
 
-import { ICampaign } from '../../../interfaces';
+import { ICampaign, IClearing } from '../../../interfaces';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -58,6 +58,10 @@ export class CampaignViewClearingsPage implements OnInit {
     });
 
     alert.present();
+  }
+
+  getClearingNPCs(clearing: IClearing): string[] {
+    return clearing.npcs.map(x => x.name);
   }
 
   addEdge({ source, target }) {

@@ -52,6 +52,7 @@
             <p><strong>Contested By:</strong> {{ clearing.contestedBy }}</p>
             <p><strong>Dominant Faction:</strong> {{ clearing.current.dominantFaction }}</p>
             <p><strong>Conflicts:</strong> {{ clearing.current.conflicts }}</p>
+            <p><strong>NPCs:</strong> {{ getClearingNPCs(clearing).join(', ') || 'none' }}</p>
             <p *ngIf="clearing.eventRecord.visited.length > 0"><strong>Visited {{ clearing.eventRecord.visited.length }} time(s)</strong></p>
           </ion-card-content>
         </ion-card>
