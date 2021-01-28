@@ -2,30 +2,30 @@
 
 Cleave:
   text: >
-    When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-wear. On a 7–9, you overextend your weapon or yourself: mark wear or end up in a bad spot, your choice.
+    When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-wear. On a 7-9, you overextend your weapon or yourself: mark wear or end up in a bad spot, your choice.
 
 Confuse Senses:
-  text: When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Finesse. On a hit, you've thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7–9, you have just a few moments.
+  text: When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Finesse. On a hit, you've thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7-9, you have just a few moments.
 
 Disarm:
   text: When you target an opponent's weapon with your strikes at close range, roll with Finesse. On a hit, they have to mark 2-exhaustion or lose their weapon—it's well out of reach. On a 10+, they have to mark 3-exhaustion instead of 2.
 
 Harry:
   text: >
-    When you **harry a group of enemies at far range**, mark wear and roll with Cunning. On a 10+, both. On a 7–9, choose 1:
+    When you **harry a group of enemies at far range**, mark wear and roll with Cunning. On a 10+, both. On a 7-9, choose 1:
 
 
     * inflict 2-morale harm
-    
+
     * they are pinned or blocked
 
 Improvise Weapon:
   text: >
-    When you **make a weapon out of improvised materials around you**, roll with Cunning. On a hit, you make a weapon; the GM will tell you its range tag and at least one other tag based on the materials you used. On a 7–9, the weapon also has a weakness tag.
+    When you **make a weapon out of improvised materials around you**, roll with Cunning. On a hit, you make a weapon; the GM will tell you its range tag and at least one other tag based on the materials you used. On a 7-9, the weapon also has a weakness tag.
 
 Parry:
   text: >
-    When you **try to parry the attacks of an enemy at close range**, mark exhaustion and roll with Finesse. On a hit, you consume their attention. On a 10+, pick 3. On a 7–9, pick 1.
+    When you **try to parry the attacks of an enemy at close range**, mark exhaustion and roll with Finesse. On a hit, you consume their attention. On a 10+, pick 3. On a 7-9, pick 1.
 
 
     * you inflict morale or exhaustion harm (GM's choice)
@@ -36,7 +36,7 @@ Parry:
 
 Quick Shot:
   text: >
-    When you **fire a snap shot at an enemy at close range**, roll with Luck. On a hit, inflict injury. On a 7–9, choose 1. On a 10+, choose 2.
+    When you **fire a snap shot at an enemy at close range**, roll with Luck. On a hit, inflict injury. On a 7-9, choose 1. On a 10+, choose 2.
 
 
     * you don't mark wear
@@ -62,7 +62,7 @@ Storm a Group:
 
 Trick Shot:
   text: >
-    When you **fire a clever shot designed to take advantage of the environment**, mark wear and roll with Finesse. On a 7–9, choose 2. On a 10+, choose 3.
+    When you **fire a clever shot designed to take advantage of the environment**, mark wear and roll with Finesse. On a 7-9, choose 2. On a 10+, choose 3.
 
 
     * your shot lands in any target of your choice within range, even if it's behind cover or hidden (inflicting injury or wear if appropriate)
@@ -75,4 +75,4 @@ Trick Shot:
 
 Vicious Strike:
   text: >
-    When you **viciously strike an opponent where they are weak at intimate or close range**, mark exhaustion and roll with Might. On a hit, they suffer serious (+1) harm and cannot mark wear on their armor to block it. On a 10+, you get away with the strike. On a 7–9, they score a blow against you as well.
+    When you **viciously strike an opponent where they are weak at intimate or close range**, mark exhaustion and roll with Might. On a hit, they suffer serious (+1) harm and cannot mark wear on their armor to block it. On a 10+, you get away with the strike. On a 7-9, they score a blow against you as well.

@@ -1,0 +1,29 @@
+
+Engage in Melee:
+  text: >
+    When you **engage an enemy in melee at close or intimate range**, roll with Might. On a hit, trade harm. On a 10+, pick 3. On a 7-9, pick 1.
+
+    * inflict serious (+1) harm
+
+    * suffer little (-1) harm
+
+    * shift your range one step
+
+    * impress, dismay, or frighten your foe
+
+Grapple an Enemy:
+  text: >
+    When you **grapple with an enemy at intimate range**, roll with Might. On a hit, you choose simultaneously. Continue making choices until someone disengages, falls unconscious, or dies. On a 10+, you make one choice first, before beginning to make simultaneous choices.
+
+
+    * you strike a fast blow; inflict injury
+
+    * you wear them down; they mark exhaustion
+
+    * you exploit weakness; mark exhaustion to inflict 2-injury
+
+    * you withdraw; disengage to close range
+
+Target Someone:
+  text: >
+    When you **target a vulnerable foe at far range**, roll with Finesse. On a hit, you inflict injury. On a 10+, you can strike again before they get to cover—inflict injury again—or keep your position hidden, your choice.

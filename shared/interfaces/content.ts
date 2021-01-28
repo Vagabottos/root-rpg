@@ -13,6 +13,7 @@ export interface IContentDrive {
 export interface IContentFaction {
   name: string;
   isDefault?: boolean;
+  text: string;
 }
 
 export interface IContentFeat {
@@ -20,8 +21,10 @@ export interface IContentFeat {
 }
 
 export interface IContentMove {
-  archetype: string;
   text: string;
+
+  // playbook moves
+  archetype?: string;
   addStat?: Record<string, number>;
   addFeat?: string[];
   addHarm?: Record<string, number>;
@@ -32,6 +35,10 @@ export interface IContentMove {
     tagSet: string;
     extraLoad: number;
   }
+
+  // reputation & travel moves
+  type?: string;
+  requirement?: string;
 }
 
 export interface IContentNature {
@@ -43,6 +50,10 @@ export interface IContentSkill {
 }
 
 export interface IContentStat {
+  text: string;
+}
+
+export interface IContentFeatRisk {
   text: string;
 }
 
@@ -78,6 +89,7 @@ export interface IContentCore {
   drives: Record<string, IContentDrive>;
   factions: IContentFaction[];
   feats: Record<string, IContentFeat>;
+  featrisks: Record<string, IContentFeatRisk>;
   moves: Record<string, IContentMove>;
   names: string[];
   natures: Record<string, IContentNature>;
@@ -87,6 +99,9 @@ export interface IContentCore {
   premadeitems: IItem[];
   itemtags: Record<string, IContentItemTag>;
   stats: Record<string, IContentStat>;
+  referencebasicmoves: Record<string, IContentMove>;
+  referencemoves: Record<string, IContentMove>;
+  referenceskills: Record<string, IContentSkill>;
 }
 
 export interface IContentBackgroundReputationChange {

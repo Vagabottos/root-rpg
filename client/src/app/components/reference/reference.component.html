@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start" class="ion-hide-lg-up">
+      <ion-button (click)="setCategory('')" *ngIf="!isSearchOpen && activeCategory">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!isSearchOpen">
+      Woodland Reference
+    </ion-title>
+
+    <ion-searchbar *ngIf="isSearchOpen"
+                    color="primary"
+                    showCancelButton="true"
+                    debounce="300"
+                    (ionCancel)="closeSearch()"
+                    (ionClear)="setSearchValue(null)"
+                    (ionChange)="setSearchValue($event.detail.value)"
+                    placeholder="Search Reference"></ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleSearch()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="dismiss()" *ngIf="!isSearchOpen">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row class="ion-hide-lg-down">
+
+    <ion-col class="small-scroll" size-xs="12" size-lg="4" size-xl="3">
+      <div class="can-scroll">
+        <ion-list>
+          <ion-item *ngFor="let category of categories"
+                    class="pointer"
+                    detail="true"
+                    [color]="activeCategory === category.header ? 'primary' : ''"
+                    (click)="setCategory(category.header)">
+            {{ category.header }}
+          </ion-item>
+        </ion-list>
+      </div>
+
+    </ion-col>
+
+    <ion-col class="big-scroll" size-xs="12" size-lg="8" size-xl="9">
+
+      <div class="blank-slate" *ngIf="!searchQuery && !activeCategory">
+        Select a category or search for something to get started.
+      </div>
+
+      <div class="can-scroll" *ngIf="searchQuery || activeCategory">
+        <ion-list>
+          <ng-container *ngFor="let category of categories">
+            <ng-container *ngIf="isHeaderVisible(category.header)">
+              <ion-list-header>{{ category.header }}</ion-list-header>
+
+              <ng-container *ngFor="let subCategory of category.categories">
+                <ion-item *ngIf="isItemVisible(subCategory)">
+                  <ion-label class="ion-text-wrap">
+                    <h2>{{ subCategory.header }}</h2>
+                    <p *ngIf="subCategory.archetype" class="archetype">{{ subCategory.archetype }}</p>
+                    <p *ngIf="subCategory.requirement" class="requirement">{{ subCategory.requirement }}</p>
+                    <p [innerHTML]="subCategory.text | markdown"></p>
+                  </ion-label>
+                </ion-item>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ion-list>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-hide-lg-up">
+    <ion-col *ngIf="!activeCategory && !searchQuery">
+      <ion-list>
+        <ion-item *ngFor="let category of categories"
+                  class="pointer"
+                  detail="true"
+                  [color]="activeCategory === category.header ? 'primary' : ''"
+                  (click)="setCategory(category.header)">
+          {{ category.header }}
+        </ion-item>
+      </ion-list>
+    </ion-col>
+
+    <ion-col *ngIf="activeCategory || searchQuery">
+      <ion-list>
+        <ng-container *ngFor="let category of categories">
+          <ng-container *ngIf="isHeaderVisible(category.header)">
+            <ion-list-header>{{ category.header }}</ion-list-header>
+
+            <ng-container *ngFor="let subCategory of category.categories">
+              <ion-item *ngIf="isItemVisible(subCategory)">
+                <ion-label class="ion-text-wrap">
+                  <h2>{{ subCategory.header }}</h2>
+                  <p *ngIf="subCategory.archetype" class="archetype">{{ subCategory.archetype }}</p>
+                  <p *ngIf="subCategory.requirement" class="requirement">{{ subCategory.requirement }}</p>
+                  <p [innerHTML]="subCategory.text | markdown"></p>
+                </ion-label>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -76,7 +76,7 @@
       <ion-item class="hidden">
         <ion-label position="stacked">Add Weapon Skill Tag</ion-label>
         <ion-select #weaponTags (ionChange)="addWeaponTag($event)">
-          <ion-select-option *ngFor="let tag of contentService.getWeaponSkills()"
+          <ion-select-option *ngFor="let tag of contentService.getSkills()"
                              [disabled]="itemForm.get('skillTags').value.includes(tag)"
                              [value]="tag">
             {{ tag }}

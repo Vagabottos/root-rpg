@@ -1,0 +1,29 @@
+
+
+.can-scroll {
+  height: calc(100vh - 56px);
+
+  @media screen and (min-width: 720px) {
+    height: calc(90vh - 56px);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  ion-content {
+    --overflow: hidden !important;
+  }
+}
+
+ion-row, ion-col {
+  padding: 0;
+}
+
+.big-scroll, .small-scroll {
+  .can-scroll {
+    overflow-y: auto;
+  }
+}
+
+.requirement, .archetype {
+  font-style: italic;
+}

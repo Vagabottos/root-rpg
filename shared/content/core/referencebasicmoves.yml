@@ -1,0 +1,69 @@
+
+Attempt a Roguish Feat:
+  text: When you **attempt a roguish feat you are skilled in**, say your goal and roll with Finesse. On a hit, you achieve your goal. On a 7-9, mark exhaustion or one risk of your feat comes to bear, GM's choice. When you attempt a roguish feat you are NOT skilled in, you are trusting fate.
+
+Figure Someone Out:
+  text: >
+    When you **try to figure someone out**, roll with Charm. On a 10+, hold 3. On a 7-9, hold 1. While interacting with them, spend your hold 1 for 1 to ask their player a question:
+
+
+    * is your character telling the truth?
+
+    * what is your character really feeling?
+
+    * what does your character intend to do?
+
+    * what does your character wish I'd do?
+
+    * how could I get your character to _______?
+
+Persuade an NPC:
+  text: >
+    When you **persuade an NPC with promises or threats**, roll with Charm. On a 10+, they see things your way, provided you have given them a strong motive or reasonable bribe. On a 7-9, they aren't sure; the GM will tell you what you need to do to sway them.
+
+Read a Tense Situation:
+  text: >
+    When you **read a tense situation**, roll with Cunning. On a 7-9, ask 1. On a 10+, ask 3. Take +1 when acting on the answers.
+
+
+    * what's my best way out / in / through?
+
+    * who or what is the biggest threat?
+
+    * who or what is most vulnerable to me?
+
+    * what should I be on the lookout for?
+
+    * who is in control here?
+
+Trick an NPC:
+  text: >
+    When you **trick an NPC to get what you want**, roll with Cunning. On a hit, they take the bait and do what you want. On a 7-9, they can instead choose one:
+
+
+    * they hesitate; you shake their confidence or weaken their morale.
+
+    * they stumble; you gain a critical opportunity.
+
+    * they overreact; take +1 forward against them.
+
+Trust Fate:
+  text: >
+    When you **trust fate to get through trouble**, roll with Luck. On a hit you scrape by or barrel through; the GM will tell you what it costs you. On a 10+, fortune favors the bold; your panache also earns you a fleeting opportunity.
+
+Wreck Something:
+  text: >
+    When you **wreck something**, roll with Might. On a hit, you seriously break it; it can't be used again until it's repaired. On a 7-9, you're imprecise and dangerous; you cause collateral damage, attract attention, or end up in a bad spot, GM's choice.
+
+Help or Interface:
+  text: >
+    When you **help or interfere with another vagabond**, mark exhaustion to add +1 or -2 to their roll (after rolling). Mark exhaustion again to select one of the following:
+
+
+    * conceal your aid or interference
+
+    * create an opportunity or obstacle
+
+Plead with a PC:
+  text: >
+    When you **plead with a PC to go along with you**, they clear 1 exhaustion if they agree to what you've proposed. You may use this move only once per session.

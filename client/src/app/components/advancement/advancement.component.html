@@ -283,7 +283,7 @@
           <ion-item class="pointer" [class.hidden]="x === 1 && character.skills.length >= 6">
             <ion-label position="stacked">New Weapon Skill {{ x + 1 }}</ion-label>
             <ion-select [(ngModel)]="chosenSkills[x]" placeholder="Choose weapon skill">
-              <ion-select-option *ngFor="let choice of content.getWeaponSkills()" [value]="choice" [disabled]="allSkills(character).includes(choice) || chosenSkills[x === 0 ? 1 : 0] === choice">
+              <ion-select-option *ngFor="let choice of content.getSkills()" [value]="choice" [disabled]="allSkills(character).includes(choice) || chosenSkills[x === 0 ? 1 : 0] === choice">
                 {{ choice }}
               </ion-select-option>
             </ion-select>

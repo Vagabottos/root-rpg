@@ -1,3 +1,9 @@
 <ion-app>
+  <ion-fab color="secondary" vertical="bottom" horizontal="end" slot="fixed" *ngIf="user.hasUser">
+    <ion-fab-button (click)="openReference()">
+      <ion-icon name="help"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

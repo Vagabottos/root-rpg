@@ -1,0 +1,80 @@
+
+Travel Through Forest:
+  type: Travel
+  text: >
+    When you **travel from clearing to clearing through the forest**, the band collectively decides how it travels and one rolls:
+
+
+    * Slowly, foraging heavily: everyone clears 2-depletion. The band collectively marks an exhaustion for each band member. -1 to the roll.
+
+    * Carefully, avoiding trouble: the band collectively marks one depletion or exhaustion for each band member. +1 to the roll.
+
+    * As quickly as possible: everyone marks exhaustion and depletion. +2 to the roll.
+
+
+    On a hit, you can pass through the forest to any clearing on the other side, and the GM will tell you one interesting place you passed by—you can return later. On a 10+, the transit is largely safe. On a 7-9, something from the interesting place is following you; you can let it track you, or every vagabond marks exhaustion to lose it. On a miss, you run afoul of one of the forest's dangers during the trip, and you can't escape it easily; deal with it before you can reach the clearing on the other side.
+
+Travel Along Path:
+  type: Travel
+  text: >
+    When you travel from clearing to clearing along the path, the band collectively decides how it travels and one rolls:
+
+
+    * At a relaxing pace: everyone clears 3-exhaustion. The band collectively marks a total of 2-depletion. -1 to the roll.
+
+    * At an average pace: everyone clears 2-exhaustion. The band collectively marks 1-depletion. +0 to the roll.
+
+    * Safely, quickly, and under the radar: the band collectively marks 1-depletion for supplies. +1 to the roll.
+
+    * Urgently fast: everyone marks exhaustion. Take a +2 to the roll.
+
+
+    On a hit, you reach the next clearing in a timely fashion. On a 10+, the trip is uninterrupted and quick. On a 7-9, you encounter something noteworthy on the path—a caravan, a battleground, or something else odd passing through. On a miss, you are caught in the middle of a dangerous situation before you arrive at the next clearing.
+
+Ask for a Favor:
+  type: Reputation
+  text: When you **ask for a reasonable favor based on your reputation**, roll with Reputation with the appropriate faction. On a hit, they'll grant you what you want. On a 7-9, it costs your rep a bit; clear one prestige or mark notoriety, your choice. On a miss, they refuse and view you with suspicion; mark notoriety.
+
+Meet Someone Important:
+  type: Reputation
+  text: >
+    When you **meet with someone important for the first time**, roll with Reputation for their faction. On a hit, you're aware of their wider reputation (if any), and they're aware of yours (if any). On a 7-9, pick one. On a 10+, both.
+
+
+    * You've heard stories; ask a question about them, and the GM will tell you one story you've heard about them as an answer.
+
+    * They've heard something in your favor; take +1 forward when you first try to play up your connection with them and their faction.
+
+
+    On a miss, you only know the basics about them, and they've heard stories about you and the things you've done, true or false—prepare for major complications.
+
+Sway an NPC:
+  type: Reputation
+  requirement: Requires +2 Reputation or Higher
+  text: When you **try to sway an open or vulnerable NPC by appealing to their belief in your reputation**, roll with Reputation for their faction. On a hit, you can change their mind about the world; say what you want them to,believe, and the GM will rewrite their drive accordingly. On a 7-9, you use up some goodwill; clear 3 prestige. If you don't have enough prestige to clear, mark the remainder in notoriety. On a miss, the NPC takes the wrong message away from what you say; the GM will rewrite their drive accordingly.
+
+Command Resources:
+  type: Reputation
+  requirement: Requires +3 Reputation
+  text: When you **command an NPC to give you significant, valuable resources**, roll with Reputation for their faction. On a 10+, you get what you need as soon as they can get it to you. On a 7-9, they impose a condition on how you can use the resources, or what you must return to the faction in recompense. On a miss, they don't have what you need, but they tell you a way you can get it at a steep cost or some serious difficulty.
+
+Draw Attention:
+  type: Reputation
+  requirement: Requires -2 Reputation or Lower
+  text: >
+    When you **try to publicly draw attention to yourself as an enemy of a faction**, roll with Reputation for that faction, treating it as positive (+2 or +3) for this roll. On a hit, you draw out the faction's resources to oppose you; brace yourself. On a 7-9, choose 1; on a 10+, choose 2.
+
+
+    * The faction employs significant military strength to chase you down.
+
+    * The faction deploys an available, capable NPC agent (of your choice) to chase you down.
+
+    * The faction is rattled by your threat; mark 2-notoriety with them.
+
+
+    On a miss, your enemies are already moving against you quietly; the GM tells you how they catch you unprepared.
+
+Make a Pointed Threat:
+  type: Reputation
+  requirement: Requires -3 Reputation
+  text: When you **make a pointed threat to an NPC by wielding your reputation**, roll with Reputation for their faction, treating it as positive (+3) for this roll. On a 10+, they are rattled; they must surrender, retreat, or charge, GM's choice. On a 7-9, you must make a demonstration of your dangerous intent first, before they are rattled. On a miss, your reputation precedes you; they reveal how they prepared for someone like you.

@@ -88,8 +88,8 @@ export class ContentService {
     return Object.keys(this.content.core.itemtags).filter(x => this.content.core.itemtags[x].tagSet === tagSet);
   }
 
-  getWeaponSkills(): string[] {
-    return Object.keys(this.content.core.skills);
+  getNatures(): string[] {
+    return Object.keys(this.content.core.natures).sort();
   }
 
   getNature(name: string): IContentNature {
@@ -126,6 +126,30 @@ export class ContentService {
 
   getFeat(name: string): IContentFeat {
     return this.content.core.feats[name];
+  }
+
+  getBasicSkills(): string[] {
+    return Object.keys(this.content.core.referencebasicmoves);
+  }
+
+  getBasicSkill(name: string): IContentSkill {
+    return this.content.core.referencebasicmoves[name];
+  }
+
+  getTravelMoves(): string[] {
+    return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Travel');
+  }
+
+  getReputationMoves(): string[] {
+    return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Reputation');
+  }
+
+  getOtherMove(name: string): IContentMove {
+    return this.content.core.referencemoves[name];
+  }
+
+  getSkills(): string[] {
+    return Object.keys(this.content.core.skills);
   }
 
   getSkill(name: string): IContentSkill {

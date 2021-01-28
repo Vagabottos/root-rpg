@@ -95,7 +95,7 @@ Watch the Signs:
 
 
     * Identify the quickest path to the closest valuable treasure or knowledge.
-    
+
     * Disarm a trap or overcome a natural hazard without cost.
 
     * Name a character within reach about to suffer harm; you suffer it instead.
@@ -123,7 +123,7 @@ Carry a Big Stick:
 Crash & Smash:
   archetype: The Arbiter
   text: >
-    When you smash your way through scenery to reach someone or something, roll with Might. On a hit, you reach your target. On a 10+, choose 1. On a 7–9, choose 2.
+    When you smash your way through scenery to reach someone or something, roll with Might. On a hit, you reach your target. On a 10+, choose 1. On a 7-9, choose 2.
 
 
     * You hurt yourself: mark 1 injury
@@ -146,7 +146,7 @@ Strong Draw:
 Guardian:
   archetype: The Arbiter
   text: >
-    When you defend someone or something from an immediate NPC or environmental threat, roll with Might. On a hit, you keep them safe and choose one. On a 7–9, it costs: expose yourself to danger or escalate the situation.
+    When you defend someone or something from an immediate NPC or environmental threat, roll with Might. On a hit, you keep them safe and choose one. On a 7-9, it costs: expose yourself to danger or escalate the situation.
 
 
     * Draw the attention of the threat; they focus on you now.
@@ -196,7 +196,7 @@ Forager:
 
 Threatening Visage:
   archetype: The Ranger
-  text: When you **persuade an NPC** with open threats or naked steel, roll with Might instead of Charm. 
+  text: When you **persuade an NPC** with open threats or naked steel, roll with Might instead of Charm.
 
 Dirty Fighter:
   archetype: The Ranger
@@ -232,7 +232,7 @@ Create to Destroy:
 
 It's a Distraction!:
   archetype: The Scoundrel
-  text: You gain the roguish feat Blindside (it does not count against your maximum for advancement). When you **attempt a roguish feat** to blindside someone while they are distracted by environmental dangers (a raging fire, an oncoming flood, etc.), roll with Luck instead of Cunning. 
+  text: You gain the roguish feat Blindside (it does not count against your maximum for advancement). When you **attempt a roguish feat** to blindside someone while they are distracted by environmental dangers (a raging fire, an oncoming flood, etc.), roll with Luck instead of Cunning.
   addFeat:
     - Blindside
 
@@ -252,25 +252,25 @@ Better Lucky than Good:
 Breaking and Entering:
   archetype: The Thief
   text: When you **attempt roguish feats** to get into or out of a place you've previously been, you can mark exhaustion to make the move as if you had rolled a 10+, instead of rolling.
-  
+
 Disappear Into the Dark:
   archetype: The Thief
   text: When you **slip into shadows while unnoticed**, mark exhaustion and hold 1. As long as you remain quiet, move slowly, and hold 1 for this move, you will remain hidden. If you inadvertently reveal yourself, lose your hold. Spend your hold to reveal yourself from a darkened place, suddenly and without warning. If you attack someone immediately after spending the hold, take +3 on the roll.
-  
+
 Rope-a-dope:
   archetype: The Thief
-  text: When you **evade and dodge your enemy so as to tire them out**, roll with Finesse. On a hit, you can mark exhaustion to make them mark 2-exhaustion. On a 10+, you can mark exhaustion to make them mark 3-exhaustion. On a miss, they catch you in the middle of a dodge—you're at their mercy. 
-  
+  text: When you **evade and dodge your enemy so as to tire them out**, roll with Finesse. On a hit, you can mark exhaustion to make them mark 2-exhaustion. On a 10+, you can mark exhaustion to make them mark 3-exhaustion. On a miss, they catch you in the middle of a dodge—you're at their mercy.
+
 Small Hands:
   archetype: The Thief
   text: When you **grapple** with an enemy larger than you, roll with Finesse instead of Might. On a miss, they overpower you—you're at their mercy.
-  
+
 Master Thief:
   archetype: The Thief
   text: Take +1 Finesse (max +3).
   addStat:
     finesse: 1
-  
+
 Nose For Gold:
   archetype: The Thief
   text: >
@@ -284,7 +284,7 @@ Nose For Gold:
 
 
     * what is the most valuable thing here?
-  
+
 # Tinker
 Toolbox:
   archetype: The Tinker
@@ -297,7 +297,7 @@ Toolbox:
     * assorted gears and springs
 
     * esoteric hand tools
-    
+
     * manuals
 
     * assorted medicines
@@ -330,17 +330,17 @@ Toolbox:
     name: Trusty Toolkit
     extraLoad: 1
     tagSet: toolbox
-  
+
 Repair:
   archetype: The Tinker
   text: When you **repair destroyed personal equipment with your toolbox**, the GM will set one condition as per the toolbox move. Fulfill it, and clear all wear for that equipment. When you **repair damaged personal equipment with your toolkit**, you do it as long as you spend depletion or value, 1 for 1, for each box of wear you clear.
-  
+
 Big Pockets:
   archetype: The Tinker
   text: Take two extra boxes of depletion.
   addHarm:
     depletion: 2
-  
+
 Jury Rig:
   archetype: The Tinker
   text: >
@@ -353,51 +353,51 @@ Jury Rig:
 
 
     On a miss, the device works, but it has an unintended side effect that the GM will reveal when you use it.
-  
+
 Nimble Mind:
   archetype: The Tinker
-  text: When you **attempt roguish feats** involving mechanisms or locks, mark depletion to roll with Cunning instead of Finesse. 
-  
+  text: When you **attempt roguish feats** involving mechanisms or locks, mark depletion to roll with Cunning instead of Finesse.
+
 Dismantle:
   archetype: The Tinker
   text: When you **dismantle a broken or disabled piece of equipment or machinery**, clear 2 depletion boxes.
-  
+
 # Vagrant
 Instigator:
   archetype: The Vagrant
   text: When you **trick an NPC** into fighting another NPC, you can remove one option from the 7-9 list—they cannot choose that option instead of doing what you want.
-  
+
 Pleasant Facade:
   archetype: The Vagrant
   text: When you **suck up to or otherwise butter up an unsuspecting NPC**, roll with Charm. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1 for 1 to deflect their suspicion or aggression away from you onto someone or something else. On a miss, your attempts at flattery are suspicious—they're going to keep their eye on you.
-  
+
 Desperate Smile:
   archetype: The Vagrant
   text: When you **trust fate** to see you through by begging, pleading, or abasing yourself, roll with Charm instead of Luck.
-  
+
 Charm Offensive:
   archetype: The Vagrant
   text: When you **play upon an enemy's insecurities, concerns, or fears to distract them with words during a fight**, roll with Cunning. On a hit, you create an opening for yourself—make any available weapon move against them at +1, or strike quickly and deal injury to them. On a 7-9, you also tick them off; they aren't listening to you anymore, no matter what you do, until the situation drastically changes. On a miss, you infuriate them—they come at you, hard, and you're not prepared.
-  
+
 Let's Play:
   archetype: The Vagrant
   text: When you **play a game of skill and wit to loosen another's tongue**, roll with Charm. On a hit, they let slip something useful or valuable. On a 7-9, you have to lose the game to get them there; mark one depletion. On a miss, they're better than you ever thought; either mark one depletion and cut your losses, or mark three depletion and they'll start talking.
-  
+
 Pocket Sand:
   archetype: The Vagrant
   text: Take the weapon skill Confuse Senses. This does not count against the maximum number of weapon skills you can take. When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Cunning instead of Finesse.
   addSkill:
     - Confuse Senses
-  
+
 # Adventurer
 Sterling Reputation:
   archetype: The Adventurer
   text: Whenever you **mark any amount of prestige with a faction**, mark one additional prestige. When you **mark any amount of notoriety with a faction**, you can instead clear an equivalent amount of marked prestige.
-  
+
 Subduing Strikes:
   archetype: The Adventurer
   text: When you **aim to subdue an enemy quickly and nonlethally**, you can **engage sword to sword** with Cunning instead of Might. You cannot choose to inflict serious harm if you do.
-  
+
 Talon on the Pulse:
   archetype: The Adventurer
   text: >
@@ -416,7 +416,7 @@ Talon on the Pulse:
 
 
     On a miss, your questions tip off someone dangerous.
-  
+
 Orator:
   archetype: The Adventurer
   text: >
@@ -431,41 +431,41 @@ Orator:
 
 
     On a miss, they twist your message in unpredictable ways.
-  
+
 Well-Read:
   archetype: The Adventurer
   text: Take +1 Cunning (max +3).
   addStat:
     cunning: 1
-  
+
 Fast Friends:
   archetype: The Adventurer
   text: When you **try to befriend an NPC you've just met by matching their personality, body language, and desires**, mark exhaustion and roll with Cunning. On a hit, they'll look upon you favorably—ask them any one noncompromising question and they'll answer truthfully, or request a simple favor and they'll do it for you. On a 10+, they really like you—they'll share a valuable secret or grant you a serious favor instead. On a miss, you read them totally wrong, and their displeasure costs you.
-  
+
 # Harrier
 Cross Country:
   archetype: The Harrier
   text: Take one extra box of exhaustion. When **your exhaustion track is full and you must mark exhaustion**, you may choose to mark an equivalent amount of injury instead of being removed from the situation or going unconscious.
-  
+
 Fleet of Foot and Hand:
   archetype: The Harrier
   text: Take +1 Finesse (max +3).
   addStat:
     finesse: 1
-  
+
 Don't Shoot the Messenger:
   archetype: The Harrier
   text: Take the Counterfeit roguish feat. (It does not count against your maximum.) When you pretend to be an innocuous messenger carrying a missive of import to **trick** someone, roll with Luck instead of Cunning.
   addFeat:
     - Counterfeit
-  
+
 Parkour:
   archetype: The Harrier
   text: When you **dash your way through a chaotic scene or fight**, roll with Finesse. On a 10+, hold 3. On a 7-9, hold 2. Spend your hold 1-for-1 to dash to something within sight and reach without being stopped, or to dash away from something nearby without being stopped. You can dash away from an enemy even at the moment they attack. On a miss, your surroundings trip you up, and you're caught in place while danger closes in.
-  
+
 Traveller Extraordinaire:
   archetype: The Harrier
-  text: When you **travel along the paths to another clearing**, you can always give +1 to the roll or clear 2-exhaustion, your choice. When you **travel through the forest to another clearing**, you can always give +1 to the roll or clear 2-depletion, your choice. In both cases, before you arrive at the next clearing, you can ask the GM any two questions about the next clearing, based on what you remember from your last time through.  
+  text: When you **travel along the paths to another clearing**, you can always give +1 to the roll or clear 2-exhaustion, your choice. When you **travel through the forest to another clearing**, you can always give +1 to the roll or clear 2-depletion, your choice. In both cases, before you arrive at the next clearing, you can ask the GM any two questions about the next clearing, based on what you remember from your last time through.
 
 Smuggler's Path:
   archetype: The Harrier
@@ -477,11 +477,11 @@ Always Armed:
   text: Take the weapon skill Improvise Weapon (it does not count against your limit). When you deal harm with an improvised weapon, deal +1 harm.
   addSkill:
     - Improvise Weapon
-  
+
 Knowing a Lord's Will:
   archetype: The Ronin
-  text: When you **figure out** a denizen of status, authority, or power, roll with Might instead of Charm. When you **trick** a denizen of status, authority, or power by playing subordinate, roll with Might instead of Cunning. 
-  
+  text: When you **figure out** a denizen of status, authority, or power, roll with Might instead of Charm. When you **trick** a denizen of status, authority, or power by playing subordinate, roll with Might instead of Cunning.
+
 Well-Mannered:
   archetype: The Ronin
   text: >
@@ -498,11 +498,11 @@ Well-Mannered:
 
 
     On a miss, the rules of etiquette here are far different from what you expected; mark exhaustion as you commit a gravely impolite error.
-  
+
 Fealty:
   archetype: The Ronin
   text: When you **commit yourself to the cause of someone you deem worthy**, swear an oath to them stating what task you will complete on their behalf. Mark exhaustion to reroll a move made in pursuit of that task. You cannot commit yourself to another cause until you accomplish the first, or break your oath. If you break your oath, fill your exhaustion track and mark 4 notoriety with the faction whose trust you betrayed. If you fulfill your oath, mark 4 prestige with the faction whose trust you kept.
-  
+
 The Rules of War:
   archetype: The Ronin
   text: >
@@ -521,10 +521,9 @@ The Rules of War:
 
 
     On a miss, they feel no obligation to your ideas of war; prepare for a brutal lesson in the rules they adhere to.
-  
+
 Always Watching:
   archetype: The Ronin
   text: Take +1 Cunning (max +3).
   addStat:
     cunning: 1
-  
