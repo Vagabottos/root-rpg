@@ -47,6 +47,10 @@
 
                 <ion-card-content>
                   <ion-list>
+                    <ion-item class="pointer" color="tertiary" (click)="renameCampaign(campaign)">
+                      <ion-icon slot="start" name="pencil"></ion-icon>
+                      Rename Campaign
+                    </ion-item>
                     <ion-item class="pointer" color="tertiary" (click)="toggleLock(campaign)">
                       <ion-icon slot="start" [name]="campaign.locked ? 'lock-open' : 'lock-closed'"></ion-icon>
                       {{ campaign.locked ? 'Unlock campaign (players will be able to join)' : 'Lock campaign (players will NOT be able to join)' }}

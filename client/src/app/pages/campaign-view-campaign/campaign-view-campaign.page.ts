@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { cloneDeep } from 'lodash';
 
 import { ICampaign } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 import { NotificationService } from '../../services/notification.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-campaign-view-campaign',
@@ -15,6 +15,7 @@ import { NotificationService } from '../../services/notification.service';
 export class CampaignViewCampaignPage implements OnInit {
 
   constructor(
+    private alert: AlertController,
     private clipboard: ClipboardService,
     private notification: NotificationService,
     private content: ContentService,
@@ -88,6 +89,38 @@ export class CampaignViewCampaignPage implements OnInit {
   updateNotes(campaign: ICampaign, newNotes: string) {
     campaign.notes = newNotes;
     this.data.patchCampaign().subscribe(() => {});
+  }
+
+  async renameCampaign(campaign: ICampaign) {
+    const alert = await this.alert.create({
+      header: 'Rename Campaign',
+      inputs: [
+        {
+          name: 'newName',
+          type: 'text',
+          placeholder: 'Enter New Campaign Name',
+          attributes: {
+            value: campaign.name,
+            maxLength: 50
+          }
+        },
+      ],
+      buttons: [
+        'Cancel',
+        {
+          text: 'Confirm',
+          handler: (data) => {
+            if (!data) {return;}
+            const { newName } = data;
+            campaign.name = newName;
+
+            this.data.patchCampaign().subscribe(() => {});
+          }
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }
