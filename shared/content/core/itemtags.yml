@@ -157,8 +157,6 @@ Quick:
   itemType:
     - Weapon
     - Armor
-    - Shield
-    - Bow
 
 Rabbitfolk Steel:
   tagSet: default
