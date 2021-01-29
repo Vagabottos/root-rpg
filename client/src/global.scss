@@ -203,7 +203,7 @@ ion-list-header {
   color: var(--color) !important;
   font-size: 75% !important;
 
-  & + h2 {
+  & + h2.form-placeholder {
     color: #000;
     opacity: 0.33;
   }

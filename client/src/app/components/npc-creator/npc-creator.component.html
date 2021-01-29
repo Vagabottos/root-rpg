@@ -39,7 +39,7 @@
       <ion-item class="pointer background-hover" (click)="chooseNPCDrive()">
         <ion-label>
           <p class="fake-form-label">Drive</p>
-          <h2 *ngIf="!npcForm.get('drive').value">Choose NPC Drive</h2>
+          <h2 class="form-placeholder" *ngIf="!npcForm.get('drive').value">Choose NPC Drive</h2>
           <h2 *ngIf="npcForm.get('drive').value">{{ npcForm.get('drive').value }}</h2>
         </ion-label>
       </ion-item>
