@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
+import { IContentFeatRisk } from '../../../../shared/interfaces';
 
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
@@ -62,6 +63,14 @@ export class ContentService {
 
   getFeats(): string[] {
     return Object.keys(this.content.core.feats);
+  }
+
+  getRisks(): string[] {
+    return Object.keys(this.content.core.featrisks);
+  }
+
+  getRisk(name: string): IContentFeatRisk {
+    return this.content.core.featrisks[name];
   }
 
   getSpecies(): string[] {
