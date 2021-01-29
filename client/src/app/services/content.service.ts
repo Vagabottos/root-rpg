@@ -105,6 +105,10 @@ export class ContentService {
     return this.content.core.natures[name];
   }
 
+  getNPCDrives(): string[] {
+    return this.content.core.npcdrives.sort();
+  }
+
   getDrives(): string[] {
     return Object.keys(this.content.core.drives).sort();
   }

@@ -202,6 +202,11 @@ ion-list-header {
 .fake-form-label {
   color: var(--color) !important;
   font-size: 75% !important;
+
+  & + h2 {
+    color: #000;
+    opacity: 0.33;
+  }
 }
 
 .can-be-preformatted {

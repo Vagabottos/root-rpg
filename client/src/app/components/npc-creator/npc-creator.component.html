@@ -36,13 +36,12 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
-        <ion-label position="stacked">Drive</ion-label>
-        <ion-select formControlName="drive" placeholder="Choose NPC drive">
-          <ion-select-option *ngFor="let choice of contentService.getDrives()" [value]="choice">
-            {{ choice }}
-          </ion-select-option>
-        </ion-select>
+      <ion-item class="pointer" (click)="chooseNPCDrive()">
+        <ion-label>
+          <p class="fake-form-label">Drive</p>
+          <h2 *ngIf="!npcForm.get('drive').value">Choose NPC Drive</h2>
+          <h2 *ngIf="npcForm.get('drive').value">{{ npcForm.get('drive').value }}</h2>
+        </ion-label>
       </ion-item>
 
       <ion-item>

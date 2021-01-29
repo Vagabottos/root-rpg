@@ -93,6 +93,7 @@ export interface IContentCore {
   moves: Record<string, IContentMove>;
   names: string[];
   natures: Record<string, IContentNature>;
+  npcdrives: string[];
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];

@@ -31,7 +31,7 @@ export class CampaignViewNpcsPage implements OnInit {
     const modal = await this.modal.create({
       component: NPCCreatorComponent,
       componentProps: { npc: cloneDeep(npc), validFactions: campaign.factions },
-      cssClass: 'medium-modal'
+      cssClass: 'big-modal'
     });
 
     modal.onDidDismiss().then((res) => {

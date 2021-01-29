@@ -6,6 +6,7 @@ import { INPC, IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
 import { ItemService } from '../../services/item.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-npc-creator',
@@ -57,7 +58,8 @@ export class NPCCreatorComponent implements OnInit {
     private modal: ModalController,
     public contentService: ContentService,
     private itemCreator: ItemCreatorService,
-    public itemService: ItemService
+    public itemService: ItemService,
+    private notification: NotificationService
   ) { }
 
   pickRandomName() {
@@ -108,6 +110,25 @@ export class NPCCreatorComponent implements OnInit {
   removeItem(item: IItem) {
     const control = this.npcForm.get('equipment');
     control.setValue(control.value.filter(x => x !== item));
+  }
+
+  async chooseNPCDrive() {
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose NPC Drive`,
+      message: `Choose your NPCs drive, or make your own.`,
+      choices: this.contentService.getNPCDrives().map(c => ({ name: c, text: '' })),
+      numChoices: 1,
+      bannedChoices: [],
+      disableBanned: false,
+      defaultSelected: this.npcForm.get('drive').value,
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.npcForm.get('drive').setValue(data[0].name);
+    });
   }
 
 }
