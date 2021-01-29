@@ -34,6 +34,7 @@ Harry:
 
   allowItem:
     - Bow
+    - Weapon
 
   allowRange:
     - far
@@ -118,6 +119,8 @@ Trick Shot:
 
   allowRange:
     - far
+    - close
+    - intimate
 
 Vicious Strike:
   text: >
@@ -125,6 +128,7 @@ Vicious Strike:
 
   allowItem:
     - Weapon
+    - Bow
 
   allowRange:
     - intimate
