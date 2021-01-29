@@ -103,13 +103,13 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="npc.notes">
         <ion-col class="ion-text-center margin-top-1">
           <strong>Notes</strong>
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="npc.notes">
         <ion-col>
           {{ npc.notes || 'no notes' }}
         </ion-col>
