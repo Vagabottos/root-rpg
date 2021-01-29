@@ -149,7 +149,7 @@
     <strong>Morale</strong>
     <ion-icon *ngFor="let box of numBoxes(npc.harmMax.morale); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
   </p>
-  <hr>
+  <hr *ngIf="npc.equipment.length > 0">
   <p class="text-icon" *ngFor="let item of npc.equipment">
     <strong>{{ item.name }}</strong> <span class="divider">/</span>
     <span *ngIf="item.tags?.length > 0">Tags: {{ item.tags.join(', ') || 'None' }}<span class="divider">/</span></span>

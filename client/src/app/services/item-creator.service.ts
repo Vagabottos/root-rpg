@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { cloneDeep, random, sample, sampleSize } from 'lodash';
+import { ItemRange } from '../../../../shared/interfaces';
 
 import { IItem } from '../../interfaces';
 import { ItemCreatorComponent } from '../components/item-creator/item-creator.component';
@@ -51,7 +52,12 @@ export class ItemCreatorService {
 
     if (['Weapon', 'Bow'].includes(itemType)) {
       baseItem.ranges = sampleSize(preset.validRanges || ['intimate', 'close', 'far'], sample([1, 1, 1, 2, 2, 3]));
-      baseItem.skillTags = sampleSize(this.content.getSkills(), sample([1, 1, 1, 1, 1, 2, 2, 2, 2, 3]));
+
+      const validSkills = this.content.getSkills()
+        .filter(s => this.content.getSkill(s).allowItem?.includes(itemType)
+                  && this.content.getSkill(s).allowRange?.some(r => baseItem.ranges.includes(r as ItemRange)));
+
+      baseItem.skillTags = sampleSize(validSkills, sample([0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3]));
     }
 
     return cloneDeep(baseItem);

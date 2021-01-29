@@ -47,6 +47,8 @@ export interface IContentNature {
 
 export interface IContentSkill {
   text: string;
+  allowItem?: string[];
+  allowRange?: string[];
 }
 
 export interface IContentStat {
