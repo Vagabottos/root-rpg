@@ -23,6 +23,8 @@ Good Advice:
 Dedicated Scholar:
   archetype: The Chronicler
   text: Take an extra box of exhaustion. When you acquire a new tome or scroll documenting the history of the Woodland, clear your exhaustion track.
+  addHarm:
+    exhaustion: 1
 
 # Exile
 Known by All:
@@ -138,6 +140,8 @@ Crash & Smash:
 Hardy:
   archetype: The Arbiter
   text: Take 1 additional injury boxes. Whenever time passes or you journey to a new clearing, you can clear 2 injury boxes automatically.
+  addHarm:
+    injury: 1
 
 Strong Draw:
   archetype: The Arbiter
@@ -446,6 +450,8 @@ Fast Friends:
 Cross Country:
   archetype: The Harrier
   text: Take one extra box of exhaustion. When **your exhaustion track is full and you must mark exhaustion**, you may choose to mark an equivalent amount of injury instead of being removed from the situation or going unconscious.
+  addHarm:
+    exhaustion: 1
 
 Fleet of Foot and Hand:
   archetype: The Harrier
