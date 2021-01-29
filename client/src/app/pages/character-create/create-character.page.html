@@ -235,7 +235,7 @@
             </ion-select>
           </ion-item>
 
-          <ion-item class="pointer" (click)="chooseAdjectives()">
+          <ion-item class="pointer background-hover" (click)="chooseAdjectives()">
             <ion-label>
               <p class="fake-form-label">Adjectives</p>
               <h2 *ngIf="!characterForm.get('adjectives').value?.length">Choose adjectives</h2>
@@ -243,7 +243,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-item class="pointer" (click)="chooseDemeanor()">
+          <ion-item class="pointer background-hover" (click)="chooseDemeanor()">
             <ion-label>
               <p class="fake-form-label">Demeanor</p>
               <h2 *ngIf="!characterForm.get('demeanor').value?.length">Choose demeanor</h2>

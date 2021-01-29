@@ -63,7 +63,7 @@ export class ClearingViewSituationPage implements OnInit {
 
     const modal = await this.modal.create({
       component: ClearingBackgroundComponent,
-      cssClass: 'medium-modal',
+      cssClass: 'big-modal',
       backdropDismiss: false
     });
 
