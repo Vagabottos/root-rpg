@@ -96,7 +96,14 @@ export class CharacterViewInfoPage implements OnInit {
     if (value === null) { return; }
 
     character.reputation[faction] = character.reputation[faction] || { notoriety: 0, prestige: 0, total: 0 };
-    character.reputation[faction].notoriety = value;
+
+    const oldVal = character.reputation[faction].notoriety;
+    if (oldVal === value) {
+      character.reputation[faction].notoriety = value - 1;
+
+    } else {
+      character.reputation[faction].notoriety = value;
+    }
 
     const curNotoriety = character.reputation[faction].notoriety;
     const curPrestige = character.reputation[faction].prestige;
@@ -125,7 +132,14 @@ export class CharacterViewInfoPage implements OnInit {
     if (value === null) { return; }
 
     character.reputation[faction] = character.reputation[faction] || { notoriety: 0, prestige: 0, total: 0 };
-    character.reputation[faction].prestige = value;
+
+    const oldVal = character.reputation[faction].prestige;
+    if (oldVal === value) {
+      character.reputation[faction].prestige = value - 1;
+
+    } else {
+      character.reputation[faction].prestige = value;
+    }
 
     const curNotoriety = character.reputation[faction].notoriety;
     const curPrestige = character.reputation[faction].prestige;
