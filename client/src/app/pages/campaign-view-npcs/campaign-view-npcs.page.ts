@@ -6,6 +6,7 @@ import { cloneDeep } from 'lodash';
 import { ICampaign, INPC } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
+import { NPCRandomizerComponent } from '../../components/npc-randomizer/npc-randomizer.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -147,6 +148,28 @@ export class CampaignViewNpcsPage implements OnInit {
 
   public save() {
     this.data.patchCampaign().subscribe(() => {});
+  }
+
+  async openNPCRandomizer(campaign: ICampaign) {
+
+    const modal = await this.modal.create({
+      component: NPCRandomizerComponent,
+      componentProps: { validFactions: campaign.factions, maxNPCs: 15 - campaign.npcs.length },
+      cssClass: 'big-modal'
+    });
+
+    modal.onDidDismiss().then((res) => {
+      const resnpcs = res.data;
+      if (!resnpcs) { return; }
+
+      campaign.npcs = campaign.npcs || [];
+
+      campaign.npcs.push(...resnpcs);
+
+      this.save();
+    });
+
+    await modal.present();
   }
 
 }

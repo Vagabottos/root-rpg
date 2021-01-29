@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  private readonly badMessages = ['No record found for id'];
+  private readonly badMessages = ['No record found for id', 'Unknown error.'];
 
   constructor(
     private router: Router,

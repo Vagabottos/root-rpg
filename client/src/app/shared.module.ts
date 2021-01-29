@@ -31,6 +31,7 @@ import { DiceRollerComponent } from './components/dice-roller/dice-roller.compon
 import { NotesComponent } from './components/notes/notes.component';
 import { GMPlayerPopoverComponent } from './components/gmplayer.popover';
 import { ReferenceComponent } from './components/reference/reference.component';
+import { NPCRandomizerComponent } from './components/npc-randomizer/npc-randomizer.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
@@ -39,7 +40,8 @@ const modals = [
   ItemCreatorComponent, EditDeletePopoverComponent, BackgroundComponent, AdvancementComponent,
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
   NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent, VisitRecordCreatorComponent,
-  WoodlandOverviewComponent, DiceRollerComponent, GMPlayerPopoverComponent, ReferenceComponent
+  WoodlandOverviewComponent, DiceRollerComponent, GMPlayerPopoverComponent, ReferenceComponent,
+  NPCRandomizerComponent
 ];
 
 @NgModule({

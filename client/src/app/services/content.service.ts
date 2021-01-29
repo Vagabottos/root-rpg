@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
-import { IContentFeatRisk } from '../../../../shared/interfaces';
 
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
-  IContentSkill, IContentVagabond, IContent, IContentMapLayout, content
+  IContentSkill, IContentVagabond, IContent, IContentMapLayout,
+  IContentFeatRisk, IContentItemPreset, IItem, content
 } from '../../interfaces';
 
 @Injectable({
@@ -167,5 +167,13 @@ export class ContentService {
 
   getSkill(name: string): IContentSkill {
     return this.content.core.skills[name];
+  }
+
+  getItemPresets(): IContentItemPreset[] {
+    return this.content.core.itempresets;
+  }
+
+  getPremadeItems(): IItem[] & { type: string } {
+    return this.content.core.premadeitems;
   }
 }

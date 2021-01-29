@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      NPC Randomizer
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(npcs)" [disabled]="npcs.length === 0">
+        Create All
+      </ion-button>
+
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col size-xs="12" size-md="6" size-lg="4">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked"># NPCs</ion-label>
+          <ion-range min="1" [max]="maxCreatableNPCS" pin="true" ticks="true" snaps="true" [(ngModel)]="generateNPCCount">
+            <ion-label slot="start">{{ maxCreatableNPCS === 0 ? 0 : 1 }}</ion-label>
+            <ion-label slot="end">{{ maxCreatableNPCS }}</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Injury Range</ion-label>
+          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateInjury">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">5</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Exhaustion Range</ion-label>
+          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateExhaustion">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">5</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Depletion Range</ion-label>
+          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateDepletion">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">5</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Morale Range</ion-label>
+          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateMorale">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">5</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Can Generate Weapons</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="generateWeapons"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Can Generate Bows</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="generateBows"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Can Generate Armor</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="generateArmor"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Can Generate Shields</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="generateShields"></ion-checkbox>
+        </ion-item>
+
+        <ion-item class="margin-top-2 margin-bottom-2" lines="none">
+          <ion-label class="ion-text-wrap">
+            <em>Please note, at this time you can only have 15 NPCs per clearing + 15 unaffiliated NPCs.</em>
+          </ion-label>
+        </ion-item>
+
+        <ion-item color="tertiary" class="pointer" (click)="createNPCs()" [disabled]="!canCreateNPCs">
+          <ion-icon slot="start" name="add"></ion-icon>
+          Generate NPCs
+        </ion-item>
+      </ion-list>
+    </ion-col>
+
+    <ion-col class="ion-hide-sm-down small-scroll">
+      <div class="blank-slate" *ngIf="npcs.length === 0">
+        Pick NPC options and hit generate!
+      </div>
+
+      <div class="can-scroll">
+        <ion-list>
+          <ion-item class="npc" *ngFor="let npc of npcs">
+            <ion-label class="ion-text-wrap">
+              <ng-container [ngTemplateOutlet]="npcRow"
+                            [ngTemplateOutletContext]="{ npc: npc }"></ng-container>
+            </ion-label>
+
+            <ion-button slot="end" color="danger" (click)="removeNPC(npc)">
+              <ion-icon slot="icon-only" name="remove"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-col>
+
+    <ion-col class="ion-hide-sm-up">
+      <ion-list>
+        <ion-item class="npc" *ngFor="let npc of npcs">
+          <ion-label class="ion-text-wrap">
+            <ng-container [ngTemplateOutlet]="npcRow"
+                          [ngTemplateOutletContext]="{ npc: npc }"></ng-container>
+          </ion-label>
+
+          <ion-button slot="end" color="danger" (click)="removeNPC(npc)">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ng-template #npcRow let-npc="npc">
+  <h2>{{ npc.name }}</h2>
+  <p>{{ npc.faction }} / driven to {{ npc.drive }}</p>
+  <p class="text-icon">
+    <strong>Injury</strong>
+    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.injury); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+    <span class="divider">/</span>
+
+    <strong>Depletion</strong>
+    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.depletion); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+    <span class="divider">/</span>
+
+    <strong>Exhaustion</strong>
+    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.exhaustion); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+    <span class="divider">/</span>
+
+    <strong>Morale</strong>
+    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.morale); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+  </p>
+  <hr>
+  <p class="text-icon" *ngFor="let item of npc.equipment">
+    <strong>{{ item.name }}</strong> <span class="divider">/</span>
+    <span *ngIf="item.tags?.length > 0">Tags: {{ item.tags.join(', ') || 'None' }}<span class="divider">/</span></span>
+    <span *ngIf="item.skillTags?.length > 0">Skills: {{ item.skillTags.join(', ') || 'None' }}<span class="divider">/</span></span>
+    <span *ngIf="item.ranges?.length > 0">Ranges: {{ item.ranges.join(', ') || 'None' }}<span class="divider">/</span></span>
+    <ion-icon *ngFor="let box of numBoxes(item.wear || 0); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+  </p>
+</ng-template>

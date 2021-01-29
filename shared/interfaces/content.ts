@@ -59,10 +59,18 @@ export interface IContentFeatRisk {
 
 export interface IContentItemTag {
   tagSet: string;
+  itemType: string[];
   text?: string;
   valueMod?: number;
   loadMod?: number;
   input?: string;
+}
+
+export interface IContentItemPreset {
+  name: string;
+  type: string;
+  baseLoad: number;
+  validRanges?: string[];
 }
 
 export interface IContentClearingGen {
@@ -97,7 +105,8 @@ export interface IContentCore {
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];
-  premadeitems: IItem[];
+  premadeitems: IItem[] & { type: string };
+  itempresets: IContentItemPreset[];
   itemtags: Record<string, IContentItemTag>;
   stats: Record<string, IContentStat>;
   referencebasicmoves: Record<string, IContentMove>;

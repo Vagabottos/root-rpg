@@ -6,6 +6,7 @@ import { cloneDeep } from 'lodash';
 import { ICampaign, INPC, IClearing } from '../../../interfaces';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
+import { NPCRandomizerComponent } from '../../components/npc-randomizer/npc-randomizer.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -143,6 +144,28 @@ export class ClearingViewNpcsPage implements OnInit {
 
   harmBoxes(npc: INPC, harm: string): number[] {
     return Array(npc.harmMax?.[harm.toLowerCase()] ?? 1).fill(false).map((x, i) => i);
+  }
+
+  async openNPCRandomizer(campaign: ICampaign, clearing: IClearing) {
+
+    const modal = await this.modal.create({
+      component: NPCRandomizerComponent,
+      componentProps: { validFactions: campaign.factions, maxNPCs: 15 - clearing.npcs.length },
+      cssClass: 'big-modal'
+    });
+
+    modal.onDidDismiss().then((res) => {
+      const resnpcs = res.data;
+      if (!resnpcs) { return; }
+
+      clearing.npcs = clearing.npcs || [];
+
+      clearing.npcs.push(...resnpcs);
+
+      this.save();
+    });
+
+    await modal.present();
   }
 
   public save() {

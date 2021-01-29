@@ -1,0 +1,54 @@
+
+ion-row, ion-col {
+  height: 100%;
+  padding: 0;
+}
+
+ion-range {
+  padding-top: 0;
+}
+
+.can-scroll {
+  height: calc(100vh - 56px);
+
+  @media screen and (min-width: 720px) {
+    height: calc(90vh - 56px);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  ion-content {
+    --overflow: hidden !important;
+  }
+}
+
+.big-scroll, .small-scroll {
+  .can-scroll {
+    overflow-y: auto;
+  }
+}
+
+.npc {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.text-icon {
+  display: flex;
+  align-items: center;
+
+  .divider {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+  ion-icon {
+    &.first {
+      margin-left: 3px;
+    }
+
+    &.last {
+      margin-right: 3px;
+    }
+  }
+}

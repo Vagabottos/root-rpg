@@ -11,6 +11,10 @@
     <ion-buttons slot="end">
       <ng-container *ngIf="data.campaign$ | async as campaign">
         <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+          <ion-button (click)="openNPCRandomizer(campaign, clearing)">
+            <ion-icon slot="icon-only" name="sync"></ion-icon>
+          </ion-button>
+
           <ion-button (click)="addNewNPC(campaign, clearing)">
             <ion-icon slot="icon-only" name="add"></ion-icon>
           </ion-button>
@@ -60,7 +64,7 @@
   <ion-card class="npc-card pointer">
     <ion-card-header>
       <ion-card-title>{{ npc.name }}</ion-card-title>
-      <ion-card-subtitle>{{ npc.faction }} / {{ npc.drive }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ npc.faction }} / driven to {{ npc.drive }}</ion-card-subtitle>
 
       <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign, clearing, npc)" *ngIf="big">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
