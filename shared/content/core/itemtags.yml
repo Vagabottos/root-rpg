@@ -4,10 +4,8 @@ Arrow-proof:
   text: Ignore the first hit dealing injury from arrows that you suffer in a scene.
   valueMod: 1
   itemType:
-    - Weapon
     - Armor
     - Shield
-    - Bow
 
 Blunted:
   tagSet: default
@@ -15,7 +13,6 @@ Blunted:
   valueMod: 1
   itemType:
     - Weapon
-    - Bow
 
 Ceremonial:
   tagSet: default
@@ -52,39 +49,29 @@ Eaglecraft:
   valueMod: 1
   itemType:
     - Weapon
-    - Armor
-    - Shield
-    - Bow
 
 Fast:
   tagSet: default
   text: Mark wear when **engaging in melee** to suffer 1 fewer harm, even on a miss.
   valueMod: 1
   itemType:
-    - Weapon
     - Armor
     - Shield
-    - Bow
 
 Friendly:
   tagSet: default
   text: When you **meet someone important**, mark exhaustion to roll with your Reputation +1.
   valueMod: 1
   itemType:
-    - Weapon
     - Armor
     - Shield
-    - Bow
 
 Flexible:
   tagSet: default
   text: When you **grapple** with someone, mark exhaustion to ignore the first choice they make.
   valueMod: 1
   itemType:
-    - Weapon
     - Armor
-    - Shield
-    - Bow
 
 Foxfolk steel:
   tagSet: default
@@ -94,25 +81,19 @@ Foxfolk steel:
     - Weapon
     - Armor
     - Shield
-    - Bow
 
 Hair trigger:
   tagSet: default
   text: Mark wear to target a vulnerable foe at close range instead of far.
   valueMod: 1
   itemType:
-    - Weapon
     - Bow
 
 Healer's kit:
   tagSet: default
   text: Mark wear to clear exhaustion. Mark 2 wear to clear injury.
   valueMod: 1
-  itemType:
-    - Weapon
-    - Armor
-    - Shield
-    - Bow
+  itemType: []
 
 Heavy bludgeon:
   tagSet: default
@@ -120,7 +101,6 @@ Heavy bludgeon:
   valueMod: 1
   itemType:
     - Weapon
-    - Bow
 
 Heavy Draw Weight:
   tagSet: default
@@ -134,7 +114,6 @@ Iron bolts:
   text: This weapon inflicts 1 additional wear when its harm is absorbed by armor.
   valueMod: 1
   itemType:
-    - Weapon
     - Bow
 
 Large:
@@ -163,14 +142,12 @@ Mousefolk Steel:
     - Weapon
     - Armor
     - Shield
-    - Bow
 
 Oiled string:
   tagSet: default
   text: Mark wear to use the weapon skill quick shot even if you don't have it.
   valueMod: 1
   itemType:
-    - Weapon
     - Bow
 
 Quick:
@@ -191,7 +168,6 @@ Rabbitfolk Steel:
     - Weapon
     - Armor
     - Shield
-    - Bow
 
 Reach:
   tagSet: default
@@ -206,15 +182,12 @@ Sharp:
   valueMod: 1
   itemType:
     - Weapon
-    - Bow
 
 Short Limbs:
   tagSet: default
   text: Mark wear to fire a quick shot at far range.
   valueMod: 1
   itemType:
-    - Weapon
-    - Armor
     - Bow
 
 Slow:
@@ -237,7 +210,6 @@ Throwable:
   valueMod: 1
   itemType:
     - Weapon
-    - Bow
 
 Tightly woven:
   tagSet: default
@@ -250,21 +222,15 @@ Tricky:
   tagSet: default
   text: When you use this item to **trick an NPC** by distracting them at a distance, on a 7-9 mark wear to eliminate one option from the **trick an NPC** move before the NPC picks.
   valueMod: 1
-  itemType:
-    - Weapon
-    - Armor
-    - Shield
-    - Bow
+  itemType: []
 
 Unassuming:
   tagSet: default
   text: Until you harm an enemy, they will never deem you more of a threat than other vagabonds with arms and armor.
   valueMod: 1
   itemType:
-    - Weapon
     - Armor
     - Shield
-    - Bow
 
 Versatile:
   tagSet: default
