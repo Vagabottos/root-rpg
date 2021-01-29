@@ -5,7 +5,7 @@ import { HookContext } from '@feathersjs/feathers';
 import { ICampaign } from '../interfaces';
 
 import { clean } from '../helpers/clean-text';
-import { ClearingStatus, WarType } from '../../../shared/interfaces';
+import { ClearingStatus, ForestType, WarType } from '../../../shared/interfaces';
 import { cleanNPC } from '../helpers/clean-npc';
 import { ObjectId } from 'mongodb';
 
@@ -53,6 +53,7 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
   }
 
   if(campaign.npcs) {
+    if(campaign.npcs.length >= 15) throw new NotAcceptable('Campaign must not have more than 15 unaffiliated NPCs.');
     campaign.npcs.forEach(npc => cleanNPC(npc));
   }
 
@@ -83,7 +84,17 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
         visitRecord.warContinuesText = clean(visitRecord.warContinuesText, 1000);
       });
 
+      if(clearing.npcs.length >= 15) throw new NotAcceptable('Campaign must not have more than 15 unaffiliated NPCs.');
       clearing.npcs.forEach(npc => cleanNPC(npc));
+    });
+  }
+
+  if(campaign.forests) {
+    campaign.forests.forEach(forest => {
+      forest.details = clean(forest.details, 5000);
+      forest.location = clean(forest.location, 1000);
+      forest.name = clean(forest.name, 50);
+      forest.type = clean(forest.type, 10) as ForestType;
     });
   }
 
