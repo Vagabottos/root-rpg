@@ -105,7 +105,7 @@ export interface IContentCore {
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];
-  premadeitems: IItem[] & { type: string };
+  premadeitems: (IItem & { type: string })[];
   itempresets: IContentItemPreset[];
   itemtags: Record<string, IContentItemTag>;
   stats: Record<string, IContentStat>;

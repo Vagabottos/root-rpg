@@ -173,7 +173,7 @@ export class ContentService {
     return this.content.core.itempresets;
   }
 
-  getPremadeItems(): IItem[] & { type: string } {
+  getPremadeItems(): (IItem & { type: string })[] {
     return this.content.core.premadeitems;
   }
 }
