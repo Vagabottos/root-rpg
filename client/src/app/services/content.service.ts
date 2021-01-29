@@ -149,6 +149,14 @@ export class ContentService {
     return this.content.core.referencebasicmoves[name];
   }
 
+  getCombatSkills(): string[] {
+    return Object.keys(this.content.core.referenceskills);
+  }
+
+  getCombatSkill(name: string): IContentSkill {
+    return this.content.core.referenceskills[name];
+  }
+
   getTravelMoves(): string[] {
     return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Travel');
   }
