@@ -5,6 +5,16 @@ import { IItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
 
+const SectionVisibility = {
+  name:       { all: true },
+  load:       { default: true, toolbox: true },
+  wear:       { default: true },
+  tags:       { all: true },
+  weaponTags: { default: true },
+  ranges:     { default: true },
+  footer:     { default: true, toolbox: true },
+};
+
 @Component({
   selector: 'app-item-creator',
   templateUrl: './item-creator.component.html',
@@ -29,10 +39,6 @@ export class ItemCreatorComponent implements OnInit {
 
   public get allItemTags(): string[] {
     return this.contentService.getTags(this.tagSet);
-  }
-
-  public get hideExtraData(): boolean {
-    return this.tagSet !== 'default';
   }
 
   public get boxSlots(): boolean[] {
@@ -78,6 +84,7 @@ export class ItemCreatorComponent implements OnInit {
     if (this.customItemData) {
       this.itemForm.get('name').setValue(this.customItemData.name);
       this.itemForm.get('load').setValue(this.customItemData.extraLoad ?? 1);
+      this.itemForm.get('wear').setValue(this.customItemData.wear ?? 1);
       this.tagSet = this.customItemData.tagSet;
     }
   }
@@ -89,6 +96,10 @@ export class ItemCreatorComponent implements OnInit {
     }
 
     this.modal.dismiss(item);
+  }
+
+  canSee(section: string): boolean {
+    return SectionVisibility[section].all || SectionVisibility[section][this.tagSet];
   }
 
   wear(mod: number): void {

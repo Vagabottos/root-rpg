@@ -5,16 +5,27 @@
   </ion-col>
 </ion-row>
 
-<ion-row class="header-row">
-  <ion-col>
-    <ion-icon *ngFor="let slot of boxSlots; let i = index"
-              class="pointer"
-              (click)="changeWear(i + 1)"
-              [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+<ion-row class="header-row small-row">
+  <ion-col class="box-row">
+    <span class="margin-right-1 label">Wear</span>
+    <span>
+      <ion-icon *ngFor="let slot of boxSlots; let i = index"
+                class="pointer"
+                (click)="changeWear(i + 1)"
+                [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+
+    </span>
+    <span class="margin-left-1 margin-right-1 label">Depletion</span>
+    <span>
+      <ion-icon *ngFor="let slot of depletionSlots; let i = index"
+                class="pointer"
+                (click)="changeDepletion(i + 1)"
+                [name]="item.depletionUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+    </span>
   </ion-col>
 </ion-row>
 
-<ion-row class="small-row">
+<ion-row class="small-row" *ngIf="item.tagSet !== 'ship'">
   <ion-col>
     <span class="label">Value</span>: {{ itemService.value(item) }}
   </ion-col>

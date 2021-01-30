@@ -14,16 +14,17 @@
 <ion-content padding>
   <form [formGroup]="itemForm">
     <ion-list>
-      <ion-item>
+      <ion-item *ngIf="canSee('name')">
         <ion-label position="stacked">Item Name</ion-label>
         <ion-input type="text" formControlName="name" placeholder="Enter Item Name" maxlength="50"></ion-input>
       </ion-item>
-      <ion-item>
+
+      <ion-item *ngIf="canSee('load')">
         <ion-label position="stacked">Item Load</ion-label>
         <ion-input type="number" formControlName="load" placeholder="Enter Item Load" min="0" max="5"></ion-input>
       </ion-item>
 
-      <ion-item class="wear" lines="none" *ngIf="!hideExtraData">
+      <ion-item class="wear" lines="none" *ngIf="canSee('wear')">
         <ion-button slot="start" color="secondary" (click)="wear(-1)" [disabled]="itemForm.get('wear').value <= 0">
           <ion-icon slot="icon-only" name="remove"></ion-icon>
         </ion-button>
@@ -84,7 +85,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-list-header *ngIf="!hideExtraData">
+      <ion-list-header *ngIf="canSee('weaponTags')">
         <ion-label>
           Weapon Skill Tags
         </ion-label>
@@ -94,7 +95,7 @@
         </ion-button>
       </ion-list-header>
 
-      <ion-item class="none" *ngIf="itemForm.get('skillTags').value.length === 0 && !hideExtraData">
+      <ion-item class="none" *ngIf="itemForm.get('skillTags').value.length === 0 && canSee('weaponTags')">
         None
       </ion-item>
 
@@ -117,7 +118,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-list-header *ngIf="!hideExtraData">
+      <ion-list-header *ngIf="canSee('ranges')">
         <ion-label>
           Ranges
         </ion-label>
@@ -127,7 +128,7 @@
         </ion-button>
       </ion-list-header>
 
-      <ion-item class="none" *ngIf="itemForm.get('ranges').value.length === 0 && !hideExtraData">
+      <ion-item class="none" *ngIf="itemForm.get('ranges').value.length === 0 && canSee('ranges')">
         None
       </ion-item>
 
@@ -139,7 +140,7 @@
         </ion-button>
       </ion-item>
 
-      <ion-item class="calculated">
+      <ion-item class="calculated" *ngIf="canSee('footer')">
         <p>Value: {{ itemService.value(this.formItem) }} | Load: {{ itemService.load(this.formItem) }}</p>
       </ion-item>
 

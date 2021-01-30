@@ -1,4 +1,5 @@
 
+# General Tags
 Arrow-proof:
   tagSet: default
   text: Ignore the first hit dealing injury from arrows that you suffer in a scene.
@@ -97,7 +98,7 @@ Healer's kit:
 
 Heavy bludgeon:
   tagSet: default
-  text: Mark exhaustion to to ignore the enemy's armor when you inflict harm.
+  text: Mark exhaustion to to ignore your enemy's armor when you inflict harm.
   valueMod: 1
   itemType:
     - Weapon
@@ -249,7 +250,7 @@ Weighty:
     - Shield
     - Bow
 
-
+# Toolbox Tags
 Assorted Scrap Wood:
   tagSet: toolbox
   text: No text.
@@ -328,3 +329,52 @@ Fragile:
   text: No text.
   itemType:
     - Toolbox
+
+# Ship Tags
+Stocked:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Nimble:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Renowned:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Swift:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Dreaded:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Rickety:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Clumsy:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship
+
+Stolen:
+  tagSet: ship
+  text: No text.
+  itemType:
+    - Ship

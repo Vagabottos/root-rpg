@@ -133,6 +133,24 @@
 
       <ion-col size="12" size-lg="6">
 
+        <ion-card *ngIf="character.archetype === 'The Envoy'">
+          <ion-card-header>
+            <ion-card-title>Diplomat</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="harm-row">
+              <ion-col class="harm-label" (click)="adjustHarm(character, 'diplomat', 0)">Diplomat (+{{ character.harm.diplomat }})</ion-col>
+              <ion-col class="harm-box"
+                       *ngFor="let i of [0, 1, 2, 3]"
+                       (click)="adjustHarm(character, 'diplomat', i + 1)">
+                <ion-icon [name]="character.harm.diplomat > i ? 'checkbox-outline' : 'square-outline'"
+                          *ngIf="i < characterHelper.harmCount(character, 'diplomat')"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
         <ion-card>
           <ion-card-header>
             <ion-card-title>Connections</ion-card-title>

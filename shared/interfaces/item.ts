@@ -9,6 +9,8 @@ export interface IItem {
   name: string;
   wear: number;
   wearUsed?: number;
+  depletion?: number;
+  depletionUsed?: number;
   tags?: string[];
   ranges?: ItemRange[] | string[];
   skillTags?: string[];

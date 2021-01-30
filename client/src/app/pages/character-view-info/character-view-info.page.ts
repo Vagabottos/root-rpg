@@ -186,7 +186,7 @@ export class CharacterViewInfoPage implements OnInit {
   }
 
   adjustHarm(character: ICharacter, harm: string, newValue: number): void {
-    if (!character.harm) { character.harm = { injury: 0, depletion: 0, exhaustion: 0 }; }
+    if (!character.harm) { character.harm = { injury: 0, depletion: 0, exhaustion: 0, diplomat: 0 }; }
 
     if (character.harm[harm.toLowerCase()] === newValue) {
       character.harm[harm.toLowerCase()] = 0;

@@ -25,6 +25,11 @@
   font-style: italic;
 }
 
+.box-row {
+  display: flex;
+  align-items: center;
+}
+
 ion-row {
   ion-col {
     padding-top: 0;

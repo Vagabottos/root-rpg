@@ -406,8 +406,9 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       CharacterCreateStep.Items
     ];
 
-    if (validToolboxSteps.includes(this.currentStep) && items.length === 0 && moves.includes('Toolbox')) {
-      this.createItem(null, this.contentService.getMove('Toolbox').customItemData);
+    if (validToolboxSteps.includes(this.currentStep) && items.length === 0 && moves.some(x => this.contentService.getMove(x).customItemData)) {
+      const move = moves.find(x => this.contentService.getMove(x).customItemData);
+      this.createItem(null, this.contentService.getMove(move).customItemData);
     }
 
     this.loadLinkedCampaign();
@@ -706,6 +707,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   async showItemEditPopover(item: IItem, event) {
     const popover = await this.popover.create({
       component: EditDeletePopoverComponent,
+      componentProps: { showDelete: item.tagSet === 'default' },
       event
     });
 

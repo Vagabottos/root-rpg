@@ -10,6 +10,10 @@ import { UserAPIService } from './services/user.api.service';
 })
 export class AppComponent {
 
+  public get canSeeReference() {
+    return !window.location.href.includes('create');
+  }
+
   constructor(
     private modal: ModalController,
     public user: UserAPIService

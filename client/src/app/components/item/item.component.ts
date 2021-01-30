@@ -12,9 +12,20 @@ export class ItemComponent implements OnInit {
 
   @Input() item: IItem;
   @Output() updateWear: EventEmitter<number> = new EventEmitter();
+  @Output() updateDepletion: EventEmitter<number> = new EventEmitter();
 
   public get boxSlots(): boolean[] {
-    return Array(this.item.wear).fill(false);
+    let wear = this.item.wear;
+    if (this.item.tags?.includes('Rickety')) { wear -= 1; }
+
+    return Array(wear).fill(false);
+  }
+
+  public get depletionSlots(): boolean[] {
+    let depletion = 0;
+    if (this.item.tags?.includes('Stocked')) { depletion = 2; }
+
+    return Array(depletion).fill(false);
   }
 
   constructor(
@@ -33,6 +44,17 @@ export class ItemComponent implements OnInit {
 
     this.item.wearUsed = wear;
     this.updateWear.emit(this.item.wearUsed);
+  }
+
+  changeDepletion(depletion: number): void {
+    if (this.item.depletionUsed === depletion) {
+      this.item.depletionUsed = 0;
+      this.updateDepletion.emit(this.item.depletionUsed);
+      return;
+    }
+
+    this.item.depletionUsed = depletion;
+    this.updateDepletion.emit(this.item.depletionUsed);
   }
 
 }

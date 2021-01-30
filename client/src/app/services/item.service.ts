@@ -13,6 +13,8 @@ export class ItemService {
   ) { }
 
   public value(item: IItem): number {
+    if (item.tagSet === 'ship') {return 0;}
+
     return item.wear
          + (item.extraValue ?? 0)
          + (item.ranges ? Math.max(item.ranges.length - 1, 0) : 0)
@@ -21,6 +23,8 @@ export class ItemService {
   }
 
   public load(item: IItem): number {
+    if (item.tagSet === 'ship') {return 0;}
+
     return (item.extraLoad || 0)
          + ((item.tags || []).reduce((prev, cur) => prev + (this.contentService.getTag(cur)?.loadMod || 0), 0));
   }

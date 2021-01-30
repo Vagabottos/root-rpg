@@ -43,6 +43,7 @@
       <ion-item *ngFor="let item of character.items; let i = index">
         <app-item [item]="item"
                   (updateWear)="save()"
+                  (updateDepletion)="save()"
                   appLongPress="500"
                   (release)="itemOptions(character, item, i)"></app-item>
       </ion-item>
@@ -57,7 +58,8 @@
           <ion-row>
             <ion-col>
               <app-item [item]="item"
-                        (updateWear)="save()"></app-item>
+                        (updateWear)="save()"
+                        (updateDepletion)="save()"></app-item>
             </ion-col>
 
             <ion-col class="actions">

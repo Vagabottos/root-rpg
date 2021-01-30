@@ -400,7 +400,7 @@ Sterling Reputation:
 
 Subduing Strikes:
   archetype: The Adventurer
-  text: When you **aim to subdue an enemy quickly and nonlethally**, you can **engage sword to sword** with Cunning instead of Might. You cannot choose to inflict serious harm if you do.
+  text: When you **aim to subdue an enemy quickly and nonlethally**, you can **engage in melee** with Cunning instead of Might. You cannot choose to inflict serious harm if you do.
 
 Talon on the Pulse:
   archetype: The Adventurer
@@ -581,9 +581,38 @@ Kiss the Ring:
   text: When you **exit a meeting with someone rich and powerful**, you can say you pocketed a few of their things and roll with Cunning. On a hit, the GM will tell you what valuable or interesting item you snagged. On a 7-9, what you took will be missed, but not until you are long gone; mark notoriety with that faction. On a miss, they're going to notice any second now; mark 2-notoriety with that faction and either run or come up with a good excuse, friend.
 
 # Pirate
-Small Ships:
+Small Ship:
   archetype: The Pirate
-  text: By default, your ship has a wear track with four boxes. Mark wear when it suffers serious damage or when a move calls for it. When your ship's wear track is filled you are dead in the water and must be repaired at port. If you must mark wear on your ship but its whole track is full, your ship is lost. If you ever lose the ship the GM may present you with an opportunity to get a new one.
+  text: >
+    By default, your ship has a wear track with four boxes. Mark wear when it suffers serious damage or when a move calls for it. When your ship's wear track is filled you are dead in the water and must be repaired at port. If you must mark wear on your ship but its whole track is full, your ship is lost. If you ever lose the ship the GM may present you with an opportunity to get a new one.
+
+    Blessings (choose 2):
+
+
+    * stocked: your ship gains a 2-box depletion track of cargo and gear
+
+    * nimble: take +1 ongoing to tricking NPCs when relying on your ship's speed
+
+    * renowned: take +1 to reputation with a faction (your choice) while on your ship
+
+    * swift: once per session, mark wear to outrun any pursuer
+
+
+    Flaws (choose 2):
+
+
+    * dreaded: take +1 to reputation with a faction (your choice) while on your ship
+
+    * rickety: your ship has one fewer box of wear
+
+    * clumsy: take -1 ongoing to trusting fate when piloting your ship carefully
+
+    * stolen: someone dangerous is pursuing you to recover their property
+
+  customItemData:
+    name: Small Ship
+    tagSet: ship
+    wear: 4
 
 Sail On:
   archetype: The Pirate
@@ -595,7 +624,7 @@ Swashbuckler:
 
 X Marks the Spot:
   archetype: The Pirate
-  text: When you try to recall the location of buried treasure in your clearing, roll with Luck. On a hit, you remember one such cache. On a 7-9, the location is accessible or private, your choice. On a 10+, both. On a miss, you remember the location, but it is guarded, difficult to reach, and very public
+  text: When you try to recall the location of buried treasure in your clearing, roll with Luck. On a hit, you remember one such cache. On a 7-9, the location is accessible or private, your choice. On a 10+, both. On a miss, you remember the location, but it is guarded, difficult to reach, and very public.
 
 Plenty of Rum:
   archetype: The Pirate
