@@ -1,0 +1,117 @@
+
+archetype: The Raider
+
+description: You are a bandit, a thief-by-force, dangerous and threatening but without loyalty to any commander or master.
+
+species: []
+
+adjectives:
+  - well-groomed
+  - huge
+  - scarred
+  - lean
+
+items:
+  - sigil pendant
+  - dark cloak
+  - face paint
+  - sentimental talisman
+
+demeanor:
+  - intimidating
+  - jovial
+  - curt
+  - curious
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I am feared by most denizens
+      - text: I wish to see all the Woodlands have to offer
+      - text: I refuse to serve someone unworthy
+      - text: I seek to overthrow all oppressors
+      - text: I am running from powerful enemies
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My mentor
+      - text: My ward
+      - text: My loved one
+      - text: My sibling
+      - text: My best friend
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Loyalty
+  - name: Chaos
+  - name: Crime
+  - name: Greed
+
+natures:
+  - name: Bandit
+  - name: Hero
+
+connections:
+  - name: Protector
+    text: The first time I saw _ hey piqued my curiosity; I went out of my way to protect them from the ire of my own band. What about them sparked my loyalty?
+
+  - name: Watcher
+    text: _ bested me in combat when I got out of hand. How? Why did I thank them for it?
+
+stats:
+  charm: 0
+  cunning: -1
+  finesse: 1
+  luck: 0
+  might: 2
+
+startingValue: 10
+
+chooseFeats: 0
+feats:
+  - name: Acrobatics
+  - name: Blindside
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Confuse Senses
+  - name: Storm a Group
+  - name: Vicious Strike
+
+defaultMoves: []
+moves:
+  - name: Eye For Battle
+  - name: Ironhide
+  - name: Loot and Plunder
+  - name: Merciful Might
+  - name: Plan of Attack
+  - name: Fearsome Visage

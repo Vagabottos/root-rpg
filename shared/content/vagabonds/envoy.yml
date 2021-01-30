@@ -1,0 +1,118 @@
+
+archetype: The Envoy
+
+description: You are a professional representative, capable of speaking for other powers while maintaining plausible deniability, fashioned as the ultimate neutral agent and diplomatic mercenary.
+
+species: []
+
+adjectives:
+  - bucolic
+  - decadent
+  - elegant
+  - traveled
+
+items:
+  - fancy boots
+  - token of esteem
+  - rugged scarf
+  - pipe and leaf
+
+demeanor:
+  - commanding
+  - kind
+  - professional
+  - sleazy
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I am called to serve a noble cause
+      - text: I want to make a name for myself with every faction
+      - text: I hold no loyalty save to the highest bidder
+      - text: I have many conflicting loyalties
+      - text: I seek the truth behind an ally's disappearance
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My commander
+      - text: My family
+      - text: My loved one
+      - text: My master
+      - text: My mentor
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Loyalty
+  - name: Greed
+  - name: Ambition
+  - name: Clean paws
+
+natures:
+  - name: Agent
+  - name: Sworn
+
+connections:
+  - name: Watcher
+    text: _ reminds me of a powerful political figure of the Woodland. Who do they resemble? Why is the resemblance so striking to me?
+
+  - name: Peer
+    text: _ and I negotiated a truce between two warring parties within a clearing. Why were they so important to closing the deal?
+
+stats:
+  charm: 0
+  cunning: 1
+  finesse: 0
+  luck: 1
+  might: 0
+
+startingValue: 10
+
+chooseFeats: 0
+feats:
+  - name: Hide
+  - name: Sneak
+  - name: Pick lock
+
+numSkills: 1
+skills:
+  - name: Parry
+  - name: Quick Shot
+  - name: Confuse Senses
+  - name: Improvise
+
+defaultMoves: [Diplomat]
+moves:
+  - name: Diplomat
+  - name: Fancy Meeting You Here
+  - name: Turncoat
+  - name: A Silvered Tongue
+  - name: Trust in Me
+  - name: Kiss the Ring

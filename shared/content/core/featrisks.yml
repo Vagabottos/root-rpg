@@ -1,6 +1,6 @@
 
 Break Something:
-  text: Break something you’re carrying or in the environment. Possibly mark wear.
+  text: Break something you're carrying or in the environment. Possibly mark wear.
 
 Detection:
   text: Get noticed by an onlooker. Their attention creates trouble for you.
@@ -18,7 +18,7 @@ Plunge into Danger:
   text: Seize the chance to act and run into a more dangerous situation.
 
 Weak Result:
-  text: Get a hard choice about exactly what you want, or just straight up don’t quite get everything you want.
+  text: Get a hard choice about exactly what you want, or just straight up don't quite get everything you want.
 
 Take Too Long:
   text: Take too much time, leading the situation to change around you in some meaningful way.

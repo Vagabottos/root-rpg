@@ -1,0 +1,118 @@
+
+archetype: The Pirate
+
+description: You are a rogue boat captain, at home on the waters of the Woodland's rivers, lakes, or bays, free from the sway of land-bound life and more than willing to do whatever it takes to maintain that freedom.
+
+species: []
+
+adjectives:
+  - branded
+  - fancy
+  - grizzled
+  - attractive
+
+items:
+  - flashy hat
+  - lucky trinket
+  - flask of rum
+  - lodestone and compass
+
+demeanor:
+  - honest
+  - flamboyant
+  - stoic
+  - strange
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I believe I'm haunted by a powerful curse
+      - text: I hear the call of gold and silver
+      - text: I am despised by other denizens
+      - text: I am fleeing the consequences of my piracy
+      - text: I wish to build a network of fellow pirates and freebooters
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: What happened to your captain?
+    type: answers
+    answers:
+      - text: Disappearance
+      - text: Died in a blaze of glory
+      - text: Mutiny
+      - text: Imprisonment
+      - text: Retirement
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Freedom
+  - name: Revenge
+  - name: Crime
+  - name: Infamy
+
+natures:
+  - name: Rogue
+  - name: Merchant
+
+connections:
+  - name: Partner
+    text: _ and I seized valuable cargo from a faction together. Who did we rob? Why?
+
+  - name: Family
+    text: _ had a good relationship with my former captain. How have they supported me in taking on the role as my own?
+
+stats:
+  charm: 1
+  cunning: 0
+  finesse: 0
+  luck: 1
+  might: 0
+
+startingValue: 10
+
+chooseFeats: 0
+feats:
+  - name: Acrobatics
+  - name: Blindside
+  - name: Pick lock
+
+numSkills: 1
+skills:
+  - name: Parry
+  - name: Trick Shot
+  - name: Storm a Group
+  - name: Vicious Strike
+
+defaultMoves: [Small Ship, Sail On]
+moves:
+  - name: Small Ship
+  - name: Sail On
+  - name: Swashbuckler
+  - name: X Marks the Spot
+  - name: Plenty of Rum
+  - name: Sea Legs

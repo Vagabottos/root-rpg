@@ -18,7 +18,7 @@ Historian:
   text: Clear your exhaustion track when you refuse to allow someone to cover up or obscure the truth.
 
 Defender:
-  text: Clear your exhaustion track when you put yourself in harm's way to defend someone against injustice or dire threat. 
+  text: Clear your exhaustion track when you put yourself in harm's way to defend someone against injustice or dire threat.
 
 Punisher:
   text: Clear your exhaustion track when you tell a powerful or dangerous villain to their face that you will punish them.
@@ -57,7 +57,7 @@ Extrovert:
   text: Clear your exhaustion track when you share a moment of real warmth, friendship, or enjoyment with someone.
 
 Peacemaker:
-  text: Clear your exhaustion track when you resolve a dangerous conflict nonviolently. 
+  text: Clear your exhaustion track when you resolve a dangerous conflict nonviolently.
 
 Dutiful:
   text: Clear your exhaustion track when you take on a dangerous or difficult task on behalf of another.
@@ -70,3 +70,21 @@ Survivor:
 
 Pilgrim:
   text: Clear your exhaustion track when you find an expert in a skill you don't possess.
+
+Agent:
+  text: Clear your exhaustion track when you convince someone influential to allow you to represent their interests.
+
+Sworn:
+  text: Clear your exhaustion track when you openly commit to resolve a dangerous conflict on behalf of someone vulnerable.
+
+Rogue:
+  text: Clear your exhaustion track when you doublecross, triplecross, or otherwise betray a powerful or dangerous NPC.
+
+Merchant:
+  text: Clear your exhaustion track when you carry something valuable past danger, difficulty, or blockade.
+
+Bandit:
+  text: Clear your exhaustion track when you try to use the threat of force to secure valuables from formidable opposition.
+
+Hero:
+  text: Clear your exhaustion track when you outright attack a dangerous, oppressive, or villainous NPC.
