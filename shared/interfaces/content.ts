@@ -33,7 +33,7 @@ export interface IContentMove {
   customItemData?: {
     name: string;
     tagSet: string;
-    extraLoad: number;
+    extraLoad?: number;
   }
 
   // reputation & travel moves

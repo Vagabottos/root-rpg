@@ -53,7 +53,8 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     harm: {
       depletion: 0,
       exhaustion: 0,
-      injury: 0
+      injury: 0,
+      diplomat: 0
     },
     harmBoost: {
       depletion: 0,
