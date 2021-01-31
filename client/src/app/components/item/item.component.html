@@ -15,7 +15,7 @@
                 [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
 
     </span>
-    <span class="margin-left-1 margin-right-1 label">Depletion</span>
+    <span class="margin-left-1 margin-right-1 label" *ngIf="depletionSlots.length > 0">Depletion</span>
     <span>
       <ion-icon *ngFor="let slot of depletionSlots; let i = index"
                 class="pointer"
