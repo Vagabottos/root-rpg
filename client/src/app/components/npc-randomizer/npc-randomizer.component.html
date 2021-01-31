@@ -17,79 +17,81 @@
 
 <ion-content padding>
   <ion-row>
-    <ion-col size-xs="12" size-md="6" size-lg="4">
-      <ion-list>
-        <ion-item>
-          <ion-label position="stacked"># NPCs</ion-label>
-          <ion-range min="1" [max]="maxCreatableNPCS" pin="true" ticks="true" snaps="true" [(ngModel)]="generateNPCCount">
-            <ion-label slot="start">{{ maxCreatableNPCS === 0 ? 0 : 1 }}</ion-label>
-            <ion-label slot="end">{{ maxCreatableNPCS }}</ion-label>
-          </ion-range>
-        </ion-item>
+    <ion-col size-xs="12" size-md="6" size-lg="4" class="small-scroll">
+      <div class="can-scroll">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked"># NPCs</ion-label>
+            <ion-range min="1" [max]="maxCreatableNPCS" pin="true" ticks="true" snaps="true" [(ngModel)]="generateNPCCount">
+              <ion-label slot="start">{{ maxCreatableNPCS === 0 ? 0 : 1 }}</ion-label>
+              <ion-label slot="end">{{ maxCreatableNPCS }}</ion-label>
+            </ion-range>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Injury Range</ion-label>
-          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateInjury">
-            <ion-label slot="start">1</ion-label>
-            <ion-label slot="end">5</ion-label>
-          </ion-range>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Injury Range</ion-label>
+            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateInjury">
+              <ion-label slot="start">1</ion-label>
+              <ion-label slot="end">5</ion-label>
+            </ion-range>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Exhaustion Range</ion-label>
-          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateExhaustion">
-            <ion-label slot="start">1</ion-label>
-            <ion-label slot="end">5</ion-label>
-          </ion-range>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Exhaustion Range</ion-label>
+            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateExhaustion">
+              <ion-label slot="start">1</ion-label>
+              <ion-label slot="end">5</ion-label>
+            </ion-range>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Depletion Range</ion-label>
-          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateDepletion">
-            <ion-label slot="start">1</ion-label>
-            <ion-label slot="end">5</ion-label>
-          </ion-range>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Depletion Range</ion-label>
+            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateDepletion">
+              <ion-label slot="start">1</ion-label>
+              <ion-label slot="end">5</ion-label>
+            </ion-range>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Morale Range</ion-label>
-          <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateMorale">
-            <ion-label slot="start">1</ion-label>
-            <ion-label slot="end">5</ion-label>
-          </ion-range>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Morale Range</ion-label>
+            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateMorale">
+              <ion-label slot="start">1</ion-label>
+              <ion-label slot="end">5</ion-label>
+            </ion-range>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Can Generate Melee</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="generateWeapons"></ion-checkbox>
-        </ion-item>
+          <ion-item>
+            <ion-label>Can Generate Melee</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="generateWeapons"></ion-checkbox>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Can Generate Ranged</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="generateBows"></ion-checkbox>
-        </ion-item>
+          <ion-item>
+            <ion-label>Can Generate Ranged</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="generateBows"></ion-checkbox>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Can Generate Armor</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="generateArmor"></ion-checkbox>
-        </ion-item>
+          <ion-item>
+            <ion-label>Can Generate Armor</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="generateArmor"></ion-checkbox>
+          </ion-item>
 
-        <ion-item>
-          <ion-label>Can Generate Shields</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="generateShields"></ion-checkbox>
-        </ion-item>
+          <ion-item>
+            <ion-label>Can Generate Shields</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="generateShields"></ion-checkbox>
+          </ion-item>
 
-        <ion-item class="margin-top-2 margin-bottom-2" lines="none">
-          <ion-label class="ion-text-wrap">
-            <em>Please note, at this time you can only have 15 NPCs per clearing + 15 unaffiliated NPCs.</em>
-          </ion-label>
-        </ion-item>
+          <ion-item class="margin-top-2 margin-bottom-2" lines="none">
+            <ion-label class="ion-text-wrap">
+              <em>Please note, at this time you can only have 15 NPCs per clearing + 15 unaffiliated NPCs.</em>
+            </ion-label>
+          </ion-item>
 
-        <ion-item color="tertiary" class="pointer" (click)="createNPCs()" [disabled]="!canCreateNPCs">
-          <ion-icon slot="start" name="add"></ion-icon>
-          Generate NPCs
-        </ion-item>
-      </ion-list>
+          <ion-item color="tertiary" class="pointer" (click)="createNPCs()" [disabled]="!canCreateNPCs">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Generate NPCs
+          </ion-item>
+        </ion-list>
+      </div>
     </ion-col>
 
     <ion-col class="ion-hide-sm-down small-scroll">

@@ -140,7 +140,7 @@
         </ion-button>
       </ion-item>
 
-      <ng-container *ngFor="let section of customItemData.sections">
+      <ng-container *ngFor="let section of customItemData?.sections">
         <ion-list-header>{{ section.name }} (Choose {{ section.numChoices }})</ion-list-header>
         <ion-item *ngFor="let tag of section.choices" [disabled]="atTagLimit(section.choices, section.numChoices) && !itemForm.get('itemTags').value.includes(tag)">
           <ion-label class="ion-text-wrap">
