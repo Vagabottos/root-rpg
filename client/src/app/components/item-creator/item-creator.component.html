@@ -148,7 +148,7 @@
             <p>{{ contentService.getTag(tag)?.text }}</p>
           </ion-label>
 
-          <ion-checkbox slot="end" (ionChange)="addOrRemoveTag(tag, section.choices, section.numChoices)"></ion-checkbox>
+          <ion-checkbox slot="end" (ionChange)="addOrRemoveTag(tag)"></ion-checkbox>
         </ion-item>
       </ng-container>
 
