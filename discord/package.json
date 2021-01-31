@@ -1,0 +1,46 @@
+{
+  "name": "discordbotexample",
+  "version": "1.0.0",
+  "description": "A sample bot framework for discord using DI.",
+  "main": "index.js",
+  "engines": {
+    "node": "10.11.0"
+  },
+  "scripts": {
+    "start": "ts-node src/index",
+    "start:dev": "nodemon --exec \"ts-node \"-- \"src/index.ts\"",
+    "lint": "eslint -c .eslintrc.json --ignore-pattern *.test.ts --ext .ts src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seiyria/DiscordBotExample.git"
+  },
+  "author": "Kyle Kemp <kyle@seiyria.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seiyria/DiscordBotExample/issues"
+  },
+  "homepage": "https://github.com/seiyria/DiscordBotExample#readme",
+  "dependencies": {
+    "discord.js": "11.5.1",
+    "dotenv": "8.0.0",
+    "fuzzyset-obj": "^1.0.0",
+    "lodash": "^4.17.20",
+    "ts-node": "8.3.0",
+    "typescript": "3.5.2",
+    "typescript-ioc": "1.2.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/eslint-plugin-tslint": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "ava": "2.1.0",
+    "ava-ts": "0.25.2",
+    "eslint": "^7.19.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^31.5.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "nodemon": "2.0.4",
+    "tslint": "5.18.0"
+  }
+}
