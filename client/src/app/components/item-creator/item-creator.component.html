@@ -4,7 +4,7 @@
       Item Creator
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismiss()" [disabled]="tagSet !== 'default'">
         Close
       </ion-button>
     </ion-buttons>
@@ -52,7 +52,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-list-header>
+      <ion-list-header *ngIf="canSee('tags')">
         <ion-label>
           Item Tags
         </ion-label>
@@ -62,11 +62,11 @@
         </ion-button>
       </ion-list-header>
 
-      <ion-item class="none" *ngIf="itemForm.get('itemTags').value.length === 0">
+      <ion-item class="none" *ngIf="canSee('tags') && itemForm.get('itemTags').value.length === 0">
         None
       </ion-item>
 
-      <ion-item *ngFor="let tag of itemForm.get('itemTags').value">
+      <ion-item *ngFor="let tag of itemForm.get('itemTags').value" [class.hidden]="!canSee('tags')">
         {{ tag }}
 
         <ion-button slot="end" color="danger" (click)="removeItemTag(tag)">
@@ -139,6 +139,18 @@
           <ion-icon slot="icon-only" name="remove"></ion-icon>
         </ion-button>
       </ion-item>
+
+      <ng-container *ngFor="let section of customItemData.sections">
+        <ion-list-header>{{ section.name }} (Choose {{ section.numChoices }})</ion-list-header>
+        <ion-item *ngFor="let tag of section.choices" [disabled]="atTagLimit(section.choices, section.numChoices) && !itemForm.get('itemTags').value.includes(tag)">
+          <ion-label class="ion-text-wrap">
+            <h2>{{ tag }}</h2>
+            <p>{{ contentService.getTag(tag)?.text }}</p>
+          </ion-label>
+
+          <ion-checkbox slot="end" (ionChange)="addOrRemoveTag(tag, section.choices, section.numChoices)"></ion-checkbox>
+        </ion-item>
+      </ng-container>
 
       <ion-item class="calculated" *ngIf="canSee('footer')">
         <p>Value: {{ itemService.value(this.formItem) }} | Load: {{ itemService.load(this.formItem) }}</p>

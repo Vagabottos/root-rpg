@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { cloneDeep, random, sample, sampleSize } from 'lodash';
-import { ItemRange } from '../../../../shared/interfaces';
 
-import { IItem } from '../../interfaces';
+import { IItem, IContentMoveCustomItem, ItemRange } from '../../interfaces';
 import { ItemCreatorComponent } from '../components/item-creator/item-creator.component';
 import { ContentService } from './content.service';
 
@@ -18,10 +17,11 @@ export class ItemCreatorService {
     private content: ContentService
   ) { }
 
-  async createItem(item?: IItem, itemData?: any) {
+  async createItem(item?: IItem, itemData?: IContentMoveCustomItem) {
     const modal = await this.modal.create({
       component: ItemCreatorComponent,
-      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData) }
+      componentProps: { item: cloneDeep(item), customItemData: cloneDeep(itemData) },
+      backdropDismiss: itemData?.tagSet === 'default'
     });
 
     return modal;

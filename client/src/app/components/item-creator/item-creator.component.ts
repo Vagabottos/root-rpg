@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, ModalController } from '@ionic/angular';
-import { IItem } from '../../../interfaces';
+
+import { intersection } from 'lodash';
+
+import { IItem, IContentMoveCustomItem } from '../../../interfaces';
 import { ContentService } from '../../services/content.service';
 import { ItemService } from '../../services/item.service';
 
@@ -9,7 +12,7 @@ const SectionVisibility = {
   name:       { all: true },
   load:       { default: true, toolbox: true },
   wear:       { default: true },
-  tags:       { all: true },
+  tags:       { default: true },
   weaponTags: { default: true },
   ranges:     { default: true },
   footer:     { default: true, toolbox: true },
@@ -24,7 +27,7 @@ export class ItemCreatorComponent implements OnInit {
 
   @Input() item: IItem;
   @Input() tagSet = 'default';
-  @Input() customItemData: any;
+  @Input() customItemData: IContentMoveCustomItem;
   @Input() postProcess: boolean;
 
   public itemForm = new FormGroup({
@@ -96,6 +99,19 @@ export class ItemCreatorComponent implements OnInit {
     }
 
     this.modal.dismiss(item);
+  }
+
+  addOrRemoveTag(tag: string) {
+    const control = this.itemForm.get('itemTags');
+    if (control.value.includes(tag)) {
+      control.setValue(control.value.filter(x => x !== tag));
+    } else {
+      control.setValue([tag, ...control.value]);
+    }
+  }
+
+  atTagLimit(choices: string[], numChoices: number): boolean {
+    return intersection(this.itemForm.get('itemTags').value, choices).length >= numChoices;
   }
 
   canSee(section: string): boolean {

@@ -20,6 +20,14 @@ export interface IContentFeat {
   text: string;
 }
 
+export interface IContentMoveCustomItem {
+  name: string;
+  tagSet: string;
+  extraLoad?: number;
+  sections?: Array<{ name: string, numChoices: number, choices: string[] }>;
+  wear?: number;
+}
+
 export interface IContentMove {
   text: string;
 
@@ -30,11 +38,7 @@ export interface IContentMove {
   addHarm?: Record<string, number>;
   addSkillChoose?: number;
   addSkill?: string[];
-  customItemData?: {
-    name: string;
-    tagSet: string;
-    extraLoad?: number;
-  }
+  customItemData?: IContentMoveCustomItem;
 
   // reputation & travel moves
   type?: string;
