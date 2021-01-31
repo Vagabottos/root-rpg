@@ -1,6 +1,7 @@
 {
   "packages": [
     "client",
+    "discord",
     "server"
   ],
   "version": "0.0.0"
