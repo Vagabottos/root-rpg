@@ -6,7 +6,7 @@ import { isNumber } from 'lodash';
 })
 export class NumberWithPlus implements PipeTransform {
 
-  transform(value: number, ...args: any[]): any {
+  transform(value: number|string, ...args: any[]): any {
     if (!isNumber(value)) { return value; }
     if (value < 0) { return value; }
     return `+${value}`;
