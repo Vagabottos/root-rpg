@@ -70,12 +70,16 @@ export class CharacterViewInfoPage implements OnInit {
     return character.reputation[faction]?.prestige ?? 0;
   }
 
-  getLowerFactionTotal(character: ICharacter, faction: string): number {
-    return Math.max(-3, (character.reputation[faction]?.total || 0) - 1);
+  getLowerFactionTotal(character: ICharacter, faction: string): number|string {
+    const newValue = (character.reputation[faction]?.total || 0) - 1;
+    if (newValue <= -4) { return '---'; }
+    return Math.max(-3, newValue);
   }
 
-  getHigherFactionTotal(character: ICharacter, faction: string): number {
-    return Math.min(3, (character.reputation[faction]?.total || 0) + 1);
+  getHigherFactionTotal(character: ICharacter, faction: string): number|string {
+    const newValue = (character.reputation[faction]?.total || 0) + 1;
+    if (newValue >= 4) { return '---'; }
+    return Math.min(3, newValue);
   }
 
   getNotorietyBoxes(character: ICharacter, faction: string): number[] {
