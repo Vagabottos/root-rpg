@@ -11,6 +11,7 @@ import { ItemService } from '../../services/item.service';
 export class ItemComponent implements OnInit {
 
   @Input() item: IItem;
+  @Input() showFooter = true;
   @Output() updateWear: EventEmitter<number> = new EventEmitter();
   @Output() updateDepletion: EventEmitter<number> = new EventEmitter();
 

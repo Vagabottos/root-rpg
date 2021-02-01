@@ -8,6 +8,7 @@
 <ion-row class="header-row small-row">
   <ion-col class="box-row">
     <span class="margin-right-1 label">Wear</span>
+    <span *ngIf="boxSlots.length === 0"><em>(none)</em></span>
     <span>
       <ion-icon *ngFor="let slot of boxSlots; let i = index"
                 class="pointer"
@@ -25,7 +26,7 @@
   </ion-col>
 </ion-row>
 
-<ion-row class="small-row" *ngIf="item.tagSet !== 'ship'">
+<ion-row class="small-row" *ngIf="item.tagSet !== 'ship' && showFooter">
   <ion-col>
     <span class="label">Value</span>: {{ itemService.value(item) }}
   </ion-col>
