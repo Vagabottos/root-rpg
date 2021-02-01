@@ -299,7 +299,7 @@ ion-modal.transparent {
   }
 }
 
-.modal-wrapper {
+ion-model:not(.transparent) .modal-wrapper {
   --border-width: 1px;
   --border-style: solid;
   --border-color: #ccc;
