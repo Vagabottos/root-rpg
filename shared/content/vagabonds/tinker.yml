@@ -108,6 +108,7 @@ skills:
   - name: Harry
   - name: Trick Shot
 
+numMoves: 3
 defaultMoves: [Toolbox, Repair]
 moves:
   - name: Toolbox

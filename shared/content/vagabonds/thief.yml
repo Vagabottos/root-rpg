@@ -105,6 +105,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Breaking and Entering

@@ -294,8 +294,9 @@ export class AdvancementComponent implements OnInit {
       });
     }
 
-    if (moveData.customItemData) {
-      const modal = await this.itemCreator.createItem(null, moveData.customItemData);
+    if (moveData.customItemTag) {
+      const customItemData = this.content.getCustomItemData(moveData.customItemTag);
+      const modal = await this.itemCreator.createItem(null, customItemData);
 
       modal.onDidDismiss().then((res) => {
         const resItem = res.data;

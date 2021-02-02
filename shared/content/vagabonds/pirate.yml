@@ -108,6 +108,7 @@ skills:
   - name: Storm a Group
   - name: Vicious Strike
 
+numMoves: 4
 defaultMoves: [Small Ship, Sail On]
 moves:
   - name: Small Ship

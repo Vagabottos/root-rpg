@@ -330,17 +330,7 @@ Toolbox:
 
     The item will be created when you advance beyond move selection.
 
-  customItemData:
-    name: Trusty Toolkit
-    extraLoad: 1
-    tagSet: toolbox
-    sections:
-      - name: Features
-        numChoices: 2
-        choices: [Assorted Scrap Wood, Assorted Gears and Springs, Esoteric Hand Tools, Manuals, Assorted Medicines, Portable Alchemy Kit, Sewing Kit, Cookware, Minor Explosives]
-      - name: Drawbacks
-        numChoices: 1
-        choices: [Heavy, Bulky and Obvious, Stolen, Fragile]
+  customItemTag: toolkit
 
 Repair:
   archetype: The Tinker
@@ -617,17 +607,7 @@ Small Ship:
 
     * stolen: someone dangerous is pursuing you to recover their property
 
-  customItemData:
-    name: Small Ship
-    tagSet: ship
-    wear: 4
-    sections:
-      - name: Blessings
-        numChoices: 2
-        choices: [Stocked, Nimble, Renowned, Swift]
-      - name: Flaws
-        numChoices: 2
-        choices: [Dreaded, Rickety, Clumsy, Stolen]
+  customItemTag: ship
 
 Sail On:
   archetype: The Pirate

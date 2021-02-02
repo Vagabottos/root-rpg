@@ -108,6 +108,7 @@ skills:
   - name: Quick Shot
   - name: Vicious Strike
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Arsonist

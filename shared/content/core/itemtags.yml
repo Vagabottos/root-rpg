@@ -318,7 +318,7 @@ Bulky and Obvious:
   itemType:
     - Toolbox
 
-Stolen:
+Stolen Toolkit:
   tagSet: toolbox
   text: ''
   itemType:
@@ -373,7 +373,7 @@ Clumsy:
   itemType:
     - Ship
 
-Stolen:
+Stolen Ship:
   tagSet: ship
   text: Someone dangerous is pursuing you to recover their property.
   itemType:

@@ -108,6 +108,7 @@ skills:
   - name: Harry
   - name: Vicious Strike
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Silent Paws

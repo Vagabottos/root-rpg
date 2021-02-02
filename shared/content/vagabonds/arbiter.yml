@@ -105,6 +105,7 @@ skills:
   - name: Storm a Group
   - name: Disarm
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Brute

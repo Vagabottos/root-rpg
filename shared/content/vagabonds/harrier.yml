@@ -107,6 +107,7 @@ skills:
   - name: Harry
   - name: Disarm
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Cross Country

@@ -1,0 +1,24 @@
+
+toolkit:
+  name: Trusty Toolkit
+  extraLoad: 1
+  tagSet: toolbox
+  sections:
+    - name: Features
+      numChoices: 2
+      choices: [Assorted Scrap Wood, Assorted Gears and Springs, Esoteric Hand Tools, Manuals, Assorted Medicines, Portable Alchemy Kit, Sewing Kit, Cookware, Minor Explosives]
+    - name: Drawbacks
+      numChoices: 1
+      choices: [Heavy, Bulky and Obvious, Stolen Toolkit, Fragile]
+
+ship:
+  name: Small Ship
+  tagSet: ship
+  wear: 4
+  sections:
+    - name: Blessings
+      numChoices: 2
+      choices: [Stocked, Nimble, Renowned, Swift]
+    - name: Flaws
+      numChoices: 2
+      choices: [Dreaded, Rickety, Clumsy, Stolen Ship]

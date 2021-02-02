@@ -38,7 +38,7 @@ export interface IContentMove {
   addHarm?: Record<string, number>;
   addSkillChoose?: number;
   addSkill?: string[];
-  customItemData?: IContentMoveCustomItem;
+  customItemTag?: string;
 
   // reputation & travel moves
   type?: string;
@@ -98,6 +98,7 @@ export interface IContentMapLayout {
 
 export interface IContentCore {
   clearinggen: IContentClearingGen;
+  customitemdata: Record<string, IContentMoveCustomItem>;
   maplayouts: Record<string, IContentMapLayout>;
   connections: Record<string, IContentConnection>;
   drives: Record<string, IContentDrive>;
@@ -180,6 +181,7 @@ export interface IContentVagabond {
   feats: IContentVagabondFeat[];
   numSkills: number;
   skills: IContentVagabondSkill[];
+  numMoves: number;
   defaultMoves: string[];
   moves: IContentVagabondMove[];
 }

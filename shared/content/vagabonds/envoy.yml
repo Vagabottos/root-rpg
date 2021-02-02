@@ -108,6 +108,7 @@ skills:
   - name: Confuse Senses
   - name: Improvise
 
+numMoves: 3
 defaultMoves: [Diplomat]
 moves:
   - name: Diplomat

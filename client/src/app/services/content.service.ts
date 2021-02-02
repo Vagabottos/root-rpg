@@ -5,7 +5,7 @@ import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
   IContentSkill, IContentVagabond, IContent, IContentMapLayout,
-  IContentFeatRisk, IContentItemPreset, IItem, content
+  IContentFeatRisk, IContentItemPreset, IItem, IContentMoveCustomItem, content
 } from '../../interfaces';
 
 @Injectable({
@@ -183,5 +183,9 @@ export class ContentService {
 
   getPremadeItems(): (IItem & { type: string })[] {
     return this.content.core.premadeitems;
+  }
+
+  getCustomItemData(tag: string): IContentMoveCustomItem {
+    return this.content.core.customitemdata[tag];
   }
 }

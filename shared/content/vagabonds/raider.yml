@@ -107,6 +107,7 @@ skills:
   - name: Storm a Group
   - name: Vicious Strike
 
+numMoves: 3
 defaultMoves: []
 moves:
   - name: Eye For Battle

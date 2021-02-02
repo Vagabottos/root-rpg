@@ -108,6 +108,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
+numMoves: 3
 defaultMoves: [The Worth of a Book]
 moves:
   - name: The Worth of a Book

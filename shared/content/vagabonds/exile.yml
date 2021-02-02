@@ -112,6 +112,7 @@ skills:
   - name: Storm a Group
   - name: Vicious Strike
 
+numMoves: 3
 defaultMoves: [Known by All]
 moves:
   - name: Known by All

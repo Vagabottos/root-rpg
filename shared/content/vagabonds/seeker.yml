@@ -108,6 +108,7 @@ skills:
   - name: Parry
   - name: Trick Shot
 
+numMoves: 3
 defaultMoves: [Word on the Street]
 moves:
   - name: Word on the Street

@@ -190,7 +190,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       isValid: () => this.drivesForm.valid && this.drivesForm.get('drives').value.length >= 2 },
     { name: 'Moves',
       step: CharacterCreateStep.Moves,
-      isValid: () => this.movesForm.valid && this.movesForm.get('moves').value.length >= 3 },
+      isValid: () => this.movesForm.valid && this.movesForm.get('moves').value.length >= this.chosenVagabond.numMoves },
     { name: 'Roguish Feats',
       step: CharacterCreateStep.Feats,
       isValid: () => [
@@ -406,9 +406,10 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       CharacterCreateStep.Items
     ];
 
-    if (validToolboxSteps.includes(this.currentStep) && items.length === 0 && moves.some(x => this.contentService.getMove(x).customItemData)) {
-      const move = moves.find(x => this.contentService.getMove(x).customItemData);
-      this.createItem(null, this.contentService.getMove(move).customItemData);
+    if (validToolboxSteps.includes(this.currentStep) && items.length === 0 && moves.some(x => this.contentService.getMove(x).customItemTag)) {
+      const move = moves.find(x => this.contentService.getMove(x).customItemTag);
+      const customItemData = this.contentService.getCustomItemData(this.contentService.getMove(move).customItemTag);
+      this.createItem(null, customItemData);
     }
 
     this.loadLinkedCampaign();
@@ -543,7 +544,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       return;
     }
 
-    if (moves.length >= 3) { return; }
+    if (moves.length >= this.chosenVagabond.numMoves) { return; }
 
     const moveData = this.contentService.getMove(move);
     if (moveData.addSkill && moveData.addSkillChoose) {
@@ -666,7 +667,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   }
 
   editItem(item: IItem): void {
-    this.createItem(item);
+    this.createItem(item, this.contentService.getCustomItemData(item.tagSet));
   }
 
   removeItem(item: IItem): void {
