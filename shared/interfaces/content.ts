@@ -123,6 +123,7 @@ export interface IContentCore {
 
 export interface IContentBackgroundReputationChange {
   delta?: number;
+  set?: number;
 }
 
 export interface IContentBackgroundAnswer {

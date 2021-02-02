@@ -143,9 +143,12 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
       const repChange = bg.reputation?.delta ?? 0;
       if(repChange < 0) {
         newChar.reputation[answer].notoriety += Math.abs(repChange);
-      } else {
+      } else if(repChange > 0) {
         newChar.reputation[answer].prestige += Math.abs(repChange);
       }
+
+      const repSet = bg.reputation?.set ?? 0;
+      newChar.reputation[answer].total = repSet;
     }
   });
 

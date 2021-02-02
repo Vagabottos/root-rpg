@@ -68,12 +68,12 @@ background:
   - question: Which faction exiled you?
     type: faction
     reputation:
-      delta: -6
+      set: -2
 
   - question: Which faction now seeks your loyalty or allegiance?
     type: faction
     reputation:
-      delta: 5
+      set: 1
 
 drives:
   - name: Loyalty
