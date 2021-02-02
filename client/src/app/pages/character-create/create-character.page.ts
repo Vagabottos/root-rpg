@@ -66,6 +66,13 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     return sumBy(this.itemsForm.get('items').value, i => this.itemService.value(i));
   }
 
+  public get needsItemsButHasNone(): boolean {
+    const movesNeedAny = this.movesForm.get('moves').value.some(x => this.contentService.getMove(x).customItemTag);
+    if (!movesNeedAny) { return false; }
+
+    return this.itemsForm.get('items').value.length === 0;
+  }
+
   public campaign: ICampaign;
   public validatingCampaignId = false;
 
@@ -414,6 +421,11 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
     this.loadLinkedCampaign();
 
+  }
+
+  createItemFromMove(move: string) {
+    const customItemData = this.contentService.getCustomItemData(this.contentService.getMove(move).customItemTag);
+    this.createItem(null, customItemData);
   }
 
   // background functions

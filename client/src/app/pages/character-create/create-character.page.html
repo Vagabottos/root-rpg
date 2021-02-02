@@ -581,6 +581,29 @@
                             (ionChange)="selectMove(move.name, checkbox)"
                             [checked]="movesForm.get('moves').value.includes(move.name)"></ion-checkbox>
             </ion-item>
+
+            <ion-item color="tertiary"
+                      *ngIf="contentService.getMove(move.name).customItemTag && this.itemsForm.get('items').value.length === 0"
+                      class="padded-create-area pointer"
+                      (click)="createItemFromMove(move.name)">
+              <ion-icon slot="start" name="add"></ion-icon>
+              Create {{ contentService.getMove(move.name).customItemTag }}
+            </ion-item>
+
+            <!-- this assumes a character creator will only ever have one item to start. if there needs to be two item creates this will have to be changed -->
+            <ng-container *ngIf="contentService.getMove(move.name).customItemTag">
+              <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-up padded-create-area">
+                <app-item [item]="item" appLongPress="500" (release)="showItemEditActionSheet(item)"></app-item>
+              </ion-item>
+
+              <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-down padded-create-area">
+                <app-item [item]="item"></app-item>
+                <ion-button slot="end" fill="clear" (click)="showItemEditPopover(item, $event)">
+                  <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ng-container>
+
           </ng-container>
 
           <ion-item lines="none">
@@ -593,7 +616,8 @@
               </ion-col>
 
               <ion-col size="12" size-sm="6" class="ion-text-right">
-                <ion-button color="primary" [disabled]="movesForm.invalid || movesForm.get('moves').value.length < chosenVagabond.numMoves" (click)="next()">
+                <!-- this assumes a character creator will only ever have one item to start. if there needs to be two item creates this will have to be changed -->
+                <ion-button color="primary" [disabled]="movesForm.invalid || movesForm.get('moves').value.length < chosenVagabond.numMoves || needsItemsButHasNone" (click)="next()">
                   <ion-icon slot="end" name="caret-forward"></ion-icon>
                   Roguish Feats
                 </ion-button>
@@ -952,7 +976,7 @@
     <ion-card-content>
       <ion-row *ngFor="let drive of drivesForm.get('drives').value">
         <ion-col>
-          <strong>{{ drive }}<span *ngIf="drivesForm.get('driveTargets').value[drive] as target"> ({{ target }})</span></strong>:
+          <strong>{{ drive }}<span *ngIf="drivesForm.get('driveTargets')?.value[drive] as target"> ({{ target }})</span></strong>:
           <span [innerHTML]="getDriveDesc(drive) | markdown"></span>
         </ion-col>
       </ion-row>
