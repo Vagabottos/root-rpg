@@ -142,7 +142,7 @@
             <ion-row class="harm-row">
               <ion-col class="harm-label" (click)="adjustHarm(character, 'diplomat', 0)">Diplomat (+{{ character.harm.diplomat }})</ion-col>
               <ion-col class="harm-box"
-                       *ngFor="let i of [0, 1, 2, 3]"
+                       *ngFor="let i of [0, 1, 2]"
                        (click)="adjustHarm(character, 'diplomat', i + 1)">
                 <ion-icon [name]="character.harm.diplomat > i ? 'checkbox-outline' : 'square-outline'"
                           *ngIf="i < characterHelper.harmCount(character, 'diplomat')"></ion-icon>
