@@ -27,7 +27,7 @@ export class ItemCreatorService {
     return modal;
   }
 
-  private createItemRaw(itemType: string, factions: string[]): IItem {
+  public createItemRaw(itemType: string, factions: string[]): IItem {
     if (random(1, 10) === 1) { return cloneDeep(sample(this.content.getPremadeItems().filter(x => (x as any).type === itemType))); }
 
     const preset = sample(this.content.getItemPresets().filter(x => x.type === itemType));
@@ -47,6 +47,10 @@ export class ItemCreatorService {
     }
 
     if (baseItem.tags.includes('Ceremonial')) {
+      if (factions.length === 0) {
+        baseItem.tags = baseItem.tags.filter(x => x !== 'Ceremonial');
+      }
+
       baseItem.designation = sample(factions);
     }
 

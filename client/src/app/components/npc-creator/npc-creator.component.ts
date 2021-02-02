@@ -94,6 +94,11 @@ export class NPCCreatorComponent implements OnInit {
     control.setValue(control.value + mod);
   }
 
+  addRandomItem(itemType: string): void {
+    const item = this.itemCreator.createItemRaw(itemType, []);
+    this.npcForm.get('equipment').value.push(item);
+  }
+
   async addItem() {
     const modal = await this.itemCreator.createItem();
 

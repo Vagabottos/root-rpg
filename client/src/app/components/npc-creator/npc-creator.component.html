@@ -71,6 +71,18 @@
           Items
         </ion-label>
 
+        <ion-button (click)="addRandomItem('Weapon')">
+          <ion-icon slot="icon-only" name="hammer"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="addRandomItem('Shield')">
+          <ion-icon slot="icon-only" name="shield"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="addRandomItem('Armor')">
+          <ion-icon slot="icon-only" name="shirt"></ion-icon>
+        </ion-button>
+
         <ion-button (click)="addItem()">
           <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
