@@ -107,6 +107,7 @@ export interface IContentCore {
   featrisks: Record<string, IContentFeatRisk>;
   moves: Record<string, IContentMove>;
   names: string[];
+  jobs: string[];
   natures: Record<string, IContentNature>;
   npcdrives: string[];
   pronouns: string[];

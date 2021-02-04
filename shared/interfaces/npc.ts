@@ -4,6 +4,7 @@ import { IItem } from './item';
 export interface INPC {
   name: string;
   look: string;
+  job: string;
   faction: string;
   drive: string;
   equipment: IItem[];

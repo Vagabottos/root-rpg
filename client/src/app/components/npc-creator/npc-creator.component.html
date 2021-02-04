@@ -22,6 +22,14 @@
         </ion-button>
       </ion-item>
 
+      <ion-item class="has-suffix">
+        <ion-label position="stacked">Job</ion-label>
+        <ion-input type="text" formControlName="job" placeholder="Enter NPC job" maxlength="50"></ion-input>
+        <ion-button slot="end" (click)="pickRandomJob()">
+          <ion-icon slot="icon-only" name="sync"></ion-icon>
+        </ion-button>
+      </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Look</ion-label>
         <ion-textarea formControlName="look" placeholder="Enter NPC look" maxlength="1000" rows="7"></ion-textarea>

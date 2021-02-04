@@ -64,7 +64,7 @@
   <ion-card class="npc-card pointer">
     <ion-card-header>
       <ion-card-title>{{ npc.name }}</ion-card-title>
-      <ion-card-subtitle>{{ npc.faction }} / driven to {{ npc.drive }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ npc.faction }} / {{ npc.job }} / driven to {{ npc.drive }}</ion-card-subtitle>
 
       <ion-button class="card-header-button" fill="clear" (click)="showDeletePopover($event, campaign, clearing, npc)" *ngIf="big">
         <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>

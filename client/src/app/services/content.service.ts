@@ -37,6 +37,10 @@ export class ContentService {
     return sample(this.content.core.names);
   }
 
+  getRandomJob(): string {
+    return sample(this.content.core.jobs);
+  }
+
   getAllMapLayouts(): Record<string, IContentMapLayout> {
     return this.content.core.maplayouts;
   }
@@ -51,6 +55,10 @@ export class ContentService {
 
   getNames(): string[] {
     return this.content.core.names;
+  }
+
+  getJobs(): string[] {
+    return this.content.core.jobs;
   }
 
   getStats(): string[] {

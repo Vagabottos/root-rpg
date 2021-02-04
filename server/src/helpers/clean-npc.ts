@@ -8,6 +8,7 @@ export function cleanNPC(npc: INPC): void {
   npc.look = clean(npc.look, 1000);
   npc.faction = clean(npc.faction);
   npc.drive = clean(npc.drive);
+  npc.job = clean(npc.job);
   npc.notes = clean(npc.notes, 1000);
 
   npc.harmMax = npc.harmMax || { injury: 1, exhaustion: 1, depletion: 1, morale: 1 };
