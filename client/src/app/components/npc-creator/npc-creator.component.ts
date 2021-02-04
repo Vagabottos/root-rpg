@@ -22,6 +22,7 @@ export class NPCCreatorComponent implements OnInit {
     name:         new FormControl('', [Validators.required, Validators.maxLength(50)]),
     look:         new FormControl('', [Validators.required, Validators.maxLength(1000)]),
     job:          new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    attack:       new FormControl('', [Validators.required, Validators.maxLength(50)]),
     faction:      new FormControl('', [Validators.required, Validators.maxLength(50)]),
     drive:        new FormControl('', [Validators.required, Validators.maxLength(50)]),
     notes:        new FormControl('', [Validators.maxLength(1000)]),
@@ -37,6 +38,7 @@ export class NPCCreatorComponent implements OnInit {
       name: this.npcForm.get('name').value,
       look: this.npcForm.get('look').value,
       job: this.npcForm.get('job').value,
+      attack: this.npcForm.get('attack').value,
       faction: this.npcForm.get('faction').value,
       drive: this.npcForm.get('drive').value,
       equipment: this.npcForm.get('equipment').value,
@@ -72,11 +74,16 @@ export class NPCCreatorComponent implements OnInit {
     this.npcForm.get('job').setValue(this.contentService.getRandomJob());
   }
 
+  pickRandomAttack() {
+    this.npcForm.get('attack').setValue(this.contentService.getRandomAttack());
+  }
+
   ngOnInit() {
     if (this.npc) {
       this.npcForm.get('name').setValue(this.npc.name);
       this.npcForm.get('job').setValue(this.npc.job);
       this.npcForm.get('look').setValue(this.npc.look);
+      this.npcForm.get('attack').setValue(this.npc.attack);
       this.npcForm.get('faction').setValue(this.npc.faction);
       this.npcForm.get('drive').setValue(this.npc.drive);
       this.npcForm.get('equipment').setValue(this.npc.equipment);

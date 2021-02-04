@@ -41,6 +41,33 @@ export class ContentService {
     return sample(this.content.core.jobs);
   }
 
+  getRandomAttack(): string {
+    let baseInjury = 1;
+    let baseExhaustion = 0;
+    let baseWear = 0;
+
+    if(sample([true, false, false, false])) baseInjury += 1;
+    if(sample([true, false, false, false, false])) baseExhaustion += 1;
+    if(sample([true, false, false, false, false])) baseWear += 1;
+
+    if(sample([true, false, false, false, false, false, false])) {
+      baseWear += 1;
+      baseWear += baseInjury;
+      baseWear += baseExhaustion;
+
+      baseInjury = 0;
+      baseExhaustion = 0;
+    }
+
+    const arr = [
+      { value: baseInjury, text: 'injury' },
+      { value: baseExhaustion, text: 'exhaustion' },
+      { value: baseWear, text: 'wear' }
+    ];
+
+    return arr.filter(x => x.value > 0).map(x => `${x.value} ${x.text}`).join(', ');
+  }
+
   getAllMapLayouts(): Record<string, IContentMapLayout> {
     return this.content.core.maplayouts;
   }

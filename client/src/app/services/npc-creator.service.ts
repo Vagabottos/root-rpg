@@ -37,6 +37,7 @@ export class NPCCreatorService {
       look: 'like a goat',
       job: sample(this.content.getJobs()),
       drive: sample(this.content.getNPCDrives()),
+      attack: this.content.getRandomAttack(),
       equipment: [],
       notes: '',
       harm: {

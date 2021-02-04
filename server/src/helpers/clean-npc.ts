@@ -8,6 +8,7 @@ export function cleanNPC(npc: INPC): void {
   npc.look = clean(npc.look, 1000);
   npc.faction = clean(npc.faction);
   npc.drive = clean(npc.drive);
+  npc.attack = clean(npc.attack);
   npc.job = clean(npc.job);
   npc.notes = clean(npc.notes, 1000);
 

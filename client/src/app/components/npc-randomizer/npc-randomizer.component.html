@@ -135,6 +135,7 @@
 <ng-template #npcRow let-npc="npc">
   <h2>{{ npc.name }}</h2>
   <p>{{ npc.faction }} / {{ npc.job }} / driven to {{ npc.drive }}</p>
+  <p>Attack: {{ npc.attack }}</p>
   <p class="text-icon">
     <strong>Injury</strong>
     <ion-icon *ngFor="let box of numBoxes(npc.harmMax.injury); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>

@@ -6,6 +6,7 @@ export interface INPC {
   look: string;
   job: string;
   faction: string;
+  attack: string;
   drive: string;
   equipment: IItem[];
   notes: string;
