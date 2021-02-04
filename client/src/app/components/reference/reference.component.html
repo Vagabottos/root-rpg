@@ -63,14 +63,18 @@
               <ion-list-header>{{ category.header }}</ion-list-header>
 
               <ng-container *ngFor="let subCategory of category.categories">
-                <ion-item *ngIf="isItemVisible(subCategory)">
-                  <ion-label class="ion-text-wrap">
-                    <h2>{{ subCategory.header }}</h2>
-                    <p *ngIf="subCategory.archetype" class="archetype">{{ subCategory.archetype }}</p>
-                    <p *ngIf="subCategory.requirement" class="requirement">{{ subCategory.requirement }}</p>
-                    <p [innerHTML]="subCategory.text | markdown"></p>
-                  </ion-label>
-                </ion-item>
+                <ng-container *ngIf="isItemVisible(subCategory)">
+                  <ion-list-header *ngIf="subCategory.big">{{ subCategory.header }}</ion-list-header>
+
+                  <ion-item *ngIf="!subCategory.big">
+                    <ion-label class="ion-text-wrap">
+                      <h2>{{ subCategory.header }}</h2>
+                      <p *ngIf="subCategory.archetype && searchQuery" class="archetype">{{ subCategory.archetype }}</p>
+                      <p *ngIf="subCategory.requirement" class="requirement">{{ subCategory.requirement }}</p>
+                      <p [innerHTML]="subCategory.text | markdown"></p>
+                    </ion-label>
+                  </ion-item>
+                </ng-container>
               </ng-container>
             </ng-container>
           </ng-container>

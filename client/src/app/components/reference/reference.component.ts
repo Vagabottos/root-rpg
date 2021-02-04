@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+
+import { groupBy, sortBy, toPairs } from 'lodash';
+
 import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 
@@ -39,7 +42,20 @@ export class ReferenceComponent implements OnInit {
     },
     {
       header: 'Moves (Archetype)',
-      categories: this.content.getMoves().sort().map(v => ({ header: v, ...this.content.getMove(v) }))
+      categories: toPairs(
+        groupBy(
+          sortBy(
+            this.content.getMoves().map(v => ({ header: v, ...this.content.getMove(v) })),
+            ['archetype', 'header']
+          ),
+          (x => x.archetype)
+        )
+      )
+      .map(([headerKey, children]) => ([
+        { header: headerKey, big: true },
+        ...children
+      ]))
+      .flat()
     },
     {
       header: 'Moves (Reputation)',
