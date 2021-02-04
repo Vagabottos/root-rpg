@@ -46,11 +46,11 @@ export class ContentService {
     let baseExhaustion = 0;
     let baseWear = 0;
 
-    if(sample([true, false, false, false])) baseInjury += 1;
-    if(sample([true, false, false, false, false])) baseExhaustion += 1;
-    if(sample([true, false, false, false, false])) baseWear += 1;
+    if (sample([true, false, false, false])) {baseInjury += 1;}
+    if (sample([true, false, false, false, false])) {baseExhaustion += 1;}
+    if (sample([true, false, false, false, false])) {baseWear += 1;}
 
-    if(sample([true, false, false, false, false, false, false])) {
+    if (sample([true, false, false, false, false, false, false])) {
       baseWear += 1;
       baseWear += baseInjury;
       baseWear += baseExhaustion;
