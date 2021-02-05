@@ -71,6 +71,22 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-color-navbar: #000;
+  --ion-color-navbar-rgb: 0,0,0;
+  --ion-color-navbar-contrast: #ffffff;
+  --ion-color-navbar-contrast-rgb: 255,255,255;
+  --ion-color-navbar-shade: #000;
+  --ion-color-navbar-tint: #000;
+}
+
+.ion-color-navbar {
+  --ion-color-base: var(--ion-color-navbar) !important;
+  --ion-color-base-rgb: var(--ion-color-navbar-rgb) !important;
+  --ion-color-contrast: var(--ion-color-navbar-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-navbar-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-navbar-shade) !important;
+  --ion-color-tint: var(--ion-color-navbar-tint) !important;
 }
 
 @font-face {
