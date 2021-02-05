@@ -1,13 +1,19 @@
 
-.stat {
-  text-align: center;
+.stat-col {
+  min-height: 60px;
+  width: 60px;
+  max-width: 80px;
 
-  .stat-name {
-    font-weight: bold;
+  .stat-bg {
+    position: absolute;
+    z-index: 0;
   }
 
-  .stat-value {
+  .stat {
     font-size: 2rem;
+    z-index: 10;
+    position: absolute;
+    left: 8px;
   }
 }
 

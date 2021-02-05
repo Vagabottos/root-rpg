@@ -1,6 +1,6 @@
 
 Justice:
-  text: Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual. 
+  text: Advance when you achieve justice for someone wronged by a powerful, wealthy, or high-status individual.
 
 Discovery:
   text: Advance when you encounter a new wonder or ruin in the forests.
@@ -12,11 +12,11 @@ Clean paws:
   text: Advance when you accomplish an illicit, criminal goal while maintaining a believable veneer of innocence.
 
 Loyalty:
-  text: You're loyal to someone; name them. Advance when you obey their order at a great cost to yourself. 
+  text: You're loyal to someone; name them. Advance when you obey their order at a great cost to yourself.
   namedTarget: true
 
 Revenge:
-  text: Name your foe. Advance when you cause significant harm to them or their interests. 
+  text: Name your foe. Advance when you cause significant harm to them or their interests.
   namedTarget: true
 
 Chaos:

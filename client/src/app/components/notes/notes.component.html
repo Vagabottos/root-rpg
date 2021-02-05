@@ -1,12 +1,12 @@
 
 <ion-card>
-  <ion-card-header>
-    <ion-card-title>Notes</ion-card-title>
-    <ion-icon class="change" [name]="isEditing ? 'checkmark-circle' : 'pencil'" (click)="toggleEditing()"></ion-icon>
-  </ion-card-header>
-
   <ion-card-content>
-    <ion-list>
+    <h3 class="card-header">
+      Notes
+      <ion-icon class="change" [name]="isEditing ? 'checkmark-circle' : 'pencil'" (click)="toggleEditing()"></ion-icon>
+    </h3>
+
+    <ion-list class="special-formatting">
       <ion-item lines="none" *ngIf="!isEditing && !notes">
         <em>You have no notes entered.</em>
       </ion-item>

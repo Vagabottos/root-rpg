@@ -31,41 +31,6 @@
   <ng-container *ngIf="data.char$ | async as character">
 
     <ion-row>
-      <ion-col size="12" size-lg="6" offset-lg="3">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Nature</ion-card-title>
-            <ion-icon class="change" name="reload" (click)="changeNature(character)"></ion-icon>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-list>
-              <ion-item class="pointer" (click)="viewNature(character.nature)" *ngIf="filterArray([character.nature]).length > 0">
-                {{ character.nature }}
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Drives</ion-card-title>
-            <ion-icon class="change" name="reload" (click)="changeDrives(character)"></ion-icon>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-list>
-              <ion-item class="pointer" *ngFor="let drive of filterArray(getDrives(character))" (click)="viewDrive(drive)">
-                {{ drive }}<span *ngIf="character.driveTargets && character.driveTargets[drive] as target">&nbsp;({{ target }})</span>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
       <ion-col size="12" size-lg="4">
 
         <ion-card>

@@ -3,29 +3,26 @@
 
 /** Ionic CSS Variables **/
 :root {
-  /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary: #3d4d47;
+  --ion-color-primary-rgb: 61,77,71;
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #36443e;
+  --ion-color-primary-tint: #505f59;
 
-  /** secondary **/
-  --ion-color-secondary: #3dc2ff;
-  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary: #827c4e;
+  --ion-color-secondary-rgb: 130,124,78;
   --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #726d45;
+  --ion-color-secondary-tint: #8f8960;
 
-  /** tertiary **/
-  --ion-color-tertiary: #5260ff;
-  --ion-color-tertiary-rgb: 82, 96, 255;
+  --ion-color-tertiary: #4e748b;
+  --ion-color-tertiary-rgb: 78,116,139;
   --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #4854e0;
-  --ion-color-tertiary-tint: #6370ff;
+  --ion-color-tertiary-contrast-rgb: 255,255,255;
+  --ion-color-tertiary-shade: #45667a;
+  --ion-color-tertiary-tint: #608297;
 
   /** success **/
   --ion-color-success: #2dd36f;
@@ -75,6 +72,27 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+@font-face {
+  font-family: 'Luminari';
+  src: url('../assets/font/Luminari-Regular.woff2') format('woff2'),
+       url('../assets/font/Luminari-Regular.woff') format('woff'),
+       url('../assets/font/Luminari-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('../assets/font/Merriweather-Regular.woff2') format('woff2'),
+       url('../assets/font/Merriweather-Regular.woff') format('woff'),
+       url('../assets/font/Merriweather-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 /*
 @media (prefers-color-scheme: dark) {

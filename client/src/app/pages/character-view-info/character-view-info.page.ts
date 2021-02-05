@@ -12,6 +12,7 @@ import { ContentService } from '../../services/content.service';
 import { DataService } from '../../services/data.service';
 import { CharacterHelperService } from '../../services/character.helper.service';
 import { NotificationService } from '../../services/notification.service';
+import { ChangeDrivesComponent } from '../../components/change-drives/change-drives.component';
 
 @Component({
   selector: 'app-character-view-info',
@@ -275,5 +276,45 @@ export class CharacterViewInfoPage implements OnInit {
   updateNotes(character: ICharacter, newNotes: string) {
     character.notes = newNotes;
     this.data.patchCharacter().subscribe(() => {});
+  }
+
+  async changeNature(character: ICharacter): Promise<void> {
+    const natures = this.content.getVagabond(character.archetype).natures
+      .map(({ name }) => ({ name, text: this.content.getNature(name)?.text }));
+
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Change Nature`,
+      message: '',
+      choices: natures,
+      numChoices: 1
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      const { name } = data[0];
+      character.nature = name;
+
+      this.data.patchCharacter().subscribe(() => {});
+    });
+
+  }
+
+  async changeDrives(character: ICharacter): Promise<void> {
+    const modal = await this.modal.create({
+      component: ChangeDrivesComponent
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      const { drives, driveTargets } = data;
+      character.drives = drives;
+      character.driveTargets = driveTargets;
+
+      this.data.patchCharacter().subscribe(() => {});
+    });
+
+    modal.present();
   }
 }

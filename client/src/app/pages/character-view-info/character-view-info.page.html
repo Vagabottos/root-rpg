@@ -35,25 +35,71 @@
 <ion-content>
   <ng-container *ngIf="data.char$ | async as character">
     <ion-row>
-      <ion-col size="12" size-lg="6">
+      <ion-col size="12" size-lg="4">
 
         <ion-card>
           <ion-card-header>
             <ion-card-title>{{ character.archetype }}</ion-card-title>
-            <ion-card-subtitle>{{ character.species }} / {{ character.pronouns }}</ion-card-subtitle>
-            <ion-card-subtitle>{{ character.adjectives.join(', ') }} / {{ character.demeanor.join(', ') }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ character.species | uppercase }} / {{ character.pronouns | uppercase }}</ion-card-subtitle>
           </ion-card-header>
 
           <ion-card-content>
             <ion-row>
-              <ion-col class="pointer stat" *ngFor="let stat of content.getStats()" (click)="notification.rollDice(stat, characterHelper.getStatTotal(character, stat.toLowerCase()))">
-                <div class="stat-name">
-                  {{ stat }}
-                </div>
+              <ion-col>
+                <strong>Details:</strong> {{ character.adjectives.join(', ') }}
+                <br>
+                <strong>Demeanor:</strong> {{ character.demeanor.join(', ') }}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <hr class="border">
+              </ion-col>
+            </ion-row>
 
-                <div class="stat-value">
-                  {{ characterHelper.getStatTotal(character, stat.toLowerCase()) | withPlus }}
-                </div>
+            <ion-row>
+              <ion-col size="12">
+                <h3>
+                  Your Nature
+                  <ion-icon class="change" name="reload" (click)="changeNature(character)"></ion-icon>
+                </h3>
+              </ion-col>
+
+              <ion-col size="12">
+                <ion-list class="special-formatting">
+                  <ion-item lines="none">
+                    <ion-label class="ion-text-wrap">
+                      <h2>{{ character.nature }}</h2>
+                      <p [innerHTML]="content.getNature(character.nature).text | markdown"></p>
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <hr class="border">
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <h3>
+                  Your Drives
+                  <ion-icon class="change" name="reload" (click)="changeDrives(character)"></ion-icon>
+                </h3>
+              </ion-col>
+
+              <ion-col size="12">
+                <ion-list class="special-formatting">
+                  <ion-item lines="none" *ngFor="let drive of character.drives">
+                    <ion-label class="ion-text-wrap">
+                      <h2>{{ drive }}<span *ngIf="character.driveTargets && character.driveTargets[drive] as target">&nbsp;({{ target }})</span></h2>
+                      <p [innerHTML]="content.getDrive(drive).text | markdown"></p>
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
               </ion-col>
             </ion-row>
           </ion-card-content>
@@ -61,31 +107,96 @@
 
       </ion-col>
 
-      <ion-col size="12" size-lg="6">
+      <ion-col size="12" size-lg="4">
 
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Harm</ion-card-title>
-          </ion-card-header>
-
           <ion-card-content>
-            <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
-              <ion-col class="harm-label" (click)="adjustHarm(character, harm.toLowerCase(), 0)">{{ harm }}</ion-col>
-              <ion-col class="harm-box"
-                       *ngFor="let i of characterHelper.harmMax(character)"
-                       (click)="adjustHarm(character, harm.toLowerCase(), i + 1)">
-                <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
-                          *ngIf="i < characterHelper.harmCount(character, harm.toLowerCase())"></ion-icon>
+            <ion-row class="special-formatting" *ngFor="let stat of content.getStats()">
+              <ion-col class="stat-col">
+                <img src="assets/bg/stat-box.png" class="stat-bg" />
+                <div class="stat">
+                  {{ characterHelper.getStatTotal(character, stat.toLowerCase()) | withPlus }}
+                </div>
+              </ion-col>
+
+              <ion-col class="pointer vertical-center" (click)="notification.rollDice(stat, characterHelper.getStatTotal(character, stat.toLowerCase()))">
+                <h1>{{ stat }}</h1>
               </ion-col>
             </ion-row>
           </ion-card-content>
         </ion-card>
+
+        <ion-card>
+          <ion-card-content>
+            <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion']" class="harm-row">
+              <ion-col>
+                <ion-row>
+                  <ion-col (click)="adjustHarm(character, harm.toLowerCase(), 0)">
+                    <h3>{{ harm }}</h3>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <ion-col class="harm-box"
+                           *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]"
+                           (click)="adjustHarm(character, harm.toLowerCase(), i + 1)">
+                    <ion-icon [name]="character.harm[harm.toLowerCase()] > i ? 'checkbox-outline' : 'square-outline'"
+                              *ngIf="i < characterHelper.harmCount(character, harm.toLowerCase())"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+
+      <ion-col size="12" size-lg="4">
+
+        <ion-card *ngIf="character.archetype === 'The Envoy'">
+          <ion-card-header>
+            <ion-card-title>Diplomat (+{{ character.harm.diplomat }})</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="harm-row">
+              <ion-col class="harm-box"
+                       *ngFor="let i of [0, 1, 2]"
+                       (click)="adjustHarm(character, 'diplomat', i + 1)">
+                <ion-icon [name]="character.harm.diplomat > i ? 'checkbox-outline' : 'square-outline'"
+                          *ngIf="i < characterHelper.harmCount(character, 'diplomat')"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-content>
+            <h3 class="card-header">
+              Your Drives
+              <ion-icon class="change" name="reload" (click)="changeConnections(character)"></ion-icon>
+            </h3>
+
+            <ion-list class="special-formatting">
+              <ion-item lines="none" class="pointer" *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
+                <ion-label class="ion-text-wrap">
+                  <h2>{{ connection.name }}</h2>
+                  <p>{{ connection.target }}</p>
+                  <p class="subtext" [innerHTML]="content.getConnection(connection.name).text | markdown"></p>
+                </ion-label>
+
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <app-notes [notes]="character.notes" (updateNotes)="updateNotes(character, $event)"></app-notes>
 
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col size="12" size-lg="6">
+      <ion-col size="12" size-lg="8" offset-lg="2">
 
         <ion-card>
           <ion-card-header>
@@ -129,47 +240,6 @@
           </ion-card-content>
         </ion-card>
 
-      </ion-col>
-
-      <ion-col size="12" size-lg="6">
-
-        <ion-card *ngIf="character.archetype === 'The Envoy'">
-          <ion-card-header>
-            <ion-card-title>Diplomat</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-row class="harm-row">
-              <ion-col class="harm-label" (click)="adjustHarm(character, 'diplomat', 0)">Diplomat (+{{ character.harm.diplomat }})</ion-col>
-              <ion-col class="harm-box"
-                       *ngFor="let i of [0, 1, 2]"
-                       (click)="adjustHarm(character, 'diplomat', i + 1)">
-                <ion-icon [name]="character.harm.diplomat > i ? 'checkbox-outline' : 'square-outline'"
-                          *ngIf="i < characterHelper.harmCount(character, 'diplomat')"></ion-icon>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Connections</ion-card-title>
-            <ion-icon class="change" name="reload" (click)="changeConnections(character)"></ion-icon>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-list>
-              <ion-item class="pointer" *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
-                {{ connection.name }} ({{ connection.target }})
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-
-      </ion-col>
-
-      <ion-col size="12" size-lg="6">
-        <app-notes [notes]="character.notes" (updateNotes)="updateNotes(character, $event)"></app-notes>
       </ion-col>
     </ion-row>
 

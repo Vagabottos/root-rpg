@@ -25,6 +25,8 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "theme/overrides.scss";
+
 $sizes: 0, 1, 2, 3;
 
 @each $size in $sizes {
@@ -83,7 +85,6 @@ $sizes: 0, 1, 2, 3;
 
 .blank-slate {
   font-size: 2rem;
-  opacity: 0.5;
   width: 100%;
   height: 100%;
   display: flex;
@@ -92,6 +93,9 @@ $sizes: 0, 1, 2, 3;
   text-align: center;
 
   padding: 20%;
+
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000 !important;
 }
 
 .has-suffix {
@@ -109,8 +113,6 @@ $sizes: 0, 1, 2, 3;
   .message {
     display: flex;
     align-items: center;
-
-    opacity: 0.7;
 
     ion-icon {
       margin-right: 5px;
@@ -133,6 +135,10 @@ $sizes: 0, 1, 2, 3;
 ion-list {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+ion-card {
+  border-radius: 10px;
 }
 
 ion-card-title, ion-card-subtitle {
@@ -159,7 +165,6 @@ ion-card-title, ion-card-subtitle {
 
 .select-small-subtext {
   font-size: 80%;
-  opacity: 0.7;
   font-style: italic;
 }
 
@@ -179,6 +184,14 @@ ion-card-title, ion-card-subtitle {
   right: 1em;
   top: 0.8em;
   font-size: 20px;
+}
+
+h3 .change {
+  top: 0.1em;
+}
+
+h3.card-header .change {
+  top: 0.5em;
 }
 
 ion-list-header {
@@ -303,4 +316,9 @@ ion-modal:not(.transparent) .modal-wrapper {
   --border-width: 1px;
   --border-style: solid;
   --border-color: #ccc;
+}
+
+.special-formatting {
+  --padding-start: 0;
+  --ion-safe-area-left: 0;
 }

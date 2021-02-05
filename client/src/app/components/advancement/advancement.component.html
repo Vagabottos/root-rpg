@@ -476,7 +476,7 @@
             </ion-col>
 
             <ion-col size="12" size-sm="6" class="ion-text-right">
-              <ion-button color="primary" (click)="confirmConnections(character)" [disabled]="!chosenConnections[0].target || !chosenConnections[1].target">
+              <ion-button color="primary" (click)="confirmConnections(character)" [disabled]="!chosenConnections[0]?.target || !chosenConnections[1]?.target">
                 <ion-icon slot="end" name="caret-forward"></ion-icon>
                 Confirm
               </ion-button>
