@@ -32,6 +32,18 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     });
   }
 
+  if(character.demeanor) {
+    character.demeanor = character.demeanor.map(x => clean(x, 25));
+  }
+
+  if(character.adjectives) {
+    character.adjectives = character.adjectives.map(x => clean(x, 25));
+  }
+
+  if(character.keepsakes) {
+    character.keepsakes = character.keepsakes.map(x => clean(x, 25));
+  }
+
   if(character.drives) {
     character.drives.forEach(drive => {
       if(allContent.core.drives[drive]) return;

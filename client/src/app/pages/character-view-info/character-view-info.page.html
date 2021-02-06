@@ -46,7 +46,7 @@
           <ion-card-content>
             <ion-row>
               <ion-col>
-                <strong>Details:</strong> {{ character.adjectives.join(', ') }}
+                <strong>Details:</strong> {{ character.adjectives.concat(character.keepsakes || []).join(', ') }}
                 <br>
                 <strong>Demeanor:</strong> {{ character.demeanor.join(', ') }}
               </ion-col>

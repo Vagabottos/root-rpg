@@ -33,6 +33,7 @@ export interface ICharacter {
   archetype: string;
   species: string;
   adjectives: string[];
+  keepsakes: string[];
   demeanor: string[];
   pronouns: string;
   background: ICharacterBackground[];

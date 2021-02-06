@@ -243,6 +243,14 @@
             </ion-label>
           </ion-item>
 
+          <ion-item class="pointer background-hover" (click)="chooseKeepsakes()">
+            <ion-label>
+              <p class="fake-form-label">Keepsakes</p>
+              <h2 class="form-placeholder" *ngIf="!characterForm.get('keepsakes').value?.length">Choose keepsakes</h2>
+              <h2 *ngIf="characterForm.get('keepsakes').value?.length > 0">{{ characterForm.get('keepsakes').value.join(', ') }}</h2>
+            </ion-label>
+          </ion-item>
+
           <ion-item class="pointer background-hover" (click)="chooseDemeanor()">
             <ion-label>
               <p class="fake-form-label">Demeanor</p>

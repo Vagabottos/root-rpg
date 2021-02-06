@@ -93,6 +93,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     customspecies: new FormControl(''),
     pronouns: new FormControl('', [Validators.required]),
     adjectives: new FormControl([], [Validators.required]),
+    keepsakes: new FormControl([], [Validators.required]),
     demeanor: new FormControl([], [Validators.required])
   });
 
@@ -352,6 +353,24 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       if (!data) { return; }
 
       this.characterForm.get('adjectives').setValue(data.map(x => x.name));
+
+    });
+  }
+
+  async chooseKeepsakes() {
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Choose Keepsakes`,
+      message: `Choose keepsakes from the following list or make your own.`,
+      choices: this.chosenVagabond.items.map(c => ({ name: c, text: '' })) || [],
+      numChoices: 0,
+      defaultSelected: this.characterForm.get('keepsakes').value,
+      allowCustom: true
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.characterForm.get('keepsakes').setValue(data.map(x => x.name));
 
     });
   }
@@ -794,6 +813,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     loadObject.character.customspecies = loadObject.character.customspecies || '';
     loadObject.character.pronouns = loadObject.character.pronouns || '';
     loadObject.character.adjectives = loadObject.character.adjectives || [];
+    loadObject.character.keepsakes = loadObject.character.keepsakes || [];
     loadObject.character.demeanor = loadObject.character.demeanor || [];
 
     loadObject.bonus = loadObject.bonus || {};
