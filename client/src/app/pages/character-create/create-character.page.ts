@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ActionSheetController, AlertController, IonCheckbox, PopoverController } from '@ionic/angular';
+import { ActionSheetController, AlertController, IonCheckbox, ModalController, PopoverController } from '@ionic/angular';
 
 import { Observable, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { ItemService } from '../../services/item.service';
 import { EditDeletePopoverComponent } from '../../components/editdelete.popover';
 import { NotificationService } from '../../services/notification.service';
 import { ItemCreatorService } from '../../services/item-creator.service';
+import { PortraitChooserComponent } from '../../components/portrait-chooser/portrait-chooser.component';
 
 // eslint-disable-next-line no-shadow
 enum CharacterCreateStep {
@@ -91,6 +92,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     species: new FormControl('', [Validators.required]),
     customspecies: new FormControl(''),
+    portrait: new FormControl('bat'),
     pronouns: new FormControl('', [Validators.required]),
     adjectives: new FormControl([], [Validators.required]),
     keepsakes: new FormControl([], [Validators.required]),
@@ -160,6 +162,12 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     pronouns: [
       { type: 'required', message: 'Pronouns are required.' },
     ],
+    portrait: [
+      { type: 'required', message: 'Portrait is required.' },
+    ],
+    keepsakes: [
+      { type: 'required', message: 'Keepsakes are required.' },
+    ],
     adjectives: [
       { type: 'required', message: 'Adjectives are required.' },
     ],
@@ -228,6 +236,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   constructor(
     private actionSheet: ActionSheetController,
     private alert: AlertController,
+    private modal: ModalController,
     private popover: PopoverController,
     private router: Router,
     private notification: NotificationService,
@@ -391,6 +400,21 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       this.characterForm.get('demeanor').setValue(data.map(x => x.name));
 
     });
+  }
+
+  async changePortrait() {
+    const modal = await this.modal.create({
+      component: PortraitChooserComponent,
+      componentProps: { selectedPortrait: this.characterForm.get('portrait').value || 'bat' }
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) { return; }
+
+      this.characterForm.get('portrait').setValue(data);
+    });
+
+    modal.present();
   }
 
   private loadLinkedCampaign() {
@@ -810,6 +834,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     loadObject.character = loadObject.character || {};
     loadObject.character.name = loadObject.character.name || '';
     loadObject.character.species = loadObject.character.species || '';
+    loadObject.character.portrait = loadObject.character.portrait || 'bat';
     loadObject.character.customspecies = loadObject.character.customspecies || '';
     loadObject.character.pronouns = loadObject.character.pronouns || '';
     loadObject.character.adjectives = loadObject.character.adjectives || [];

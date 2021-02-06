@@ -1,0 +1,17 @@
+
+ion-col {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  padding: 10px;
+}
+
+img {
+  border-radius: 5px;
+  cursor: pointer;
+
+  &.selected {
+    outline: 3px solid #000;
+  }
+}

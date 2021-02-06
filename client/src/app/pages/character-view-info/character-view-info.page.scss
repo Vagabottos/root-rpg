@@ -1,4 +1,24 @@
 
+.inline-portrait {
+  position: relative;
+  margin-top: 5em;
+  margin-bottom: 2em;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  .flair {
+    height: 64px;
+  }
+
+  .portrait {
+    position: absolute;
+    border-radius: 10px;
+    border: 3px solid #cecbb3;
+  }
+}
+
 .stat-col {
   min-height: 60px;
   width: 60px;
@@ -10,7 +30,7 @@
   }
 
   .stat {
-    font-size: 2rem;
+    font-size: 1.8rem;
     z-index: 10;
     position: absolute;
     left: 8px;

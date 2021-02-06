@@ -32,6 +32,10 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     });
   }
 
+  if(character.portrait) {
+    character.portrait = clean(character.portrait, 25);
+  }
+
   if(character.demeanor) {
     character.demeanor = character.demeanor.map(x => clean(x, 25));
   }

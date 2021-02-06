@@ -46,7 +46,7 @@
       </ion-card>
     </ion-col>
 
-    <ion-col size="12" size-lg="8" size-xl="7" offset-xl="1">
+    <ion-col size="12" size-lg="8" size-xl="6" offset-xl="1">
       <div class="character-container">
         <ng-container [ngSwitch]="currentStep">
           <ng-container [ngTemplateOutlet]="campaigncode" *ngSwitchCase="Step.CampaignOrNo"></ng-container>
@@ -200,6 +200,13 @@
       </ion-card-header>
 
       <ion-card-content>
+
+        <div class="portrait-choice">
+          <img class="flair" src="assets/bg/profile-flair.png" />
+          <img class="portrait" [src]="'assets/portrait/' + (characterForm.get('portrait').value || 'bat') + '.png'" (click)="changePortrait()" />
+        </div>
+
+        {{ characterForm.getError('portrait') }}
 
         <ion-list *ngIf="chosenVagabond">
           <ion-item class="has-suffix">

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="navbar">
+    <ion-title>
+      Portrait Chooser
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(selectedPortrait)">
+        Confirm
+      </ion-button>
+
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-row>
+      <ion-col size="4" *ngFor="let portrait of content.getAllContent().core.portraits">
+        <img [src]="'assets/portrait/' + portrait + '.png'" [class.selected]="portrait === selectedPortrait" (click)="selectedPortrait = portrait" />
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

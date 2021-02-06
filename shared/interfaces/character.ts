@@ -32,6 +32,7 @@ export interface ICharacter {
   campaignName?: string;
   archetype: string;
   species: string;
+  portrait: string;
   adjectives: string[];
   keepsakes: string[];
   demeanor: string[];

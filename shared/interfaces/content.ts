@@ -110,6 +110,7 @@ export interface IContentCore {
   jobs: string[];
   natures: Record<string, IContentNature>;
   npcdrives: string[];
+  portraits: string[];
   pronouns: string[];
   skills: Record<string, IContentSkill>;
   species: string[];
