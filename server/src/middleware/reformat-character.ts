@@ -179,7 +179,8 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
   archetypeData.connections.forEach((conn, i) => {
     newChar.connections[i] = {
       name: conn.name,
-      target: clean(context.data.connections.connections[i])
+      target: clean(context.data.connections.connections[i]),
+      text: conn.text
     };
 
     if(!newChar.connections[i].target) throw new NotAcceptable(`Connection ${conn.name} must have a target.`);

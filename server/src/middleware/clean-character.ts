@@ -85,6 +85,7 @@ export async function cleanCharacter(context: HookContext): Promise<HookContext>
     character.connections.forEach(conn => {
       if(!allContent.core.connections[conn.name]) throw new NotAcceptable(`Invalid connection: ${conn.name}`);
       conn.target = clean(conn.target);
+      conn.text = clean(conn.text, 500);
       if(!conn.target) throw new NotAcceptable(`No valid connection target specified for ${conn.name}.`);
     });
   }

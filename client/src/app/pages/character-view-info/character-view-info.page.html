@@ -181,7 +181,7 @@
               <ion-item lines="none" class="pointer" *ngFor="let connection of character.connections" (click)="viewConnection(connection.name)">
                 <ion-label class="ion-text-wrap">
                   <h2>{{ connection.name }}</h2>
-                  <p>{{ connection.target }}</p>
+                  <p>{{ (connection.text || '_').split('_').join(connection.target) }}</p>
                   <p class="subtext" [innerHTML]="content.getConnection(connection.name).text | markdown"></p>
                 </ion-label>
 

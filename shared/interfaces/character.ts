@@ -12,6 +12,7 @@ export enum Stat {
 export interface ICharacterConnection {
   name: string;
   target: string;
+  text: string;
 }
 
 export interface ICharacterBackground {

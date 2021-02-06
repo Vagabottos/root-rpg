@@ -31,7 +31,7 @@ export class AdvancementComponent implements OnInit {
 
   public chosenStat: string;
   public chosenHarm: string;
-  public chosenConnections = [{ name: '', target: '' }, { name: '', target: '' }];
+  public chosenConnections = [{ name: '', target: '', text: '' }, { name: '', target: '', text: '' }];
   public chosenSkills: string[] = [];
   public chosenFeats: string[] = [];
   public chosenMove: string;
