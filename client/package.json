@@ -1,6 +1,10 @@
 {
   "name": "root-rpg-client",
   "private": true,
+  "engines": {
+    "node": "14.0.0",
+    "npm": "6.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve --hmr --open --port 3998",

@@ -4,7 +4,8 @@
   "description": "Root RPG Discord bot.",
   "main": "index.js",
   "engines": {
-    "node": "10.11.0"
+    "node": "14.0.0",
+    "npm": "6.0.0"
   },
   "scripts": {
     "start": "ts-node src/index",
