@@ -1,6 +1,10 @@
 {
   "name": "root-rpg",
   "private": true,
+  "engines": {
+    "node": "^14.0.0",
+    "npm": ">= 3.0.0"
+  },
   "scripts": {
     "setup": "lerna exec -- npm install && npm run content",
     "start": "lerna exec --parallel -- npm run start:dev",
