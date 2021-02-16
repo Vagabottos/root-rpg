@@ -27,7 +27,7 @@
               <ion-list>
                 <ion-item>
                   <ion-label position="stacked">Email</ion-label>
-                  <ion-input type="email" formControlName="email"></ion-input>
+                  <ion-input type="email" formControlName="email" (keyup.enter)="auth()"></ion-input>
                 </ion-item>
 
                 <div class="validation-errors">
@@ -40,7 +40,7 @@
 
                 <ion-item>
                   <ion-label position="stacked">Password</ion-label>
-                  <ion-input type="password" formControlName="password"></ion-input>
+                  <ion-input type="password" formControlName="password" (keyup.enter)="auth()"></ion-input>
                 </ion-item>
 
                 <div class="validation-errors">

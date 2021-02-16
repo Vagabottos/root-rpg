@@ -38,6 +38,9 @@ export class UserAPIService {
   }
 
   public login(args): Observable<any> {
+    localStorage.setItem('email', '');
+    localStorage.setItem('password', '');
+
     return this.http.post(this.api.apiUrl('/authentication'), {
       strategy: 'local',
       ...args

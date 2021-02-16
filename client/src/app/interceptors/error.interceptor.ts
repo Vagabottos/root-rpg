@@ -23,15 +23,19 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(catchError((error: HttpErrorResponse) => {
         const errorMsg = error?.error?.message ?? 'Unknown error.';
 
-        if (error?.error.code === 401) {
-          this.router.navigate(['/login']);
-          this.notification.notify('Your previous session has expired. Please login again.');
-          return;
-        }
+        const isLoggedIn = localStorage.getItem('email');
 
-        // some messages are pretty annoying and shouldnt be shown
-        if (!this.badMessages.every(msg => errorMsg.includes(msg))) {
-          this.notification.notify(errorMsg);
+        if (isLoggedIn) {
+          if (error?.error.code === 401) {
+            this.router.navigate(['/login']);
+            this.notification.notify('Your previous session has expired. Please login again.');
+            return throwError(error);
+          }
+
+          // some messages are pretty annoying and shouldnt be shown
+          if (!this.badMessages.every(msg => errorMsg.includes(msg))) {
+            this.notification.notify(errorMsg);
+          }
         }
 
         return throwError(error);

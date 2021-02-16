@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { NotificationService } from '../../services/notification.service';
 import { UserAPIService } from '../../services/user.api.service';
 
 @Component({
@@ -36,6 +37,7 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
+    private notification: NotificationService,
     private userAPI: UserAPIService
   ) { }
 
@@ -47,6 +49,8 @@ export class LoginPage implements OnInit {
   }
 
   auth() {
+    if (this.isDoing) { return; }
+
     this.isDoing = true;
 
     const args = {
@@ -56,20 +60,34 @@ export class LoginPage implements OnInit {
 
     const login = () => {
       this.userAPI.login(args)
-        .subscribe(() => {
-          this.router.navigate(['/dashboard', 'characters']);
-          this.isDoing = false;
-        }, () => {
-          this.isDoing = false;
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/dashboard', 'characters']);
+            this.isDoing = false;
+          },
+          error: () => {
+            this.notification.notify('Invalid email or password.');
+            this.isDoing = false;
+          },
+          complete: () => {
+            this.isDoing = false;
+          }
         });
     };
 
     if (this.isRegistering) {
       this.userAPI.register(args)
-        .subscribe(() => {
-          login();
-        }, () => {
-          this.isDoing = false;
+        .subscribe({
+          next: () => {
+            login();
+          },
+          error: () => {
+            this.notification.notify('Your registration failed, please try again with a different email or password.');
+            this.isDoing = false;
+          },
+          complete: () => {
+            this.isDoing = false;
+          }
         });
       return;
     }
