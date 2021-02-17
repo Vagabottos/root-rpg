@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { IItem } from '../../../interfaces';
 import { ItemService } from '../../services/item.service';
 
@@ -7,6 +7,7 @@ import { ItemService } from '../../services/item.service';
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ItemComponent implements OnInit {
 

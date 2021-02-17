@@ -1,20 +1,14 @@
 
-.weight-header {
-  ion-row {
-    width: 100%;
+.special-card {
+  display: flex;
+  justify-content: center;
+  --background: transparent;
+  box-shadow: none;
 
-    ion-col {
-      text-align: center;
-      opacity: 0.7;
-    }
-  }
-}
-
-.item-card {
-  padding: 1em;
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
+  .special-text {
+    position: absolute;
+    color: #000;
+    z-index: 50;
+    bottom: 30px;
   }
 }

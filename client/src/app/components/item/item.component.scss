@@ -1,42 +1,70 @@
 
-:host, ion-row {
-  width: 100%;
-}
+.item-card {
 
-:host {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.name {
-  margin-right: 10px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.header-row {
-  margin-bottom: 10px;
-}
-
-.small-row {
-  font-size: 80%;
-  font-style: italic;
-}
-
-.box-row {
-  display: flex;
-  align-items: center;
-}
-
-ion-row {
-  ion-col {
-    padding-top: 0;
-    padding-bottom: 0;
+  [slot="actions"] {
+    color: #fff;
+    position: absolute;
+    right: 0;
+    top: -10px;
   }
-}
 
-ion-icon {
-  font-size: 1.2rem;
+  ion-card-header {
+    background-color: #000;
+
+    ion-card-title {
+      color: #fff;
+      text-align: left;
+    }
+  }
+
+  ion-card-content {
+    padding-top: 10px;
+  }
+
+  .name {
+    margin-right: 10px;
+  }
+
+  .label {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .header-row {
+    margin-bottom: 10px;
+  }
+
+  .small-row {
+    font-size: 80%;
+  }
+
+  .box-row {
+    display: flex;
+    align-items: center;
+  }
+
+  ion-row {
+    ion-col {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &.hr {
+      border-bottom: 1px solid #555;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  ion-icon {
+    font-size: 1.2rem;
+  }
+
+  .boxes {
+    display: flex;
+  }
+
+  .title {
+    width: 100%;
+  }
 }

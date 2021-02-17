@@ -106,12 +106,16 @@
 
       <ion-item *ngIf="npcForm.get('equipment').value.length === 0">No items</ion-item>
 
-      <ion-item *ngFor="let item of npcForm.get('equipment').value">
-        <app-item [item]="item"></app-item>
-
-        <ion-button slot="end" color="danger" (click)="removeItem(item)">
-          <ion-icon slot="icon-only" name="remove"></ion-icon>
-        </ion-button>
+      <ion-item>
+        <ion-row class="item-row">
+          <ion-col size-xs="12" size-lg="4" size-xl="4" *ngFor="let item of npcForm.get('equipment').value">
+            <app-item [item]="item">
+              <ion-button slot="actions" color="danger" (click)="removeItem(item)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </app-item>
+          </ion-col>
+        </ion-row>
       </ion-item>
 
       <ion-item color="tertiary" class="pointer" (click)="dismiss(this.formNPC)" [disabled]="npcForm.invalid">

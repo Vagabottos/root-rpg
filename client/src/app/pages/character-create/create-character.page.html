@@ -793,15 +793,24 @@
             You don't have any items.
           </ion-item>
 
-          <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-up">
-            <app-item [item]="item" appLongPress="500" (release)="showItemEditActionSheet(item)"></app-item>
-          </ion-item>
+          <ion-item>
+            <ion-row class="item-row">
+              <ion-col size-xs="12" size-lg="6" size-xl="6" *ngFor="let item of itemsForm.get('items').value">
 
-          <ion-item *ngFor="let item of itemsForm.get('items').value" class="ion-hide-md-down">
-            <app-item [item]="item"></app-item>
-            <ion-button slot="end" fill="clear" (click)="showItemEditPopover(item, $event)">
-              <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
-            </ion-button>
+                <app-item [item]="item"
+                          appLongPress="500"
+                          (release)="showItemEditActionSheet(item)"
+                          class="ion-hide-md-up">
+                </app-item>
+
+                <app-item [item]="item" class="ion-hide-md-down">
+                  <ion-button slot="actions" fill="clear" (click)="showItemEditPopover(item, $event)">
+                    <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+                  </ion-button>
+                </app-item>
+
+              </ion-col>
+            </ion-row>
           </ion-item>
 
           <ion-item (click)="createItem()" class="pointer" color="tertiary">
