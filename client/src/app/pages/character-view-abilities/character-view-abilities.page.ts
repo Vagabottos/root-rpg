@@ -13,6 +13,8 @@ import { DataService } from '../../services/data.service';
 })
 export class CharacterViewAbilitiesPage implements OnInit {
 
+  public expanded: Record<string, boolean> = {};
+
   public isSearchOpen: boolean;
   public searchQuery: string;
 
@@ -112,6 +114,10 @@ export class CharacterViewAbilitiesPage implements OnInit {
 
   getDrives(character: ICharacter): string[] {
     return character.drives.sort();
+  }
+
+  toggle(cat: string): void {
+    this.expanded[cat] = !this.expanded[cat];
   }
 
 }
