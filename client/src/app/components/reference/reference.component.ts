@@ -58,12 +58,24 @@ export class ReferenceComponent implements OnInit {
       .flat()
     },
     {
+      header: 'Moves (Basic)',
+      categories: this.content.getBasicSkills().map(v => ({ header: v, text: this.content.getBasicSkill(v).text }))
+    },
+    {
+      header: 'Moves (Combat)',
+      categories: this.content.getCombatSkills().map(v => ({ header: v, text: this.content.getCombatSkill(v).text }))
+    },
+    {
       header: 'Moves (Reputation)',
       categories: this.content.getReputationMoves().map(v => ({ header: v, ...this.content.getOtherMove(v) }))
     },
     {
       header: 'Moves (Travel)',
       categories: this.content.getTravelMoves().map(v => ({ header: v, ...this.content.getOtherMove(v) }))
+    },
+    {
+      header: 'Moves (Weapon)',
+      categories: this.content.getSkills().map(v => ({ header: v, text: this.content.getSkill(v).text }))
     },
     {
       header: 'Natures',
@@ -76,18 +88,6 @@ export class ReferenceComponent implements OnInit {
     {
       header: 'Roguish Feats Risks',
       categories: this.content.getRisks().map(v => ({ header: v, text: this.content.getRisk(v).text }))
-    },
-    {
-      header: 'Skills (Basic)',
-      categories: this.content.getBasicSkills().map(v => ({ header: v, text: this.content.getBasicSkill(v).text }))
-    },
-    {
-      header: 'Skills (Combat)',
-      categories: this.content.getCombatSkills().map(v => ({ header: v, text: this.content.getCombatSkill(v).text }))
-    },
-    {
-      header: 'Skills (Weapon)',
-      categories: this.content.getSkills().map(v => ({ header: v, text: this.content.getSkill(v).text }))
     }
   ];
 
