@@ -26,6 +26,10 @@ ion-content {
   background: url("../assets/bg/background.png");
 }
 
+ion-list {
+  --ion-item-background: #f4eedb;
+}
+
 ion-card, ion-list, ion-item, ion-list-header, .alert-wrapper, .action-sheet-group {
   --background: #f4eedb;
 }
