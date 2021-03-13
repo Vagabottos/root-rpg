@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="navbar">
+    <ion-title>
+      Session Notes Creator
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="notesForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Session Events</ion-label>
+        <ion-textarea formControlName="notesText" placeholder="Enter what happened this time" maxlength="1000" rows="7"></ion-textarea>
+      </ion-item>
+
+      <ion-item color="tertiary" class="pointer" (click)="dismiss(this.formRecord)" [disabled]="notesForm.invalid">
+        <ion-icon slot="start" name="add"></ion-icon>
+        {{ notes ? 'Update' : 'Create' }} Session Notes
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

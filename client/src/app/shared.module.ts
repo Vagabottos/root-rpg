@@ -33,6 +33,7 @@ import { GMPlayerPopoverComponent } from './components/gmplayer.popover';
 import { ReferenceComponent } from './components/reference/reference.component';
 import { NPCRandomizerComponent } from './components/npc-randomizer/npc-randomizer.component';
 import { PortraitChooserComponent } from './components/portrait-chooser/portrait-chooser.component';
+import { SessionNotesCreatorComponent } from './components/session-notes-creator/session-notes-creator.component';
 
 const pipes = [MarkdownPipe, NumberWithPlus];
 const directives = [LongPressDirective, SwipeDirective];
@@ -42,7 +43,7 @@ const modals = [
   CampaignComponent, ForceSelectorComponent, ChangeConnectionsComponent, ChangeDrivesComponent,
   NPCCreatorComponent, ForestCreatorComponent, ClearingBackgroundComponent, VisitRecordCreatorComponent,
   WoodlandOverviewComponent, DiceRollerComponent, GMPlayerPopoverComponent, ReferenceComponent,
-  NPCRandomizerComponent, PortraitChooserComponent
+  NPCRandomizerComponent, PortraitChooserComponent, SessionNotesCreatorComponent
 ];
 
 @NgModule({

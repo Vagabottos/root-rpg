@@ -39,6 +39,12 @@
           </ion-row>
 
           <ion-row>
+            <ion-col size="12">
+              <app-notes [notes]="campaign.notes" (updateNotes)="updateNotes(campaign, $event)"></app-notes>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
             <ion-col>
               <ion-card>
                 <ion-card-header>
@@ -68,7 +74,31 @@
         </ion-col>
 
         <ion-col size="12" size-lg="6">
-          <app-notes [notes]="campaign.notes" (updateNotes)="updateNotes(campaign, $event)"></app-notes>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Session Notes</ion-card-title>
+              <ion-icon class="change" name="add" (click)="addNotes(campaign)"></ion-icon>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ion-item *ngIf="!campaign.sessionNotes || campaign.sessionNotes.length === 0">
+                  <em>You have no notes entered.</em>
+                </ion-item>
+
+                <ion-item *ngFor="let notes of campaign.sessionNotes">
+                  <ion-label class="ion-text-wrap">
+                    <p><small><em>{{ notes.timestamp | date:'medium' }}</em></small></p>
+                    <p>{{ notes.notesText }}</p>
+                  </ion-label>
+
+                  <ion-button slot="end" fill="clear" (click)="showItemEditPopover(campaign, notes, $event)">
+                    <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
 

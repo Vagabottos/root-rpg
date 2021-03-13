@@ -54,12 +54,18 @@ export interface IClearingVisitedEvent {
   warContinuesType: WarType;
 }
 
+export interface ISessionNotes {
+  timestamp: number;
+  notesText: string;
+}
+
 export interface ICampaign {
   name: string;
   locked?: boolean;
   factions: string[];
   characterNames?: string[];
   notes: string;
+  sessionNotes: ISessionNotes[];
 
   mapGen: {
     layout: string;

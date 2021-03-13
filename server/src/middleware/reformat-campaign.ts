@@ -155,6 +155,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     name: context.data.name,
     locked: false,
     notes: '',
+    sessionNotes: [],
     mapGen: {
       layout: '',
       flipX: sample([true, false]) as boolean,
