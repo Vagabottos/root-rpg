@@ -69,6 +69,7 @@ export class NPCRandomizerComponent implements OnInit {
     }
 
     this.generateNPCCount = clamp(this.generateNPCCount, 1, this.maxCreatableNPCS);
+    if (isNaN(this.generateNPCCount)) { this.generateNPCCount = 1; }
   }
 
   removeNPC(npc: INPC): void {

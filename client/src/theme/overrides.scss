@@ -30,6 +30,10 @@ ion-card, ion-list, ion-item, ion-list-header, .alert-wrapper, .action-sheet-gro
   --background: #f4eedb;
 }
 
+ion-list {
+  --ion-item-background:#f4eedb;
+}
+
 .validation-errors {
   background: #f4eedb;
 }
