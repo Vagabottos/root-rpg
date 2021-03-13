@@ -6,6 +6,10 @@ import { PopoverController } from '@ionic/angular';
   template: `
   <ion-content>
     <ion-list>
+      <ion-item class="pointer" (click)="dismiss('move')" *ngIf="showMove">
+        <ion-icon slot="start" name="swap-horizontal"></ion-icon>
+        Move
+      </ion-item>
       <ion-item class="pointer" (click)="dismiss('edit')" *ngIf="showEdit">
         <ion-icon slot="start" name="pencil"></ion-icon>
         Edit
@@ -19,6 +23,7 @@ import { PopoverController } from '@ionic/angular';
   `
 })
 export class EditDeletePopoverComponent {
+  @Input() public showMove = false;
   @Input() public showEdit = true;
   @Input() public showDelete = true;
 

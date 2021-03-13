@@ -8,6 +8,7 @@ import { EditDeletePopoverComponent } from '../../components/editdelete.popover'
 import { NPCCreatorComponent } from '../../components/npc-creator/npc-creator.component';
 import { NPCRandomizerComponent } from '../../components/npc-randomizer/npc-randomizer.component';
 import { DataService } from '../../services/data.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-campaign-view-npcs',
@@ -21,6 +22,7 @@ export class CampaignViewNpcsPage implements OnInit {
     private alert: AlertController,
     private popover: PopoverController,
     private modal: ModalController,
+    private notification: NotificationService,
     public data: DataService
   ) { }
 
@@ -60,6 +62,13 @@ export class CampaignViewNpcsPage implements OnInit {
       header: 'Actions',
       buttons: [
         {
+          text: 'Move',
+          icon: 'swap-horizontal',
+          handler: () => {
+            this.moveNPC(camp, npc, 'Unaffiliated');
+          }
+        },
+        {
           text: 'Edit',
           icon: 'pencil',
           handler: () => {
@@ -86,12 +95,17 @@ export class CampaignViewNpcsPage implements OnInit {
 
     const popover = await this.popover.create({
       component: EditDeletePopoverComponent,
+      componentProps: { showMove: true },
       event
     });
 
     popover.onDidDismiss().then((res) => {
       const resAct = res.data;
       if (!resAct) { return; }
+
+      if (resAct === 'move') {
+        this.moveNPC(camp, npc, 'Unaffiliated');
+      }
 
       if (resAct === 'edit') {
         this.addNewNPC(camp, npc);
@@ -103,6 +117,30 @@ export class CampaignViewNpcsPage implements OnInit {
     });
 
     popover.present();
+  }
+
+  async moveNPC(campaign: ICampaign, npc: INPC, source: string) {
+    const choices = ['Unaffiliated'].concat(campaign.clearings.map(x => x.name)).map(x => ({ name: x, text: '' }));
+    const modal = await this.notification.loadForcedChoiceModal({
+      title: `Move NPC`,
+      message: `Choose a new destination for this NPC.`,
+      choices,
+      numChoices: 1,
+      disableChoices: [source]
+    });
+
+    modal.onDidDismiss().then(({ data }) => {
+      if (!data) {
+        return;
+      }
+
+      const newLocation = data[0].name;
+
+      campaign.npcs = campaign.npcs.filter(x => x.name !== npc.name);
+      campaign.clearings.find(x => x.name === newLocation).npcs.push(npc);
+
+      this.save();
+    });
   }
 
   async attemptDeleteNPC(campaign: ICampaign, npc: INPC) {
