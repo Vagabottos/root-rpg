@@ -200,53 +200,5 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col size="12" size-lg="8" offset-lg="2">
-
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Reputation</ion-card-title>
-            <ion-icon class="change" name="list" (click)="changeFactions(character)" *ngIf="!character.campaign"></ion-icon>
-          </ion-card-header>
-
-          <ion-card-content>
-            <ion-row *ngFor="let faction of character.reputation | keyvalue" class="reputation-row">
-              <ion-col class="reputation-label ion-text-center-xs" size-xs="12" size-lg="3">{{ faction.key }}</ion-col>
-              <ion-col class="reputation-box" size-xs="12" size-lg="9">
-                <ion-row>
-                  <ion-col class="notoriety-level">
-                    <span class="label">{{ getLowerFactionTotal(character, faction.key) | withPlus }}</span>
-                  </ion-col>
-
-                  <ion-col class="notoriety-track">
-                    <ion-icon *ngFor="let i of getNotorietyBoxes(character, faction.key)"
-                              [class.take-space]="i === null"
-                              (click)="setNotoriety(character, faction.key, i + 1)"
-                              [name]="getNotoriety(character, faction.key) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-                  </ion-col>
-
-                  <ion-col class="current-level">
-                    <span class="label">{{ (character.reputation[faction.key].total || 0) | withPlus }}</span>
-                  </ion-col>
-
-                  <ion-col class="prestige-track">
-                    <ion-icon *ngFor="let i of getPrestigeBoxes(character, faction.key)"
-                              [class.take-space]="i === null"
-                              (click)="setPrestige(character, faction.key, i + 1)"
-                              [name]="getPrestige(character, faction.key) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-                  </ion-col>
-
-                  <ion-col class="prestige-level">
-                    <span class="label">{{ getHigherFactionTotal(character, faction.key) | withPlus }}</span>
-                  </ion-col>
-                </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-
-      </ion-col>
-    </ion-row>
-
   </ng-container>
 </ion-content>

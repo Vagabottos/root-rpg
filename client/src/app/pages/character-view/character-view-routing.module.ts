@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('../character-view-inventory/character-view-inventory.module').then( m => m.CharacterViewInventoryPageModule)
       },
       {
+        path: 'reputation',
+        loadChildren: () => import('../character-view-reputation/character-view-reputation.module').then( m => m.CharacterViewReputationPageModule)
+      },
+      {
         path: '**',
         redirectTo: 'info',
         pathMatch: 'full'

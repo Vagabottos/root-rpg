@@ -20,7 +20,7 @@ export class CreateCampaignPage implements OnInit, BlocksLeave {
   public campaignForm = new FormGroup({
     campaignName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     campaignFactions: new FormControl(
-      ['Denizens', 'The Marquisate', 'The Eyrie'],
+      ['Denizens', 'The Marquisate', 'The Eyrie Dynasties'],
       [Validators.required]
     )
   });

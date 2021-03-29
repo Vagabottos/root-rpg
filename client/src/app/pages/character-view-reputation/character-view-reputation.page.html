@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="navbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard/characters"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ng-container *ngIf="data.char$ | async as character">
+        {{ character?.name || 'Loading...' }}
+      </ng-container>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ng-container *ngIf="data.char$ | async as character">
+        <ion-button (click)="changeFactions(character)">
+          <ion-icon slot="icon-only" name="list"></ion-icon>
+        </ion-button>
+      </ng-container>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ng-container *ngIf="data.char$ | async as character">
+
+    <div class="blank-slate" *ngIf="(character.reputation | keyvalue).length === 0">
+      You have no factions.
+    </div>
+
+    <ion-row>
+      <ion-col size="12" size-lg="6" *ngFor="let faction of character.reputation | keyvalue">
+        <ion-card class="reputation-card">
+          <ion-card-header color="primary"
+                          [style.background-image]="reputationBackgrounds[faction.key] ? 'url(\'/assets/reputation/' + reputationBackgrounds[faction.key] + '.png\')' : ''">
+            <ion-card-title>
+              {{ faction.key }}
+              <div class="rep-circle">
+                {{ (character.reputation[faction.key].total || 0) | withPlus }}
+              </div>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="ion-padding">
+              <h3>Prestige</h3>
+              <div>
+                <ion-icon *ngFor="let i of getPrestigeBoxes(character, faction.key)"
+                          [class.take-space]="i === null"
+                          (click)="setPrestige(character, faction.key, i + 1)"
+                          [name]="getPrestige(character, faction.key) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+              </div>
+
+              <hr>
+
+              <h3>Notoriety</h3>
+              <div>
+                <ion-icon *ngFor="let i of getNotorietyBoxes(character, faction.key)"
+                          [class.take-space]="i === null"
+                          (click)="setNotoriety(character, faction.key, i + 1)"
+                          [name]="getNotoriety(character, faction.key) > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+              </div>
+
+            </div>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ng-container>
+</ion-content>
