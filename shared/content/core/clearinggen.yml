@@ -296,3 +296,120 @@ forest:
   - thicket
   - grove
   - weald
+
+building:
+  - mill
+  - forge
+  - well
+  - farm
+  - kiln
+  - town hall
+  - guard tower
+  - fence
+  - wall
+  - longhouse
+  - archive
+  - larder
+  - grain silo
+  - armory
+  - infirmary
+  - brewery
+  - bakehouse
+  - woodshop
+  - warehouse
+  - orchard
+  - custom house
+  - market
+  - monastery
+  - tavern
+  - inn
+  - almshouse
+  - barracks
+  - schoolhouse
+  - bridge
+  - dam
+  - bank
+  - fountain
+  - prison
+  - graveyard
+  - courthouse
+  - trading post
+  - aqueduct
+
+problem:
+  - bear
+  - natural disaster
+  - bandit
+  - enemy occupation
+  - famine
+  - sickness
+  - tyranny
+  - war
+  - money
+  - inequality
+  - overpopulation
+  - lack of development
+  - corruption
+  - dissent
+  - rebellion
+  - lack of crucial resource
+  - lack of skilled later
+  - overtaxation
+  - sabotage
+  - internal strife
+  - inflexible traditions
+  - prejudice
+  - brutality
+  - protection racket
+  - xenophobia
+  - road damage
+  - obsolescence
+  - cultural assimilation
+  - coup
+  - poisoned supplies
+  - dilapidated architecture
+  - fearmongering
+  - warmongering
+  - smugglers
+  - thieves
+  - censorship
+  - strange mystery
+
+inhabitant:
+  - mayor
+  - smith
+  - guard captain
+  - rebel leader
+  - enemy captain
+  - village elder
+  - farmer
+  - thief
+  - local regent
+  - scholar
+  - tax collector
+  - doctor
+  - armorer
+  - merchant
+  - noble
+  - astronomer
+  - healer
+  - banker
+  - rabble-rouser
+  - bandit
+  - mercenary
+  - baker
+  - tracker
+  - historian
+  - faction recruiter
+  - tailor
+  - cobbler
+  - jeweler
+  - sheriff
+  - barber
+  - monk
+  - soldier
+  - mason
+  - assassin
+  - gambler
+  - minstrel
+  - judge

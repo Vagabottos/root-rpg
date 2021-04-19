@@ -86,6 +86,9 @@ export interface IContentClearingGen {
   }
 
   forest: string[];
+  building: string[];
+  problem: string[];
+  inhabitant: string[];
 }
 
 export interface IContentMapLayout {

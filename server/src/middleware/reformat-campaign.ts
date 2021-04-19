@@ -1,7 +1,8 @@
 
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { capitalize, cloneDeep, isArray, sample, shuffle, random, uniq } from 'lodash';
+import { capitalize, cloneDeep, isArray, sample, sampleSize, shuffle, random, uniq } from 'lodash';
+import { INPC } from '../../../shared/interfaces';
 import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
 
@@ -25,9 +26,9 @@ export function randomTownName(): string {
 function createClearing(campaign: ICampaign): IClearing {
   const clearing: IClearing = {
     name: randomTownName(),
-    status: sample(['pristine', 'damaged', 'wrecked', 'destroyed']) as ClearingStatus,
-    contestedBy: sample(campaign.factions) as string,
-    controlledBy: sample(campaign.factions) as string,
+    status: sample(['untouched', 'battle-scarred', 'occupied', 'fortified']) as ClearingStatus,
+    contestedBy: '',
+    controlledBy: '',
     npcs: [],
     notes: '',
     eventRecord: {
@@ -36,14 +37,14 @@ function createClearing(campaign: ICampaign): IClearing {
     },
     landscape: {
       clearingConnections: [],
-      landmarks: 'A Big Tower',
-      locations: 'A Big Park'
+      landmarks: sampleSize(content.core.clearinggen.building, 2).join(', '),
+      locations: '',
     },
     current: {
-      ruler: 'Some Big Guy',
-      conflicts: 'There is probably some stuff going down here.',
-      overarchingIssue: 'We need to figure out why stuff is going down here.',
-      dominantFaction: sample(campaign.factions) as string
+      ruler: '',
+      conflicts: sampleSize(content.core.clearinggen.problem, 2).join(', '),
+      overarchingIssue: '',
+      dominantFaction: ''
     },
     history: {
       founder: 'Founder bon Varenstein',
@@ -56,6 +57,9 @@ Captain Founderpants
       interregnumEvents: 'A coup happened'
     }
   };
+
+  generateClearingNPC(campaign, clearing);
+  generateClearingNPC(campaign, clearing);
 
   return clearing;
 }
@@ -140,6 +144,71 @@ function generateConnections(campaign: ICampaign) {
   });
 }
 
+function generateCommunities(campaign: ICampaign) {
+  const order = shuffle([
+    'Rabbit', 'Rabbit', 'Rabbit', 'Rabbit',
+    'Mouse', 'Mouse', 'Mouse', 'Mouse',
+    'Fox', 'Fox', 'Fox', 'Fox'
+  ]);
+
+  campaign.clearings.forEach((clearing, i) => {
+    clearing.current.dominantFaction = order[i];
+  });
+}
+
+function generateNames(campaign: ICampaign) {
+  let names = Array(12).fill(null).map(() => randomTownName());
+  while(!uniq(names)) {
+    names = Array(12).fill(null).map(() => randomTownName());
+  }
+
+  campaign.clearings.forEach((x, i) => x.name = names[i]);
+}
+
+function generateMarquisate(campaign: ICampaign) {
+  // set controlledBy (add "marquise (with keep) to controlled by list)
+}
+
+function generateEyrie(campaign: ICampaign) {
+  // set controlledBy (add "eyrie (with roost)" to controlled by list)
+}
+
+function generateWoodland(campaign: ICampaign) {
+  // set controlledBy (add "woodland (with base)" to controlled by list)
+}
+
+function generateDenizens(campaign: ICampaign) {
+  // set controlledBy (add "uncontrolled" to controlled by list)
+}
+
+function generateClearingNPC(campaign: ICampaign, clearing: IClearing) {
+
+  const npc: INPC = {
+    name: sample(content.core.names) as string,
+    faction: sample(campaign.factions) as string,
+    look: 'like a goat',
+    job: sample(content.core.clearinggen.inhabitant) as string,
+    drive: sample(content.core.npcdrives) as string,
+    attack: '1 injury',
+    equipment: [],
+    notes: '',
+    harm: {
+      depletion: 0,
+      exhaustion: 0,
+      injury: 0,
+      morale: 0
+    },
+    harmMax: {
+      depletion: random(0, 5),
+      exhaustion: random(0, 5),
+      injury: random(0, 5),
+      morale: random(0, 5)
+    }
+  };
+
+  clearing.npcs.push(npc);
+}
+
 export async function reformatCampaign(context: HookContext): Promise<HookContext> {
 
   context.data.factions = context.data.factions || [];
@@ -172,14 +241,13 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     newCampaign.clearings.push(clearing);
   }
 
-  let names = Array(12).fill(null).map(() => randomTownName());
-  while(!uniq(names)) {
-    names = Array(12).fill(null).map(() => randomTownName());
-  }
-
-  newCampaign.clearings.forEach((x, i) => x.name = names[i]);
-
+  generateNames(newCampaign);
   generateConnections(newCampaign);
+  generateCommunities(newCampaign);
+  generateMarquisate(newCampaign);
+  generateEyrie(newCampaign);
+  generateWoodland(newCampaign);
+  generateDenizens(newCampaign);
 
   // write this copy to the db
   context.data = newCampaign;

@@ -1,6 +1,6 @@
 import { INPC } from './npc';
 
-export type ClearingStatus = 'pristine' | 'damaged' | 'wrecked' | 'destroyed';
+export type ClearingStatus = 'untouched' | 'battle-scarred' | 'occupied' | 'fortified';
 export type ForestType = 'ruins' | 'creature' | 'mystery';
 export type WarType = 'assault' | 'negotiation' | 'sabotage' | 'scarcity' | 'subversion' | 'minor ripples';
 
