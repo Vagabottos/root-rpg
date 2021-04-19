@@ -99,6 +99,15 @@ export interface IContentMapLayout {
   connections: Array<{ path: string, blocks: string[] }>;
 }
 
+export interface IContentRequest {
+  where: string[];
+  do: Array<{ type: string, text: string }>;
+  requester: string[];
+  item: string[];
+  group: string[];
+  complication: string[];
+}
+
 export interface IContentCore {
   clearinggen: IContentClearingGen;
   customitemdata: Record<string, IContentMoveCustomItem>;
@@ -124,6 +133,7 @@ export interface IContentCore {
   referencebasicmoves: Record<string, IContentMove>;
   referencemoves: Record<string, IContentMove>;
   referenceskills: Record<string, IContentSkill>;
+  requests: IContentRequest;
 }
 
 export interface IContentBackgroundReputationChange {

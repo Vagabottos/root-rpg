@@ -59,6 +59,13 @@ export interface ISessionNotes {
   notesText: string;
 }
 
+export interface IRequest {
+  from: string;
+  where: string;
+  do: string;
+  target: string;
+}
+
 export interface ICampaign {
   name: string;
   locked?: boolean;
@@ -72,6 +79,8 @@ export interface ICampaign {
     flipX: boolean;
     flipY: boolean;
   };
+
+  request: IRequest;
 
   clearings: IClearing[];
   forests: IForest[];

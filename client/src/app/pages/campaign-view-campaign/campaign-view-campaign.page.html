@@ -76,6 +76,22 @@
         <ion-col size="12" size-lg="6">
           <ion-card>
             <ion-card-header>
+              <ion-card-title>Current Request</ion-card-title>
+              <ion-icon class="change" name="refresh" (click)="generateRequest(campaign)"></ion-icon>
+            </ion-card-header>
+
+            <ion-card-content>
+              <em *ngIf="!campaign.request">You have not generated a request.</em>
+              <div>
+                <strong>"{{ campaign.request.from }}"</strong>
+                <br>
+                In {{ campaign.request.where }}, {{ campaign.request.do }} ({{ campaign.request.target }}).
+              </div>
+            </ion-card-content>
+          </ion-card>
+
+          <ion-card>
+            <ion-card-header>
               <ion-card-title>Session Notes</ion-card-title>
               <ion-icon class="change" name="add" (click)="addNotes(campaign)"></ion-icon>
             </ion-card-header>

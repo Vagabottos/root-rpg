@@ -167,6 +167,7 @@ function generateNames(campaign: ICampaign) {
 
 function generateMarquisate(campaign: ICampaign) {
   // set controlledBy (add "marquise (with keep) to controlled by list)
+  // mark corners in the map layout - 1,2,3,4 - 1/3 are opposites and 2/4
 }
 
 function generateEyrie(campaign: ICampaign) {
@@ -225,6 +226,12 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     locked: false,
     notes: '',
     sessionNotes: [],
+    request: {
+      do: '',
+      from: '',
+      where: '',
+      target: ''
+    },
     mapGen: {
       layout: '',
       flipX: sample([true, false]) as boolean,

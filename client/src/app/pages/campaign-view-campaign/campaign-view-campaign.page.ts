@@ -197,6 +197,12 @@ export class CampaignViewCampaignPage implements OnInit {
     popover.present();
   }
 
+  generateRequest(campaign: ICampaign) {
+    const request = this.content.getRandomRequest();
+    campaign.request = request;
+    this.save();
+  }
+
   private save() {
     this.data.patchCampaign().subscribe(() => {});
   }

@@ -57,6 +57,13 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
     campaign.npcs.forEach(npc => cleanNPC(npc));
   }
 
+  if(campaign.request) {
+    campaign.request.do = clean(campaign.request.do);
+    campaign.request.from = clean(campaign.request.from);
+    campaign.request.where = clean(campaign.request.where);
+    campaign.request.target = clean(campaign.request.target);
+  }
+
   if(campaign.sessionNotes) {
     campaign.sessionNotes.forEach(sessionNotes => {
       sessionNotes.notesText = clean(sessionNotes.notesText, 1000);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
+import { IRequest } from '../../../../shared/interfaces';
 
 import { IContentConnection, IContentDrive, IContentFaction,
   IContentFeat, IContentItemTag, IContentStat, IContentMove, IContentNature,
@@ -66,6 +67,17 @@ export class ContentService {
     ];
 
     return arr.filter(x => x.value > 0).map(x => `${x.value} ${x.text}`).join(', ');
+  }
+
+  getRandomRequest(): IRequest {
+    const doRef = sample(this.content.core.requests.do);
+
+    return {
+      do: doRef.text,
+      from: sample(this.content.core.requests.requester),
+      where: sample(this.content.core.requests.where),
+      target: sample(this.content.core.requests[doRef.type])
+    };
   }
 
   getAllMapLayouts(): Record<string, IContentMapLayout> {
