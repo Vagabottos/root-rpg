@@ -81,8 +81,8 @@
             </ion-card-header>
 
             <ion-card-content>
-              <em *ngIf="!campaign.request">You have not generated a request.</em>
-              <div>
+              <em *ngIf="!campaign.request.from">You have not generated a request.</em>
+              <div *ngIf="campaign.request.from">
                 <strong>"{{ campaign.request.from }}"</strong>
                 <br>
                 In {{ campaign.request.where }}, {{ campaign.request.do }} ({{ campaign.request.target }}).
