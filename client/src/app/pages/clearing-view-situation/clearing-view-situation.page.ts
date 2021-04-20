@@ -79,6 +79,8 @@ export class ClearingViewSituationPage implements OnInit {
 
     const retFactions = factionList.slice();
 
+    retFactions.unshift('Uncontrolled');
+
     const marq = retFactions.indexOf('The Marquisate');
     if(marq !== -1) {
       retFactions.splice(marq, 0, 'The Marquisate (Keep)');

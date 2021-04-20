@@ -28,7 +28,7 @@ function createClearing(campaign: ICampaign): IClearing {
     name: randomTownName(),
     status: sample(['untouched', 'battle-scarred', 'occupied', 'fortified']) as ClearingStatus,
     contestedBy: '',
-    controlledBy: '',
+    controlledBy: 'Uncontrolled',
     sympathy: false,
     npcs: [],
     notes: '',
@@ -166,21 +166,151 @@ function generateNames(campaign: ICampaign) {
   campaign.clearings.forEach((x, i) => x.name = names[i]);
 }
 
-function generateMarquisate(campaign: ICampaign) {
-  // set controlledBy (add "marquise (with keep) to controlled by list)
-  // mark corners in the map layout - 1,2,3,4 - 1/3 are opposites and 2/4
+function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, opposite: number }) {
+  if(!campaign.factions.includes('The Marquisate')) return;
+
+  const myCorner = campaign.clearings[startCorner.origin];
+  myCorner.controlledBy = 'The Marquisate (Keep)';
+
+  const clearingsChecked = {
+    [startCorner.origin]: true
+  };
+
+  // this should really be recursive / bfs but meh
+  myCorner.landscape.clearingConnections.forEach(connected => {
+    if(clearingsChecked[connected]) return;
+    clearingsChecked[connected] = true;
+
+    if(random(2, 12) <= 4) return;
+    campaign.clearings[connected].controlledBy = 'The Marquisate';
+
+    // dist of 2
+    campaign.clearings[connected].landscape.clearingConnections.forEach(connected2 => {
+      if(clearingsChecked[connected2]) return;
+      clearingsChecked[connected2] = true;
+
+      if(random(2, 12) <= 6) return;
+      campaign.clearings[connected2].controlledBy = 'The Marquisate';
+
+      // dist of 3
+      campaign.clearings[connected2].landscape.clearingConnections.forEach(connected3 => {
+        if(clearingsChecked[connected3]) return;
+        clearingsChecked[connected3] = true;
+  
+        if(random(2, 12) <= 9) return;
+        campaign.clearings[connected3].controlledBy = 'The Marquisate';
+
+        // dist of 4
+        campaign.clearings[connected3].landscape.clearingConnections.forEach(connected4 => {
+          if(clearingsChecked[connected4]) return;
+          clearingsChecked[connected4] = true;
+    
+          if(random(2, 12) <= 11) return;
+          campaign.clearings[connected4].controlledBy = 'The Marquisate';
+        });
+      });
+    });
+  });
 }
 
-function generateEyrie(campaign: ICampaign) {
-  // set controlledBy (add "eyrie (with roost)" to controlled by list)
+function generateEyrie(campaign: ICampaign, startCorner: { origin: number, opposite: number }) {
+  if(!campaign.factions.includes('The Eyrie Dynasties')) return;
+
+  const myCorner = campaign.clearings[startCorner.opposite];
+  myCorner.controlledBy = 'The Eyrie Dynasties (Roost)';
+
+  const clearingsChecked = {
+    [startCorner.opposite]: true,
+    [startCorner.origin]: true
+  };
+
+  let roosts = 1;
+
+  // this should really be recursive / bfs but meh
+  myCorner.landscape.clearingConnections.forEach(connected => {
+    if(clearingsChecked[connected]) return;
+    clearingsChecked[connected] = true;
+
+    const roll = random(2, 12);
+    if(roll <= 5) return;
+    const controller = roll >= 9 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
+    if(campaign.clearings[connected].controlledBy) campaign.clearings[connected].contestedBy = 'Eyrie';
+    campaign.clearings[connected].controlledBy = controller;
+
+    if(roll >= 9) roosts++;
+
+    // dist of 2
+    campaign.clearings[connected].landscape.clearingConnections.forEach(connected2 => {
+      if(clearingsChecked[connected2]) return;
+      clearingsChecked[connected2] = true;
+
+      const roll = random(2, 12);
+      if(roll <= 8) return;
+      const controller = roll >= 11 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
+      if(campaign.clearings[connected2].controlledBy) campaign.clearings[connected2].contestedBy = 'Eyrie';
+      campaign.clearings[connected2].controlledBy = controller;
+
+      if(roll >= 11) roosts++;
+
+      // dist of 3
+      campaign.clearings[connected2].landscape.clearingConnections.forEach(connected3 => {
+        if(clearingsChecked[connected3]) return;
+        clearingsChecked[connected3] = true;
+
+        const roll = random(2, 12);
+        if(roll <= 10) return;
+        const controller = roll >= 12 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
+        if(campaign.clearings[connected3].controlledBy) campaign.clearings[connected3].contestedBy = 'Eyrie';
+        campaign.clearings[connected3].controlledBy = controller;
+
+        if(roll >= 12) roosts++;
+      });
+    });
+  });
 }
 
 function generateWoodland(campaign: ICampaign) {
-  // set controlledBy (add "woodland (with base)" to controlled by list)
+  if(!campaign.factions.includes('The Woodland Alliance')) return;
+
+  for(let i = 0; i < 12; i++) {
+    const clearing = campaign.clearings[i];
+
+    const roll = random(2, 12);
+    if(clearing.controlledBy && roll >= 11)   { clearing.sympathy = true; }
+    if(!clearing.controlledBy && roll >= 9)   { clearing.sympathy = true; }
+    if(clearing.contestedBy && roll >= 8)     { clearing.sympathy = true; }
+  }
+
+  let didRevolt = false;
+
+  for(let i = 0; i < 12; i++) {
+    if(didRevolt) continue;
+
+    const clearing = campaign.clearings[i];
+    if(!clearing.sympathy) continue;
+
+    const roll = random(2, 12);
+    if(roll < 10) continue;
+
+    didRevolt = true;
+    clearing.controlledBy = 'The Woodland Alliance (Base)';
+
+    if(roll === 12) {
+      clearing.landscape.clearingConnections.forEach(conn => {
+        campaign.clearings[conn].sympathy = true;
+      });
+    }
+  }
 }
 
 function generateDenizens(campaign: ICampaign) {
-  // set controlledBy (add "uncontrolled" to controlled by list)
+  for(let i = 0; i < 12; i++) {
+    const clearing = campaign.clearings[i];
+
+    if(clearing.controlledBy?.includes('(') && random(2, 12) >= 11) {
+      clearing.controlledBy = '';
+    }
+  }
 }
 
 function generateClearingNPC(campaign: ICampaign, clearing: IClearing) {
@@ -252,8 +382,12 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   generateNames(newCampaign);
   generateConnections(newCampaign);
   generateCommunities(newCampaign);
-  generateMarquisate(newCampaign);
-  generateEyrie(newCampaign);
+
+  const corners = allContent.core.maplayouts[newCampaign.mapGen.layout].corners;
+  const chosenCorner = sample(corners);
+
+  generateMarquisate(newCampaign, chosenCorner!);
+  generateEyrie(newCampaign, chosenCorner!);
   generateWoodland(newCampaign);
   generateDenizens(newCampaign);
 
