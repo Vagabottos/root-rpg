@@ -36,6 +36,7 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.log('change', this.campaign)
     setTimeout(() => {
       this.loadMap();
     }, 0);

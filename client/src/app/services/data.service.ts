@@ -112,6 +112,7 @@ export class DataService {
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
+    console.log('update', campaign);
 
     const curCamp = this.campaign.getValue();
     if (curCamp?._id) { this.socket.leaveChannel(); }
@@ -164,6 +165,10 @@ export class DataService {
     }, {});
 
     return this.campaignAPI.patchCampaign(id, patchObj)
+      .pipe(tap(() => {
+        this.campaignAPI.loadCampaign(id)
+          .subscribe(char => this.setActiveCampaign(char));
+      }))
       .pipe(catchError((err) => {
 
         // revert on error
