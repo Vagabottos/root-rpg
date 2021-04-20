@@ -75,4 +75,26 @@ export class ClearingViewSituationPage implements OnInit {
     this.data.patchCampaign().subscribe(() => {});
   }
 
+  getFactionRuleChoices(factionList: string[]): string[] {
+
+    const retFactions = factionList.slice();
+
+    const marq = retFactions.indexOf('The Marquisate');
+    if(marq !== -1) {
+      retFactions.splice(marq, 0, 'The Marquisate (Keep)');
+    }
+
+    const eyrie = retFactions.indexOf('The Eyrie Dynasties');
+    if(eyrie !== -1) {
+      retFactions.splice(eyrie, 0, 'The Eyrie Dynasties (Roost)');
+    }
+
+    const woodland = retFactions.indexOf('The Woodland Alliance');
+    if(woodland !== -1) {
+      retFactions.splice(woodland, 0, 'The Woodland Alliance (Base)');
+    }
+
+    return retFactions;
+  }
+
 }

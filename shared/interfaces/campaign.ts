@@ -9,6 +9,7 @@ export interface IClearing {
   status: ClearingStatus;
   contestedBy: string;
   controlledBy: string;
+  sympathy: boolean;
   npcs: INPC[];
   notes: string;
 

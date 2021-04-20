@@ -8,7 +8,7 @@ const allContent: IContent = cloneDeep(content);
 
 const NUM_CLEARINGS = 12;
 const MAX_ATTEMPTS = 25;
-const MIN_CONNECTIONS = 2;
+const MIN_CONNECTIONS = 1;
 const MAX_CONNECTIONS = 5;
 
 export function randomTownName(): string {
@@ -29,6 +29,7 @@ function createClearing(campaign: ICampaign): IClearing {
     status: sample(['untouched', 'battle-scarred', 'occupied', 'fortified']) as ClearingStatus,
     contestedBy: '',
     controlledBy: '',
+    sympathy: false,
     npcs: [],
     notes: '',
     eventRecord: {

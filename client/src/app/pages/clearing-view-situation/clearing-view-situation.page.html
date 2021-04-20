@@ -90,10 +90,23 @@
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Controlled By</ion-label>
                   <ion-select [(ngModel)]="clearingCopy.controlledBy" placeholder="Choose Clearing controlling faction">
-                    <ion-select-option *ngFor="let choice of campaign.factions" [value]="choice">
+                    <ion-select-option *ngFor="let choice of getFactionRuleChoices(campaign.factions)" [value]="choice">
                       {{ choice }}
                     </ion-select-option>
                   </ion-select>
+                </ion-item>
+
+                <!-- sympathetic -->
+                <ion-item *ngIf="!isEditing">
+                  <ion-label>
+                    <p class="fake-form-label">Sympathetic?</p>
+                    <h2>{{ clearing.sympathy ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing">
+                  <ion-label position="stacked">Sympathetic?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.sympathy"></ion-toggle>
                 </ion-item>
 
                 <!-- contested by -->

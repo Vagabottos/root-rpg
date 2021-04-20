@@ -76,6 +76,7 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
       clearing.status = clean(clearing.status, 15) as ClearingStatus;
       clearing.contestedBy = clean(clearing.contestedBy);
       clearing.controlledBy = clean(clearing.controlledBy);
+      clearing.sympathy = !!clearing.sympathy;
 
       clearing.current.dominantFaction = clean(clearing.current.dominantFaction);
       clearing.current.overarchingIssue = clean(clearing.current.overarchingIssue, 1000);

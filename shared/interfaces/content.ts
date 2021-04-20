@@ -95,6 +95,8 @@ export interface IContentMapLayout {
   maxX: number;
   maxY: number;
 
+  corners: Array<{ origin: number, opposite: number }>;
+
   nodePositions: Array<{ x: number, y: number }>;
   connections: Array<{ path: string, blocks: string[] }>;
 }

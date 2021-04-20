@@ -17,6 +17,7 @@ export class CharacterViewReputationPage implements OnInit {
     Denizens: 'denizens',
     'The Marquisate': 'marquise',
     'The Eyrie Dynasties': 'eyrie',
+    'The Woodland Alliance': 'woodland',
     'The Lizard Cult': 'cult',
     'The Riverfolk Company': 'riverfolk',
     'The Underground Duchy': 'duchy',

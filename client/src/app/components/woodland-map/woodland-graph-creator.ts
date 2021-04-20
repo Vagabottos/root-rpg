@@ -242,6 +242,48 @@ export class GraphCreator {
           .attr('r', String(GraphConstants.nodeRadius));
 
         this.insertTitleLinebreaks(d3.select(nodes[i]), d.title, d.subtitle);
+
+        // add population indicator
+        node
+          .append("svg:image")
+          .attr("x", -10)
+          .attr("y", 20)
+          .attr("width", 20)
+          .attr("height", 24)
+          .attr("xlink:href", (d) => `assets/map/card-${d.population}.png`);
+
+        // add faction indicator
+        if(d.controller) {
+          node
+            .append("svg:image")
+            .attr("x", -24)
+            .attr("y", -40)
+            .attr("width", 20)
+            .attr("height", 24)
+            .attr("xlink:href", (d) => `assets/map/faction-${d.controller}.png`);
+        }
+
+        // add faction subindicator
+        if(d.token) {
+          node
+            .append("svg:image")
+            .attr("x", 4)
+            .attr("y", -40)
+            .attr("width", 20)
+            .attr("height", 24)
+            .attr("xlink:href", (d) => `assets/map/token-${d.token}.png`);
+        }
+
+        // add sympathy subindicator
+        if(d.sympathy) {
+          node
+            .append("svg:image")
+            .attr("x", -35)
+            .attr("y", 15)
+            .attr("width", 20)
+            .attr("height", 24)
+            .attr("xlink:href", (d) => `assets/map/token-sympathy.png`);
+        }
       });
 
     this.circles = newGs;

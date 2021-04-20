@@ -3,6 +3,16 @@ circles:
   maxX: 24
   maxY: 18
 
+  corners:
+    - origin: 0
+      opposite: 7
+    - origin: 7
+      opposite: 0
+    - origin: 3
+      opposite: 4
+    - origin: 4
+      opposite: 3
+
   nodePositions:
     - { x: 2,  y: 9 }
     - { x: 6,  y: 5 }
@@ -71,6 +81,16 @@ circles:
 web:
   maxX: 24
   maxY: 18
+
+  corners:
+    - origin: 2
+      opposite: 9
+    - origin: 9
+      opposite: 2
+    - origin: 0
+      opposite: 11
+    - origin: 11
+      opposite: 0
 
   nodePositions:
     - { x: 3,  y: 3 }
