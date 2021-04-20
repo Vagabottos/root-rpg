@@ -245,44 +245,44 @@ export class GraphCreator {
 
         // add population indicator
         node
-          .append("svg:image")
-          .attr("x", -10)
-          .attr("y", 20)
-          .attr("width", 20)
-          .attr("height", 24)
-          .attr("xlink:href", (d) => `assets/map/card-${d.population}.png`);
+          .append('svg:image')
+          .attr('x', -10)
+          .attr('y', 20)
+          .attr('width', 20)
+          .attr('height', 24)
+          .attr('xlink:href', (d2) => `assets/map/card-${d2.population}.png`);
 
         // add faction indicator
-        if(d.controller) {
+        if (d.controller) {
           node
-            .append("svg:image")
-            .attr("x", -24)
-            .attr("y", -40)
-            .attr("width", 20)
-            .attr("height", 24)
-            .attr("xlink:href", (d) => `assets/map/faction-${d.controller}.png`);
+            .append('svg:image')
+            .attr('x', -24)
+            .attr('y', -40)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', (d2) => `assets/map/faction-${d2.controller}.png`);
         }
 
         // add faction subindicator
-        if(d.token) {
+        if (d.token) {
           node
-            .append("svg:image")
-            .attr("x", 4)
-            .attr("y", -40)
-            .attr("width", 20)
-            .attr("height", 24)
-            .attr("xlink:href", (d) => `assets/map/token-${d.token}.png`);
+            .append('svg:image')
+            .attr('x', 4)
+            .attr('y', -40)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', (d2) => `assets/map/token-${d2.token}.png`);
         }
 
         // add sympathy subindicator
-        if(d.sympathy) {
+        if (d.sympathy) {
           node
-            .append("svg:image")
-            .attr("x", -35)
-            .attr("y", 15)
-            .attr("width", 20)
-            .attr("height", 24)
-            .attr("xlink:href", (d) => `assets/map/token-sympathy.png`);
+            .append('svg:image')
+            .attr('x', -35)
+            .attr('y', 15)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/token-sympathy.png`);
         }
       });
 

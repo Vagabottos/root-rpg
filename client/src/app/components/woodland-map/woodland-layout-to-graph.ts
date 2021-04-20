@@ -35,7 +35,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
     const population = campaign.clearings[i].current.dominantFaction.toLowerCase();
 
     let controller = '';
-    switch(campaign.clearings[i].controlledBy) {
+    switch (campaign.clearings[i].controlledBy) {
       case 'The Marquisate':                { controller = 'marquise'; break; }
       case 'The Marquisate (Keep)':         { controller = 'marquise'; break; }
       case 'The Eyrie Dynasties':           { controller = 'eyrie'; break; }
@@ -45,7 +45,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
     }
 
     let token = '';
-    switch(campaign.clearings[i].controlledBy) {
+    switch (campaign.clearings[i].controlledBy) {
       case 'The Marquisate (Keep)':         { token = 'keep'; break; }
       case 'The Eyrie Dynasties (Roost)':   { token = 'roost'; break; }
       case 'The Woodland Alliance (Base)':  { token = `base-${population}`; break; }

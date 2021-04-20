@@ -386,8 +386,8 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   const corners = allContent.core.maplayouts[newCampaign.mapGen.layout].corners;
   const chosenCorner = sample(corners);
 
-  generateMarquisate(newCampaign, chosenCorner!);
-  generateEyrie(newCampaign, chosenCorner!);
+  generateMarquisate(newCampaign, chosenCorner as any);
+  generateEyrie(newCampaign, chosenCorner as any);
   generateWoodland(newCampaign);
   generateDenizens(newCampaign);
 
