@@ -14,6 +14,7 @@ import { DataService } from '../../services/data.service';
 })
 export class CampaignViewClearingsPage implements OnInit {
 
+  public showLegend: boolean;
   public isEditing: boolean;
   public campaignCopy: ICampaign;
 
@@ -24,6 +25,10 @@ export class CampaignViewClearingsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  toggleLegend() {
+    this.showLegend = !this.showLegend;
   }
 
   toggleEdit(campaign: ICampaign) {

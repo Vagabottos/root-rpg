@@ -11,6 +11,10 @@
     </ion-title>
 
     <ion-buttons slot="end">
+      <ion-button (click)="toggleLegend()" class="ion-hide-lg-down">
+        <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+      </ion-button>
+
       <ng-container *ngIf="(data.campaign$ | async) as campaign">
         <ion-button (click)="toggleEdit(campaign)" *ngIf="!isEditing" class="ion-hide-lg-down">
           <ion-icon slot="icon-only" name="pencil"></ion-icon>
@@ -27,6 +31,45 @@
 </ion-header>
 
 <ion-content>
+  <div class="legend" *ngIf="showLegend">
+    <div class="legend-row">
+      <img src="assets/map/card-fox.png" />
+      <img src="assets/map/card-mouse.png" />
+      <img src="assets/map/card-rabbit.png" />
+      <div class="desc">Denizen Majority</div>
+    </div>
+
+    <div class="legend-row">
+      <img src="assets/map/faction-eyrie.png" />
+      <img src="assets/map/faction-marquise.png" />
+      <img src="assets/map/faction-woodland.png" />
+      <div class="desc">Clearing Faction Owner</div>
+    </div>
+
+    <div class="legend-row">
+      <img src="assets/map/token-keep.png" />
+      <div class="desc">Marquise Keep</div>
+    </div>
+
+    <div class="legend-row">
+      <img src="assets/map/token-roost.png" />
+      <div class="desc">Eyrie Roost</div>
+    </div>
+
+    <div class="legend-row">
+      <img src="assets/map/token-sympathy.png" />
+      <div class="desc">Alliance Sympathy</div>
+    </div>
+
+    <div class="legend-row">
+      <img src="assets/map/token-base-fox.png" />
+      <img src="assets/map/token-base-mouse.png" />
+      <img src="assets/map/token-base-rabbit.png" />
+      <div class="desc">Alliance Base</div>
+    </div>
+
+  </div>
+
   <ng-container *ngIf="data.campaign$ | async as campaign">
 
     <app-woodland-map [campaign]="isEditing ? campaignCopy : campaign"
