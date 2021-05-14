@@ -64,6 +64,10 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
     campaign.request.target = clean(campaign.request.target);
   }
 
+  if(campaign.allEvents) {
+    campaign.allEvents = campaign.allEvents.map(x => clean(x, 200));
+  }
+
   if(campaign.sessionNotes) {
     campaign.sessionNotes.forEach(sessionNotes => {
       sessionNotes.notesText = clean(sessionNotes.notesText, 1000);

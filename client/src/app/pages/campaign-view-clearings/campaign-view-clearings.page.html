@@ -15,6 +15,10 @@
         <ion-icon slot="icon-only" name="information-circle"></ion-icon>
       </ion-button>
 
+      <ion-button (click)="showTotalLog(campaign)" class="ion-hide-lg-down" *ngIf="(data.campaign$ | async) as campaign">
+        <ion-icon slot="icon-only" name="receipt"></ion-icon>
+      </ion-button>
+
       <ng-container *ngIf="(data.campaign$ | async) as campaign">
         <ion-button (click)="toggleEdit(campaign)" *ngIf="!isEditing" class="ion-hide-lg-down">
           <ion-icon slot="icon-only" name="pencil"></ion-icon>

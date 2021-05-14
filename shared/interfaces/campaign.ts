@@ -86,6 +86,7 @@ export interface ICampaign {
   clearings: IClearing[];
   forests: IForest[];
   npcs: INPC[];
+  allEvents: string[];
 
   createdAt?: number;
   updatedAt?: number;

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 
 import { cloneDeep, pull } from 'lodash';
 
 import { ICampaign, IClearing } from '../../../interfaces';
+import { CampaignLogComponent } from '../../components/campaign-log/campaign-log.component';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -19,12 +20,24 @@ export class CampaignViewClearingsPage implements OnInit {
   public campaignCopy: ICampaign;
 
   constructor(
+    private modal: ModalController,
     private alert: AlertController,
     private router: Router,
     public data: DataService
   ) { }
 
   ngOnInit() {
+  }
+
+  async showTotalLog(campaign: ICampaign) {
+    const modal = await this.modal.create({
+      component: CampaignLogComponent,
+      componentProps: {
+        campaign
+      }
+    });
+
+    modal.present();
   }
 
   toggleLegend() {

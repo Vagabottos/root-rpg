@@ -4,6 +4,7 @@ import { HookContext } from '@feathersjs/feathers';
 import { capitalize, cloneDeep, isArray, sample, sampleSize, shuffle, random, uniq } from 'lodash';
 import { INPC } from '../../../shared/interfaces';
 import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
+import campaignService from '../services/campaign/campaign.service';
 const allContent: IContent = cloneDeep(content);
 
 const NUM_CLEARINGS = 12;
@@ -33,7 +34,7 @@ function createClearing(campaign: ICampaign): IClearing {
     npcs: [],
     notes: '',
     eventRecord: {
-      beforePlay: 'Something happened here.',
+      beforePlay: '',
       visited: []
     },
     landscape: {
@@ -157,6 +158,15 @@ function generateCommunities(campaign: ICampaign) {
   });
 }
 
+function addAuditLogEntry(campaign: ICampaign, clearing: string, message: string) {
+  campaign.allEvents.push(message);
+
+  const clearingRef = campaign.clearings.find(x => x.name === clearing);
+  if(clearingRef) {
+    clearingRef.eventRecord.beforePlay += message + ' ';
+  }
+}
+
 function generateNames(campaign: ICampaign) {
   let names = Array(12).fill(null).map(() => randomTownName());
   while(!uniq(names)) {
@@ -171,6 +181,7 @@ function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, 
 
   const myCorner = campaign.clearings[startCorner.origin];
   myCorner.controlledBy = 'The Marquisate (Keep)';
+  addAuditLogEntry(campaign, myCorner.name, `Marquise built a base in ${myCorner.name}.`);
 
   const clearingsChecked = {
     [startCorner.origin]: true
@@ -183,6 +194,7 @@ function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, 
 
     if(random(2, 12) <= 4) return;
     campaign.clearings[connected].controlledBy = 'The Marquisate';
+    addAuditLogEntry(campaign, campaign.clearings[connected].name, `Marquise influence spread from ${myCorner.name} to ${campaign.clearings[connected].name}.`);
 
     // dist of 2
     campaign.clearings[connected].landscape.clearingConnections.forEach(connected2 => {
@@ -191,22 +203,25 @@ function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, 
 
       if(random(2, 12) <= 6) return;
       campaign.clearings[connected2].controlledBy = 'The Marquisate';
+      addAuditLogEntry(campaign, campaign.clearings[connected2].name, `Marquise influence spread from ${campaign.clearings[connected].name} to ${campaign.clearings[connected2].name}.`);
 
       // dist of 3
       campaign.clearings[connected2].landscape.clearingConnections.forEach(connected3 => {
         if(clearingsChecked[connected3]) return;
         clearingsChecked[connected3] = true;
-  
+
         if(random(2, 12) <= 9) return;
         campaign.clearings[connected3].controlledBy = 'The Marquisate';
+        addAuditLogEntry(campaign, campaign.clearings[connected3].name, `Marquise influence spread from ${campaign.clearings[connected2].name} to ${campaign.clearings[connected3].name}.`);
 
         // dist of 4
         campaign.clearings[connected3].landscape.clearingConnections.forEach(connected4 => {
           if(clearingsChecked[connected4]) return;
           clearingsChecked[connected4] = true;
-    
+
           if(random(2, 12) <= 11) return;
           campaign.clearings[connected4].controlledBy = 'The Marquisate';
+          addAuditLogEntry(campaign, campaign.clearings[connected4].name, `Marquise influence spread from ${campaign.clearings[connected3].name} to ${campaign.clearings[connected4].name}.`);
         });
       });
     });
@@ -218,6 +233,7 @@ function generateEyrie(campaign: ICampaign, startCorner: { origin: number, oppos
 
   const myCorner = campaign.clearings[startCorner.opposite];
   myCorner.controlledBy = 'The Eyrie Dynasties (Roost)';
+  addAuditLogEntry(campaign, myCorner.name, `Eyrie built a roost in ${myCorner.name}.`);
 
   const clearingsChecked = {
     [startCorner.opposite]: true,
@@ -233,9 +249,12 @@ function generateEyrie(campaign: ICampaign, startCorner: { origin: number, oppos
 
     const roll = random(2, 12);
     if(roll <= 5) return;
-    const controller = roll >= 9 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
+    const hasRoost = roll >= 9 && roosts < 4;
+    const controller = hasRoost ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
     if(campaign.clearings[connected].controlledBy) campaign.clearings[connected].contestedBy = 'Eyrie';
     campaign.clearings[connected].controlledBy = controller;
+
+    addAuditLogEntry(campaign, campaign.clearings[connected].name, `Eyrie ${campaign.clearings[connected].contestedBy ? 'took over' : 'expanded to'} ${campaign.clearings[connected].name}${hasRoost ? ' and built a roost' : ''}.`);
 
     if(roll >= 9) roosts++;
 
@@ -246,9 +265,12 @@ function generateEyrie(campaign: ICampaign, startCorner: { origin: number, oppos
 
       const roll = random(2, 12);
       if(roll <= 8) return;
+      const hasRoost = roll >= 11 && roosts < 4;
       const controller = roll >= 11 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
       if(campaign.clearings[connected2].controlledBy) campaign.clearings[connected2].contestedBy = 'Eyrie';
       campaign.clearings[connected2].controlledBy = controller;
+
+      addAuditLogEntry(campaign, campaign.clearings[connected2].name, `Eyrie ${campaign.clearings[connected2].contestedBy ? 'took over' : 'expanded to'} ${campaign.clearings[connected2].name}${hasRoost ? ' and built a roost' : ''}.`);
 
       if(roll >= 11) roosts++;
 
@@ -262,6 +284,8 @@ function generateEyrie(campaign: ICampaign, startCorner: { origin: number, oppos
         const controller = roll >= 12 && roosts < 4 ? 'The Eyrie Dynasties (Roost)' : 'The Eyrie Dynasties';
         if(campaign.clearings[connected3].controlledBy) campaign.clearings[connected3].contestedBy = 'Eyrie';
         campaign.clearings[connected3].controlledBy = controller;
+
+        addAuditLogEntry(campaign, campaign.clearings[connected3].name, `Eyrie ${campaign.clearings[connected3].contestedBy ? 'took over' : 'expanded to'} ${campaign.clearings[connected3].name}${hasRoost ? ' and built a roost' : ''}.`);
 
         if(roll >= 12) roosts++;
       });
@@ -279,6 +303,10 @@ function generateWoodland(campaign: ICampaign) {
     if(clearing.controlledBy && roll >= 11)   { clearing.sympathy = true; }
     if(!clearing.controlledBy && roll >= 9)   { clearing.sympathy = true; }
     if(clearing.contestedBy && roll >= 8)     { clearing.sympathy = true; }
+
+    if(clearing.sympathy) {
+      addAuditLogEntry(campaign, clearing.name, `Alliance garnered sympathy in ${clearing.name}.`);
+    }
   }
 
   let didRevolt = false;
@@ -294,10 +322,12 @@ function generateWoodland(campaign: ICampaign) {
 
     didRevolt = true;
     clearing.controlledBy = 'The Woodland Alliance (Base)';
+    addAuditLogEntry(campaign, clearing.name, `Alliance revolted in ${clearing.name}.`);
 
     if(roll === 12) {
       clearing.landscape.clearingConnections.forEach(conn => {
         campaign.clearings[conn].sympathy = true;
+        addAuditLogEntry(campaign, clearing.name, `Alliance garnered sympathy in ${campaign.clearings[conn].name} from their base in ${clearing.name}.`);
       });
     }
   }
@@ -309,6 +339,8 @@ function generateDenizens(campaign: ICampaign) {
 
     if(clearing.controlledBy?.includes('(') && random(2, 12) >= 11) {
       clearing.controlledBy = '';
+      addAuditLogEntry(campaign, clearing.name, `Denizens retook control of ${clearing.name}.`);
+
     }
   }
 }
@@ -371,7 +403,8 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     factions: context.data.factions,
     clearings: [],
     forests: [],
-    npcs: []
+    npcs: [],
+    allEvents: []
   };
 
   for(let i = 0; i < NUM_CLEARINGS; i++) {
@@ -390,6 +423,12 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   generateEyrie(newCampaign, chosenCorner as any);
   generateWoodland(newCampaign);
   generateDenizens(newCampaign);
+
+  newCampaign.clearings.forEach(clearing => {
+    if(clearing.eventRecord.beforePlay) return;
+
+    clearing.eventRecord.beforePlay = `Denizens never lost control of ${clearing.name}.`;
+  });
 
   // write this copy to the db
   context.data = newCampaign;
