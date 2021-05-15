@@ -4,7 +4,6 @@ import { HookContext } from '@feathersjs/feathers';
 import { capitalize, cloneDeep, isArray, sample, sampleSize, shuffle, random, uniq } from 'lodash';
 import { INPC } from '../../../shared/interfaces';
 import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
-import campaignService from '../services/campaign/campaign.service';
 const allContent: IContent = cloneDeep(content);
 
 const NUM_CLEARINGS = 12;
