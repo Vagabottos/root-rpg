@@ -152,7 +152,7 @@
             </ion-card-content>
           </ion-card>
 
-          <app-notes [notes]="clearingData.clearing.notes" (updateNotes)="updateNotes(clearing, $event)"></app-notes>
+          <app-notes [notes]="clearingData.clearing.notes" (updateNotes)="updateNotes(clearingData.clearing, $event)"></app-notes>
         </ion-col>
 
         <ion-col size-xs="12" size-lg="6">
