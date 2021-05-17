@@ -204,7 +204,7 @@
                   <ion-icon class="change" *ngIf="!isEditing" name="refresh" (click)="generateNPCs(campaign, clearingData.clearing)"></ion-icon>
                 </ion-list-header>
 
-                <ion-item *ngIf="clearingData.clearing.npcs.length === 0">No inhabitants.</ion-item>
+                <ion-item *ngIf="clearingData.clearing.npcs.length === 0">no inhabitants</ion-item>
 
                 <ion-item *ngFor="let npc of clearingData.clearing.npcs" class="pointer" (click)="navigateToNPCs(campaign, clearingData.index)">
                   {{ npc.name }}
