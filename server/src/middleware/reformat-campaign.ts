@@ -38,12 +38,12 @@ function createClearing(campaign: ICampaign): IClearing {
     },
     landscape: {
       clearingConnections: [],
-      landmarks: sampleSize(content.core.clearinggen.building, 2).join(', '),
+      landmarks: '', // sampleSize(content.core.clearinggen.building, 2).join(', '),
       locations: '',
     },
     current: {
       ruler: '',
-      conflicts: sampleSize(content.core.clearinggen.problem, 2).join(', '),
+      conflicts: '', // sampleSize(content.core.clearinggen.problem, 2).join(', '),
       overarchingIssue: '',
       dominantFaction: ''
     },
@@ -59,8 +59,8 @@ Captain Founderpants
     }
   };
 
-  generateClearingNPC(campaign, clearing);
-  generateClearingNPC(campaign, clearing);
+  // generateClearingNPC(campaign, clearing);
+  // generateClearingNPC(campaign, clearing);
 
   return clearing;
 }

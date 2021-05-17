@@ -31,6 +31,27 @@ export class NPCCreatorService {
   ) { }
 
   createRandomNPC(opts: IRandomNPCOpts): INPC {
+
+    const nums = {
+      0: 25,
+      1: 50,
+      2: 30,
+      3: 15,
+      4: 5
+    };
+
+    const pickRandomFromRange = (([lower, upper]: number[]) => {
+      const choices = [];
+
+      for (let i = lower; i <= upper; i++) {
+        for (let n = 0; n < nums[i]; n++) {
+          choices.push(i);
+        }
+      }
+
+      return sample(choices);
+    });
+
     const npc: INPC = {
       name: sample(this.content.getNames()),
       faction: sample(opts.validFactions),
@@ -47,10 +68,10 @@ export class NPCCreatorService {
         morale: 0
       },
       harmMax: {
-        depletion: random(...opts.depletionRange),
-        exhaustion: random(...opts.exhaustionRange),
-        injury: random(...opts.injuryRange),
-        morale: random(...opts.moraleRange)
+        depletion: pickRandomFromRange(opts.depletionRange),
+        exhaustion: pickRandomFromRange(opts.exhaustionRange),
+        injury: pickRandomFromRange(opts.injuryRange),
+        morale: pickRandomFromRange(opts.moraleRange)
       }
     };
 

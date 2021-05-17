@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { capitalize, cloneDeep, groupBy, sample } from 'lodash';
+import { capitalize, cloneDeep, groupBy, sample, sampleSize } from 'lodash';
 import { IRequest } from '../../../../shared/interfaces';
 
 import { IContentConnection, IContentDrive, IContentFaction,
@@ -78,6 +78,14 @@ export class ContentService {
       where: sample(this.content.core.requests.where),
       target: sample(this.content.core.requests[doRef.type])
     };
+  }
+
+  getRandomLandmarks(): string {
+    return sampleSize(this.content.core.clearinggen.building, 2).join(', ');
+  }
+
+  getRandomProblems(): string {
+    return sampleSize(this.content.core.clearinggen.problem, 2).join(', ');
   }
 
   getAllMapLayouts(): Record<string, IContentMapLayout> {

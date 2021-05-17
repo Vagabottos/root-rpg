@@ -9,14 +9,16 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
-        <ion-button (click)="toggleEdit(clearing)" *ngIf="!isEditing">
-          <ion-icon slot="icon-only" name="pencil"></ion-icon>
-        </ion-button>
+      <ng-container *ngIf="data.campaign$ | async as campaign">
+        <ng-container *ngIf="(data.campaignClearing$ | async) as clearingData">
+          <ion-button (click)="toggleEdit(campaign, clearingData.index)" *ngIf="!isEditing">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
 
-        <ion-button (click)="confirmEdit(clearing)" *ngIf="isEditing">
-          <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
-        </ion-button>
+          <ion-button (click)="confirmEdit(clearingData.clearing)" *ngIf="isEditing">
+            <ion-icon slot="icon-only" name="checkmark-circle"></ion-icon>
+          </ion-button>
+        </ng-container>
       </ng-container>
 
       <ion-button (click)="openBackground()" *ngIf="!isEditing">
@@ -29,13 +31,13 @@
 
 <ion-content>
   <ng-container *ngIf="data.campaign$ | async as campaign">
-    <ng-container *ngIf="(data.campaignClearing$ | async).clearing as clearing">
+    <ng-container *ngIf="(data.campaignClearing$ | async) as clearingData">
 
       <ion-row>
         <ion-col size-xs="12" size-lg="6">
           <ion-card>
             <ion-card-header>
-              <ion-card-title>{{ clearing.name }} Status</ion-card-title>
+              <ion-card-title>{{ clearingData.clearing.name }} Status</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
@@ -66,7 +68,7 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label>
                     <p class="fake-form-label">Clearing Status</p>
-                    <h2>{{ clearing.status }}</h2>
+                    <h2>{{ clearingData.clearing.status }}</h2>
                   </ion-label>
                 </ion-item>
 
@@ -83,7 +85,7 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label>
                     <p class="fake-form-label">Controlled By</p>
-                    <h2>{{ clearing.controlledBy }}</h2>
+                    <h2>{{ clearingData.clearing.controlledBy }}</h2>
                   </ion-label>
                 </ion-item>
 
@@ -100,7 +102,7 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label>
                     <p class="fake-form-label">Sympathetic?</p>
-                    <h2>{{ clearing.sympathy ? 'Yes' : 'No' }}</h2>
+                    <h2>{{ clearingData.clearing.sympathy ? 'Yes' : 'No' }}</h2>
                   </ion-label>
                 </ion-item>
 
@@ -132,7 +134,7 @@
                 <ion-item *ngIf="!isEditing">
                   <ion-label>
                     <p class="fake-form-label">Dominant Community</p>
-                    <h2>{{ clearing.current.dominantFaction }}</h2>
+                    <h2>{{ clearingData.clearing.current.dominantFaction }}</h2>
                   </ion-label>
                 </ion-item>
 
@@ -149,28 +151,63 @@
 
             </ion-card-content>
           </ion-card>
+
+          <app-notes [notes]="clearingData.clearing.notes" (updateNotes)="updateNotes(clearing, $event)"></app-notes>
         </ion-col>
 
         <ion-col size-xs="12" size-lg="6">
           <ion-card>
             <ion-card-header>
-              <ion-card-title>Problems</ion-card-title>
+              <ion-card-title>{{ clearingData.clearing.name }} Description</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
               <ion-list>
 
                 <!-- conflicts -->
+                <ion-list-header>
+                  Problems
+                  <ion-icon class="change" *ngIf="!isEditing" name="refresh" (click)="generateProblems(clearingData.clearing)"></ion-icon>
+                </ion-list-header>
+
                 <ion-item *ngIf="!isEditing">
                   <ion-label class="ion-text-wrap">
                     <p class="fake-form-label">Problems</p>
-                    <h2 class="can-be-preformatted">{{ clearing.current.conflicts }}</h2>
+                    <h2 class="can-be-preformatted">{{ clearingData.clearing.current.conflicts || 'no conflicts' }}</h2>
                   </ion-label>
                 </ion-item>
 
                 <ion-item *ngIf="isEditing">
                   <ion-label position="stacked">Problems</ion-label>
-                  <ion-textarea [(ngModel)]="clearingCopy.current.conflicts" placeholder="Enter Clearing problems" maxlength="1000" rows="7"></ion-textarea>
+                  <ion-textarea [(ngModel)]="clearingCopy.current.conflicts" placeholder="Enter Clearing problems" maxlength="1000" rows="3"></ion-textarea>
+                </ion-item>
+
+                <ion-list-header>
+                  Landmarks
+                  <ion-icon class="change" *ngIf="!isEditing" name="refresh" (click)="generateLandmarks(clearingData.clearing)"></ion-icon>
+                </ion-list-header>
+
+                <ion-item *ngIf="!isEditing">
+                  <ion-label class="ion-text-wrap">
+                    <p class="fake-form-label">Landmarks</p>
+                    <h2 class="can-be-preformatted">{{ clearingData.clearing.landscape.landmarks || 'no landmarks' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing">
+                  <ion-label position="stacked">Landmarks</ion-label>
+                  <ion-textarea [(ngModel)]="clearingCopy.landscape.landmarks" placeholder="Enter Clearing landmarks" maxlength="1000" rows="3"></ion-textarea>
+                </ion-item>
+
+                <ion-list-header>
+                  Important Inhabitants
+                  <ion-icon class="change" *ngIf="!isEditing" name="refresh" (click)="generateNPCs(campaign, clearingData.clearing)"></ion-icon>
+                </ion-list-header>
+
+                <ion-item *ngIf="clearingData.clearing.npcs.length === 0">No inhabitants.</ion-item>
+
+                <ion-item *ngFor="let npc of clearingData.clearing.npcs" class="pointer" (click)="navigateToNPCs(campaign, clearingData.index)">
+                  {{ npc.name }}
                 </ion-item>
 
                 <!-- overarching issue -->
@@ -191,10 +228,53 @@
               </ion-list>
             </ion-card-content>
           </ion-card>
-        </ion-col>
 
-        <ion-col size-xs="12" size-lg="6">
-          <app-notes [notes]="clearing.notes" (updateNotes)="updateNotes(clearing, $event)"></app-notes>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Clearing Connections</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <ng-container *ngIf="!isEditing">
+                  <ion-item *ngIf="clearingData.clearing.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                  <ion-item class="pointer"
+                            (click)="navigateTo(campaign, clearingId)"
+                            *ngFor="let clearingId of clearingData.clearing.landscape.clearingConnections">
+                    {{ campaign.clearings[clearingId]?.name }}
+                  </ion-item>
+                </ng-container>
+
+                <ng-container *ngIf="isEditing">
+                  <ion-item *ngIf="clearingCopy.landscape.clearingConnections.length === 0">No connections.</ion-item>
+                  <ion-item class="pointer"
+                            *ngFor="let clearingId of clearingCopy.landscape.clearingConnections">
+                    {{ campaignCopy.clearings[clearingId]?.name }}
+
+                    <ion-button slot="end" color="danger" (click)="removeConnection(campaignCopy, clearingData.index, clearingId)" *ngIf="isEditing">
+                      <ion-icon slot="icon-only" name="remove"></ion-icon>
+                    </ion-button>
+                  </ion-item>
+
+                  <ion-item class="hidden">
+                    <ion-label position="stacked">Choose Clearing Connection</ion-label>
+                    <ion-select #otherClearings (ionChange)="addConnection($event, campaignCopy, clearingData.index)">
+                      <ion-select-option *ngFor="let subClearing of campaignCopy.clearings; let i = index"
+                                         [value]="i"
+                                         [disabled]="subClearing.name === clearingCopy.name || clearingCopy.landscape.clearingConnections.includes(i)">
+                        {{ subClearing.name }}
+                      </ion-select-option>
+                    </ion-select>
+                  </ion-item>
+
+                  <ion-item color="tertiary" class="pointer" (click)="otherClearings.open()">
+                    <ion-icon slot="start" name="add"></ion-icon>
+                    Add Connection
+                  </ion-item>
+                </ng-container>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
 

@@ -13,10 +13,6 @@ const routes: Routes = [
         loadChildren: () => import('../clearing-view-situation/clearing-view-situation.module').then( m => m.ClearingViewSituationPageModule)
       },
       {
-        path: 'landscape',
-        loadChildren: () => import('../clearing-view-landscape/clearing-view-landscape.module').then( m => m.ClearingViewLandscapePageModule)
-      },
-      {
         path: 'events',
         loadChildren: () => import('../clearing-view-events/clearing-view-events.module').then( m => m.ClearingViewEventsPageModule)
       },

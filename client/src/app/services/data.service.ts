@@ -112,8 +112,6 @@ export class DataService {
   }
 
   public setActiveCampaign(campaign: ICampaign): void {
-    console.log('update', campaign);
-
     const curCamp = this.campaign.getValue();
     if (curCamp?._id) { this.socket.leaveChannel(); }
     if (campaign?._id) { this.socket.joinChannel(campaign._id); }
