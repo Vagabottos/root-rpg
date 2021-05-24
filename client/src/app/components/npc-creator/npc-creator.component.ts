@@ -78,6 +78,10 @@ export class NPCCreatorComponent implements OnInit {
     this.npcForm.get('attack').setValue(this.contentService.getRandomAttack());
   }
 
+  pickRandomLook() {
+    this.npcForm.get('look').setValue(this.contentService.getRandomNPCLook());
+  }
+
   ngOnInit() {
     if (this.npc) {
       this.npcForm.get('name').setValue(this.npc.name);

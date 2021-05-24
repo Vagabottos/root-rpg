@@ -243,4 +243,27 @@ export class ContentService {
   getCustomItemData(tag: string): IContentMoveCustomItem {
     return this.content.core.customitemdata[tag];
   }
+
+  getRandomNPCLook(): string {
+    return `a ${this.getCreatedNPCPersonality()} ${this.getCreatedNPCRace().toLowerCase()} with ${this.getCreatedNPCPast()}`;
+  }
+
+  getCreatedNPCRace(): string {
+    const races = this.content.core.npcgen.race;
+
+    const choices = [];
+    races.forEach(raceData => {
+      for (let i = 0; i < raceData.weight; i++) { choices.push(raceData.name); }
+    });
+
+    return sample(choices);
+  }
+
+  getCreatedNPCPast(): string {
+    return sample(this.content.core.npcgen.past);
+  }
+
+  getCreatedNPCPersonality(): string {
+    return sample(this.content.core.npcgen.personality);
+  }
 }

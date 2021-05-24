@@ -41,6 +41,9 @@
       <ion-item>
         <ion-label position="stacked">Look</ion-label>
         <ion-textarea formControlName="look" placeholder="Enter NPC look" maxlength="1000" rows="7"></ion-textarea>
+        <ion-button slot="end" (click)="pickRandomLook()">
+          <ion-icon slot="icon-only" name="sync"></ion-icon>
+        </ion-button>
       </ion-item>
 
       <ion-item>

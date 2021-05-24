@@ -55,7 +55,7 @@ export class NPCCreatorService {
     const npc: INPC = {
       name: sample(this.content.getNames()),
       faction: sample(opts.validFactions),
-      look: 'like a goat',
+      look: this.content.getRandomNPCLook(),
       job: sample(this.content.getJobs()),
       drive: sample(this.content.getNPCDrives()),
       attack: this.content.getRandomAttack(),

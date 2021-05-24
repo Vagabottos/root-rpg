@@ -110,6 +110,12 @@ export interface IContentRequest {
   complication: string[];
 }
 
+export interface IContentNPCGen {
+  race: Array<{ weight: number, name: string }>;
+  past: string[];
+  personality: string[];
+}
+
 export interface IContentCore {
   clearinggen: IContentClearingGen;
   customitemdata: Record<string, IContentMoveCustomItem>;
@@ -136,6 +142,7 @@ export interface IContentCore {
   referencemoves: Record<string, IContentMove>;
   referenceskills: Record<string, IContentSkill>;
   requests: IContentRequest;
+  npcgen: IContentNPCGen;
 }
 
 export interface IContentBackgroundReputationChange {

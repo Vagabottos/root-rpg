@@ -349,7 +349,7 @@ function generateClearingNPC(campaign: ICampaign, clearing: IClearing) {
   const npc: INPC = {
     name: sample(content.core.names) as string,
     faction: sample(campaign.factions) as string,
-    look: 'like a goat',
+    look: '',
     job: sample(content.core.clearinggen.inhabitant) as string,
     drive: sample(content.core.npcdrives) as string,
     attack: '1 injury',
