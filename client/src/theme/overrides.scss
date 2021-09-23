@@ -34,6 +34,14 @@ ion-card, ion-list, ion-item, ion-list-header, .alert-wrapper, .action-sheet-gro
   --background: #f4eedb;
 }
 
+ion-card.npc-card {
+  --background: #dbd6c5;
+
+  ion-card-subtitle {
+    color: #6B6641;
+  }
+}
+
 ion-list {
   --ion-item-background:#f4eedb;
 }
