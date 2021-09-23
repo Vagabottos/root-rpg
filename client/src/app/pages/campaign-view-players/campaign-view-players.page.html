@@ -105,7 +105,11 @@
 
       <ion-row class="reputation-row" *ngFor="let rep of character.reputation | keyvalue">
         <ion-col class="reputation-label">{{ rep.key }}</ion-col>
-        <ion-col class="reputation-value">{{ getRepTotal(rep.value) | withPlus }}</ion-col>
+        <ion-col class="reputation-value">
+          {{ getRepTotal(rep.value) | withPlus }}
+          N-{{ rep.value.notoriety  }}
+          P-{{ rep.value.prestige }}
+        </ion-col>
       </ion-row>
 
       <ion-row class="row-header">
