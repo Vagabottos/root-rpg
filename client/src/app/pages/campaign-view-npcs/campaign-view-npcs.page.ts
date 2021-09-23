@@ -193,7 +193,8 @@ export class CampaignViewNpcsPage implements OnInit {
     const modal = await this.modal.create({
       component: NPCRandomizerComponent,
       componentProps: { validFactions: campaign.factions, maxNPCs: 15 - campaign.npcs.length },
-      cssClass: 'big-modal'
+      cssClass: 'big-modal',
+      backdropDismiss: false
     });
 
     modal.onDidDismiss().then((res) => {

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
-import { random, sample } from 'lodash';
+import { sample, cloneDeep } from 'lodash';
 
 import { INPC } from '../../interfaces';
+import { NPCCreatorComponent } from '../components/npc-creator/npc-creator.component';
 import { ContentService } from './content.service';
 import { ItemCreatorService } from './item-creator.service';
 
@@ -26,6 +28,7 @@ interface IRandomNPCOpts {
 export class NPCCreatorService {
 
   constructor(
+    private modal: ModalController,
     private content: ContentService,
     private itemCreator: ItemCreatorService
   ) { }
@@ -92,5 +95,15 @@ export class NPCCreatorService {
     }
 
     return npc;
+  }
+
+  async editNPC(npc: INPC, validFactions: string[]): Promise<any> {
+    const modal = await this.modal.create({
+      component: NPCCreatorComponent,
+      componentProps: { npc: cloneDeep(npc), validFactions },
+      cssClass: 'big-modal'
+    });
+
+    return modal;
   }
 }

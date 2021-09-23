@@ -146,7 +146,8 @@ export class ClearingViewSituationPage implements OnInit {
       const modal = await this.modal.create({
         component: NPCRandomizerComponent,
         componentProps: { validFactions: campaign.factions, maxNPCs: 15 - clearing.npcs.length },
-        cssClass: 'big-modal'
+        cssClass: 'big-modal',
+        backdropDismiss: false
       });
 
       modal.onDidDismiss().then((res) => {

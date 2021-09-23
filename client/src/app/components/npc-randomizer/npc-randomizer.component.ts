@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { clamp } from 'lodash';
+import { clamp, extend } from 'lodash';
 
 import { INPC } from '../../../interfaces';
 import { NPCCreatorService } from '../../services/npc-creator.service';
@@ -74,6 +74,19 @@ export class NPCRandomizerComponent implements OnInit {
 
   removeNPC(npc: INPC): void {
     this.npcs = this.npcs.filter(x => x !== npc);
+  }
+
+  async editNPC(npc: INPC): Promise<void> {
+    const modal = await this.npcCreator.editNPC(npc, this.validFactions);
+
+    modal.onDidDismiss().then((res) => {
+      const resnpc = res.data;
+      if (!resnpc) { return; }
+
+      extend(npc, resnpc);
+    });
+
+    await modal.present();
   }
 
 }

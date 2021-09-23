@@ -107,6 +107,10 @@
                             [ngTemplateOutletContext]="{ npc: npc }"></ng-container>
             </ion-label>
 
+            <ion-button slot="end" (click)="editNPC(npc)">
+              <ion-icon slot="icon-only" name="pencil"></ion-icon>
+            </ion-button>
+
             <ion-button slot="end" color="danger" (click)="removeNPC(npc)">
               <ion-icon slot="icon-only" name="remove"></ion-icon>
             </ion-button>
@@ -123,6 +127,10 @@
                           [ngTemplateOutletContext]="{ npc: npc }"></ng-container>
           </ion-label>
 
+          <ion-button slot="end" color="secondary" (click)="editNPC(npc)">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
+
           <ion-button slot="end" color="danger" (click)="removeNPC(npc)">
             <ion-icon slot="icon-only" name="remove"></ion-icon>
           </ion-button>
@@ -135,7 +143,7 @@
 <ng-template #npcRow let-npc="npc">
   <h2>{{ npc.name }}</h2>
   <p>{{ npc.faction }} / {{ npc.job }} / driven to {{ npc.drive }}</p>
-  <p>Attack: {{ npc.attack }}</p>
+  <p><strong>Attack: {{ npc.attack }}</strong></p>
   <p class="text-icon">
     <strong>Injury</strong>
     <ion-icon *ngFor="let box of numBoxes(npc.harmMax.injury); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
