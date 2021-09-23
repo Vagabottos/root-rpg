@@ -76,13 +76,17 @@
                   </ion-label>
                 </ion-item>
 
+                <ion-item>
+                  <ion-checkbox slot="end" [(ngModel)]="confirmUnderstand" [ngModelOptions]="{ standalone: true }"></ion-checkbox> I have read and understand the above
+                </ion-item>
+
                 <ion-item class="margin-top-2" lines="none">
                   <ion-row class="action-row">
                     <ion-col>
                     </ion-col>
 
                     <ion-col class="ion-text-right">
-                      <ion-button color="primary" [disabled]="isDoing || campaignForm.invalid" (click)="create()">
+                      <ion-button color="primary" [disabled]="!confirmUnderstand || isDoing || campaignForm.invalid" (click)="create()">
                         <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
                         Create Campaign
                       </ion-button>

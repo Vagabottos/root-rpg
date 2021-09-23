@@ -16,6 +16,7 @@ export class CreateCampaignPage implements OnInit, BlocksLeave {
 
   public isDone = false;
   public isDoing = false;
+  public confirmUnderstand = false;
 
   public campaignForm = new FormGroup({
     campaignName: new FormControl('', [Validators.required, Validators.minLength(2)]),
