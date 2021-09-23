@@ -110,9 +110,12 @@ export class CampaignComponent implements OnInit, OnDestroy {
         this.campaign = campaign;
         this.socket.joinChannel(this.character.campaign);
 
-        this.character.reputation = {};
+        if (!this.character.reputation) {
+          this.character.reputation = {};
+        }
+
         campaign.factions.forEach(fact => {
-          this.character.reputation[fact] = { notoriety: 0, prestige: 0, total: 0 };
+          this.character.reputation[fact] = this.character.reputation[fact] || { notoriety: 0, prestige: 0, total: 0 };
         });
 
         this.data.patchCharacter().subscribe(() => {});
