@@ -27,4 +27,9 @@ export class NotesComponent implements OnInit {
     }
   }
 
+  unfocus() {
+    if (!this.isEditing) {return;}
+    this.toggleEditing();
+  }
+
 }

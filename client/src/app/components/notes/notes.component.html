@@ -18,7 +18,7 @@
       </ion-item>
 
       <ion-item *ngIf="isEditing">
-        <ion-textarea [(ngModel)]="notes" placeholder="Enter notes" maxlength="10000" rows="7"></ion-textarea>
+        <ion-textarea [(ngModel)]="notes" placeholder="Enter notes" maxlength="10000" rows="7" autofocus="true" (ionBlur)="unfocus()"></ion-textarea>
       </ion-item>
     </ion-list>
   </ion-card-content>
