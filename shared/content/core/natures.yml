@@ -88,3 +88,39 @@ Bandit:
 
 Hero:
   text: Clear your exhaustion track when you outright attack a dangerous, oppressive, or villainous NPC.
+
+Braggart:
+  text: Clear your exhaustion track when you confidently and publicly accept an excessively perilous challenge.
+
+Commander:
+  text: Clear your exhaustion track when you assert authority over a group of non-vagabonds in a tense situation.
+
+Cowardly:
+  text: Clear your exhaustion track when you willingly surrender to hostile forces.
+
+Curious:
+  text: Clear your exhaustion track when you enter danger to investigate an interesting situation or location further.
+
+Generous:
+  text: Clear your exhaustion track when you provide meaningful quantities of supplies to those in need.
+
+Gossip:
+  text: Clear your exhaustion track when you reveal new and important information to someone who can act on it.
+
+Improviser:
+  text: Clear your exhaustion track when you attempt to solve a technical problem without appropriate tools or skills.
+
+Inspiring:
+  text: Clear your exhaustion track when you take action that clears the morale track of an NPC or group of NPCs.
+
+Martyr:
+  text: Clear your exhaustion track when you engage overwhelming odds to protect others.
+
+Muckraker:
+  text: Clear your exhaustion track when you enter somewhere off-limits to discover incriminating secrets.
+
+Populist:
+  text: Clear your exhaustion track when you publicly try to rally a group of denizens to take action against injustice.
+
+Vain:
+  text: Clear your exhaustion track when you make a big show of intervening in a situation that doesn’t involve you to help or protect someone.
