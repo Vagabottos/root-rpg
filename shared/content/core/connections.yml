@@ -11,8 +11,40 @@ Watcher:
 Friend:
   text: When you **help** them, you can mark 2-exhaustion to give a +2, instead of 1-exhaustion for a +1.
 
-Peer:
+Professional:
   text: If you share information with them after **reading a tense situation**, you both benefit from the +1 for acting on the answers. If you **help** them while they **attempt a roguish feat**, you gain choices on the **help** move as if you had marked 2-exhaustion when you mark 1-exhaustion.
 
 Family:
   text: When you help them fulfill their nature, you both clear your exhaustion track.
+
+Battle-Sibling:
+  text: When you fight side-by-side or back-to-back with them, take +1 ongoing to weapon moves as long as you remain within intimate range of each other.
+
+Confidant:
+  text: When they come to you in confidence with a problem, mark exhaustion to suggest a course of action to resolve it; if they do as you say to the best of their ability, they clear their exhaustion track.
+
+Enabler:
+  text: When you **plead with them** to join you in reckless action and they agree, they take +1 ongoing to follow the plan in addition to clearing exhaustion.
+
+Lover:
+  text: >
+    Once per session when you share a quiet moment of intimacy, just the two of you, choose one:
+
+
+    * Offer them affection; if they accept it, they clear 3-exhaustion.
+
+    * Make them a promise; you take +1 ongoing to keep your word.
+
+
+Protégé:
+  text: >
+    Once per game session, when you spend time training with them, choose one and hold 1:
+
+    * Learn tricks of the trade; they choose which roguish feat they teach you, and you may spend hold to attempt that roguish feat as if you had it.
+
+    * Spar with them; they choose which weapon skill they teach you, and you may spend hold to use that weapon skill as if you had it.
+
+    * Ask them about how they see the world; spend hold to take +1 forward to prove them right or wrong.
+
+Rival:
+  text: When you challenge them to take a completely unnecessary and excessive risk to prove themself, they take +1 forward to accept and meet your provocation; if they decline, they mark exhaustion instead.
