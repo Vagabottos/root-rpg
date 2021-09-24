@@ -70,7 +70,7 @@
                     <ion-label class="ion-text-wrap">
                       <h2>{{ subCategory.header }}</h2>
                       <p *ngIf="subCategory.archetype && searchQuery" class="archetype">{{ subCategory.archetype }}</p>
-                      <p *ngIf="subCategory.requirement" class="requirement">{{ subCategory.requirement }}</p>
+                      <p *ngIf="subCategory.requirement" class="requirement" [innerHTML]="subCategory.requirement | markdown"></p>
                       <p [innerHTML]="subCategory.text | markdown"></p>
                     </ion-label>
                   </ion-item>

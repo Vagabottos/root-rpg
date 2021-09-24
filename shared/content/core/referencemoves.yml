@@ -58,6 +58,12 @@ Command Resources:
   requirement: Requires +3 Reputation
   text: When you **command an NPC to give you significant, valuable resources**, roll with Reputation for their faction. On a 10+, you get what you need as soon as they can get it to you. On a 7-9, they impose a condition on how you can use the resources, or what you must return to the faction in recompense. On a miss, they don't have what you need, but they tell you a way you can get it at a steep cost or some serious difficulty.
 
+Conduct Sanctioned Trade:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Riverfolk Company**)
+  text: >
+    When you **write up an exchange of goods or services between any parties and sign it in the name of the Riverfolk Company**, roll with Reputation with the Riverfolk Company. On a hit, you form a proper agreement the Company will uphold, by force if it must—name the parties (including you), their responsibilities and promises, and any extra penalties for breach of contract. On a 7-9, Company support—mercenaries, trade embargos, etc.—still comes, but at a cost; when you want a Company agent to help uphold the contract, you’ll have to offer a 1-Value bribe before they will act. On a 10+, the contract is airtight; provide you have a copy in hand, Company agents will enforce the contract in full. On a miss, your contract has a loophole or error in it; the Riverfolk Company won’t enforce it, and it’s only a matter of time before a participating party takes advantage.
+
 Draw Attention:
   type: Reputation
   requirement: Requires -2 Reputation or Lower
@@ -74,7 +80,195 @@ Draw Attention:
 
     On a miss, your enemies are already moving against you quietly; the GM tells you how they catch you unprepared.
 
+Endorse a New Leader:
+  type: Reputation
+  requirement: Requires +1 Reputation
+  text: >
+    When you **openly endorse an individual as the new leader of a faction's forces and/or presence in a clearing**, roll with Reputation with that faction. On a hit, you throw your support behind that individual and the faction's representatives in that clearing react. On a 7-9, the GM chooses 2. On a 10+, the GM chooses 1.
+
+
+    * the faction's current leadership in the clearing is directly opposed; you need to handle them before your endorsed candidate can take over
+
+    * the denizens of the clearing aren't on board; you need to speak to denizen leadership and convince them, or expect direct opposition
+
+    * the faction's enemies in the clearing want to take advantage of the shift in power; keep an eye out for conspiracies and plots
+
+
+    On a miss, after you publicly announce your support something new and dangerous is revealed about the leadership or the individual you endorsed that reframes the situation.
+
+Incite Revolt:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Woodland Alliance**)
+  text: >
+    When you **incite local Woodland Alliance sympathizers and agents to revolt**, roll with Reputation with the Woodland Alliance. On a hit, the revolt is imminent—you have to prepare! It will take place when next time passes. On 7-9, the GM chooses 2. On a 10+, the GM chooses 1.
+
+
+    * you need to convince at least one local sympathizer to get important resources or support for the revolt; otherwise, it will fail
+
+    * you need to weaken, destroy, or incapacitate a specific opposing force; otherwise, the revolt will fail
+
+    * you need to steal weapons or equipment for local sympathizers; otherwise, the revolt will fail
+
+    * you need to rally a local group by doing them a favor; otherwise, the revolt will fail
+
+
+    On a miss, the revolt fires off right now — well before you are ready, and while the opposing forces might be prepared for you. Good luck.
+
+Intimidate Enemy Troops:
+  type: Reputation
+  requirement: Requires -2 Reputation
+  text: >
+    When you **draw attention to yourself and threaten enemy troops by wielding your Reputation through an intimidating display**, roll with Reputation with the enemy’s faction, treating it as positive (+2 or +3) for this roll. On a hit, you put fear into the enemy. On a 7-9, pick 1. On a 10+, pick 2.
+
+
+    * the enemy troops won’t act until their leader makes a rallying speech or cry to them—the leader is exposed and vulnerable to attack
+
+    * the enemy troops will target you, above all else, when they attack
+
+    * the enemy troops are rattled; inflict 2-morale harm on the group
+
+
+    On a miss, the enemy is invigorated by their anger at you, and they act right now, in full force.
+
+Lead Troops in Battle:
+  type: Reputation
+  requirement: Requires +3 Reputation
+  text: >
+    When you **lead troops of a faction in battle**, roll with Reputation with that faction. On a hit, they accept you as their commander for the fight. On a 7-9, hold 2. On a 10+, hold 3. Spend your hold 1-for-1 during the fight to commit them to:
+
+
+    * take and hold a location
+
+    * rout a substantial enemy presence
+
+    * take an enemy leader captive
+
+    * destroy a fortification or resource
+
+    * defend a group or location
+
+
+    On a miss, your troops engage in battle but with a confused command
+    structure—they wind up embroiled in chaotic battle across the entire
+    area, and in their confusion, they’re losing.
+
 Make a Pointed Threat:
   type: Reputation
   requirement: Requires -3 Reputation
   text: When you **make a pointed threat to an NPC by wielding your reputation**, roll with Reputation for their faction, treating it as positive (+3) for this roll. On a 10+, they are rattled; they must surrender, retreat, or charge, GM's choice. On a 7-9, you must make a demonstration of your dangerous intent first, before they are rattled. On a miss, your reputation precedes you; they reveal how they prepared for someone like you.
+
+Plan New Project:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Marquisate**)
+  text: >
+    When you convince **Marquisate officers to begin a new significant project**, roll with Reputation with the Marquisate. On a hit, they begin the project. On a 7-9, the GM chooses 3. On a 10+, the GM chooses 2.
+
+    * it will take time; check back in after time passes
+
+    * it requires special resources; the Marquisate agents will tell you what they need
+
+    * it requires elimination of a threat first; the Marquisate agents will point you at the threat
+
+    * it can’t be quite what you asked for—just something close enough; the Marquisate agents will tell you what form it takes
+
+
+    On a miss, the Marquisate cannot undertake your project right now because the Marquisate’s resources—and you—are required elsewhere; the GM will tell you why, and where.
+
+Preach to the Choir:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Lizard Cult**)
+  text: >
+    When you **preach a sermon with a message to a crowd of Lizard Cultists**, roll with Reputation with the Lizard Cult. On a 10+, hold 3. On a 7–9, hold 1. Spend your hold 1-for-1 to make the crowd:
+
+
+    * bring someone forward and deliver them
+
+    * bring forward goods and offerings (providing you with at least 6-Value)
+
+    * unite and fight for you, destroying or attacking a target of your choice
+
+    * repair or defend something of your choice
+
+    * go quietly back to their lives
+
+
+    On a miss, the mob hears your message incorrectly, and acts on that belief.
+
+Requisition Permits:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Grand Duchy**)
+  text: >
+    When you **requisition permits from the Grand Duchy**, roll with Reputation with the Duchy. On a hit, you can requisition a permit with certain access rights granted. These rights remain legal until when next time passes. On a 7-9, choose 2 access rights. On a 10+ choose 3.
+
+
+    * you are permitted to travel through Grand Duchy tunnels with the aid of a Duchy guide, allowing you to move between any two clearings connected by tunnels without making a roll
+
+    * you are permitted to obtain supplies from Grand Duchy caches and citadels with impunity; any time you reach such a cache, you may take up to 4-Value in supplies, no questions asked
+
+    * you are permitted access to members of Duchy Parliament; you can ask any Duchy outpost for news on their locations, and you can always gain access to them, no questions asked
+
+    * you are permitted to pass freely and without molestation in Duchy controlled areas, no matter whether you are carrying weapons or obvious contraband or not
+
+    * you are permitted to act directly against or harm any individuals not openly protected by the Duchy, and any individuals openly protected against the Duchy if you can prove their culpability in a crime
+
+
+    On a miss, a Duchy official comes to interrogate you about your requests for permit; expect undesirable scrutiny.
+
+Tap Criminal Networks:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Corvid Conspiracy**)
+  text: >
+    When you **tap the local Corvid Conspiracy networks for a favor**, pick your favor from the list below and roll with Reputation with the Corvid Conspiracy.
+
+
+    * illicit goods, left in a hidden drop location for you
+
+    * assassination, accomplished quietly and without fuss
+
+    * sabotage, conducted on valuable equipment
+
+    * blackmail, collected and delivered to you for use
+
+    * secret intelligence, captured and safely sent to you
+
+
+    On a 7-9, the Conspiracy fulfills the favor, but leaves a request for you too—a favor for a favor. On a 10+, the Conspiracy just leaves a reminder that it might call upon you at some later date. On a miss, your illicit communications with the Conspiracy go awry—someone else gets your request, and they aren’t happy.
+
+Villify a Leader:
+  type: Reputation
+  requirement: Requires +1 Reputation
+  text: >
+    When you **openly vilify an existing leader of a faction’s forces and/or presence in a clearing**, roll with Reputation with that faction. On a hit, you’ve stirred up dissent—the leader’s departure from power is set in motion. They will be removed from power when next time passes... unless they take other action (alliances, use of force, etc.) to quash the dissent. In the meantime, on a 7-9, the GM chooses 2. On a 10+, the GM chooses 1.
+
+
+    * your words are taken up and elaborated upon; resistance to the leader you targeted threatens to get out of control, involving violence or arson
+
+    * the leader (or their defenders and supporters) grows more radical in their defensiveness; they will respond to any threats to their position with force
+
+    * you are singled out for your blunt outspokenness; expect reprisals
+
+
+    On a miss, your words wind up stoking opposition—more denizens, agents, and faction members come out in support of the leader you tried to vilify.
+
+
+Wield Bureaucracy:
+  type: Reputation
+  requirement: Requires +2 Reputation (**Eyrie**)
+  text: >
+    When you **wield the bureaucracy of the Eyrie Dynasties to achieve your ends while time passes**, roll with Reputation with the Eyrie. On 7-9, choose 1. On a 10+, choose 2.
+
+
+    * you gather information from your contacts; ask the GM any three questions about the Woodland, and they will answer truthfully from the Eyrie’s perspective
+
+    * you push the Eyrie to allocate resources just a bit differently; they will deliver some available resource to a clearing of your choice, as long as it makes any sense to do so
+
+    * you add a stipulation to an upcoming Eyrie attack or action; the soldiers will follow it
+
+    * you arrange a meeting or audience with any Eyrie individual at a place of your choosing; the GM will tell you when the meeting takes place
+
+    * you get Eyrie courts to add or repeal a legal requirement within any one Eyrie-controlled clearing; the Eyrie theoretically must follow it
+
+
+    On a miss, the Eyrie’s bureaucracy plays back, and you find yourself charged with a duty you hadn’t planned on from Eyrie authorities; fulfill it before time passes next, or mark 3-notoriety.
+
+
