@@ -220,6 +220,10 @@ export class ContentService {
     return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Species');
   }
 
+  getInstinctMoves(): string[] {
+    return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Instinct');
+  }
+
   getReputationMoves(): string[] {
     return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Reputation');
   }

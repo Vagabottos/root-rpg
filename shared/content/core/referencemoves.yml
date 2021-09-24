@@ -376,3 +376,152 @@ Underground Tunnels:
   type: Species
   requirement: Rabbit, Mouse, Mole
   text: Take the _Hide_ roguish feat (it does not count against your limit). When you **attempt to hide by burrowing underground**, roll with Might instead of Finesse.
+
+Fox:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+    * Sniff out a hidden stash of food or resources.
+
+    * Take a +1 to travel through the forest between clearings
+
+    * Lash out with fangs and claws; inflict 1-injury
+
+
+    **Instinct move**: Once per session, clear exhaustion when you use the cover of darkness to your advantage in a dangerous situation.
+
+Mouse:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Gain access to or escape a location by squeezing through a tight space.
+
+    * Sniff out a hidden stash of food or resources
+
+    * Take a 12+ instead of rolling when tricking an NPC into underestimating you
+
+
+    **Instinct move**: Once per session, clear exhaustion when you scout out an area in advance of a conflict or scheme.
+
+Rabbit:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Gain access to or escape a location by burrowing underground
+
+    * Sprint at speeds beyond nearly all other denizens
+
+    * Listen in on a nearby conversation without drawing attention
+
+
+    **Instinct move**: Once per session, clear exhaustion when you convince your allies to pursue a new strategy when a plan goes awry.
+
+Otter:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Gain access to or escape a location by swimming underwater
+
+    * Improvise a simple but functional tool from nearby resources
+
+    * Find safe shelter for your band, regardless of your environment
+
+
+    **Instinct move**: Once per session, clear exhaustion when you keep the group together in circumstances that threaten to divide you.
+
+Bird of Prey:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Track a denizen from the air without revealing yourself
+
+    * Lash out with talons and beak; inflict 1-injury
+
+    * Fly to any location within a clearing in a few moments
+
+
+    **Instinct move**: Once per session, clear exhaustion when you acquire information that gives you an advantage over an enemy.
+
+Cat:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Track a denizen through an unguarded dark area without revealing yourself
+
+    * Fall from any height without harm
+
+    * Lash out with fangs and claws; inflict 1-injury
+
+
+    **Instinct move**: Once per session, clear exhaustion when you catch and corner someone you’re hunting.
+
+Lizard:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Quickly scurry through a survivable dangerous environment without suffering injury
+
+    * Gain access to or escape a location by squeezing through a tight space
+
+    * Clamber up a vertical surface or treacherous and narrow path
+
+
+    **Instinct move**: Once per session, clear exhaustion when you spend several hours basking in heat.
+
+Corvid:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Sniff out a hidden stash of food or resources
+
+    * Snatch and pocket a single valuable or shiny object vulnerable to you
+
+    * Fly away into the darkness of night, losing any pursuers
+
+
+    **Instinct move**: Once per session, clear exhaustion when you use a tool or piece of equipment in a surprising or innovative way.
+
+Small Bird:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Fly to any location within a clearing in a few moments
+
+    * Find a perfect hiding place out of sight of a pursuer
+
+    * Take a 12+ to attempt a roguish feat of acrobatics or trust fate when acting acrobatically, as long as you are carrying 2-Load or less
+
+
+    **Instinct move**: Once per session, clear exhaustion when you manage to lose or avoid unwanted attention
+
+Mole:
+  type: Instinct
+  text: >
+    Mark exhaustion to activate an ability:
+
+
+    * Dig into loose soil and dirt, emerging sometime later from a different, reachable point
+
+    * Touch nose to earth and detect vibrations of any nearby denizens.
+
+    * Take a +1 to travel through the forest between clearings
+
+
+    **Instinct move**: Once per session, clear exhaustion when you handle a beautiful, well-crafted, or otherwise tactilely pleasing object you haven’t held before.
