@@ -4,6 +4,11 @@
       Item Creator
     </ion-title>
     <ion-buttons slot="end">
+
+      <ion-button (click)="dismiss(this.formItem)" [disabled]="itemForm.invalid">
+        {{ item ? 'Update' : 'Create' }}
+      </ion-button>
+
       <ion-button (click)="dismiss()" [disabled]="tagSet !== 'default'">
         Close
       </ion-button>
