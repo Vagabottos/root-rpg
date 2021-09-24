@@ -97,8 +97,8 @@ startingValue: 9
 
 chooseFeats: 0
 feats:
-  - name: Pick lock
-  - name: Sleight of hand
+  - name: Pick Lock
+  - name: Sleight of Hand
 
 numSkills: 1
 skills:

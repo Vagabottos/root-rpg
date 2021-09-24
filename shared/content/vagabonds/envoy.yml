@@ -99,7 +99,7 @@ chooseFeats: 0
 feats:
   - name: Hide
   - name: Sneak
-  - name: Pick lock
+  - name: Pick Lock
 
 numSkills: 1
 skills:

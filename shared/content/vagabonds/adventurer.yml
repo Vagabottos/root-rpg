@@ -98,7 +98,7 @@ startingValue: 9
 chooseFeats: 0
 feats:
   - name: Counterfeit
-  - name: Sleight of hand
+  - name: Sleight of Hand
 
 numSkills: 1
 skills:

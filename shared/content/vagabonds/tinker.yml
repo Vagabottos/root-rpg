@@ -98,7 +98,7 @@ startingValue: 8
 chooseFeats: 0
 feats:
   - name: Counterfeit
-  - name: Pick lock
+  - name: Pick Lock
   - name: Disable Device
 
 numSkills: 1

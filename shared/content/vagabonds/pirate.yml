@@ -99,7 +99,7 @@ chooseFeats: 0
 feats:
   - name: Acrobatics
   - name: Blindside
-  - name: Pick lock
+  - name: Pick Lock
 
 numSkills: 1
 skills:
