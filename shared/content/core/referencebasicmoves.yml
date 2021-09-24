@@ -30,7 +30,7 @@ Persuade an NPC:
   text: >
     When you **persuade an NPC with promises or threats**, roll with Charm. On a 10+, they see things your way, provided you have given them a strong motive or reasonable bribe. On a 7-9, they aren't sure; the GM will tell you what you need to do to sway them.
 
-  mastery: On a 12+, in addition to the results of the 10+, you may mark exhaustion to treat this move as a 12+ on the **sway an NPC** Reputation move, even if you don’t have a high enough Reputation with their faction to normally **sway the NPC** in question.
+  mastery: On a 12+, in addition to the results of the 10+, you may mark exhaustion to treat this move as a 12+ on the **sway an NPC** Reputation move, even if you don't have a high enough Reputation with their faction to normally **sway the NPC** in question.
 
 Read a Tense Situation:
   text: >
@@ -47,7 +47,7 @@ Read a Tense Situation:
 
     * who is in control here?
 
-  mastery: On a 12+, in addition to the results of the 10+, you may also ask, “How could I _?” and fill in the blank with any action you hope to accomplish. If you follow the answer to that question, take a 12+ on the first move you make toward your desired outcome, instead of rolling.
+  mastery: On a 12+, in addition to the results of the 10+, you may also ask, "How could I _?" and fill in the blank with any action you hope to accomplish. If you follow the answer to that question, take a 12+ on the first move you make toward your desired outcome, instead of rolling.
 
 Trick an NPC:
   text: >

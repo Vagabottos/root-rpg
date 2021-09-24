@@ -115,7 +115,7 @@ Improvise Weapon:
   text: >
     When you **make a weapon out of improvised materials around you**, roll with Cunning. On a hit, you make a weapon; the GM will tell you its range tag and at least one other tag based on the materials you used. On a 7-9, the weapon also has a weakness tag.
 
-  mastery: On a 12+, you may choose your weapon’s range and two beneficial tags it bears (as long as they make sense to the item).
+  mastery: On a 12+, you may choose your weapon's range and two beneficial tags it bears (as long as they make sense to the item).
 
   allowItem: []
   allowRange: []

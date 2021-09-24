@@ -62,7 +62,7 @@ Conduct Sanctioned Trade:
   type: Reputation
   requirement: Requires +2 Reputation (**Riverfolk Company**)
   text: >
-    When you **write up an exchange of goods or services between any parties and sign it in the name of the Riverfolk Company**, roll with Reputation with the Riverfolk Company. On a hit, you form a proper agreement the Company will uphold, by force if it must—name the parties (including you), their responsibilities and promises, and any extra penalties for breach of contract. On a 7-9, Company support—mercenaries, trade embargos, etc.—still comes, but at a cost; when you want a Company agent to help uphold the contract, you’ll have to offer a 1-Value bribe before they will act. On a 10+, the contract is airtight; provide you have a copy in hand, Company agents will enforce the contract in full. On a miss, your contract has a loophole or error in it; the Riverfolk Company won’t enforce it, and it’s only a matter of time before a participating party takes advantage.
+    When you **write up an exchange of goods or services between any parties and sign it in the name of the Riverfolk Company**, roll with Reputation with the Riverfolk Company. On a hit, you form a proper agreement the Company will uphold, by force if it must—name the parties (including you), their responsibilities and promises, and any extra penalties for breach of contract. On a 7-9, Company support—mercenaries, trade embargos, etc.—still comes, but at a cost; when you want a Company agent to help uphold the contract, you'll have to offer a 1-Value bribe before they will act. On a 10+, the contract is airtight; provide you have a copy in hand, Company agents will enforce the contract in full. On a miss, your contract has a loophole or error in it; the Riverfolk Company won't enforce it, and it's only a matter of time before a participating party takes advantage.
 
 Draw Attention:
   type: Reputation
@@ -118,10 +118,10 @@ Intimidate Enemy Troops:
   type: Reputation
   requirement: Requires -2 Reputation
   text: >
-    When you **draw attention to yourself and threaten enemy troops by wielding your Reputation through an intimidating display**, roll with Reputation with the enemy’s faction, treating it as positive (+2 or +3) for this roll. On a hit, you put fear into the enemy. On a 7-9, pick 1. On a 10+, pick 2.
+    When you **draw attention to yourself and threaten enemy troops by wielding your Reputation through an intimidating display**, roll with Reputation with the enemy's faction, treating it as positive (+2 or +3) for this roll. On a hit, you put fear into the enemy. On a 7-9, pick 1. On a 10+, pick 2.
 
 
-    * the enemy troops won’t act until their leader makes a rallying speech or cry to them—the leader is exposed and vulnerable to attack
+    * the enemy troops won't act until their leader makes a rallying speech or cry to them—the leader is exposed and vulnerable to attack
 
     * the enemy troops will target you, above all else, when they attack
 
@@ -148,9 +148,7 @@ Lead Troops in Battle:
     * defend a group or location
 
 
-    On a miss, your troops engage in battle but with a confused command
-    structure—they wind up embroiled in chaotic battle across the entire
-    area, and in their confusion, they’re losing.
+    On a miss, your troops engage in battle but with a confused command structure—they wind up embroiled in chaotic battle across the entire area, and in their confusion, they're losing.
 
 Make a Pointed Threat:
   type: Reputation
@@ -169,10 +167,10 @@ Plan New Project:
 
     * it requires elimination of a threat first; the Marquisate agents will point you at the threat
 
-    * it can’t be quite what you asked for—just something close enough; the Marquisate agents will tell you what form it takes
+    * it can't be quite what you asked for—just something close enough; the Marquisate agents will tell you what form it takes
 
 
-    On a miss, the Marquisate cannot undertake your project right now because the Marquisate’s resources—and you—are required elsewhere; the GM will tell you why, and where.
+    On a miss, the Marquisate cannot undertake your project right now because the Marquisate's resources—and you—are required elsewhere; the GM will tell you why, and where.
 
 Preach to the Choir:
   type: Reputation
@@ -232,13 +230,13 @@ Tap Criminal Networks:
     * secret intelligence, captured and safely sent to you
 
 
-    On a 7-9, the Conspiracy fulfills the favor, but leaves a request for you too—a favor for a favor. On a 10+, the Conspiracy just leaves a reminder that it might call upon you at some later date. On a miss, your illicit communications with the Conspiracy go awry—someone else gets your request, and they aren’t happy.
+    On a 7-9, the Conspiracy fulfills the favor, but leaves a request for you too—a favor for a favor. On a 10+, the Conspiracy just leaves a reminder that it might call upon you at some later date. On a miss, your illicit communications with the Conspiracy go awry—someone else gets your request, and they aren't happy.
 
 Villify a Leader:
   type: Reputation
   requirement: Requires +1 Reputation
   text: >
-    When you **openly vilify an existing leader of a faction’s forces and/or presence in a clearing**, roll with Reputation with that faction. On a hit, you’ve stirred up dissent—the leader’s departure from power is set in motion. They will be removed from power when next time passes... unless they take other action (alliances, use of force, etc.) to quash the dissent. In the meantime, on a 7-9, the GM chooses 2. On a 10+, the GM chooses 1.
+    When you **openly vilify an existing leader of a faction's forces and/or presence in a clearing**, roll with Reputation with that faction. On a hit, you've stirred up dissent—the leader's departure from power is set in motion. They will be removed from power when next time passes... unless they take other action (alliances, use of force, etc.) to quash the dissent. In the meantime, on a 7-9, the GM chooses 2. On a 10+, the GM chooses 1.
 
 
     * your words are taken up and elaborated upon; resistance to the leader you targeted threatens to get out of control, involving violence or arson
@@ -258,7 +256,7 @@ Wield Bureaucracy:
     When you **wield the bureaucracy of the Eyrie Dynasties to achieve your ends while time passes**, roll with Reputation with the Eyrie. On 7-9, choose 1. On a 10+, choose 2.
 
 
-    * you gather information from your contacts; ask the GM any three questions about the Woodland, and they will answer truthfully from the Eyrie’s perspective
+    * you gather information from your contacts; ask the GM any three questions about the Woodland, and they will answer truthfully from the Eyrie's perspective
 
     * you push the Eyrie to allocate resources just a bit differently; they will deliver some available resource to a clearing of your choice, as long as it makes any sense to do so
 
@@ -269,7 +267,7 @@ Wield Bureaucracy:
     * you get Eyrie courts to add or repeal a legal requirement within any one Eyrie-controlled clearing; the Eyrie theoretically must follow it
 
 
-    On a miss, the Eyrie’s bureaucracy plays back, and you find yourself charged with a duty you hadn’t planned on from Eyrie authorities; fulfill it before time passes next, or mark 3-notoriety.
+    On a miss, the Eyrie's bureaucracy plays back, and you find yourself charged with a duty you hadn't planned on from Eyrie authorities; fulfill it before time passes next, or mark 3-notoriety.
 
 
 Built-In Weapons:
@@ -279,13 +277,13 @@ Built-In Weapons:
     Your claws, fangs, or talons are natural weaponry, with intimate range, using up no Load and inflicting injury instead of exhaustion. Choose one weapon tag from the list:
 
 
-    * Barbed: When you catch someone with this weapon’s end, mark exhaustion to move to intimate range and **grapple with them** as if you had rolled a 10+.
+    * Barbed: When you catch someone with this weapon's end, mark exhaustion to move to intimate range and **grapple with them** as if you had rolled a 10+.
 
     * Fast: Mark wear when **engaging in melee** to suffer 1 fewer harm, even on a miss.
 
     * Intimidating: When you flaunt this item to **persuade an NPC** through threats, you can mark 2-notoriety with their faction to shift a miss to a 7-9 or a 7-9 to a 10+.
 
-    * Precise: Mark wear to ignore your enemy’s armor when you inflict harm.
+    * Precise: Mark wear to ignore your enemy's armor when you inflict harm.
 
     * Quick: Mark exhaustion to **engage in melee** with Finesse instead of Might.
 
@@ -306,7 +304,7 @@ Cached Resources:
   type: Species
   requirement: Fox, Squirrel, Mole
   text: >
-    You’ve hidden resources all over the forest, sometimes even in locations that you’ve since forgotten. When you search for one of your caches, roll with Cunning. On a hit, you find a stash of resources; clear 2-depletion. On a 7-9, the search takes forever; mark exhaustion. On a miss, your wandering puts you in danger before you realize it.
+    You've hidden resources all over the forest, sometimes even in locations that you've since forgotten. When you search for one of your caches, roll with Cunning. On a hit, you find a stash of resources; clear 2-depletion. On a 7-9, the search takes forever; mark exhaustion. On a miss, your wandering puts you in danger before you realize it.
 
 Garner Sympathy:
   type: Species
@@ -321,7 +319,7 @@ Scenting the Clearing:
     When you sniff out the details of a new clearing, roll with Cunning. On a 10+, ask two questions from the list below. On a 7-9, ask one.
 
 
-    * What’s the most surprising scent I pick up in the clearing’s most public area?
+    * What's the most surprising scent I pick up in the clearing's most public area?
 
     * What interesting scent trail catches my attention, and where does it lead?
 
@@ -338,7 +336,7 @@ Searching the Cracks:
   type: Species
   requirement: Fox, Mouse, Otter
   text: >
-    When you carefully search someone’s private space for secrets, roll with Luck. On a hit, the GM will either tell you there are none here—they’re not hiding anything—or that you found something surprising, incriminating, or telling. On a 7-9, you leave no evidence behind or you can take something with you, your choice. On a 10+, both, or you can plant something. On a miss, something you find is strange and distracts you... just long enough to be caught!
+    When you carefully search someone's private space for secrets, roll with Luck. On a hit, the GM will either tell you there are none here—they're not hiding anything—or that you found something surprising, incriminating, or telling. On a 7-9, you leave no evidence behind or you can take something with you, your choice. On a 10+, both, or you can plant something. On a miss, something you find is strange and distracts you... just long enough to be caught!
 
 Stroke of Luck:
   type: Species
@@ -349,7 +347,7 @@ Tight Squeeze:
   type: Species
   requirement: Mouse, Cat, Lizard
   text: >
-    When you squeeze through a tight space, roll with Finesse. On a hit, you make it through to the other side. On a 7-9, mark injury or mark 3-wear on your gear, your choice. On a miss, you’re stuck and something on the other side isn’t looking too friendly.
+    When you squeeze through a tight space, roll with Finesse. On a hit, you make it through to the other side. On a 7-9, mark injury or mark 3-wear on your gear, your choice. On a miss, you're stuck and something on the other side isn't looking too friendly.
 
 Convenient Hideout:
   type: Species
@@ -365,7 +363,7 @@ Convenient Hideout:
     * The route to the hideout is safe and easy
 
 
-    On a miss, you reach the hideout—choose 1—but you aren’t alone when you arrive.
+    On a miss, you reach the hideout—choose 1—but you aren't alone when you arrive.
 
 Nine Lives:
   type: Species
@@ -464,7 +462,7 @@ Cat:
     * Lash out with fangs and claws; inflict 1-injury
 
 
-    **Instinct move**: Once per session, clear exhaustion when you catch and corner someone you’re hunting.
+    **Instinct move**: Once per session, clear exhaustion when you catch and corner someone you're hunting.
 
 Lizard:
   type: Instinct
@@ -524,4 +522,4 @@ Mole:
     * Take a +1 to travel through the forest between clearings
 
 
-    **Instinct move**: Once per session, clear exhaustion when you handle a beautiful, well-crafted, or otherwise tactilely pleasing object you haven’t held before.
+    **Instinct move**: Once per session, clear exhaustion when you handle a beautiful, well-crafted, or otherwise tactilely pleasing object you haven't held before.

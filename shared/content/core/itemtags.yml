@@ -1,5 +1,13 @@
 
 # General Tags
+Accurate:
+  tagSet: default
+  text: When you inflict injury with this weapon, mark exhaustion to target a specific part of your target's body and impair it until they have time to heal.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Bow
+
 Arrow-proof:
   tagSet: default
   text: Ignore the first hit dealing injury from arrows that you suffer in a scene.
@@ -8,12 +16,44 @@ Arrow-proof:
     - Armor
     - Shield
 
+Barbed:
+  tagSet: default
+  text: When you catch someone with this weapon's end, mark exhaustion to move to intimate range and grapple with them as if you had rolled a 10+.
+  valueMod: 1
+  itemType:
+    - Weapon
+
+Blend:
+  tagSet: default
+  text: When you use this item to blend into the appropriate environment, mark wear to roll Sneak or Hide as if you had those feats. If you do have those feats, mark wear in the same situation to instead take +1 ongoing for the scene.
+  valueMod: 1
+  itemType:
+    - Armor
+
 Blunted:
   tagSet: default
   text: This weapon inflicts exhaustion, not injury.
   valueMod: 1
   itemType:
     - Weapon
+
+Cathartic:
+  tagSet: default
+  text: When you use this item for a recreational activity with another vagabond, mark 2-wear for both vagabonds to each clear 2-exhaustion.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Bow
+
+Common:
+  tagSet: default
+  text: When repairing this item, you can repair twice as much wear for the same Value.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
 
 Ceremonial:
   tagSet: default
@@ -37,12 +77,64 @@ Comfortable:
     - Shield
     - Bow
 
+Conspicuous:
+  tagSet: default
+  text: When you **target a vulnerable foe at far range**, you cannot keep your position hidden, even on a 10+. Mark wear to ignore this effect.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+
 Cumbersome:
   tagSet: default
   text: Mark one exhaustion while you wear your armor—clear one exhaustion when you take it off.
   valueMod: -1
   itemType:
     - Armor
+
+Cursed:
+  tagSet: default
+  text: Allied NPCs suffer morale harm when they see you bearing this item.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Armor
+    - Shield
+
+Dangerous:
+  tagSet: default
+  text: Mark injury—in addition to any other consequences—when you make a weapon move with this item and roll a 7-9.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Armor
+    - Shield
+
+Disarming:
+  tagSet: default
+  text: When wearing this item, you are underestimated. Mark exhaustion to change a miss to a 7-9 or a 7-9 to a 10+ when tricking an NPC by appearing **weak or nonthreatening**.
+  valueMod: 1
+  itemType:
+    - Armor
+
+Distracting:
+  tagSet: default
+  text: When you **grapple with an enemy** while you wield or display this item, mark exhaustion to change a miss to a 7-9 or a 7-9 to a 10+.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Disguised:
+  tagSet: default
+  text: Until this item is revealed as a weapon, it will be treated as if it isn't one. When you **attempt the Blindside roguish feat** with this weapon while it is still unrevealed, mark wear to shift a miss to a 7-9 or a 7-9 to a 10+.
+  valueMod: 1
+  itemType:
+    - Weapon
 
 Eaglecraft:
   tagSet: default
@@ -90,6 +182,15 @@ Hair trigger:
   itemType:
     - Bow
 
+Hard to Hold:
+  tagSet: default
+  text: When you **grapple with an enemy**, if you roll a 7-9, you lose your grip on this item in addition to the other consequences of your roll. Mark exhaustion to ignore this effect.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+
 Healer's kit:
   tagSet: default
   text: Mark wear to clear exhaustion. Mark 2 wear to clear injury.
@@ -110,6 +211,91 @@ Heavy Draw Weight:
   itemType:
     - Bow
 
+Hidden:
+  tagSet: default
+  text: Mark exhaustion when being searched or examined to ensure this item goes unnoticed. Mark wear to **attempt the Blindside roguish feat** if you don't have it, or to take a 10+ to Blindside if you do have it.
+  valueMod: 1
+  itemType:
+    - Weapon
+
+Identifiable:
+  tagSet: default
+  text: This item is known to be associated with a particular individual. Anyone who sees it instantly recognizes it and associates you with that individual.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
+Immoral:
+  tagSet: default
+  text: While this item is displayed, you cannot **persuade** or **ask for a favor** from denizens most directly insulted by its immoral nature. Take -1 to **ask for a favor** from all other denizens while this item is visible.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
+Impressive:
+  tagSet: default
+  text: When you **storm a group** wielding this item, mark wear to inflict 2-morale harm on them, in addition to the consequences of your roll.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Incendiary:
+  tagSet: default
+  text: This item inspires members of one faction, and angers and upsets members of another. When you openly give this item to an interested party in order to spread its message, mark prestige equal to this item's Value with the positive faction, and notoriety equal to this item's Value with the negative faction.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Incriminating:
+  tagSet: default
+  text: When any significant individual member of the faction offended by this item first sees you bearing it, mark notoriety with that faction.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
+Intimidating:
+  tagSet: default
+  text: When you flaunt this item to **persuade an NPC** through threats, you can mark 2-notoriety with their faction to shift a miss to a 7-9 or a 7-9 to a 10+.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Bow
+
+Inspiring:
+  tagSet: default
+  text: When you use this item to **help another vagabond**, you can mark wear instead of exhaustion.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Invigorating:
+  tagSet: default
+  text: When you consume this item, mark 2-injury to clear all your exhaustion and add 2 boxes to your exhaustion track for the rest of the scene (they go away at the end of the scene, whether they are marked or unmarked, with no further harmful effects either way).
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
 Iron bolts:
   tagSet: default
   text: This weapon inflicts 1 additional wear when its harm is absorbed by armor.
@@ -125,6 +311,26 @@ Large:
     - Weapon
     - Bow
 
+Legendary:
+  tagSet: default
+  text: This item has its own reputation track, referred to as Legend, equivalent to 15 boxes of Prestige. It starts with Legend +1, and has no Legend boxes marked. To reach Legend +2, it would have to have 10 boxes of Legend marked, and then would clear its track. To reach Legend +3, it would have to have 15 boxes of Legend marked. This item also has a favored faction and a hated faction. Any time you wield this item openly, you do not mark prestige or notoriety at all. Instead, you mark Legend on this item when you aid the favored faction and injure the hated faction. For Reputation moves, roll with the item's Legend instead of your own Reputation. Whenever any session goes by in which you did not mark any Legend on this item, clear 1 box of Legend from this item. If you have no boxes to clear, reduce its Legend by 1.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Light:
+  tagSet: default
+  text: This item doesn't count towards your Load.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
 Luxury:
   tagSet: default
   text: After creation, this item is worth +3 Value.
@@ -135,6 +341,16 @@ Luxury:
     - Shield
     - Bow
 
+Makeshift:
+  tagSet: default
+  text: This item cannot be repaired. This negative tag refunds 2-Value instead of 1-Value.
+  valueMod: -2
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
 Mousefolk Steel:
   tagSet: default
   text: Mark wear to **engage in melee** using Cunning instead of Might.
@@ -144,12 +360,49 @@ Mousefolk Steel:
     - Armor
     - Shield
 
+Nasty:
+  tagSet: default
+  text: When you **grapple with an enemy**, both yours and your enemy's first choice is doubled in effect.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Noisy:
+  tagSet: default
+  text:  When you **wreck something** using this item, you always attract attention, regardless of the roll.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
 Oiled string:
   tagSet: default
   text: Mark wear to use the weapon skill quick shot even if you don't have it.
   valueMod: 1
   itemType:
     - Bow
+
+Poison:
+  tagSet: default
+  text: When you **target a vulnerable foe**, inflict exhaustion instead of injury; your target is poisoned until cured. While poisoned, each time they take a significant or strenuous action, inflict exhaustion. If they fall unconscious, inflict injury every 6 hours until they receive the cure or perish.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
+
+Precise:
+  tagSet: default
+  text: Mark wear to ignore your enemy's armor when you inflict harm.
+  valueMod: 1
+  itemType:
+    - Weapon
 
 Quick:
   tagSet: default
@@ -175,6 +428,23 @@ Reach:
   itemType:
     - Weapon
 
+Reinforced:
+  tagSet: default
+  text: While wearing this armor, you may absorb injury as exhaustion 1-for-1 instead of absorbing it as wear.
+  valueMod: 1
+  itemType:
+    - Armor
+
+Scarce:
+  tagSet: default
+  text:  The tools to repair this item are not commonplace. Standard repairs can clear wear to one box fewer than maximum (so an item with 3 boxes of wear could only ever be repaired through standard means to 2-wear marked). Full repairs for this item require specialists with rare equipment.
+  valueMod: -1
+  itemType:
+    - Weapon
+    - Bow
+    - Shield
+    - Armor
+
 Sharp:
   tagSet: default
   text: Mark wear when inflicting harm with this weapon to inflict 1 additional harm.
@@ -195,6 +465,16 @@ Slow:
   valueMod: -1
   itemType:
     - Weapon
+
+Sturdy:
+  tagSet: default
+  text:  When you would mark wear on this item, you may mark exhaustion instead. You cannot mark exhaustion to absorb injury with this tag.
+  valueMod: 1
+  itemType:
+    - Weapon
+    - Armor
+    - Shield
+    - Bow
 
 Thick:
   tagSet: default

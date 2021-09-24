@@ -48,7 +48,7 @@ Crime:
   text: Advance when you illicitly score a significant prize or pull off an illegal caper against impressive odds.
 
 Antimilitarist:
-  text: Advance when you sabotage a non-denizen faction’s armies or their ability to wage war.
+  text: Advance when you sabotage a non-denizen faction's armies or their ability to wage war.
 
 Atonement:
   text: Advance when you earn forgiveness from someone you or your allies previously harmed.
@@ -81,4 +81,4 @@ Traveler:
   text: Advance when you replace a valuable or meaningful item with one that represents the local culture.
 
 Wanted:
-  text: You’ve got a bounty on your head; name your crime(s). Advance when you defeat or evade capture by a serious threat trying to cash in on your bounty.
+  text: You've got a bounty on your head; name your crime(s). Advance when you defeat or evade capture by a serious threat trying to cash in on your bounty.
