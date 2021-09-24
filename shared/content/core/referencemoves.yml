@@ -272,3 +272,107 @@ Wield Bureaucracy:
     On a miss, the Eyrie’s bureaucracy plays back, and you find yourself charged with a duty you hadn’t planned on from Eyrie authorities; fulfill it before time passes next, or mark 3-notoriety.
 
 
+Built-In Weapons:
+  type: Species
+  requirement: Cat, Fox, Bird of Prey, Lizard
+  text: >
+    Your claws, fangs, or talons are natural weaponry, with intimate range, using up no Load and inflicting injury instead of exhaustion. Choose one weapon tag from the list:
+
+
+    * Barbed: When you catch someone with this weapon’s end, mark exhaustion to move to intimate range and **grapple with them** as if you had rolled a 10+.
+
+    * Fast: Mark wear when **engaging in melee** to suffer 1 fewer harm, even on a miss.
+
+    * Intimidating: When you flaunt this item to **persuade an NPC** through threats, you can mark 2-notoriety with their faction to shift a miss to a 7-9 or a 7-9 to a 10+.
+
+    * Precise: Mark wear to ignore your enemy’s armor when you inflict harm.
+
+    * Quick: Mark exhaustion to **engage in melee** with Finesse instead of Might.
+
+    * Sharp: Mark wear when inflicting harm with this weapon to inflict 1 additional harm.
+
+    * Signature: Whenever you earn prestige or notoriety while showing this item, mark 1 additional prestige or notoriety. And
+    one weapon flaw from the list:
+
+      * Identifiable: This item is known to be associated with a particular individual. Anyone who sees it instantly recognizes it and associates you with that individual.
+
+      * Slow: When you **engage in melee** with this weapon, choose one fewer option. Mark wear to ignore this effect.
+
+      * Ugly: Take –1 to **meet someone important** while they can see this item. Mark exhaustion to hide it.
+
+      * Unwieldy: Take a –1 to all weapon moves—both basic and special weapon moves—made with this weapon. Mark exhaustion to ignore this effect.
+
+Cached Resources:
+  type: Species
+  requirement: Fox, Squirrel, Mole
+  text: >
+    You’ve hidden resources all over the forest, sometimes even in locations that you’ve since forgotten. When you search for one of your caches, roll with Cunning. On a hit, you find a stash of resources; clear 2-depletion. On a 7-9, the search takes forever; mark exhaustion. On a miss, your wandering puts you in danger before you realize it.
+
+Garner Sympathy:
+  type: Species
+  requirement: Rabbit, Mouse, Corvid
+  text: >
+    When you **plead with a PC** by guilting them into going along with you, mark exhaustion to allow them to clear 2-exhaustion instead of one when they agree to what you have proposed.
+
+Scenting the Clearing:
+  type: Species
+  requirement: Cat, Dog, Wolf
+  text: >
+    When you sniff out the details of a new clearing, roll with Cunning. On a 10+, ask two questions from the list below. On a 7-9, ask one.
+
+
+    * What’s the most surprising scent I pick up in the clearing’s most public area?
+
+    * What interesting scent trail catches my attention, and where does it lead?
+
+    * What scent has somebody taken efforts to hide, and where do I smell it?
+
+    * What smells like the most dangerous place in the clearing?
+
+    * What smells like the safest place in the clearing?
+
+
+    On a miss, ask one, but your sniffing around leaves you distracted from another threat; it gets the drop on you.
+
+Searching the Cracks:
+  type: Species
+  requirement: Fox, Mouse, Otter
+  text: >
+    When you carefully search someone’s private space for secrets, roll with Luck. On a hit, the GM will either tell you there are none here—they’re not hiding anything—or that you found something surprising, incriminating, or telling. On a 7-9, you leave no evidence behind or you can take something with you, your choice. On a 10+, both, or you can plant something. On a miss, something you find is strange and distracts you... just long enough to be caught!
+
+Stroke of Luck:
+  type: Species
+  requirement: Rabbit
+  text: Take +1 Luck (max +3).
+
+Tight Squeeze:
+  type: Species
+  requirement: Mouse, Cat, Lizard
+  text: >
+    When you squeeze through a tight space, roll with Finesse. On a hit, you make it through to the other side. On a 7-9, mark injury or mark 3-wear on your gear, your choice. On a miss, you’re stuck and something on the other side isn’t looking too friendly.
+
+Convenient Hideout:
+  type: Species
+  requirement: Fox, Rabbit
+  text: >
+    Your eyes are adept at finding good, safe places to hunker down. When you attempt to lay low in the forest, roll with Cunning. On a hit, you find a convenient hideout nearby. On a 10+, pick 2. On a 7-9, pick 1:
+
+
+    * Food and water are easily accessible from the hideout
+
+    * The area is untouched and undisturbed by other denizens or threats
+
+    * The route to the hideout is safe and easy
+
+
+    On a miss, you reach the hideout—choose 1—but you aren’t alone when you arrive.
+
+Nine Lives:
+  type: Species
+  requirement: Cat, Corvids
+  text: Once per session, when you mark your last box of injury, mark exhaustion to ignore the blow entirely and stay on your feet long enough for one last act of heroism. Once the deed is done, you collapse, unconscious.
+
+Underground Tunnels:
+  type: Species
+  requirement: Rabbit, Mouse, Mole
+  text: Take the _Hide_ roguish feat (it does not count against your limit). When you **attempt to hide by burrowing underground**, roll with Might instead of Finesse.

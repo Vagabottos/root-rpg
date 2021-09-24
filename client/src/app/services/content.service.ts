@@ -216,6 +216,10 @@ export class ContentService {
     return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Travel');
   }
 
+  getSpeciesMoves(): string[] {
+    return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Species');
+  }
+
   getReputationMoves(): string[] {
     return Object.keys(this.content.core.referencemoves).filter(x => this.getOtherMove(x).type === 'Reputation');
   }

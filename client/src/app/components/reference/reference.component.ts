@@ -70,6 +70,10 @@ export class ReferenceComponent implements OnInit {
       categories: this.content.getReputationMoves().map(v => ({ header: v, ...this.content.getOtherMove(v) }))
     },
     {
+      header: 'Moves (Species)',
+      categories: this.content.getSpeciesMoves().map(v => ({ header: v, ...this.content.getOtherMove(v) }))
+    },
+    {
       header: 'Moves (Travel)',
       categories: this.content.getTravelMoves().map(v => ({ header: v, ...this.content.getOtherMove(v) }))
     },
