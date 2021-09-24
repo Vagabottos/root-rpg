@@ -31,6 +31,9 @@ export interface IContentMoveCustomItem {
 export interface IContentMove {
   text: string;
 
+  // mastery related
+  mastery?: string;
+
   // playbook moves
   archetype?: string;
   addStat?: Record<string, number>;
@@ -51,6 +54,7 @@ export interface IContentNature {
 
 export interface IContentSkill {
   text: string;
+  mastery?: string;
   allowItem?: string[];
   allowRange?: string[];
 }

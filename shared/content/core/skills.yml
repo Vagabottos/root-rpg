@@ -26,6 +26,8 @@ Cleave:
   text: >
     When you **cleave armored foes at close range**, mark exhaustion and roll with Might. On a hit, you smash through their defenses and equipment; inflict 3-wear. On a 7-9, you overextend your weapon or yourself: mark wear or end up in a bad spot, your choice.
 
+  mastery: On a 12+, you inflict 6-wear instead. Any excess wear instead becomes injury or exhaustion (your choice) dealt to your foes.
+
   allowItem:
     - Weapon
 
@@ -35,8 +37,18 @@ Cleave:
 Confuse Senses:
   text: When you **throw something to confuse an opponent's senses at close or intimate range**, roll with Finesse. On a hit, you've thrown them off balance, blinded them, deafened them, or confused them, and given yourself an opportunity. On a 10+, they have to take some time to get their bearings and restore their senses before they can act clearly again. On a 7-9, you have just a few moments.
 
+  mastery: >
+    On a 12+, choose one:
+
+
+    * you successfully confuse the senses of a whole group; apply the results of the 10+ move to any foes you choose in range
+
+    * you knock a single foe so off-kilter you can take them out exactly as you choose right now, without triggering any move
+
 Disarm:
   text: When you target an opponent's weapon with your strikes at close range, roll with Finesse. On a hit, they have to mark 2-exhaustion or lose their weapon—it's well out of reach. On a 10+, they have to mark 3-exhaustion instead of 2.
+
+  mastery: On a 12+, your opponent both marks 3-exhaustion and loses their weapon.
 
   allowItem:
     - Weapon
@@ -73,6 +85,8 @@ Harry:
 
     * they are pinned or blocked
 
+  mastery: On a 12+, in addition to the results of the 10+, you inflict an additional 2-injury or 2-morale, your choice.
+
   allowItem:
     - Bow
     - Weapon
@@ -100,6 +114,9 @@ Hurl:
 Improvise Weapon:
   text: >
     When you **make a weapon out of improvised materials around you**, roll with Cunning. On a hit, you make a weapon; the GM will tell you its range tag and at least one other tag based on the materials you used. On a 7-9, the weapon also has a weakness tag.
+
+  mastery: On a 12+, you may choose your weapon’s range and two beneficial tags it bears (as long as they make sense to the item).
+
   allowItem: []
   allowRange: []
 
@@ -165,6 +182,16 @@ Parry:
 
     * you don't suffer any harm
 
+  mastery: >
+    On a 12+, in addition to the results of the 10+, you can immediately riposte, choosing one:
+
+
+    * you inflict 2-injury with a strike that pierces their defenses; they cannot absorb the injury with armor
+
+    * you inflict 2-morale with an insulting line or gesture that demeans them
+
+    * you inflict 2-exhaustion with a quick punch or blow intended to disorient and knock them out
+
   allowItem:
     - Weapon
     - Bow
@@ -217,6 +244,8 @@ Quick Shot:
 
     * you keep your target at bay—they don't move
 
+  mastery: On a 12+, take all four options from the list and inflict 2-injury instead of 1-injury.
+
   allowItem:
     - Bow
 
@@ -235,6 +264,8 @@ Storm a Group:
     * you avoid their blows to the best of your ability; you suffer little (-1) harm.
 
     * you use them against each other; mark exhaustion again and they inflict their harm against themselves
+
+  mastery: On a 12+, take all four options from the list and choose one for double effect.
 
   allowItem:
     - Weapon
@@ -275,6 +306,8 @@ Trick Shot:
 
     * your shot distracts an opponent and provides an opportunity
 
+  mastery: On a 12+, take all four options from the list, and your shot strikes a third available target of your choice.
+
   allowItem:
     - Bow
 
@@ -286,6 +319,16 @@ Trick Shot:
 Vicious Strike:
   text: >
     When you **viciously strike an opponent where they are weak at intimate or close range**, mark exhaustion and roll with Might. On a hit, they suffer serious (+1) harm and cannot mark wear on their armor to block it. On a 10+, you get away with the strike. On a 7-9, they score a blow against you as well.
+
+  mastery: >
+    On a 12+, in addition to the results of the 10+, you strike them so well you incapacitate them, choosing one from the list:
+
+
+    * they cannot change position—fleeing, advancing, maneuvering, etc.— until they receive medical aid
+
+    * they cannot wield a weapon until they receive medical aid
+
+    * they cannot communicate until they receive medical aid
 
   allowItem:
     - Weapon

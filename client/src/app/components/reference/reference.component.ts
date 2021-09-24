@@ -59,11 +59,19 @@ export class ReferenceComponent implements OnInit {
     },
     {
       header: 'Moves (Basic)',
-      categories: this.content.getBasicSkills().map(v => ({ header: v, text: this.content.getBasicSkill(v).text }))
+      categories: this.content.getBasicSkills().map(v => ({
+        header: v,
+        text: this.content.getBasicSkill(v).text,
+        mastery: this.content.getBasicSkill(v).mastery
+      }))
     },
     {
       header: 'Moves (Combat)',
-      categories: this.content.getCombatSkills().map(v => ({ header: v, text: this.content.getCombatSkill(v).text }))
+      categories: this.content.getCombatSkills().map(v => ({
+        header: v,
+        text: this.content.getCombatSkill(v).text,
+        mastery: this.content.getCombatSkill(v).mastery
+       }))
     },
     {
       header: 'Moves (Instinct)',
