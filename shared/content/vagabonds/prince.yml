@@ -82,7 +82,7 @@ stats:
   luck: 1
   might: 0
 
-startingValue: 10
+startingValue: 7
 
 chooseFeats: 0
 feats:
