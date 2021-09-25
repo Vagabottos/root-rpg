@@ -298,6 +298,8 @@ function generateWoodland(campaign: ICampaign) {
   for(let i = 0; i < 12; i++) {
     const clearing = campaign.clearings[i];
 
+    if(clearing.controlledBy === 'The Marquisate (Keep)') return;
+
     const roll = random(2, 12);
     if(clearing.controlledBy && roll >= 11)   { clearing.sympathy = true; }
     if(!clearing.controlledBy && roll >= 9)   { clearing.sympathy = true; }
