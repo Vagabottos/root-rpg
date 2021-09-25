@@ -675,3 +675,43 @@ Plan of Attack:
 Fearsome Visage:
   archetype: The Raider
   text: You can **make a pointed threat** or **publicly draw attention to yourself** as an enemy of a faction when you have a Reputation of 0 or lower with that faction, not just the usual -3 or -2 reputation required. Remember, you roll as if your negative reputation was positive, so a -1 Reputation becomes a +1 for the roll and a 0 remains a 0.
+
+# Champion
+Take Up the Call:
+  archetype: The Champion
+  text: >
+    Name two non-denizen factions: declare one to be the best hope for the Woodland (_The Just_) and the other evil tyrants (_The Enemy_). Take +1 ongoing to protect members of the Just or harm agents of the Enemy. You may switch which factions you consider to be the Just or the Enemy at the end of any session by clearing all prestige from the faction which no longer inspires you; your reputation with both factions remains the same.
+
+    Choose a role you often fill as a champion:
+
+    
+    * Luminary: When you **persuade an NPC** to fight for the Just or resist the charms of the Enemy, roll with Might instead of Charm.
+    
+    * Paladin: When you inflict harm on the Enemy, inflict 1 additional harm when you suffer harm protecting the Just, suffer 1 fewer harm.
+    
+    * Emissary: When you mark prestige with the Just, mark an additional prestige. When you mark notoriety with the Enemy, mark an additional notoriety.
+
+Of the People:
+  archetype: The Champion
+  text: >
+    When your band **travels down a path at a relaxing pace**, roll with +1 instead of -1. On a hit, you encounter friendly faces on the journey who offer food and assistance; your band marks half as much depletion as normal. On a 7-9, the characters you meet are in a bit of trouble; they expect you to lend a hand. On a miss, a dangerous foe committed to ending your “righteousness” catches you (and your friends) unaware and unprepared.
+
+Skill Against Skill Alone:
+  archetype: The Champion
+  text: >
+    When you **grapple with an enemy** and roll a 12+, you may take their blows to incapacitate them; suffer their full harm to fill their exhaustion or injury track.
+
+A Just Cause:
+  archetype: The Champion
+  text: >
+    When you **threaten an authority** on behalf of the downtrodden, mark notoriety with the authority’s faction and roll with Might. On a hit, the force of your defiance unnerves them; they must make a concession right now to your cause or openly attack you. On a 10+, your words are inspirational; you and your allies take a +1 ongoing against them and their allies if they attack you. On a miss, the authority reveals that the cause you champion is not as just as you were led to believe.
+
+Raw Force:
+  archetype: The Champion
+  text: >
+    Take one of the following weapon skills: _Disarm_ or _Parry_. It does not count against your maximum. When you use either weapon skill, you can mark exhaustion to roll with Might.
+
+  addSkillChoose: 1
+  addSkill:
+    - Disarm
+    - Parry

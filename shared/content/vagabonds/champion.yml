@@ -1,0 +1,116 @@
+
+archetype: The Champion
+
+description: You are a would-be hero and legend, a defender of the innocent and a standard-bearer of lost causes. Yours is the heroic narrative, even if you sometimes oversimplify things.
+
+species: []
+
+adjectives:
+  - stout
+  - focused
+  - disheveled
+  - vain
+
+items:
+  - ornate belt
+  - heirloom ring
+  - poetry book
+  - token of chivalry
+
+demeanor:
+  - gruff
+  - thoughtful
+  - dramatic
+  - kind
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I seek justice for all the Woodland
+      - text: I wish to become a legend across many clearings
+      - text: My enemies will burn any home I try to make
+      - text: I have sworn to redeem a lost or failed cause
+      - text: I am running from a terrible secret
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My spouse
+      - text: My mentor
+      - text: My best friend
+      - text: My ward
+      - text: My command
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Justice
+  - name: Princples
+  - name: Loyalty
+  - name: Ambition
+
+natures:
+  - name: Advocate
+  - name: Exemplar
+
+connections:
+  - name: Protector
+    text: _ is a true hero, someone whom even I look up to for their moral clarity. What did they do that convinced me of their righteousness?
+
+  - name: Familiy
+    text: _ and I are more-or-less siblings after years spent in each other’s company. Why have we struggled to get along in the past?
+
+stats:
+  charm: 1
+  cunning: -1
+  finesse: -1
+  luck: 1
+  might: 2
+
+startingValue: 11
+
+chooseFeats: 0
+feats:
+  - name: Sleight of Hand
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Quick Shot
+  - name: Storm a Group
+  - name: Trick Shot
+
+numMoves: 1
+defaultMoves: [Take Up the Call]
+moves:
+  - name: Take Up the Call
+  - name: Of the People
+  - name: Skill Against Skill Alone
+  - name: A Just Cause
+  - name: Raw Force
