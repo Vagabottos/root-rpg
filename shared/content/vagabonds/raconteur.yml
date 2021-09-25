@@ -1,0 +1,119 @@
+
+archetype: The Raconteur
+
+description: You are a storyteller, making coin and earning trust by moving amid the clearings and weaving tales that ultimately teach the denizens the "truth" of what goes on in the Woodland.
+
+species: []
+
+adjectives:
+  - shabby
+  - flashy
+  - haphazard
+  - effete
+
+items:
+  - gold tooth
+  - swirling cloak
+  - homespun memento
+  - tuning fork
+
+demeanor:
+  - ingenious
+  - passionate
+  - verbose
+  - smooth
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I want to see all of the Woodland
+      - text: I want to find a worthy hero to write about
+      - text: I want to witness a legendary event firsthand
+      - text: I want to find the kind of true love found in epic poetry
+      - text: I have been run out of too many clearings to stay still
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Whom have you wronged and how?
+    type: answers
+    answers:
+      - text: A lover, with my words
+      - text: A friend, with my actions
+      - text: An innocent, with my silence
+      - text: An ally, with my inaction
+      - text: A sibling, many times
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction have you served the most?
+    type: faction
+    reputation:
+      delta: 2
+
+  - question: With which faction have you earned a special enmity?
+    type: faction
+    reputation:
+      delta: -1
+
+drives:
+  - name: Discovery
+  - name: Thrills
+  - name: Infamy
+  - name: Clean paws
+
+natures:
+  - name: Legend
+  - name: Companion
+
+connections:
+  - name: Friend
+    text: _ and I still talk about the time we were run out of a clearing, even though we thought our adventures would lead the powers-that-be to treat us as heroes. What did we do? How did it go wrong?
+
+  - name: Family
+    text: _ and I have been through battles, ruin-delves, heists, and more together. Which particular incident made us close? How did I make it famous?
+
+stats:
+  charm: 2
+  cunning: 1
+  finesse: 1
+  luck: -1
+  might: -1
+
+startingValue: 8
+
+chooseFeats: 0
+feats:
+  - name: Counterfeit
+  - name: Pick Lock
+  - name: Pick Pocket
+
+numSkills: 1
+skills:
+  - name: Confuse Senses
+  - name: Improvise Weapon
+  - name: Disarm
+  - name: Vicious Strike
+
+numMoves: 3
+defaultMoves: [Tools of the Trade]
+moves:
+  - name: Tools of the Trade
+  - name: Adoring Fans
+  - name: All Eyes on Me
+  - name: Quick Fingers, Quicker Eyes
+  - name: Silver Tongue
+  - name: Sweet as Honey

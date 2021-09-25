@@ -694,7 +694,7 @@ Take Up the Call:
 Of the People:
   archetype: The Champion
   text: >
-    When your band **travels down a path at a relaxing pace**, roll with +1 instead of -1. On a hit, you encounter friendly faces on the journey who offer food and assistance; your band marks half as much depletion as normal. On a 7-9, the characters you meet are in a bit of trouble; they expect you to lend a hand. On a miss, a dangerous foe committed to ending your “righteousness” catches you (and your friends) unaware and unprepared.
+    When your band **travels down a path at a relaxing pace**, roll with +1 instead of -1. On a hit, you encounter friendly faces on the journey who offer food and assistance; your band marks half as much depletion as normal. On a 7-9, the characters you meet are in a bit of trouble; they expect you to lend a hand. On a miss, a dangerous foe committed to ending your "righteousness" catches you (and your friends) unaware and unprepared.
 
 Skill Against Skill Alone:
   archetype: The Champion
@@ -704,7 +704,7 @@ Skill Against Skill Alone:
 A Just Cause:
   archetype: The Champion
   text: >
-    When you **threaten an authority** on behalf of the downtrodden, mark notoriety with the authority’s faction and roll with Might. On a hit, the force of your defiance unnerves them; they must make a concession right now to your cause or openly attack you. On a 10+, your words are inspirational; you and your allies take a +1 ongoing against them and their allies if they attack you. On a miss, the authority reveals that the cause you champion is not as just as you were led to believe.
+    When you **threaten an authority** on behalf of the downtrodden, mark notoriety with the authority's faction and roll with Might. On a hit, the force of your defiance unnerves them; they must make a concession right now to your cause or openly attack you. On a 10+, your words are inspirational; you and your allies take a +1 ongoing against them and their allies if they attack you. On a miss, the authority reveals that the cause you champion is not as just as you were led to believe.
 
 Raw Force:
   archetype: The Champion
@@ -725,7 +725,7 @@ Friends Indeed:
 Hear Me!:
   archetype: The Heretic
   text: >
-    When you **give an inspiring speech to a persuadable crowd** in the service of your cause, mark exhaustion and roll with Charm. On a hit, you sway them; pick 2. On a 7-9, you must put yourself at the crowd’s mercy and lead them directly for them to follow through.
+    When you **give an inspiring speech to a persuadable crowd** in the service of your cause, mark exhaustion and roll with Charm. On a hit, you sway them; pick 2. On a 7-9, you must put yourself at the crowd's mercy and lead them directly for them to follow through.
 
 
     * They tear down an opposing symbol
@@ -750,7 +750,7 @@ Destroy Something Beautiful:
 Devilish Charm:
   archetype: The Heretic
   text: >
-    When you **trick an NPC** you’ve previously aided or impressed, mark exhaustion to make the move as if you had rolled a 12+, instead of rolling.
+    When you **trick an NPC** you've previously aided or impressed, mark exhaustion to make the move as if you had rolled a 12+, instead of rolling.
 
 Center of the Universe:
   archetype: The Heretic
@@ -766,9 +766,9 @@ You Shall Not Pass:
     When you plant yourself in the way of your enemies, roll with Charm. On a hit, your foes cannot get past you until they take you down—brace yourself. On a 10+ choose 1. On a 7-9, choose 2:
 
 
-    * You suffer +1 harm from all your enemies’ attacks
+    * You suffer +1 harm from all your enemies' attacks
 
-    * A single enemy (GM’s choice) slips past you
+    * A single enemy (GM's choice) slips past you
 
     * You cannot retreat from your position
 
@@ -786,7 +786,7 @@ Heirloom Weapon:
 Legacy:
   archetype: The Prince
   text: >
-    When you **meet someone important** for the first time, mark your legacy track to take a 10+ instead of rolling. When your legacy track is full, tell the GM, clear the track, and roll. Take +1 for each “yes” to the following questions:
+    When you **meet someone important** for the first time, mark your legacy track to take a 10+ instead of rolling. When your legacy track is full, tell the GM, clear the track, and roll. Take +1 for each "yes" to the following questions:
 
 
     * Are you in a clearing?
@@ -806,12 +806,12 @@ One of Us:
 Tall Tales:
   archetype: The Prince
   text: >
-    When you attempt to impress a crowd with a wild story, roll with Luck. On a hit, the crowd is moved; everyone in your band takes +1 ongoing to **persuade** or **trick someone** in line with the story. On a 10+, someone foolish even approaches you with profitable work! On a miss, your stories attract someone in desperate need of help you’re not equipped to give.
+    When you attempt to impress a crowd with a wild story, roll with Luck. On a hit, the crowd is moved; everyone in your band takes +1 ongoing to **persuade** or **trick someone** in line with the story. On a 10+, someone foolish even approaches you with profitable work! On a miss, your stories attract someone in desperate need of help you're not equipped to give.
 
 No Jail Can Hold Me:
   archetype: The Prince
   text: >
-    Take the roguish feat _pick lock_. It doesn’t count against your maximum. When you attempt to escape confinement, mark exhaustion to shift a miss to a 7-9.
+    Take the roguish feat _pick lock_. It doesn't count against your maximum. When you attempt to escape confinement, mark exhaustion to shift a miss to a 7-9.
 
   addSkillChoose: 1
   addSkill:
@@ -824,3 +824,40 @@ Favored:
 
   addStat:
     luck: 1
+
+# Raconteur
+Tools of the Trade:
+  archetype: The Raconteur
+  text: >
+    You have a valued (at least to you) symbol of your skill and talent; it starts with 3 boxes of wear and its value is essentially priceless to you.
+
+    When you **first put on an earnest, public performance in a clearing**, roll with Charm. On a hit, name a faction you flatter; an important member comes forward to offer you work. On a 10+, mark prestige with their faction as well. On a miss, you draws the worst kind of attention to you and your friends.
+
+Adoring Fans:
+  archetype: The Raconteur
+  text: >
+    When you **first enter a clearing**, roll with Charm. On a hit, a fan recognizes you; they relate gossip, offer a place to stay, and show your band around. On a 10+, your fan will go even further to help you. On a miss, you meet a fan with good intentions who immediately makes your situation much, much worse.
+
+All Eyes on Me:
+  archetype: The Raconteur
+  text: >
+    When you **create a distraction through outlandish performance**, mark exhaustion and roll with Charm. On a hit, the room can't look away; your allies take +1 ongoing to _sneak_, _hide_, _pickpocket_, or _trust fate_ while you perform. On a 10+, hold 1; spend the hold to grant an ally a +3 for one of the aforementioned rolls instead. On a miss, your audience finds something about your performance insulting or misguided; they fall over themselves to give you their opinion.
+
+Quick Fingers, Quicker Eyes:
+  archetype: The Raconteur
+  text: >
+    When you **read a tense situation** while performing, you may always ask one question, even on a miss.
+
+Silver Tongue:
+  archetype: The Raconteur
+  text: >
+    When you **persuade an NPC** with a colorful anecdote, mark exhaustion on a hit to make them reveal something important and relevant about the situation
+
+Sweet as Honey:
+  archetype: The Raconteur
+  text: >
+    Take +1 Charm (max +3).
+
+  addStat:
+    charm: 1
+

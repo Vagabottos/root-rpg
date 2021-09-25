@@ -84,7 +84,7 @@ connections:
     text: _ is a true hero, someone whom even I look up to for their moral clarity. What did they do that convinced me of their righteousness?
 
   - name: Familiy
-    text: _ and I are more-or-less siblings after years spent in each other’s company. Why have we struggled to get along in the past?
+    text: _ and I are more-or-less siblings after years spent in each other's company. Why have we struggled to get along in the past?
 
 stats:
   charm: 1

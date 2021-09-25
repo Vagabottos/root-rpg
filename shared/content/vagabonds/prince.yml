@@ -1,7 +1,7 @@
 
 archetype: The Prince
 
-description:  You are a second-generation vagabond, heir to your parent’s masteries and knowledge, but also born to this life of roguery and independence—you are not a vagabond by your own volition.
+description:  You are a second-generation vagabond, heir to your parent's masteries and knowledge, but also born to this life of roguery and independence—you are not a vagabond by your own volition.
 
 species: []
 
@@ -29,9 +29,9 @@ background:
     answers:
       - text: They rejected the ordinary life of a clearing of the Woodland
       - text: They feared their enemies would find them if they settled down
-      - text: They wanted me to make my own choices free of society’s influence
+      - text: They wanted me to make my own choices free of society's influence
       - text: They never fit in with the denizens
-      - text: They didn’t know how else to live
+      - text: They didn't know how else to live
       - text: Custom...
         type: text
         input: text
@@ -73,7 +73,7 @@ connections:
     text: _ used to work with one of my parents and invited me to join the band when I came of age. How did I impress them with my talents?
 
   - name: Family
-    text: _ was mentored by one of my parents. What vagabond skills did they learn from my parents that I’ve always struggled to master?
+    text: _ was mentored by one of my parents. What vagabond skills did they learn from my parents that I've always struggled to master?
 
 stats:
   charm: -1
