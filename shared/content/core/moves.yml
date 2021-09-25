@@ -775,3 +775,52 @@ You Shall Not Pass:
 
     On a miss, your enemies find or create a new way past you that makes your
     situation far worse.
+
+## Prince
+Heirloom Weapon:
+  archetype: The Prince
+  text: >
+    Your parents bestowed a family heirloom upon you—it has 4 boxes of wear, and its value is functionally priceless to you. If the weapon is ever destroyed, the GM will tell you what tasks you must undertake to restore it.
+
+
+Legacy:
+  archetype: The Prince
+  text: >
+    When you **meet someone important** for the first time, mark your legacy track to take a 10+ instead of rolling. When your legacy track is full, tell the GM, clear the track, and roll. Take +1 for each “yes” to the following questions:
+
+
+    * Are you in a clearing?
+
+    * Is anyone looking for you?
+
+    * Do you have +2 or -2 Reputation with at least one faction?
+
+
+    On a hit, someone with unfinished business with your parents finds you. On a 10+, they arrive without warning. On a miss, an ordinary denizen warns you about someone who might seek you out; mark your legacy track.
+
+One of Us:
+  archetype: The Prince
+  text: >
+    When you try to **figure out** or **persuade** vagabonds, bandits, revolutionaries, or outcasts, roll with Luck instead of Charm.
+
+Tall Tales:
+  archetype: The Prince
+  text: >
+    When you attempt to impress a crowd with a wild story, roll with Luck. On a hit, the crowd is moved; everyone in your band takes +1 ongoing to **persuade** or **trick someone** in line with the story. On a 10+, someone foolish even approaches you with profitable work! On a miss, your stories attract someone in desperate need of help you’re not equipped to give.
+
+No Jail Can Hold Me:
+  archetype: The Prince
+  text: >
+    Take the roguish feat _pick lock_. It doesn’t count against your maximum. When you attempt to escape confinement, mark exhaustion to shift a miss to a 7-9.
+
+  addSkillChoose: 1
+  addSkill:
+    - Pick Lock
+
+Favored:
+  archetype: The Prince
+  text: >
+    Take +1 Luck (max +3).
+
+  addStat:
+    luck: 1
