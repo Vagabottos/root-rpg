@@ -715,3 +715,63 @@ Raw Force:
   addSkill:
     - Disarm
     - Parry
+
+# Heretic
+Friends Indeed:
+  archetype: The Heretic
+  text: >
+    When you **first seek out those who share your cause** after arriving in a clearing, roll with Charm. On a hit, you find one or two; they provide what they can in service to your collective work. On a 7-9, they also tell you about a threat to your shared ideology that has arisen in the clearing. On a miss, you are caught by someone in the clearing who openly despises your kind.
+
+Hear Me!:
+  archetype: The Heretic
+  text: >
+    When you **give an inspiring speech to a persuadable crowd** in the service of your cause, mark exhaustion and roll with Charm. On a hit, you sway them; pick 2. On a 7-9, you must put yourself at the crowd’s mercy and lead them directly for them to follow through.
+
+
+    * They tear down an opposing symbol
+
+    * They overthrow a vulnerable tyrant
+
+    * They destroy the trappings of tradition
+
+    * They elevate someone overlooked
+
+    * They deliver justice to the wicked
+
+
+    On a miss, the crowd is moved to action but ignores your guidance, leading
+    to terrible consequences.
+
+Destroy Something Beautiful:
+  archetype: The Heretic
+  text: >
+    When you **wreck a false idol or symbol of oppression** alongside your allies, roll with Charm instead of Might; you and all your allies clear an exhaustion, even on a miss.
+
+Devilish Charm:
+  archetype: The Heretic
+  text: >
+    When you **trick an NPC** you’ve previously aided or impressed, mark exhaustion to make the move as if you had rolled a 12+, instead of rolling.
+
+Center of the Universe:
+  archetype: The Heretic
+  text: >
+    Take +1 Charm (max +3).
+
+  addStat:
+    charm: 1
+
+You Shall Not Pass:
+  archetype: The Heretic
+  text: >
+    When you plant yourself in the way of your enemies, roll with Charm. On a hit, your foes cannot get past you until they take you down—brace yourself. On a 10+ choose 1. On a 7-9, choose 2:
+
+
+    * You suffer +1 harm from all your enemies’ attacks
+
+    * A single enemy (GM’s choice) slips past you
+
+    * You cannot retreat from your position
+
+
+    On a miss, your enemies find or create a new way past you that makes your
+    situation far worse.

@@ -1,0 +1,132 @@
+
+archetype: The Heretic
+
+description: You are a fervent believer in a cause or ideology that most Woodland denizens and factions find distasteful and unacceptable, even if your beliefs are genuinely for the greater good of the denizens.
+
+species: []
+
+adjectives:
+  - unkempt
+  - young
+  - clear-eyed
+  - lithe
+
+items:
+  - colorful robes
+  - facial tattoo
+  - token of belief
+  - unique jewelry
+
+demeanor:
+  - passionate
+  - negative
+  - eccentric
+  - proud
+
+background:
+  - question: Where do you call home?
+    type: answers
+    answers:
+      - text: _ clearing
+        type: clearing
+        input: text
+      - text: the forest
+      - text: a place far from here
+        type: text
+        input: text
+
+  - question: What are the fundamental tenets of your cause? (pick 2)
+    type: answers
+    pick: 2
+    answers:
+      - text: To overturn a tradition
+      - text: To exalt the worthy
+      - text: To unseat the corrupt
+      - text: To uplift the downtrodden
+      - text: To destroy a falsehood
+      - text: Custom...
+        type: text
+        input: text
+      - text: Custom (2)...
+        type: text
+        input: text
+
+  - question: Why are you a vagabond?
+    type: answers
+    answers:
+      - text: I must make amends for my past
+      - text: I want to bring truth to all
+      - text: I seek still greater undestanding
+      - text: I'm being hunted by the powerful
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Whom have you left behind?
+    type: answers
+    answers:
+      - text: My devotee
+      - text: My guru
+      - text: My family
+      - text: My secret love
+      - text: Custom...
+        type: text
+        input: text
+
+  - question: Which faction is known to hate those who share your cause?
+    type: faction
+    reputation:
+      set: -1
+
+  - question: Which faction is known to harbor those who share you cause?
+    type: faction
+    reputation:
+      set: 1
+
+drives:
+  - name: Principles
+  - name: Protection
+  - name: Freedom
+  - name: Chaos
+
+natures:
+  - name: Believer
+  - name: Healer
+
+connections:
+  - name: Protector
+    text: _ has come to share my beliefs; I must stand with them, no matter the cost. What happened to us that convinced them of the wisdom of my cause?
+
+  - name: Watcher
+    text: _ was once hurt greatly by someone who shared my cause. Why do I think I might still win them over? What have I already tried to do to earn their trust?
+
+stats:
+  charm: 2
+  cunning: 0
+  finesse: -1
+  luck: 1
+  might: 0
+
+startingValue: 9
+
+chooseFeats: 0
+feats:
+  - name: Counterfeit
+  - name: Sleight of Hand
+
+numSkills: 1
+skills:
+  - name: Cleave
+  - name: Disarm
+  - name: Quick Shot
+  - name: Storm a Group
+
+numMoves: 2
+defaultMoves: [Friends Indeed, Hear Me!]
+moves:
+  - name: Friends Indeed
+  - name: Hear Me!
+  - name: Destroy Something Beautiful
+  - name: Devilish Charm
+  - name: Center of the Universe
+  - name: You Shall Not Pass
