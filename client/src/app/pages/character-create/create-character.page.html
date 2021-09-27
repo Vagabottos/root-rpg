@@ -671,7 +671,7 @@
         <ion-list *ngIf="chosenVagabond">
           <ng-container *ngIf="chosenVagabond.chooseFeats > 0">
             <ion-item *ngFor="let feat of contentService.getFeats()"
-                      [disabled]="(featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)) || getBonusFeats().includes(feat)">
+                      [disabled]="(featsForm.get('feats').value.length >= chosenVagabond.chooseFeats && !featsForm.get('feats').value.includes(feat)) || getBonusFeats().includes(feat) || getAlwaysFeats().includes(feat)">
               <ion-label class="ion-text-wrap">
                 <h2>{{ feat }}</h2>
                 <p>{{ getFeatDesc(feat) }}</p>

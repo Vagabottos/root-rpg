@@ -209,6 +209,11 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       isValid: () => this.movesForm.valid && this.movesForm.get('moves').value.length >= this.chosenVagabond.numMoves },
     { name: 'Roguish Feats',
       step: CharacterCreateStep.Feats,
+      onEnter: () => {
+        if (this.featsForm.get('feats').value.length > 0) { return; }
+
+        this.featsForm.get('feats').setValue(this.getAlwaysFeats());
+      },
       isValid: () => [
                       CharacterCreateStep.Skills,
                       CharacterCreateStep.Items,
@@ -573,6 +578,10 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
     this.featsForm.get('feats').setValue(feats);
   }
 
+  getAlwaysFeats(): string[] {
+    return this.chosenVagabond.alwaysFeats.map(x => x.name);
+  }
+
   getBonusFeats(): string[] {
     return this.movesForm.get('moves').value.map(x => this.contentService.getMove(x)?.addFeat).flat().filter(Boolean);
   }
@@ -680,6 +689,12 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
   setStep(step: CharacterCreateStep): void {
     this.currentStep = step;
+
+    const stepVal = this.stepHelper.find(x => x.step === step);
+    if (stepVal && stepVal.onEnter) {
+      stepVal.onEnter();
+    }
+
     this.save();
   }
 

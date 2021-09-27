@@ -207,6 +207,7 @@ export interface IContentVagabond {
   stats: Record<Stat, number>;
   startingValue: number;
   chooseFeats: number;
+  alwaysFeats: IContentVagabondFeat[];
   feats: IContentVagabondFeat[];
   numSkills: number;
   skills: IContentVagabondSkill[];

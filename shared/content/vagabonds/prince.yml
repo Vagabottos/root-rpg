@@ -84,8 +84,9 @@ stats:
 
 startingValue: 7
 
-chooseFeats: 0
-feats:
+chooseFeats: 4
+feats: []
+alwaysFeats:
   - name: Sneak
   - name: Hide
 
