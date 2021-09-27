@@ -35,9 +35,8 @@ background:
         type: text
         input: text
 
-  - question: What are the fundamental tenets of your cause? (pick 2)
+  - question: What are the fundamental tenets of your cause?
     type: answers
-    pick: 2
     answers:
       - text: To overturn a tradition
       - text: To exalt the worthy
@@ -45,9 +44,6 @@ background:
       - text: To uplift the downtrodden
       - text: To destroy a falsehood
       - text: Custom...
-        type: text
-        input: text
-      - text: Custom (2)...
         type: text
         input: text
 
