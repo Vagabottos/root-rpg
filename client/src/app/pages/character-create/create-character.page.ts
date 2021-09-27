@@ -579,7 +579,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   }
 
   getAlwaysFeats(): string[] {
-    return this.chosenVagabond.alwaysFeats.map(x => x.name);
+    return (this.chosenVagabond.alwaysFeats ?? []).map(x => x.name);
   }
 
   getBonusFeats(): string[] {
