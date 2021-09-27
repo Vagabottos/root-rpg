@@ -53,7 +53,7 @@
 
     <ion-row *ngIf="item.tagSet !== 'ship'
                  && showFooter
-                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.incendiary1)" class="hr"></ion-row>
+                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.incendiary1 || item.legendary1)" class="hr"></ion-row>
 
     <ion-row *ngIf="item.tags?.length > 0" class="small-row">
       <ion-col>
@@ -69,13 +69,31 @@
 
     <ion-row *ngIf="item.designation" class="small-row">
       <ion-col>
-        <span class="label">Faction</span>: {{ item.designation }}
+        <span class="label">Ceremonial Faction</span>: {{ item.designation }}
       </ion-col>
     </ion-row>
 
     <ion-row *ngIf="item.incendiary1 && item.incendiary2" class="small-row">
       <ion-col>
-        <span class="label">Factions</span>: Inspires {{ item.incendiary1 }} | Angers {{ item.incendiary2 }}
+        <span class="label">Incendiary Factions</span>: Inspires {{ item.incendiary1 }} | Angers {{ item.incendiary2 }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="item.legendary1 && item.legendary2" class="small-row">
+      <ion-col>
+        <span class="label">Legendary Factions</span>: Favored {{ item.legendary1 }} | Hated {{ item.legendary2 }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="item.legendary1" class="small-row harm-row margin-top-1">
+      <ion-col>
+        <span class="label">Prestige</span>
+      </ion-col>
+
+      <ion-col class="harm-box"
+                *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"
+                (click)="changeLegendary(i + 1)">
+        <ion-icon class="harm-icon" [name]="item.legendary > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-card-content>

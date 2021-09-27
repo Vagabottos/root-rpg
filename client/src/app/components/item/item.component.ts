@@ -15,6 +15,7 @@ export class ItemComponent implements OnInit {
   @Input() showFooter = true;
   @Output() updateWear: EventEmitter<number> = new EventEmitter();
   @Output() updateDepletion: EventEmitter<number> = new EventEmitter();
+  @Output() updateLegendary: EventEmitter<number> = new EventEmitter();
 
   public get boxSlots(): boolean[] {
     let wear = this.item.wear;
@@ -57,6 +58,17 @@ export class ItemComponent implements OnInit {
 
     this.item.depletionUsed = depletion;
     this.updateDepletion.emit(this.item.depletionUsed);
+  }
+
+  changeLegendary(legendary: number): void {
+    if (this.item.legendary === legendary) {
+      this.item.legendary = 0;
+      this.updateLegendary.emit(this.item.legendary);
+      return;
+    }
+
+    this.item.legendary = legendary;
+    this.updateLegendary.emit(this.item.legendary);
   }
 
 }

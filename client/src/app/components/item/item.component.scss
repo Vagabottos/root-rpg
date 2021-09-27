@@ -56,8 +56,12 @@
     }
   }
 
-  ion-icon {
+  ion-icon:not(.harm-icon) {
     font-size: 1.2rem;
+  }
+
+  ion-icon.harm-icon {
+    font-size: 0.8rem !important;
   }
 
   .boxes {

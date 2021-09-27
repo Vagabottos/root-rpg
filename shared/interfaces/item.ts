@@ -21,4 +21,7 @@ export interface IItem {
   designation?: string;             // used for ceremonial items
   incendiary1?: string;             // used for incendiary items
   incendiary2?: string;             // used for incendiary items
+  legendary1?: string;              // used for legendary items
+  legendary2?: string;              // used for legendary items
+  legendary?: number;               // used for legendary items
 }

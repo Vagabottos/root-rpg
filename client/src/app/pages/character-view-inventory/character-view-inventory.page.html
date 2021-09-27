@@ -44,6 +44,7 @@
         <app-item [item]="item"
                   (updateWear)="save()"
                   (updateDepletion)="save()"
+                  (updateLegendary)="save()"
                   appLongPress="500"
                   (release)="itemOptions(character, item, i)"></app-item>
       </ion-col>
@@ -51,7 +52,8 @@
       <ion-col class="ion-hide-md-down" size-xs="12" size-lg="4" size-xl="4" *ngFor="let item of character.items; let i = index">
         <app-item [item]="item"
                   (updateWear)="save()"
-                  (updateDepletion)="save()">
+                  (updateDepletion)="save()"
+                  (updateLegendary)="save()">
 
           <ion-button slot="actions" fill="clear" (click)="showItemEditPopover(character, item, i, $event)">
             <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>

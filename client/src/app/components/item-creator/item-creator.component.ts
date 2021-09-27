@@ -39,7 +39,10 @@ export class ItemCreatorComponent implements OnInit {
     ranges:       new FormControl([]),
     designation:  new FormControl(''),
     incendiary1:  new FormControl(''),
-    incendiary2:  new FormControl('')
+    incendiary2:  new FormControl(''),
+    legendary1:   new FormControl(''),
+    legendary2:   new FormControl(''),
+    legendary:    new FormControl(0, [Validators.min(0), Validators.max(15)])
   });
 
   public get allItemTags(): string[] {
@@ -60,6 +63,9 @@ export class ItemCreatorComponent implements OnInit {
       designation: this.itemForm.get('designation').value,
       incendiary1: this.itemForm.get('incendiary1').value,
       incendiary2: this.itemForm.get('incendiary2').value,
+      legendary1: this.itemForm.get('legendary1').value,
+      legendary2: this.itemForm.get('legendary2').value,
+      legendary: this.itemForm.get('legendary').value,
       extraValue: this.item?.extraValue,
       extraLoad: this.itemForm.get('load').value,
       tagSet: this.customItemData?.tagSet
@@ -83,6 +89,9 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('designation').setValue(this.item.designation ?? '');
       this.itemForm.get('incendiary1').setValue(this.item.incendiary1 ?? '');
       this.itemForm.get('incendiary2').setValue(this.item.incendiary2 ?? '');
+      this.itemForm.get('legendary1').setValue(this.item.legendary1 ?? '');
+      this.itemForm.get('legendary2').setValue(this.item.legendary2 ?? '');
+      this.itemForm.get('legendary').setValue(this.item.legendary ?? 0);
       this.itemForm.get('load').setValue(this.item.extraLoad ?? 1);
 
       if (this.item.tagSet) {
@@ -196,6 +205,44 @@ export class ItemCreatorComponent implements OnInit {
               handler: (data) => {
                 this.itemForm.get('incendiary1').setValue(data?.incendiary1);
                 this.itemForm.get('incendiary2').setValue(data?.incendiary2);
+              }
+            }
+          ]
+        });
+
+        alert.present();
+      }
+
+      if (tag.input === 'legendary') {
+
+        const alert = await this.alert.create({
+          header: 'Legendary Item',
+          message: 'Enter the factions you want this item to be special for.',
+          backdropDismiss: false,
+          inputs: [
+            {
+              name: 'legendary1',
+              type: 'text',
+              placeholder: 'Enter Favored Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+            {
+              name: 'legendary2',
+              type: 'text',
+              placeholder: 'Enter Hated Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+          ],
+          buttons: [
+            {
+              text: 'Confirm',
+              handler: (data) => {
+                this.itemForm.get('legendary1').setValue(data?.legendary1);
+                this.itemForm.get('legendary2').setValue(data?.legendary2);
               }
             }
           ]

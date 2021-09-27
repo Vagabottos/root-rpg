@@ -56,11 +56,20 @@ export class ItemCreatorService {
 
     if (baseItem.tags.includes('Incendiary')) {
       if (factions.length === 0) {
-        baseItem.tags = baseItem.tags.filter(x => x !== 'Ceremonial');
+        baseItem.tags = baseItem.tags.filter(x => x !== 'Incendiary');
       }
 
       baseItem.incendiary1 = sample(factions);
       baseItem.incendiary2 = sample(factions);
+    }
+
+    if (baseItem.tags.includes('Legendary')) {
+      if (factions.length === 0) {
+        baseItem.tags = baseItem.tags.filter(x => x !== 'Legendary');
+      }
+
+      baseItem.legendary1 = sample(factions);
+      baseItem.legendary2 = sample(factions);
     }
 
     if (['Weapon', 'Bow'].includes(itemType)) {
