@@ -53,7 +53,7 @@
 
     <ion-row *ngIf="item.tagSet !== 'ship'
                  && showFooter
-                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation)" class="hr"></ion-row>
+                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.incendiary1)" class="hr"></ion-row>
 
     <ion-row *ngIf="item.tags?.length > 0" class="small-row">
       <ion-col>
@@ -70,6 +70,12 @@
     <ion-row *ngIf="item.designation" class="small-row">
       <ion-col>
         <span class="label">Faction</span>: {{ item.designation }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="item.incendiary1 && item.incendiary2" class="small-row">
+      <ion-col>
+        <span class="label">Factions</span>: Inspires {{ item.incendiary1 }} | Angers {{ item.incendiary2 }}
       </ion-col>
     </ion-row>
   </ion-card-content>

@@ -54,6 +54,15 @@ export class ItemCreatorService {
       baseItem.designation = sample(factions);
     }
 
+    if (baseItem.tags.includes('Incendiary')) {
+      if (factions.length === 0) {
+        baseItem.tags = baseItem.tags.filter(x => x !== 'Ceremonial');
+      }
+
+      baseItem.incendiary1 = sample(factions);
+      baseItem.incendiary2 = sample(factions);
+    }
+
     if (['Weapon', 'Bow'].includes(itemType)) {
       baseItem.ranges = sampleSize(preset.validRanges || ['intimate', 'close', 'far'], sample([1, 1, 1, 2, 2, 3]));
 

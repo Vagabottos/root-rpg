@@ -37,7 +37,9 @@ export class ItemCreatorComponent implements OnInit {
     itemTags:     new FormControl([]),
     skillTags:    new FormControl([]),
     ranges:       new FormControl([]),
-    designation:  new FormControl('')
+    designation:  new FormControl(''),
+    incendiary1:  new FormControl(''),
+    incendiary2:  new FormControl('')
   });
 
   public get allItemTags(): string[] {
@@ -56,6 +58,8 @@ export class ItemCreatorComponent implements OnInit {
       skillTags: this.itemForm.get('skillTags').value,
       ranges: this.itemForm.get('ranges').value,
       designation: this.itemForm.get('designation').value,
+      incendiary1: this.itemForm.get('incendiary1').value,
+      incendiary2: this.itemForm.get('incendiary2').value,
       extraValue: this.item?.extraValue,
       extraLoad: this.itemForm.get('load').value,
       tagSet: this.customItemData?.tagSet
@@ -77,6 +81,8 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
       this.itemForm.get('ranges').setValue(this.item.ranges || []);
       this.itemForm.get('designation').setValue(this.item.designation ?? '');
+      this.itemForm.get('incendiary1').setValue(this.item.incendiary1 ?? '');
+      this.itemForm.get('incendiary2').setValue(this.item.incendiary2 ?? '');
       this.itemForm.get('load').setValue(this.item.extraLoad ?? 1);
 
       if (this.item.tagSet) {
@@ -132,31 +138,71 @@ export class ItemCreatorComponent implements OnInit {
 
     const tag = this.contentService.getTag(value);
     if (tag?.input) {
-      const alert = await this.alert.create({
-        header: 'Ceremonial Item',
-        message: 'Enter the faction you want this item to be special for.',
-        backdropDismiss: false,
-        inputs: [
-          {
-            name: 'designation',
-            type: 'text',
-            placeholder: 'Enter Faction',
-            attributes: {
-              maxLength: 50
+      if (tag.input === 'designation') {
+        const alert = await this.alert.create({
+          header: 'Ceremonial Item',
+          message: 'Enter the faction you want this item to be special for.',
+          backdropDismiss: false,
+          inputs: [
+            {
+              name: 'designation',
+              type: 'text',
+              placeholder: 'Enter Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+          ],
+          buttons: [
+            {
+              text: 'Confirm',
+              handler: (data) => {
+                this.itemForm.get('designation').setValue(data?.designation);
+              }
             }
-          },
-        ],
-        buttons: [
-          {
-            text: 'Confirm',
-            handler: (data) => {
-              this.itemForm.get('designation').setValue(data?.designation);
-            }
-          }
-        ]
-      });
+          ]
+        });
 
-      alert.present();
+        alert.present();
+      }
+
+      if (tag.input === 'incendiary') {
+
+        const alert = await this.alert.create({
+          header: 'Incendiary Item',
+          message: 'Enter the factions you want this item to be special for.',
+          backdropDismiss: false,
+          inputs: [
+            {
+              name: 'incendiary1',
+              type: 'text',
+              placeholder: 'Enter Inspires Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+            {
+              name: 'incendiary2',
+              type: 'text',
+              placeholder: 'Enter Angers Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+          ],
+          buttons: [
+            {
+              text: 'Confirm',
+              handler: (data) => {
+                this.itemForm.get('incendiary1').setValue(data?.incendiary1);
+                this.itemForm.get('incendiary2').setValue(data?.incendiary2);
+              }
+            }
+          ]
+        });
+
+        alert.present();
+      }
     }
   }
 

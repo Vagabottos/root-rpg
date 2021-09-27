@@ -8,4 +8,6 @@ export function cleanItem(item: IItem): void {
   if(!item.name) throw new NotAcceptable('No valid item name specified.');
 
   item.designation = clean(item.designation || '');
+  item.incendiary1 = clean(item.incendiary1 || '');
+  item.incendiary2 = clean(item.incendiary2 || '');
 }
