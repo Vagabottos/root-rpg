@@ -702,3 +702,33 @@ Rousing (Heirloom):
   itemType:
     - Heirloom
 
+# Symbol tags
+Sturdy (Symbol):
+  tagSet: symbol
+  text: +2 boxes of wear; when you tend to your symbol after a public performance, clear a box of wear.
+  itemType:
+    - Symbol
+
+Enchanting (Symbol):
+  tagSet: symbol
+  text: Mark wear instead of exhaustion to add +2 when you **help** another vagabond by distracting someone with your performance.
+  itemType:
+    - Symbol
+
+Versatile (Symbol):
+  tagSet: symbol
+  text: Choose two equipment tags for your symbol.
+  itemType:
+    - Symbol
+
+Revealing (Symbol):
+  tagSet: symbol
+  text: When you perform in public, mark wear to ask any one character who watched "what truly motivates your character?", take +1 when acting on the answer.
+  itemType:
+    - Symbol
+
+Pleasant (Symbol):
+  tagSet: symbol
+  text: When you perform for your band while traveling on a path, mark wear to clear up to 2 additional exhaustion from each vagabond.
+  itemType:
+    - Symbol

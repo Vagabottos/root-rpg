@@ -855,6 +855,25 @@ Tools of the Trade:
 
     When you **first put on an earnest, public performance in a clearing**, roll with Charm. On a hit, name a faction you flatter; an important member comes forward to offer you work. On a 10+, mark prestige with their faction as well. On a miss, you draws the worst kind of attention to you and your friends.
 
+
+    * Choose a type: musical instrument, poetry book, unique costume, stage prop
+
+    * Choose a look: battered, fancy, delicate, stained, pristine
+
+    * Choose three features:
+
+      * **Sturdy**: +2 boxes of wear; when you tend to your symbol after a public performance, clear a box of wear.
+
+      * **Enchanting**: mark wear instead of exhaustion to add +2 when you **help** another vagabond by distracting someone with your performance.
+
+      * **Versatile**: choose two equipment tags for your symbol.
+
+      * **Revealing**: when you perform in public, mark wear to ask any one character who watched "what truly motivates your character?", take +1 when acting on the answer.
+
+      * **Pleasant**: when you perform for your band while traveling on a path, mark wear to clear up to 2 additional exhaustion from each vagabond.
+
+  customItemTag: symbol
+
 Adoring Fans:
   archetype: The Raconteur
   text: >

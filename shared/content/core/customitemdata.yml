@@ -31,3 +31,12 @@ heirloom:
     - name: Features
       numChoices: 2
       choices: [Reliable (Heirloom), Feared (Heirloom), Deadly (Heirloom), Double-headed (Heirloom), Flexible (Heirloom), Unique (Heirloom), Rousing (Heirloom)]
+
+symbol:
+  name: Symbol
+  tagSet: default
+  wear: 3
+  sections:
+    - name: Features
+      numChoices: 2
+      choices: [Sturdy (Symbol), Enchanting (Symbol), Versatile (Symbol), Revealing (Symbol), Pleasant (Symbol)]
