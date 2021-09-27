@@ -783,6 +783,28 @@ Heirloom Weapon:
     Your parents bestowed a family heirloom upon you—it has 4 boxes of wear, and its value is functionally priceless to you. If the weapon is ever destroyed, the GM will tell you what tasks you must undertake to restore it.
 
 
+    * Choose a weapon type: dagger, axe, hammer, sword, spear, crossbow, bow
+
+    * Choose an appropriate range: intimate, close, far
+
+    * Choose two features:
+
+      * **Reliable**: +2 boxes of wear and an additional range
+
+      * **Feared**: When you engage in combat against foes who recognize this weapon, inflict morale harm on them
+
+      * **Deadly**: When you inflict harm with this weapon, inflict +1 harm
+
+      * **Double-headed**: One edge inflicts injury, the other exhaustion. Declare which side you use at the start of a fight
+
+      * **Flexible**: Choose 2 weapon skill tags for this weapon
+
+      * **Unique**: Your weapon is of unusual design; once per session, mark exhaustion to ignore the harm inflicted on you by a single attack
+
+      * **Rousing**: After you successfully inflict injury on a dangerous enemy, mark wear to clear exhaustion from every ally who saw you land the blow
+
+  customItemTag: heirloom
+
 Legacy:
   archetype: The Prince
   text: >

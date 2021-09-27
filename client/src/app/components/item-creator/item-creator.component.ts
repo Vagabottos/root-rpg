@@ -11,10 +11,10 @@ import { ItemService } from '../../services/item.service';
 const SectionVisibility = {
   name:       { all: true },
   load:       { default: true, toolbox: true },
-  wear:       { default: true },
+  wear:       { default: true, heirloom: true },
   tags:       { default: true },
-  weaponTags: { default: true },
-  ranges:     { default: true },
+  weaponTags: { default: true, heirloom: true },
+  ranges:     { default: true, heirloom: true },
   footer:     { default: true, toolbox: true },
 };
 

@@ -531,130 +531,174 @@ Weighty:
     - Bow
 
 # Toolbox Tags
-Assorted Scrap Wood:
+Assorted Scrap Wood (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Assorted Gears and Springs:
+Assorted Gears and Springs (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Esoteric Hand Tools:
+Esoteric Hand Tools (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Manuals:
+Manuals (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Assorted Medicines:
+Assorted Medicines (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Portable Alchemy Kit:
+Portable Alchemy Kit (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Sewing Kit:
+Sewing Kit (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Cookware:
+Cookware (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Minor Explosives:
+Minor Explosives (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Heavy:
+Heavy (Toolbox):
   tagSet: toolbox
   text: ''
   loadMod: 1
   itemType:
     - Toolbox
 
-Bulky and Obvious:
+Bulky and Obvious (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Stolen Toolkit:
+Stolen Toolkit (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
-Fragile:
+Fragile (Toolbox):
   tagSet: toolbox
   text: ''
   itemType:
     - Toolbox
 
 # Ship Tags
-Stocked:
+Stocked (Ship):
   tagSet: ship
   text: Your ship gains a 2-box depletion track of cargo and gear.
   itemType:
     - Ship
 
-Nimble:
+Nimble (Ship):
   tagSet: ship
   text: Take +1 ongoing to tricking NPCs when relying on your ship's speed.
   itemType:
     - Ship
 
-Renowned:
+Renowned (Ship):
   tagSet: ship
   text: Take +1 to reputation with a faction (your choice) while on your ship.
   itemType:
     - Ship
 
-Swift:
+Swift (Ship):
   tagSet: ship
   text: Once per session, mark wear to outrun any pursuer.
   itemType:
     - Ship
 
-Dreaded:
+Dreaded (Ship):
   tagSet: ship
   text: Take +1 to reputation with a faction (your choice) while on your ship.
   itemType:
     - Ship
 
-Rickety:
+Rickety (Ship):
   tagSet: ship
   text: Your ship has one fewer box of wear.
   itemType:
     - Ship
 
-Clumsy:
+Clumsy (Ship):
   tagSet: ship
   text: Take -1 ongoing to trusting fate when piloting your ship carefully.
   itemType:
     - Ship
 
-Stolen Ship:
+Stolen Ship (Ship):
   tagSet: ship
   text: Someone dangerous is pursuing you to recover their property.
   itemType:
     - Ship
+
+# Heirloom tags
+Reliable (Heirloom):
+  tagSet: heirloom
+  text: +2 boxes of wear and an additional range.
+  itemType:
+    - Heirloom
+
+Feared (Heirloom):
+  tagSet: heirloom
+  text: When you engage in combat against foes who recognize this weapon, inflict morale harm on them.
+  itemType:
+    - Heirloom
+
+Deadly (Heirloom):
+  tagSet: heirloom
+  text: When you inflict harm with this weapon, inflict +1 harm.
+  itemType:
+    - Heirloom
+
+Double-headed (Heirloom):
+  tagSet: heirloom
+  text: One edge inflicts injury, the other exhaustion. Declare which side you use at the start of a fight.
+  itemType:
+    - Heirloom
+
+Flexible (Heirloom):
+  tagSet: heirloom
+  text: Choose 2 weapon skill tags for this weapon.
+  itemType:
+    - Heirloom
+
+Unique (Heirloom):
+  tagSet: heirloom
+  text: Your weapon is of unusual design; once per session, mark exhaustion to ignore the harm inflicted on you by a single attack.
+  itemType:
+    - Heirloom
+
+Rousing (Heirloom):
+  tagSet: heirloom
+  text: After you successfully inflict injury on a dangerous enemy, mark wear to clear exhaustion from every ally who saw you land the blow.
+  itemType:
+    - Heirloom
+
