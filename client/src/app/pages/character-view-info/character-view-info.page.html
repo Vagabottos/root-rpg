@@ -175,6 +175,19 @@
           </ion-card-content>
         </ion-card>
 
+        <ion-card *ngIf="character.archetype === 'The Champion'">
+          <ion-card-header>
+            <ion-card-title>The Just & The Enemy</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row>
+              <ion-col><strong>The Just</strong>: {{ character.theJust }}</ion-col>
+              <ion-col><strong>The Enemy</strong>: {{ character.theEnemy }}</ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
         <ion-card *ngIf="character.archetype === 'The Envoy'">
           <ion-card-header>
             <ion-card-title>Diplomat (+{{ character.harm.diplomat || 0 }})</ion-card-title>

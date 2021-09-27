@@ -578,7 +578,7 @@
         </ion-card-title>
 
         <ion-card-subtitle>
-          Choose your character's starting {{ chosenVagabond.numMoves }} moves. <em *ngIf="chosenVagabond.defaultMoves.length > 0">This Vagabond starts with {{ chosenVagabond.defaultMoves.length }} moves chosen for you.</em>
+          Choose your character's starting {{ chosenVagabond.numMoves }} move(s). <em *ngIf="chosenVagabond.defaultMoves.length > 0">This Vagabond starts with {{ chosenVagabond.defaultMoves.length }} move(s) chosen for you.</em>
         </ion-card-subtitle>
       </ion-card-header>
 
@@ -604,6 +604,19 @@
               <ion-icon slot="start" name="add"></ion-icon>
               Create {{ contentService.getMove(move.name).customItemTag }}
             </ion-item>
+
+            <!-- specific implementation for TUTC -->
+            <ng-container *ngIf="move.name === 'Take Up the Call'">
+              <ion-item>
+                <ion-label position="stacked">The Just</ion-label>
+                <ion-input type="text" formControlName="theJust" placeholder="Enter The Just" maxlength="24"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">The Enemy</ion-label>
+                <ion-input type="text" formControlName="theEnemy" placeholder="Enter The Enemy" maxlength="24"></ion-input>
+              </ion-item>
+            </ng-container>
 
             <!-- this assumes a character creator will only ever have one item to start. if there needs to be two item creates this will have to be changed -->
             <ng-container *ngIf="contentService.getMove(move.name).customItemTag">

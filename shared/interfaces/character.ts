@@ -50,6 +50,8 @@ export interface ICharacter {
   items: IItem[];
   reputation: Record<string, ICharacterReputation>;
   notes: string;
+  theJust?: string;
+  theEnemy?: string;
 
   harm: {
     injury: number;

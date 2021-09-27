@@ -680,16 +680,14 @@ Fearsome Visage:
 Take Up the Call:
   archetype: The Champion
   text: >
-    Name two non-denizen factions: declare one to be the best hope for the Woodland (_The Just_) and the other evil tyrants (_The Enemy_). Take +1 ongoing to protect members of the Just or harm agents of the Enemy. You may switch which factions you consider to be the Just or the Enemy at the end of any session by clearing all prestige from the faction which no longer inspires you; your reputation with both factions remains the same.
+    Name two non-denizen factions: declare one to be the best hope for the Woodland (_The Just_) and the other evil tyrants (_The Enemy_). Take +1 ongoing to protect members of the Just or harm agents of the Enemy. You may switch which factions you consider to be the Just or the Enemy at the end of any session by clearing all prestige from the faction which no longer inspires you; your reputation with both factions remains the same. Choose a role you often fill as a champion:
 
-    Choose a role you often fill as a champion:
 
-    
-    * Luminary: When you **persuade an NPC** to fight for the Just or resist the charms of the Enemy, roll with Might instead of Charm.
-    
-    * Paladin: When you inflict harm on the Enemy, inflict 1 additional harm when you suffer harm protecting the Just, suffer 1 fewer harm.
-    
-    * Emissary: When you mark prestige with the Just, mark an additional prestige. When you mark notoriety with the Enemy, mark an additional notoriety.
+      * **Luminary**: When you **persuade an NPC** to fight for the Just or resist the charms of the Enemy, roll with Might instead of Charm.
+
+      * **Paladin**: When you inflict harm on the Enemy, inflict 1 additional harm when you suffer harm protecting the Just, suffer 1 fewer harm.
+
+      * **Emissary**: When you mark prestige with the Just, mark an additional prestige. When you mark notoriety with the Enemy, mark an additional notoriety.
 
 Of the People:
   archetype: The Champion

@@ -51,6 +51,8 @@ export async function reformatCharacter(context: HookContext): Promise<HookConte
     moveSkills: context.data.skills.bonusSkills,
     moves: context.data.moves.moves,
     items: context.data.items.items,
+    theJust: context.data.moves.theJust,
+    theEnemy: context.data.moves.theEnemy,
     reputation: {},
     harm: {
       depletion: 0,

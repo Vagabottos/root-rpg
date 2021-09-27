@@ -40,16 +40,18 @@
 
           <ion-card-content>
             <ion-list class="special-formatting">
-              <ion-item class="pointer" *ngFor="let move of filterArray(getMoves(character))">
-                <ion-label class="ion-text-wrap">
-                  <h2>{{ move }}</h2>
-                  <p [innerHTML]="content.getMove(move)?.text | markdown" *ngIf="expanded[move]"></p>
-                </ion-label>
+              <ng-container *ngFor="let move of filterArray(getMoves(character))">
+                <ion-item class="pointer">
+                  <ion-label class="ion-text-wrap">
+                    <h2>{{ move }}</h2>
+                    <p [innerHTML]="content.getMove(move)?.text | markdown" *ngIf="expanded[move]"></p>
+                  </ion-label>
 
-                <ion-button slot="end" fill="clear" (click)="toggle(move)">
-                  <ion-icon [name]="expanded[move] ? 'remove' : 'add'"></ion-icon>
-                </ion-button>
-              </ion-item>
+                  <ion-button slot="end" fill="clear" (click)="toggle(move)">
+                    <ion-icon [name]="expanded[move] ? 'remove' : 'add'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </ng-container>
             </ion-list>
           </ion-card-content>
         </ion-card>

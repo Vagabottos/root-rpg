@@ -118,7 +118,9 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   });
 
   public movesForm = new FormGroup({
-    moves: new FormControl([], [Validators.required])
+    moves: new FormControl([], [Validators.required]),
+    theJust: new FormControl('', Validators.required),
+    theEnemy: new FormControl('', Validators.required),
   });
 
   public featsForm = new FormGroup({
@@ -872,6 +874,8 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
     loadObject.moves = loadObject.moves || {};
     loadObject.moves.moves = loadObject.moves.moves || [];
+    loadObject.moves.theJust = loadObject.moves.theJust || '';
+    loadObject.moves.theEnemy = loadObject.moves.theEnemy || '';
 
     loadObject.feats = loadObject.feats || {};
     loadObject.feats.feats = loadObject.feats.feats || [];
