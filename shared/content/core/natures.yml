@@ -124,3 +124,27 @@ Populist:
 
 Vain:
   text: Clear your exhaustion track when you make a big show of intervening in a situation that doesn't involve you to help or protect someone.
+
+Advocate:
+  text: Clear your exhaustion track when you confront a powerful NPC about their mistreatment of the powerless or weak.
+
+Exemplar:
+  text: Clear your exhaustion track when you publicly take on a challenging task on behalf of the Just and those they represent.
+
+Believer:
+  text: Clear your exhaustion track when you publicly call out a symbol or authority dedicated to beliefs opposed to yours.
+
+Healer:
+  text: Clear your exhaustion track when you attempt to start a dialogue between two foes from different factions.
+
+Scion:
+  text: Clear your exhaustion track when you enter danger to attack the enemies or defend the allies of your parents.
+
+Trailblazer:
+  text: Clear your exhaustion track when you depart on a wild and risky new course of action with others.
+
+Legend:
+  text: Clear your exhaustion track when you put on a performace in front of a large, attentive audience.
+
+Companion:
+  text: Clear your exhaustion track when you effusively praise a friend to a powerful person or group.
