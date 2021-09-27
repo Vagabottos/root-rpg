@@ -58,6 +58,7 @@ Development:
 
 Devotion:
   text: You follow an organized or folk religion; name it and describe its beliefs. Advance when you get a non-believer to share in one of your beliefs or practices.
+  namedTarget: true
 
 Discord:
   text: Advance when your actions create or intensify a serious conflict between two factions.
@@ -76,9 +77,11 @@ Mysteries:
 
 Partisan:
   text: Name a faction. Advance when you successfully complete a mission given to you by an important member of that faction.
+  namedTarget: true
 
 Traveler:
   text: Advance when you replace a valuable or meaningful item with one that represents the local culture.
 
 Wanted:
   text: You've got a bounty on your head; name your crime(s). Advance when you defeat or evade capture by a serious threat trying to cash in on your bounty.
+  namedTarget: true
