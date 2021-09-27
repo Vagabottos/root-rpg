@@ -56,6 +56,7 @@ export interface ICharacter {
     exhaustion: number;
     depletion: number;
     diplomat: number;
+    legacy: number;
   };
 
   harmBoost: {

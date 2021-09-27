@@ -158,9 +158,26 @@
 
       <ion-col size="12" size-lg="4">
 
+        <ion-card *ngIf="character.archetype === 'The Prince'">
+          <ion-card-header>
+            <ion-card-title>Legacy (+{{ character.harm.legacy || 0 }})</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="harm-row">
+              <ion-col class="harm-box"
+                       *ngFor="let i of [0, 1, 2]"
+                       (click)="adjustHarm(character, 'legacy', i + 1)">
+                <ion-icon [name]="character.harm.legacy > i ? 'checkbox-outline' : 'square-outline'"
+                          *ngIf="i < characterHelper.harmCount(character, 'legacy')"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
         <ion-card *ngIf="character.archetype === 'The Envoy'">
           <ion-card-header>
-            <ion-card-title>Diplomat (+{{ character.harm.diplomat }})</ion-card-title>
+            <ion-card-title>Diplomat (+{{ character.harm.diplomat || 0 }})</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
