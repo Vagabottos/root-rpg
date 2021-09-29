@@ -140,8 +140,6 @@ export class CampaignViewClearingsPage implements OnInit {
     const campaign = this.campaignCopy;
     const lakeId = +lake.id.split('-')[1];
 
-    console.log(lakeId, lake);
-
     campaign.lakes = campaign.lakes || [];
     campaign.lakes[lakeId] = {
       position: { x: lake.x, y: lake.y },
