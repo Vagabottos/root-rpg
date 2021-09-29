@@ -49,6 +49,11 @@ export interface IForest {
   position?: { x: number, y: number };
 }
 
+export interface ILake {
+  position?: { x: number, y: number };
+  connectedLakes: number[];
+}
+
 export interface IClearingVisitedEvent {
   timestamp: number;
   visitText: string;
@@ -86,6 +91,7 @@ export interface ICampaign {
 
   clearings: IClearing[];
   forests: IForest[];
+  lakes: ILake[];
   npcs: INPC[];
   allEvents: string[];
 

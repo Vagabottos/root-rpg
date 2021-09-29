@@ -68,6 +68,7 @@ export class CampaignViewClearingsPage implements OnInit {
             this.isEditing = false;
             campaign.clearings = cloneDeep(this.campaignCopy.clearings);
             campaign.forests = cloneDeep(this.campaignCopy.forests);
+            campaign.lakes = cloneDeep(this.campaignCopy.lakes);
 
             this.campaignCopy = null;
             this.data.patchCampaign().subscribe(() => {});
@@ -133,6 +134,47 @@ export class CampaignViewClearingsPage implements OnInit {
     const forestId = +forest.split('-')[1];
 
     campaign.forests[forestId].position = { x, y };
+  }
+
+  addLake({ lake }) {
+    const campaign = this.campaignCopy;
+    const lakeId = +lake.id.split('-')[1];
+
+    console.log(lakeId, lake);
+
+    campaign.lakes = campaign.lakes || [];
+    campaign.lakes[lakeId] = {
+      position: { x: lake.x, y: lake.y },
+      connectedLakes: []
+    };
+
+  }
+
+  moveLake({ lake, x, y }: { lake: string; x: number; y: number }) {
+    const campaign = this.campaignCopy;
+    const lakeId = +lake.split('-')[1];
+
+    campaign.lakes[lakeId].position = { x, y };
+
+    console.log(lakeId, x, y);
+  }
+
+  addLakeEdge({ source, target }) {
+    const campaign = this.campaignCopy;
+    const sourceId = +source.split('-')[1];
+    const targetId = +target.split('-')[1];
+
+    campaign.lakes[sourceId].connectedLakes.push(targetId);
+    campaign.lakes[targetId].connectedLakes.push(sourceId);
+  }
+
+  removeLakeEdge({ source, target }) {
+    const campaign = this.campaignCopy;
+    const sourceId = +source.split('-')[1];
+    const targetId = +target.split('-')[1];
+
+    pull(campaign.lakes[sourceId].connectedLakes, targetId);
+    pull(campaign.lakes[targetId].connectedLakes, sourceId);
   }
 
 }

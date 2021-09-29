@@ -116,6 +116,8 @@ export class DataService {
     if (curCamp?._id) { this.socket.leaveChannel(); }
     if (campaign?._id) { this.socket.joinChannel(campaign._id); }
 
+    if (!campaign.lakes) { campaign.lakes = []; }
+
     this.campaign.next(campaign);
 
     if (campaign && this.campaignObs) {

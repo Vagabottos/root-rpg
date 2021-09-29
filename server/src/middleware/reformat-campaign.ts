@@ -402,6 +402,7 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
     factions: context.data.factions,
     clearings: [],
     forests: [],
+    lakes: [],
     npcs: [],
     allEvents: []
   };

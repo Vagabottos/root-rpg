@@ -87,5 +87,16 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
     });
   });
 
+  campaign.lakes.forEach((lake, i) => {
+    nodes.push({
+      id: `lake-${i}`,
+      isLake: true,
+      r: 50,
+      title: '',
+      x: width * (lake.position?.x ?? 0) || 50,
+      y: height * (lake.position?.y ?? 0) || 250
+    });
+  });
+
   return { nodes, edges };
 }

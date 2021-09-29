@@ -8,6 +8,7 @@ export interface INode {
   y: number;
 
   isForest?: boolean;
+  isLake?: boolean;
 }
 
 export interface IEdge {
@@ -70,6 +71,10 @@ export class GraphCreator {
       moveNode: (node, { x, y }) => void;
       addForest: (node) => void;
       moveForest: (node, { x, y }) => void;
+      addLake: (node) => void;
+      moveLake: (node, { x, y }) => void;
+      addLakeEdge: (edge) => void;
+      removeLakeEdge: (edge) => void;
     }
   ) {
     this.init();
@@ -253,6 +258,10 @@ export class GraphCreator {
           node.classed(GraphConstants.forestGClass, true);
         }
 
+        if (d.isLake) {
+          node.classed(GraphConstants.lakeGClass, true);
+        }
+
         // add population indicator
         if (d.population) {
           node
@@ -339,6 +348,9 @@ export class GraphCreator {
       if (d.isForest) {
         this.callbacks.moveForest(d.id, { x: proportionalX, y: proportionalY });
 
+      } else if (d.isLake) {
+        this.callbacks.moveLake(d.id, { x: proportionalX, y: proportionalY });
+
       } else {
         this.callbacks.moveNode(d.id, { x: proportionalX, y: proportionalY });
       }
@@ -377,10 +389,21 @@ export class GraphCreator {
       });
 
       const isEitherForest = newEdge.source.id.includes('forest') || newEdge.target.id.includes('forest');
+      const isEitherLake = newEdge.source.id.includes('lake') || newEdge.target.id.includes('lake');
+      const isBothLake = newEdge.source.id.includes('lake') && newEdge.target.id.includes('lake');
 
       if ((!filtRes || !filtRes[0] || !filtRes[0].length) && !isEitherForest) {
-        this.callbacks.addEdge({ source: newEdge.source.id, target: newEdge.target.id });
-        this.edges.push(newEdge);
+
+        if (isBothLake) {
+          this.callbacks.addLakeEdge({ source: newEdge.source.id, target: newEdge.target.id });
+          this.edges.push(newEdge);
+        }
+
+        if (!isEitherLake) {
+          this.callbacks.addEdge({ source: newEdge.source.id, target: newEdge.target.id });
+          this.edges.push(newEdge);
+        }
+
         this.updateGraph();
       }
     }
@@ -404,6 +427,13 @@ export class GraphCreator {
 
   private svgMouseUp(event) {
 
+    const xycoords = d3.pointer(event, this.svgG.node());
+    const svgWidth = this.svg.node().width.baseVal.value;
+    const svgHeight = this.svg.node().height.baseVal.value;
+
+    const proportionalX = xycoords[0] / svgWidth;
+    const proportionalY = xycoords[1] / svgHeight;
+
     if (this.state.justScaleTransGraph) {
       // dragged not clicked
 
@@ -418,22 +448,38 @@ export class GraphCreator {
     } else if (this.state.graphMouseDown && event.altKey) {
       // add a new forest node
 
-      const xycoords = d3.pointer(event, this.svgG.node());
-
       const totalForests = this.nodes.filter(x => x.isForest).length - 1;
 
       const extraNode = {
         id: `forest-${totalForests + 1}`,
         isForest: true,
         title: 'new forest',
-        x: xycoords[0],
-        y: xycoords[1],
+        x: proportionalX,
+        y: proportionalY,
+      };
+
+      this.nodes.push({ ...extraNode, x: xycoords[0], y: xycoords[1] });
+      this.updateGraph();
+
+      this.callbacks.addForest(extraNode);
+
+    } else if (this.state.graphMouseDown && event.shiftKey) {
+      // add a new lake node
+
+      const totalLakes = this.nodes.filter(x => x.isLake).length - 1;
+
+      const extraNode = {
+        id: `lake-${totalLakes + 1}`,
+        isLake: true,
+        title: '',
+        x: proportionalX,
+        y: proportionalY,
       };
 
       this.nodes.push(extraNode);
       this.updateGraph();
 
-      this.callbacks.addForest(extraNode);
+      this.callbacks.addLake(extraNode);
     }
 
     this.state.graphMouseDown = false;
@@ -443,7 +489,7 @@ export class GraphCreator {
     event.stopPropagation();
 
     if (!this.canEdit) {
-      if (d.isForest) { return; }
+      if (d.isForest || d.isLake) { return; }
 
       this.callbacks.clickNode(d.id);
       return;
