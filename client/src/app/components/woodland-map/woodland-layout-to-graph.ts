@@ -68,13 +68,10 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   const oneWayEdges = {};
   campaign.clearings.forEach((c, i) => {
     c.landscape.clearingConnections.forEach(conn => {
-      if (oneWayEdges[`${i}-${conn}`]) { return; }
-      oneWayEdges[`${conn}-${i}`] = true;
+      if (oneWayEdges[`clearing-${i}|clearing-${conn}`]) { return; }
+      oneWayEdges[`clearing-${conn}|clearing-${i}`] = true;
     });
   });
-
-  const edges = Object.keys(oneWayEdges)
-    .map((key) => ({ source: nodes[+key.split('-')[0]], target: nodes[+key.split('-')[1]] }));
 
   campaign.forests.forEach((forest, i) => {
     nodes.push({
@@ -96,7 +93,20 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       x: width * (lake.position?.x ?? 0) || 50,
       y: height * (lake.position?.y ?? 0) || 250
     });
+
+    lake.connectedLakes.forEach(conn => {
+      if (oneWayEdges[`lake-${i}|lake-${conn}`]) { return; }
+      oneWayEdges[`lake-${conn}|lake-${i}`] = true;
+    });
   });
+
+  const edges = Object.keys(oneWayEdges)
+    .map((key) => ({ source: key.split('|')[0], target: key.split('|')[1] }))
+    .map(x => ({
+      source: nodes.find(s => s.id === x.source),
+      target: nodes.find(s => s.id === x.target),
+      isLake: x.source.includes('lake')
+    }));
 
   return { nodes, edges };
 }

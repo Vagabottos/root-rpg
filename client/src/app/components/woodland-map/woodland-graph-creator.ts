@@ -22,11 +22,8 @@ class GraphConstants {
   public static circleGClass = 'conceptG';
   public static forestGClass = 'conceptG forest';
   public static lakeGClass = 'conceptG lake';
+  public static lakeLClass = 'lake';
   public static graphClass = 'graph';
-  public static activeEditId = 'active-editing';
-  public static BACKSPACE_KEY = 8;
-  public static DELETE_KEY = 46;
-  public static ENTER_KEY = 13;
   public static nodeRadius = 50;
 }
 
@@ -71,8 +68,10 @@ export class GraphCreator {
       moveNode: (node, { x, y }) => void;
       addForest: (node) => void;
       moveForest: (node, { x, y }) => void;
+      deleteForest: (node) => void;
       addLake: (node) => void;
       moveLake: (node, { x, y }) => void;
+      deleteLake: (node) => void;
       addLakeEdge: (edge) => void;
       removeLakeEdge: (edge) => void;
     }
@@ -203,6 +202,7 @@ export class GraphCreator {
       .enter()
       .append('path')
       .classed('link', true)
+      .classed('lake', (d) => d.isLake)
       .attr('d', (d) => 'M' + d.source.x + ',' + d.source.y + 'L' + d.target.x  + ',' + d.target.y)
       .on('mousedown', (event, d) => {
         this.edgeMouseDown(event, d3.select(event.currentTarget), d);
@@ -419,6 +419,24 @@ export class GraphCreator {
 
   private svgKeyUp(event) {
     this.state.lastKeyDown = -1;
+
+    if (this.state.selectedNode && (event.key === 'Backspace' || event.key === 'Delete')) {
+      // delete a lake or forest node
+
+      this.nodes = this.nodes.filter(x => x.id !== this.state.selectedNode.id);
+
+      if (this.state.selectedNode.isForest) {
+        this.callbacks.deleteForest(this.state.selectedNode.id);
+      }
+
+      if (this.state.selectedNode.isLake) {
+        this.callbacks.deleteLake(this.state.selectedNode.id);
+      }
+
+      this.state.selectedNode = null;
+
+      this.updateGraph();
+    }
   }
 
   private svgMouseDown() {
@@ -480,6 +498,7 @@ export class GraphCreator {
       this.updateGraph();
 
       this.callbacks.addLake(extraNode);
+
     }
 
     this.state.graphMouseDown = false;
@@ -509,6 +528,10 @@ export class GraphCreator {
     // reset the states
     this.state.shiftNodeDrag = false;
     d3node.classed(GraphConstants.connectClass, false);
+
+    if (d.isLake || d.isForest) {
+      this.state.selectedNode = d;
+    }
   }
 
   private edgeMouseDown(event, d3node, d) {
@@ -516,7 +539,12 @@ export class GraphCreator {
     event.stopPropagation();
 
     this.edges.splice(this.edges.indexOf(d), 1);
-    this.callbacks.removeEdge({ source: d.source.id, target: d.target.id });
+
+    if (d.isLake) {
+      this.callbacks.removeLakeEdge({ source: d.source.id, target: d.target.id });
+    } else {
+      this.callbacks.removeEdge({ source: d.source.id, target: d.target.id });
+    }
 
     this.updateGraph();
   }

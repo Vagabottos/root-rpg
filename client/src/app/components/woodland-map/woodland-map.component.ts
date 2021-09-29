@@ -24,8 +24,10 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
   @Output() moveNode = new EventEmitter<{ clearing: number; x: number; y: number }>();
   @Output() addForest = new EventEmitter<{ forest }>();
   @Output() moveForest = new EventEmitter<{ forest: number; x: number; y: number }>();
+  @Output() deleteForest = new EventEmitter<{ forest }>();
   @Output() addLake = new EventEmitter<{ lake }>();
   @Output() moveLake = new EventEmitter<{ lake: number; x: number; y: number }>();
+  @Output() deleteLake = new EventEmitter<{ lake }>();
   @Output() addLakeEdge = new EventEmitter<{ source: number; target: number }>();
   @Output() removeLakeEdge = new EventEmitter<{ source: number; target: number }>();
 
@@ -72,8 +74,10 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
     const moveNode = (node: number, { x, y }: { x: number; y: number }) => this.moveNode.next({ clearing: node, x, y });
     const addForest = (forest) => this.addForest.next({ forest });
     const moveForest = (node: number, { x, y }: { x: number; y: number }) => this.moveForest.next({ forest: node, x, y });
+    const deleteForest = (forest) => this.deleteForest.next({ forest });
     const addLake = (lake) => this.addLake.next({ lake });
     const moveLake = (node: number, { x, y }: { x: number; y: number }) => this.moveLake.next({ lake: node, x, y });
+    const deleteLake = (lake) => this.deleteLake.next({ lake });
     const addLakeEdge = (edge: { source: number; target: number }) => this.addLakeEdge.next(edge);
     const removeLakeEdge = (edge: { source: number; target: number }) => this.removeLakeEdge.next(edge);
 
@@ -84,8 +88,10 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
       moveNode,
       addForest,
       moveForest,
+      deleteForest,
       addLake,
       moveLake,
+      deleteLake,
       addLakeEdge,
       removeLakeEdge
     });

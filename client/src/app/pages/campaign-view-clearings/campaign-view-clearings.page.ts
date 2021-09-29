@@ -136,6 +136,13 @@ export class CampaignViewClearingsPage implements OnInit {
     campaign.forests[forestId].position = { x, y };
   }
 
+  deleteForest({ forest }) {
+    const campaign = this.campaignCopy;
+    const forestId = +forest.split('-')[1];
+
+    campaign.forests = campaign.forests.filter(x => x !== campaign.forests[forestId]);
+  }
+
   addLake({ lake }) {
     const campaign = this.campaignCopy;
     const lakeId = +lake.id.split('-')[1];
@@ -153,8 +160,17 @@ export class CampaignViewClearingsPage implements OnInit {
     const lakeId = +lake.split('-')[1];
 
     campaign.lakes[lakeId].position = { x, y };
+  }
 
-    console.log(lakeId, x, y);
+  deleteLake({ lake }) {
+    const campaign = this.campaignCopy;
+    const lakeId = +lake.split('-')[1];
+
+    campaign.lakes[lakeId].connectedLakes.forEach(x => {
+      this.removeLakeEdge({ source: lake, target: `lake-${x}` });
+    });
+
+    campaign.lakes = campaign.lakes.filter(x => x !== campaign.lakes[lakeId]);
   }
 
   addLakeEdge({ source, target }) {

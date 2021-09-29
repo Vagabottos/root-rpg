@@ -85,10 +85,12 @@
                       (removeEdge)="removeEdge($event)"
                       (addForest)="addForest($event)"
                       (moveForest)="moveForest($event)"
+                      (deleteForest)="deleteForest($event)"
                       (addLake)="addLake($event)"
                       (moveLake)="moveLake($event)"
-                      (addLakeEdge)="addEdge($event)"
-                      (removeLakeEdge)="removeEdge($event)"></app-woodland-map>
+                      (deleteLake)="deleteLake($event)"
+                      (addLakeEdge)="addLakeEdge($event)"
+                      (removeLakeEdge)="removeLakeEdge($event)"></app-woodland-map>
 
     <ion-row class="ion-hide-lg-up">
       <ion-col *ngFor="let clearing of campaign.clearings; let i = index" size-xs="12" size-md="6"

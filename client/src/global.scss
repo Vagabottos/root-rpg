@@ -289,6 +289,10 @@ svg.woodland-overview {
     cursor: pointer;
   }
 
+  path.link.lake {
+    stroke: #4ed9d9;
+  }
+
   path.link:hover {
     stroke: rgb(94, 196, 204);
   }
