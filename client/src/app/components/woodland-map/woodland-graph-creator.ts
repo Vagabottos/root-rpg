@@ -376,8 +376,9 @@ export class GraphCreator {
         return d.source === newEdge.source && d.target === newEdge.target;
       });
 
-      if (!filtRes || !filtRes[0] || !filtRes[0].length) {
+      const isEitherForest = newEdge.source.id.includes('forest') || newEdge.target.id.includes('forest');
 
+      if ((!filtRes || !filtRes[0] || !filtRes[0].length) && !isEitherForest) {
         this.callbacks.addEdge({ source: newEdge.source.id, target: newEdge.target.id });
         this.edges.push(newEdge);
         this.updateGraph();
@@ -405,10 +406,12 @@ export class GraphCreator {
 
     if (this.state.justScaleTransGraph) {
       // dragged not clicked
+
       this.state.justScaleTransGraph = false;
 
     } else if (this.state.shiftNodeDrag) {
       // dragged from node
+
       this.state.shiftNodeDrag = false;
       this.dragLine.classed('hidden', true);
 
