@@ -3,9 +3,11 @@ import * as d3 from 'd3';
 
 export interface INode {
   title: string;
-  id: number;
+  id: string;
   x: number;
   y: number;
+
+  isForest?: boolean;
 }
 
 export interface IEdge {
@@ -415,8 +417,10 @@ export class GraphCreator {
 
       const xycoords = d3.pointer(event, this.svgG.node());
 
+      const totalForests = this.nodes.filter(x => x.isForest).length - 1;
+
       const extraNode = {
-        id: this.nodes.length + 1,
+        id: `forest-${totalForests + 1}`,
         isForest: true,
         title: 'new forest',
         x: xycoords[0],

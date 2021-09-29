@@ -52,7 +52,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
     }
 
     nodes.push({
-      id: i,
+      id: `clearing-${i}`,
       r: 50,
       title: campaign.clearings[i].name,
       subtitle: campaign.clearings[i].status,
@@ -78,7 +78,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
 
   campaign.forests.forEach((forest, i) => {
     nodes.push({
-      id: i + campaign.clearings.length + 1,
+      id: `forest-${i}`,
       isForest: true,
       r: 50,
       title: forest.name,

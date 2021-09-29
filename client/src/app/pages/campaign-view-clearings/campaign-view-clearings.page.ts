@@ -85,30 +85,38 @@ export class CampaignViewClearingsPage implements OnInit {
 
   addEdge({ source, target }) {
     const campaign = this.campaignCopy;
-    campaign.clearings[source].landscape.clearingConnections.push(target);
-    campaign.clearings[target].landscape.clearingConnections.push(source);
+    const sourceId = +source.split('-')[1];
+    const targetId = +target.split('-')[1];
+
+    campaign.clearings[sourceId].landscape.clearingConnections.push(targetId);
+    campaign.clearings[targetId].landscape.clearingConnections.push(sourceId);
   }
 
   removeEdge({ source, target }) {
     const campaign = this.campaignCopy;
-    pull(campaign.clearings[source].landscape.clearingConnections, target);
-    pull(campaign.clearings[target].landscape.clearingConnections, source);
+    const sourceId = +source.split('-')[1];
+    const targetId = +target.split('-')[1];
+
+    pull(campaign.clearings[sourceId].landscape.clearingConnections, targetId);
+    pull(campaign.clearings[targetId].landscape.clearingConnections, sourceId);
   }
 
-  clickMapClearing(clearing: number, campaign: ICampaign) {
-    this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearing]);
+  clickMapClearing(clearing: string, campaign: ICampaign) {
+    const clearingId = +clearing.split('-')[1];
+
+    this.router.navigate(['/dashboard/campaigns/view', campaign._id, 'clearings', clearingId]);
   }
 
-  moveNode({ clearing, x, y }: { clearing: number; x: number; y: number }) {
+  moveNode({ clearing, x, y }: { clearing: string; x: number; y: number }) {
     const campaign = this.campaignCopy;
-    campaign.clearings[clearing].position = { x, y };
+    const clearingId = +clearing.split('-')[1];
 
-    console.log(x, y);
+    campaign.clearings[clearingId].position = { x, y };
   }
 
   addForest({ forest }) {
     const campaign = this.campaignCopy;
-    const forestId = forest.id - campaign.clearings.length - 1;
+    const forestId = +forest.id.split('-')[1];
 
     campaign.forests[forestId] = {
       name: forest.title,
@@ -120,9 +128,9 @@ export class CampaignViewClearingsPage implements OnInit {
 
   }
 
-  moveForest({ forest, x, y }: { forest: number; x: number; y: number }) {
+  moveForest({ forest, x, y }: { forest: string; x: number; y: number }) {
     const campaign = this.campaignCopy;
-    const forestId = forest - campaign.clearings.length - 1;
+    const forestId = +forest.split('-')[1];
 
     campaign.forests[forestId].position = { x, y };
   }
