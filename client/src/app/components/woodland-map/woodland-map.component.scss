@@ -20,6 +20,11 @@
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid var(--ion-color-primary);
 
+  table td {
+    color: #fff;
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+  }
+
   table .action {
     text-align: right;
     padding-right: 10px;
