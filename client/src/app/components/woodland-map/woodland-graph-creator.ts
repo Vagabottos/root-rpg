@@ -17,6 +17,8 @@ class GraphConstants {
   public static selectedClass = 'selected';
   public static connectClass = 'connect-node';
   public static circleGClass = 'conceptG';
+  public static forestGClass = 'conceptG forest';
+  public static lakeGClass = 'conceptG lake';
   public static graphClass = 'graph';
   public static activeEditId = 'active-editing';
   public static BACKSPACE_KEY = 8;
@@ -64,6 +66,8 @@ export class GraphCreator {
       addEdge: (edge) => void;
       removeEdge: (edge) => void;
       moveNode: (node, { x, y }) => void;
+      addForest: (node) => void;
+      moveForest: (node, { x, y }) => void;
     }
   ) {
     this.init();
@@ -243,14 +247,20 @@ export class GraphCreator {
 
         this.insertTitleLinebreaks(d3.select(nodes[i]), d.title, d.subtitle);
 
+        if (d.isForest) {
+          node.classed(GraphConstants.forestGClass, true);
+        }
+
         // add population indicator
-        node
-          .append('svg:image')
-          .attr('x', -10)
-          .attr('y', 20)
-          .attr('width', 20)
-          .attr('height', 24)
-          .attr('xlink:href', (d2) => `assets/map/card-${d2.population}.png`);
+        if (d.population) {
+          node
+            .append('svg:image')
+            .attr('x', -10)
+            .attr('y', 20)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', (d2) => `assets/map/card-${d2.population}.png`);
+        }
 
         // add faction indicator
         if (d.controller) {
@@ -324,7 +334,12 @@ export class GraphCreator {
       const proportionalX = d.x / svgWidth;
       const proportionalY = d.y / svgHeight;
 
-      this.callbacks.moveNode(d.id, { x: proportionalX, y: proportionalY });
+      if (d.isForest) {
+        this.callbacks.moveForest(d.id, { x: proportionalX, y: proportionalY });
+
+      } else {
+        this.callbacks.moveNode(d.id, { x: proportionalX, y: proportionalY });
+      }
 
       this.updateGraph();
     }
@@ -394,6 +409,24 @@ export class GraphCreator {
       // dragged from node
       this.state.shiftNodeDrag = false;
       this.dragLine.classed('hidden', true);
+
+    } else if (this.state.graphMouseDown && event.altKey) {
+      // add a new forest node
+
+      const xycoords = d3.pointer(event, this.svgG.node());
+
+      const extraNode = {
+        id: this.nodes.length + 1,
+        isForest: true,
+        title: 'new forest',
+        x: xycoords[0],
+        y: xycoords[1],
+      };
+
+      this.nodes.push(extraNode);
+      this.updateGraph();
+
+      this.callbacks.addForest(extraNode);
     }
 
     this.state.graphMouseDown = false;
@@ -403,6 +436,8 @@ export class GraphCreator {
     event.stopPropagation();
 
     if (!this.canEdit) {
+      if (d.isForest) { return; }
+
       this.callbacks.clickNode(d.id);
       return;
     }

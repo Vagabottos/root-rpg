@@ -76,5 +76,16 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   const edges = Object.keys(oneWayEdges)
     .map((key) => ({ source: nodes[+key.split('-')[0]], target: nodes[+key.split('-')[1]] }));
 
+  campaign.forests.forEach((forest, i) => {
+    nodes.push({
+      id: i + campaign.clearings.length + 1,
+      isForest: true,
+      r: 50,
+      title: forest.name,
+      x: width * (forest.position?.x ?? 0) || 50,
+      y: height * (forest.position?.y ?? 0) || 250
+    });
+  });
+
   return { nodes, edges };
 }

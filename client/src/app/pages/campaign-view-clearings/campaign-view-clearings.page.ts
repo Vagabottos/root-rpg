@@ -53,7 +53,7 @@ export class CampaignViewClearingsPage implements OnInit {
   async confirmEdit(campaign: ICampaign) {
     const alert = await this.alert.create({
       header: 'Confirm Changes',
-      message: `Are you sure you want to make these clearing link changes?`,
+      message: `Are you sure you want to make these changes?`,
       buttons: [
         'Cancel',
         {
@@ -67,6 +67,7 @@ export class CampaignViewClearingsPage implements OnInit {
           handler: () => {
             this.isEditing = false;
             campaign.clearings = cloneDeep(this.campaignCopy.clearings);
+            campaign.forests = cloneDeep(this.campaignCopy.forests);
 
             this.campaignCopy = null;
             this.data.patchCampaign().subscribe(() => {});
@@ -101,6 +102,29 @@ export class CampaignViewClearingsPage implements OnInit {
   moveNode({ clearing, x, y }: { clearing: number; x: number; y: number }) {
     const campaign = this.campaignCopy;
     campaign.clearings[clearing].position = { x, y };
+
+    console.log(x, y);
+  }
+
+  addForest({ forest }) {
+    const campaign = this.campaignCopy;
+    const forestId = forest.id - campaign.clearings.length - 1;
+
+    campaign.forests[forestId] = {
+      name: forest.title,
+      details: '',
+      location: '???',
+      type: 'mystery',
+      position: { x: forest.x, y: forest.y }
+    };
+
+  }
+
+  moveForest({ forest, x, y }: { forest: number; x: number; y: number }) {
+    const campaign = this.campaignCopy;
+    const forestId = forest - campaign.clearings.length - 1;
+
+    campaign.forests[forestId].position = { x, y };
   }
 
 }

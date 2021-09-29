@@ -22,6 +22,8 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
   @Output() addEdge = new EventEmitter<{ source: number; target: number }>();
   @Output() removeEdge = new EventEmitter<{ source: number; target: number }>();
   @Output() moveNode = new EventEmitter<{ clearing: number; x: number; y: number }>();
+  @Output() addForest = new EventEmitter<{ forest }>();
+  @Output() moveForest = new EventEmitter<{ forest: number; x: number; y: number }>();
 
   private graph: GraphCreator;
 
@@ -64,13 +66,16 @@ export class WoodlandMapComponent implements AfterViewInit, OnChanges {
     const addEdge = (edge: { source: number; target: number }) => this.addEdge.next(edge);
     const removeEdge = (edge: { source: number; target: number }) => this.removeEdge.next(edge);
     const moveNode = (node: number, { x, y }: { x: number; y: number }) => this.moveNode.next({ clearing: node, x, y });
-
+    const addForest = (forest) => this.addForest.next({ forest });
+    const moveForest = (node: number, { x, y }: { x: number; y: number }) => this.moveForest.next({ forest: node, x, y });
 
     this.graph = new GraphCreator(svg, this.editable, {
       clickNode,
       addEdge,
       removeEdge,
-      moveNode
+      moveNode,
+      addForest,
+      moveForest
     });
 
     this.graph.loadGraph(nodes, edges);

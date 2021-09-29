@@ -46,6 +46,7 @@ export interface IForest {
   location: string;
   details: string;
   type: ForestType;
+  position?: { x: number, y: number };
 }
 
 export interface IClearingVisitedEvent {

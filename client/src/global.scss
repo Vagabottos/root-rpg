@@ -254,6 +254,22 @@ svg.woodland-overview {
     cursor: pointer;
   }
 
+  g.conceptG.forest circle {
+    fill: #98fb98;
+  }
+
+  g.conceptG.forest:hover circle {
+    fill: #7dcc7d;
+  }
+
+  g.conceptG.water circle {
+    fill: #afeeee;
+  }
+
+  g.conceptG.water:hover circle {
+    fill: #4ed9d9;
+  }
+
   g.conceptG:hover circle {
     fill: rgb(200, 238, 241);
   }
