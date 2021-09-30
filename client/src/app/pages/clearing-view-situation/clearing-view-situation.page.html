@@ -99,16 +99,81 @@
                 </ion-item>
 
                 <!-- sympathetic -->
-                <ion-item *ngIf="!isEditing">
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Woodland Alliance')">
                   <ion-label>
-                    <p class="fake-form-label">Sympathetic?</p>
+                    <p class="fake-form-label">Woodland Sympathy?</p>
                     <h2>{{ clearingData.clearing.sympathy ? 'Yes' : 'No' }}</h2>
                   </ion-label>
                 </ion-item>
 
-                <ion-item *ngIf="isEditing">
-                  <ion-label position="stacked">Sympathetic?</ion-label>
+                <!-- tradepost -->
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Riverfolk Company')">
+                  <ion-label>
+                    <p class="fake-form-label">Riverfolk Trading Post?</p>
+                    <h2>{{ clearingData.clearing.tradepost ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <!-- tunnel -->
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Grand Duchy')">
+                  <ion-label>
+                    <p class="fake-form-label">Duchy Tunnel?</p>
+                    <h2>{{ clearingData.clearing.tunnel ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <!-- riverfolk -->
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Riverfolk Company')">
+                  <ion-label>
+                    <p class="fake-form-label">Riverfolk Presence?</p>
+                    <h2>{{ clearingData.clearing.riverfolk ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <!-- cult -->
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Lizard Cult')">
+                  <ion-label>
+                    <p class="fake-form-label">Cult Presence?</p>
+                    <h2>{{ clearingData.clearing.cult ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <!-- corvid -->
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Corvid Conspiracy')">
+                  <ion-label>
+                    <p class="fake-form-label">Corvid Presence?</p>
+                    <h2>{{ clearingData.clearing.corvid ? 'Yes' : 'No' }}</h2>
+                  </ion-label>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Woodland Alliance')">
+                  <ion-label position="stacked">Woodland Sympathy?</ion-label>
                   <ion-toggle [(ngModel)]="clearingCopy.sympathy"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Riverfolk Company')">
+                  <ion-label position="stacked">Riverfolk Trading Post?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.tradepost"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Grand Duchy')">
+                  <ion-label position="stacked">Duchy Tunnel?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.tunnel"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Riverfolk Company')">
+                  <ion-label position="stacked">Riverfolk Presence?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.riverfolk"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Lizard Cult')">
+                  <ion-label position="stacked">Cult Presence?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.cult"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Corvid Conspiracy')">
+                  <ion-label position="stacked">Corvid Presence?</ion-label>
+                  <ion-toggle [(ngModel)]="clearingCopy.corvid"></ion-toggle>
                 </ion-item>
 
                 <!-- contested by -->

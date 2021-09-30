@@ -1,9 +1,9 @@
 
 import { NotAcceptable } from '@feathersjs/errors';
 import { HookContext } from '@feathersjs/feathers';
-import { capitalize, cloneDeep, isArray, sample, sampleSize, shuffle, random, uniq } from 'lodash';
+import { capitalize, cloneDeep, isArray, sample, sampleSize, shuffle, sortBy, random, uniq } from 'lodash';
 import { INPC } from '../../../shared/interfaces';
-import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, content } from '../interfaces';
+import { ICampaign, IClearing, IContent, ClearingStatus, IContentMapLayout, ILake, content } from '../interfaces';
 const allContent: IContent = cloneDeep(content);
 
 const NUM_CLEARINGS = 12;
@@ -30,6 +30,11 @@ function createClearing(campaign: ICampaign): IClearing {
     contestedBy: '',
     controlledBy: 'Uncontrolled',
     sympathy: false,
+    corvid: false,
+    cult: false,
+    tradepost: false,
+    tunnel: false,
+    riverfolk: false,
     npcs: [],
     notes: '',
     eventRecord: {
@@ -63,6 +68,45 @@ Captain Founderpants
   // generateClearingNPC(campaign, clearing);
 
   return clearing;
+}
+
+function generateLakes(campaign: ICampaign, layout: IContentMapLayout) {
+
+  const potentialCornerLakes = [
+    { x: 1, y: 1, near: [] },
+    { x: layout.maxX - 1, y: 1, near: [] },
+    { x: 1, y: layout.maxY - 1, near: [] },
+    { x: layout.maxX - 1, y: layout.maxY - 1, near: [] }
+  ];
+
+  const cornerLakes = sampleSize(potentialCornerLakes, 2);
+
+  const numLakes = random(1, Math.floor(layout.lakeStartPositions.length / 2));
+  const lakes = sampleSize(layout.lakeStartPositions, numLakes);
+
+  const clearingsNearLakes = new Set<number>();
+
+  const allLakes = [cornerLakes[0], ...lakes, cornerLakes[1]];
+  allLakes.forEach((lake, i) => {
+    const lakeData: ILake = {
+      position: { x: lake.x / layout.maxX, y: lake.y / layout.maxY },
+      connectedLakes: []
+    };
+
+    campaign.lakes.push(lakeData);
+
+    if(i !== 0) {
+      lakeData.connectedLakes.push(i - 1);
+    }
+
+    if(i !== allLakes.length - 1) {
+      lakeData.connectedLakes.push(i + 1);
+    }
+
+    lake.near.forEach(x => clearingsNearLakes.add(x));
+  });
+
+  (campaign as any).clearingsNearLakes = [...clearingsNearLakes];
 }
 
 function generateConnections(campaign: ICampaign) {
@@ -143,6 +187,8 @@ function generateConnections(campaign: ICampaign) {
     campaign.clearings[start].landscape.clearingConnections.push(end);
     campaign.clearings[end].landscape.clearingConnections.push(start);
   });
+
+  generateLakes(campaign, layout);
 }
 
 function generateCommunities(campaign: ICampaign) {
@@ -175,16 +221,18 @@ function generateNames(campaign: ICampaign) {
   campaign.clearings.forEach((x, i) => x.name = names[i]);
 }
 
-function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, opposite: number }) {
+function generateMarquisate(campaign: ICampaign, startCorner: number, takenCorners: number[]) {
   if(!campaign.factions.includes('The Marquisate')) return;
 
-  const myCorner = campaign.clearings[startCorner.origin];
+  const myCorner = campaign.clearings[startCorner];
   myCorner.controlledBy = 'The Marquisate (Keep)';
   addAuditLogEntry(campaign, myCorner.name, `Marquise built a base in ${myCorner.name}.`);
 
   const clearingsChecked = {
-    [startCorner.origin]: true
+    [startCorner]: true
   };
+
+  takenCorners.forEach(corner => clearingsChecked[corner] = true);
 
   // this should really be recursive / bfs but meh
   myCorner.landscape.clearingConnections.forEach(connected => {
@@ -227,17 +275,18 @@ function generateMarquisate(campaign: ICampaign, startCorner: { origin: number, 
   });
 }
 
-function generateEyrie(campaign: ICampaign, startCorner: { origin: number, opposite: number }) {
+function generateEyrie(campaign: ICampaign, startCorner: number, takenCorners: number[]) {
   if(!campaign.factions.includes('The Eyrie Dynasties')) return;
 
-  const myCorner = campaign.clearings[startCorner.opposite];
+  const myCorner = campaign.clearings[startCorner];
   myCorner.controlledBy = 'The Eyrie Dynasties (Roost)';
   addAuditLogEntry(campaign, myCorner.name, `Eyrie built a roost in ${myCorner.name}.`);
 
   const clearingsChecked = {
-    [startCorner.opposite]: true,
-    [startCorner.origin]: true
+    [startCorner]: true
   };
+
+  takenCorners.forEach(corner => clearingsChecked[corner] = true);
 
   let roosts = 1;
 
@@ -332,9 +381,102 @@ function generateWoodland(campaign: ICampaign) {
   }
 }
 
+function generateCult(campaign: ICampaign, startCorner: number, takenCorners: number[]) {
+  if(!campaign.factions.includes('The Lizard Cult')) return;
+
+  const outcast = sample(['Fox', 'Rabbit', 'Mouse']);
+  const clearings = sampleSize(campaign.clearings.filter(x => x.current.dominantFaction === outcast), 2);
+  clearings.forEach(clearing => {
+    clearing.cult = true;
+    addAuditLogEntry(campaign, clearing.name, `Cult preyed on ${clearing.name}.`);
+  });
+
+  const myCorner = campaign.clearings[startCorner];
+  myCorner.controlledBy = 'The Lizard Cult (Garden)';
+  addAuditLogEntry(campaign, myCorner.name, `Cult formed a garden in ${myCorner.name}.`);
+}
+
+function generateRiverfolk(campaign: ICampaign) {
+  if(!campaign.factions.includes('The Riverfolk Company')) return;
+
+  const clearingsNearLakes = (campaign as any).clearingsNearLakes;
+  delete (campaign as any).clearingsNearLakes;
+
+  const clearingYeses = campaign.clearings.reduce((prev, cur, i) => {
+    prev[i] = 0;
+
+    if(cur.controlledBy) prev[i]++;
+    if(cur.landscape.clearingConnections.length >= 3) prev[i]++;
+    if(cur.landscape.clearingConnections.length >= 4) prev[i]++;
+    if(clearingsNearLakes.includes(i)) prev[i]++;
+
+    return prev;
+  }, {});
+
+  const clearingOrder = sortBy(campaign.clearings, x => clearingYeses[campaign.clearings.indexOf(x)]).reverse();
+
+  let riverfolkCt = 0;
+  let hasGivenPost = false;
+
+  clearingOrder.forEach(clearing => {
+    if(riverfolkCt >= 4) return;
+
+    riverfolkCt++;
+
+    clearing.riverfolk = true;
+    addAuditLogEntry(campaign, clearing.name, `Riverfolk became present in ${clearing.name}.`);
+
+    if(!hasGivenPost && !clearing.controlledBy.includes('(')) {
+      hasGivenPost = true;
+      clearing.controlledBy = 'The Riverfolk Company';
+      clearing.tradepost = true;
+      addAuditLogEntry(campaign, clearing.name, `Riverfolk took over ${clearing.name}.`);
+    }
+
+  });
+}
+
+function generateDuchy(campaign: ICampaign, startCorner: number, takenCorners: number[]) {
+  if(!campaign.factions.includes('The Grand Duchy')) return;
+
+  const myCorner = campaign.clearings[startCorner];
+  myCorner.controlledBy = 'The Grand Duchy';
+  myCorner.tunnel = true;
+  addAuditLogEntry(campaign, myCorner.name, `Duchy sprung up in ${myCorner.name}.`);
+
+  myCorner.landscape.clearingConnections.forEach(connection => {
+    const clearing = campaign.clearings[connection];
+
+    if(random(2, 12) <= 9) return;
+
+    clearing.controlledBy = 'The Grand Duchy';
+    addAuditLogEntry(campaign, myCorner.name, `Duchy took over ${myCorner.name}.`);
+  });
+
+  const tunnelClearing = sample(campaign.clearings.filter(x => x.controlledBy !== 'The Grand Duchy')) as IClearing;
+
+  tunnelClearing.tunnel = true;
+  addAuditLogEntry(campaign, tunnelClearing.name, `Duchy tunneled into ${myCorner.name}.`);
+
+}
+
+function generateCorvids(campaign: ICampaign) {
+  if(!campaign.factions.includes('The Corvid Conspiracy')) return;
+
+  const clearings = sampleSize(campaign.clearings, 4);
+  clearings.forEach(clearing => {
+    clearing.corvid = true;
+    addAuditLogEntry(campaign, clearing.name, `Conspiracy descended on ${clearing.name}.`);
+  });
+}
+
 function generateDenizens(campaign: ICampaign) {
   for(let i = 0; i < 12; i++) {
     const clearing = campaign.clearings[i];
+
+    if(clearing.controlledBy === 'The Marquisate (Keep)') return;
+    if(clearing.controlledBy === 'The Eyrie Dynasties (Roost)') return;
+    if(clearing.controlledBy === 'The Woodland Alliance (Base)') return;
 
     if(clearing.controlledBy?.includes('(') && random(2, 12) >= 11) {
       clearing.controlledBy = '';
@@ -417,11 +559,28 @@ export async function reformatCampaign(context: HookContext): Promise<HookContex
   generateCommunities(newCampaign);
 
   const corners = allContent.core.maplayouts[newCampaign.mapGen.layout].corners;
-  const chosenCorner = sample(corners);
+  const chosenCorner = sample(corners) as any;
 
-  generateMarquisate(newCampaign, chosenCorner as any);
-  generateEyrie(newCampaign, chosenCorner as any);
+  const cornerOrder = [chosenCorner.origin, chosenCorner.opposite, ...shuffle(chosenCorner.alts)];
+  const relevantFactionsInOrder = ['The Marquisate', 'The Eyrie Dynasties', 'The Lizard Cult', 'The Grand Duchy'];
+
+  const factionsInCampaign = relevantFactionsInOrder.filter(f => newCampaign.factions.includes(f));
+  const cornerPerFaction = factionsInCampaign.reduce((prev, cur, i) => {
+    prev[cur] = cornerOrder[i];
+    return prev;
+  }, {});
+
+  const getFactionTakenCornerList = (faction: string): number[] => {
+    return factionsInCampaign.slice(0, factionsInCampaign.indexOf(faction)).map(x => cornerPerFaction[x]);
+  };
+
+  generateMarquisate(newCampaign, cornerPerFaction['The Marquisate'], getFactionTakenCornerList('The Marquisate'));
+  generateEyrie(newCampaign, cornerPerFaction['The Eyrie Dynasties'], getFactionTakenCornerList('The Eyrie Dynasties'));
   generateWoodland(newCampaign);
+  generateCult(newCampaign, cornerPerFaction['The Lizard Cult'], getFactionTakenCornerList('The Lizard Cult'));
+  generateRiverfolk(newCampaign);
+  generateDuchy(newCampaign, cornerPerFaction['The Grand Duchy'], getFactionTakenCornerList('The Grand Duchy'));
+  generateCorvids(newCampaign);
   generateDenizens(newCampaign);
 
   newCampaign.clearings.forEach(clearing => {

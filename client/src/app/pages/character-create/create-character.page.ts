@@ -748,8 +748,6 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   }
 
   async showItemEditActionSheet(item: IItem) {
-    console.log(item);
-
     const buttons: any[] = [
       {
         text: 'Edit',

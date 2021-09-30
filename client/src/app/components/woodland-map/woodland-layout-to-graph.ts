@@ -42,6 +42,11 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       case 'The Eyrie Dynasties (Roost)':   { controller = 'eyrie'; break; }
       case 'The Woodland Alliance':         { controller = 'woodland'; break; }
       case 'The Woodland Alliance (Base)':  { controller = 'woodland'; break; }
+      case 'The Lizard Cult':               { controller = 'cult'; break; }
+      case 'The Lizard Cult (Garden)':      { controller = 'cult'; break; }
+      case 'The Riverfolk Company':         { controller = 'riverfolk'; break; }
+      case 'The Grand Duchy':               { controller = 'duchy'; break; }
+      case 'The Corvid Conspiracy':         { controller = 'corvid'; break; }
     }
 
     let token = '';
@@ -49,6 +54,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       case 'The Marquisate (Keep)':         { token = 'keep'; break; }
       case 'The Eyrie Dynasties (Roost)':   { token = 'roost'; break; }
       case 'The Woodland Alliance (Base)':  { token = `base-${population}`; break; }
+      case 'The Lizard Cult (Garden)':      { token = `garden-${population}`; break; }
     }
 
     nodes.push({
@@ -60,6 +66,11 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       controller,
       token,
       sympathy: campaign.clearings[i].sympathy,
+      tradepost: campaign.clearings[i].tradepost,
+      tunnel: campaign.clearings[i].tunnel,
+      cult: campaign.clearings[i].cult,
+      corvid: campaign.clearings[i].corvid,
+      riverfolk: campaign.clearings[i].riverfolk,
       x: clearingPos.x,
       y: clearingPos.y,
     });

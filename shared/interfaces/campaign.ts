@@ -9,7 +9,14 @@ export interface IClearing {
   status: ClearingStatus;
   contestedBy: string;
   controlledBy: string;
+
   sympathy: boolean;
+  tradepost: boolean;
+  tunnel: boolean;
+  cult: boolean;
+  corvid: boolean;
+  riverfolk: boolean;
+
   npcs: INPC[];
   notes: string;
 

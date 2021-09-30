@@ -99,7 +99,8 @@ export interface IContentMapLayout {
   maxX: number;
   maxY: number;
 
-  corners: Array<{ origin: number, opposite: number }>;
+  lakeStartPositions: Array<{ x: number, y: number, near: number[] }>;
+  corners: Array<{ origin: number, opposite: number, alts: number[] }>;
 
   nodePositions: Array<{ x: number, y: number }>;
   connections: Array<{ path: string, blocks: string[] }>;

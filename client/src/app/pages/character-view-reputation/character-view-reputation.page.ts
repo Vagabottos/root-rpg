@@ -20,7 +20,7 @@ export class CharacterViewReputationPage implements OnInit {
     'The Woodland Alliance': 'woodland',
     'The Lizard Cult': 'cult',
     'The Riverfolk Company': 'riverfolk',
-    'The Underground Duchy': 'duchy',
+    'The Grand Duchy': 'duchy',
     'The Corvid Conspiracy': 'conspiracy'
   };
 

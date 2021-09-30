@@ -6,12 +6,25 @@ circles:
   corners:
     - origin: 0
       opposite: 7
+      alts: [3, 4]
     - origin: 7
       opposite: 0
+      alts: [3, 4]
     - origin: 3
       opposite: 4
+      alts: [0, 7]
     - origin: 4
       opposite: 3
+      alts: [0, 7]
+
+  lakeStartPositions:
+    - { x: 12, y: 9,  near: [8, 9, 10, 11] }
+    - { x: 12, y: 5,  near: [3, 8, 10] }
+    - { x: 12, y: 13, near: [4, 9, 11] }
+    - { x: 8,  y: 6,  near: [1, 2, 8, 9] }
+    - { x: 4,  y: 9,  near: [0, 1, 2] }
+    - { x: 20, y: 9,  near: [5, 6, 10, 11] }
+    - { x: 16, y: 9,  near: [5, 6, 7] }
 
   nodePositions:
     - { x: 2,  y: 9 }
@@ -85,12 +98,23 @@ web:
   corners:
     - origin: 2
       opposite: 9
+      alts: [0, 11]
     - origin: 9
       opposite: 2
+      alts: [0, 11]
     - origin: 0
       opposite: 11
+      alts: [9, 2]
     - origin: 11
       opposite: 0
+      alts: [9, 2]
+
+  lakeStartPositions:
+    - { x: 5,  y: 4,  near: [0, 1, 2, 4] }
+    - { x: 7,  y: 13, near: [2, 4, 5] }
+    - { x: 7,  y: 6,  near: [0, 3, 4] }
+    - { x: 12, y: 13, near: [5, 7, 8] }
+    - { x: 19, y: 4,  near: [6, 9, 10] }
 
   nodePositions:
     - { x: 3,  y: 3 }

@@ -299,11 +299,66 @@ export class GraphCreator {
         if (d.sympathy) {
           node
             .append('svg:image')
-            .attr('x', -35)
-            .attr('y', 15)
+            .attr('x', -43)
+            .attr('y', 23)
             .attr('width', 20)
             .attr('height', 24)
             .attr('xlink:href', () => `assets/map/token-sympathy.png`);
+        }
+
+        // add tradepost subindicator
+        if (d.tradepost) {
+          node
+            .append('svg:image')
+            .attr('x', -57)
+            .attr('y', 5)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', (d2) => `assets/map/token-tradingpost-${d2.population}.png`);
+        }
+
+        // add tunnel subindicator
+        if (d.tunnel) {
+          node
+            .append('svg:image')
+            .attr('x', -60)
+            .attr('y', -18)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/token-tunnel.png`);
+        }
+
+        // add lizard subindicator
+        if (d.cult) {
+          node
+            .append('svg:image')
+            .attr('x', 23)
+            .attr('y', 23)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/faction-cult.png`);
+        }
+
+        // add riverfolk subindicator
+        if (d.riverfolk) {
+          node
+            .append('svg:image')
+            .attr('x', 37)
+            .attr('y', 5)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/faction-riverfolk.png`);
+        }
+
+        // add corvid subindicator
+        if (d.corvid) {
+          node
+            .append('svg:image')
+            .attr('x', 42)
+            .attr('y', -17)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/faction-corvid.png`);
         }
       });
 
