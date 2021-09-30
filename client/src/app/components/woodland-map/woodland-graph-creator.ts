@@ -494,7 +494,7 @@ export class GraphCreator {
         y: proportionalY,
       };
 
-      this.nodes.push(extraNode);
+      this.nodes.push({ ...extraNode, x: xycoords[0], y: xycoords[1] });
       this.updateGraph();
 
       this.callbacks.addLake(extraNode);
