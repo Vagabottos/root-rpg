@@ -2,7 +2,7 @@
 
 
 @media screen and (min-width: 720px) {
-  .container, ion-row, ion-col {
+  .container, ion-row, ion-col:not(.item-col) {
     height: 100%;
   }
 }

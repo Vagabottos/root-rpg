@@ -748,6 +748,8 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   }
 
   async showItemEditActionSheet(item: IItem) {
+    console.log(item);
+
     const buttons: any[] = [
       {
         text: 'Edit',
@@ -758,7 +760,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
       }
     ];
 
-    if (!item.tagSet) {
+    if (!item.tagSet || item.tagSet === 'default') {
       buttons.unshift({
         text: 'Delete',
         role: 'destructive',
@@ -780,7 +782,7 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
   async showItemEditPopover(item: IItem, event) {
     const popover = await this.popover.create({
       component: EditDeletePopoverComponent,
-      componentProps: { showDelete: item.tagSet === 'default' },
+      componentProps: { showDelete: !item.tagSet || item.tagSet === 'default' },
       event
     });
 
