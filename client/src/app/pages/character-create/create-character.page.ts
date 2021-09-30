@@ -119,8 +119,8 @@ export class CreateCharacterPage implements OnInit, BlocksLeave {
 
   public movesForm = new FormGroup({
     moves: new FormControl([], [Validators.required]),
-    theJust: new FormControl('', Validators.required),
-    theEnemy: new FormControl('', Validators.required),
+    theJust: new FormControl(''),
+    theEnemy: new FormControl(''),
   });
 
   public featsForm = new FormGroup({
