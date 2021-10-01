@@ -38,6 +38,7 @@ export class ItemCreatorComponent implements OnInit {
     skillTags:    new FormControl([]),
     ranges:       new FormControl([]),
     designation:  new FormControl(''),
+    hated:        new FormControl(''),
     incendiary1:  new FormControl(''),
     incendiary2:  new FormControl(''),
     legendary1:   new FormControl(''),
@@ -61,6 +62,7 @@ export class ItemCreatorComponent implements OnInit {
       skillTags: this.itemForm.get('skillTags').value,
       ranges: this.itemForm.get('ranges').value,
       designation: this.itemForm.get('designation').value,
+      hated: this.itemForm.get('hated').value,
       incendiary1: this.itemForm.get('incendiary1').value,
       incendiary2: this.itemForm.get('incendiary2').value,
       legendary1: this.itemForm.get('legendary1').value,
@@ -87,6 +89,7 @@ export class ItemCreatorComponent implements OnInit {
       this.itemForm.get('skillTags').setValue(this.item.skillTags || []);
       this.itemForm.get('ranges').setValue(this.item.ranges || []);
       this.itemForm.get('designation').setValue(this.item.designation ?? '');
+      this.itemForm.get('hated').setValue(this.item.hated ?? '');
       this.itemForm.get('incendiary1').setValue(this.item.incendiary1 ?? '');
       this.itemForm.get('incendiary2').setValue(this.item.incendiary2 ?? '');
       this.itemForm.get('legendary1').setValue(this.item.legendary1 ?? '');
@@ -147,6 +150,34 @@ export class ItemCreatorComponent implements OnInit {
 
     const tag = this.contentService.getTag(value);
     if (tag?.input) {
+      if (tag.input === 'hated') {
+        const alert = await this.alert.create({
+          header: 'Hated Item',
+          message: 'Enter the faction you want this item to be hated for.',
+          backdropDismiss: false,
+          inputs: [
+            {
+              name: 'hated',
+              type: 'text',
+              placeholder: 'Enter Faction',
+              attributes: {
+                maxLength: 50
+              }
+            },
+          ],
+          buttons: [
+            {
+              text: 'Confirm',
+              handler: (data) => {
+                this.itemForm.get('hated').setValue(data?.hated);
+              }
+            }
+          ]
+        });
+
+        alert.present();
+      }
+
       if (tag.input === 'designation') {
         const alert = await this.alert.create({
           header: 'Ceremonial Item',

@@ -53,7 +53,7 @@
 
     <ion-row *ngIf="item.tagSet !== 'ship'
                  && showFooter
-                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.incendiary1 || item.legendary1)" class="hr"></ion-row>
+                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.hated || item.incendiary1 || item.legendary1)" class="hr"></ion-row>
 
     <ion-row *ngIf="item.tags?.length > 0" class="small-row">
       <ion-col>
@@ -64,6 +64,12 @@
     <ion-row *ngIf="item.skillTags?.length > 0" class="small-row">
       <ion-col>
         <span class="label">Skill Tags</span>: {{ item.skillTags.join(', ') }}
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="item.hated" class="small-row">
+      <ion-col>
+        <span class="label">Hated Faction</span>: {{ item.hated }}
       </ion-col>
     </ion-row>
 

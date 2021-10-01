@@ -19,6 +19,7 @@ export interface IItem {
   extraLoad?: number;               // used for tinker toolbox
   extraValue?: number;              // used for luxurious items
   designation?: string;             // used for ceremonial items
+  hated?: string;                   // used for ceremonial items
   incendiary1?: string;             // used for incendiary items
   incendiary2?: string;             // used for incendiary items
   legendary1?: string;              // used for legendary items

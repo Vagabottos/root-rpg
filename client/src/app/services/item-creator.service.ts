@@ -54,6 +54,14 @@ export class ItemCreatorService {
       baseItem.designation = sample(factions);
     }
 
+    if (baseItem.tags.includes('Hated')) {
+      if (factions.length === 0) {
+        baseItem.tags = baseItem.tags.filter(x => x !== 'Hated');
+      }
+
+      baseItem.hated = sample(factions);
+    }
+
     if (baseItem.tags.includes('Incendiary')) {
       if (factions.length === 0) {
         baseItem.tags = baseItem.tags.filter(x => x !== 'Incendiary');
