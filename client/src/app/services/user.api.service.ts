@@ -50,4 +50,9 @@ export class UserAPIService {
     }));
   }
 
+  public logout() {
+    localStorage.setItem('email', '');
+    localStorage.setItem('password', '');
+  }
+
 }
