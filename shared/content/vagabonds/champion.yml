@@ -106,7 +106,7 @@ skills:
   - name: Storm a Group
   - name: Trick Shot
 
-numMoves: 1
+numMoves: 2
 defaultMoves: [Take Up the Call]
 moves:
   - name: Take Up the Call
