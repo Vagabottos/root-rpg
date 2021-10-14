@@ -167,7 +167,7 @@ export class GraphCreator {
         size += 1;
         return Math.round(size) + 'px';
       })
-      .attr('dy', '-' + (nwords - 1) * 7.5);
+      .attr('dy', '-' + (nwords - 1) * 19.5);
 
     for (let i = 0; i < words.length; i++) {
       const tspan = el.append('tspan').text(words[i]);
@@ -180,7 +180,7 @@ export class GraphCreator {
       .attr('text-anchor', 'middle')
       .attr('font-style', 'italic')
       .attr('font-size', '10px')
-      .attr('dy', '-' + (nwords - 1) * 7.5);
+      .attr('dy', '-' + (nwords - 1) * 8.5);
 
     const tspan2 = el2.append('tspan').text(subtitle);
     tspan2.attr('x', 0).attr('dy', '15');
@@ -527,6 +527,7 @@ export class GraphCreator {
         id: `forest-${totalForests + 1}`,
         isForest: true,
         title: 'new forest',
+        subtitle: 'mystery',
         x: proportionalX,
         y: proportionalY,
       };

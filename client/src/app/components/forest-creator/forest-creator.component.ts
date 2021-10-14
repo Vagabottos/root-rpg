@@ -14,6 +14,8 @@ export class ForestCreatorComponent implements OnInit {
 
   @Input() forest: IForest;
 
+  public position;
+
   public forestForm = new FormGroup({
     name:         new FormControl('', [Validators.required, Validators.maxLength(50)]),
     location:     new FormControl('', [Validators.required, Validators.maxLength(1000)]),
@@ -26,7 +28,8 @@ export class ForestCreatorComponent implements OnInit {
       name: this.forestForm.get('name').value,
       location: this.forestForm.get('location').value,
       details: this.forestForm.get('details').value,
-      type: this.forestForm.get('type').value
+      type: this.forestForm.get('type').value,
+      position: this.position
     };
   }
 
@@ -41,6 +44,7 @@ export class ForestCreatorComponent implements OnInit {
 
   ngOnInit() {
     if (this.forest) {
+      this.position = this.forest.position;
       this.forestForm.get('name').setValue(this.forest.name);
       this.forestForm.get('location').setValue(this.forest.location);
       this.forestForm.get('details').setValue(this.forest.details);

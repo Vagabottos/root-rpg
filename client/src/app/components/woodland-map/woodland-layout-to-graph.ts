@@ -38,6 +38,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   campaign.forests.forEach((forest, i) => {
     nodes.push({
       id: `forest-${i}`,
+      subtitle: forest.type,
       isForest: true,
       r: 50,
       title: forest.name,
