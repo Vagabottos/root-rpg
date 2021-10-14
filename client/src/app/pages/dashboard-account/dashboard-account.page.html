@@ -54,6 +54,35 @@
 
       </ion-card>
 
+      <ion-card class="margin-top-1">
+        <ion-card-header>
+          <ion-card-title>
+            Change Password
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <form [formGroup]="passwordForm">
+            <ion-list>
+              <ion-item>
+                <ion-label position="stacked">Current Password</ion-label>
+                <ion-input type="password" autocomplete="current-password" [placeholder]="'Current Password'" formControlName="currentPassword"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">New Password</ion-label>
+                <ion-input type="password" autocomplete="new-password" [placeholder]="'New Password'" formControlName="newPassword"></ion-input>
+              </ion-item>
+
+              <ion-item class="margin-top-2" (click)="changePassword()" color="primary" [disabled]="!passwordForm.valid">
+                Change Password
+              </ion-item>
+            </ion-list>
+          </form>
+        </ion-card-content>
+
+      </ion-card>
+
     </ion-col>
   </ion-row>
 </ion-content>
