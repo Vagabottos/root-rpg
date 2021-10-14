@@ -388,7 +388,7 @@ function generateCult(campaign: ICampaign, startCorner: number, takenCorners: nu
   const clearings = sampleSize(campaign.clearings.filter(x => x.current.dominantFaction === outcast), 2);
   clearings.forEach(clearing => {
     clearing.cult = true;
-    addAuditLogEntry(campaign, clearing.name, `Cult preyed on ${clearing.name}.`);
+    addAuditLogEntry(campaign, clearing.name, `Cult found purchase in ${clearing.name}.`);
   });
 
   const myCorner = campaign.clearings[startCorner];
