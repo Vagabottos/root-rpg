@@ -76,6 +76,8 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       case 'The Lizard Cult (Garden)':      { controller = 'cult'; break; }
       case 'The Riverfolk Company':         { controller = 'riverfolk'; break; }
       case 'The Grand Duchy':               { controller = 'duchy'; break; }
+      case 'The Grand Duchy (Market)':      { controller = 'duchy'; break; }
+      case 'The Grand Duchy (Citadel)':     { controller = 'duchy'; break; }
       case 'The Corvid Conspiracy':         { controller = 'corvid'; break; }
     }
 
@@ -85,6 +87,8 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       case 'The Eyrie Dynasties (Roost)':   { token = 'roost'; break; }
       case 'The Woodland Alliance (Base)':  { token = `base-${population}`; break; }
       case 'The Lizard Cult (Garden)':      { token = `garden-${population}`; break; }
+      case 'The Grand Duchy (Market)':      { token = `building-market`; break; }
+      case 'The Grand Duchy (Citadel)':     { token = `building-citadel`; break; }
     }
 
     nodes.push({

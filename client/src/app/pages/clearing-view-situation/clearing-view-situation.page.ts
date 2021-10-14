@@ -115,17 +115,28 @@ export class ClearingViewSituationPage implements OnInit {
 
     const marq = retFactions.indexOf('The Marquisate');
     if (marq !== -1) {
-      retFactions.splice(marq, 0, 'The Marquisate (Keep)');
+      retFactions.splice(marq + 1, 0, 'The Marquisate (Keep)');
     }
 
     const eyrie = retFactions.indexOf('The Eyrie Dynasties');
     if (eyrie !== -1) {
-      retFactions.splice(eyrie, 0, 'The Eyrie Dynasties (Roost)');
+      retFactions.splice(eyrie + 1, 0, 'The Eyrie Dynasties (Roost)');
     }
 
     const woodland = retFactions.indexOf('The Woodland Alliance');
     if (woodland !== -1) {
-      retFactions.splice(woodland, 0, 'The Woodland Alliance (Base)');
+      retFactions.splice(woodland + 1, 0, 'The Woodland Alliance (Base)');
+    }
+
+    const lizard = retFactions.indexOf('The Lizard Cult');
+    if (lizard !== -1) {
+      retFactions.splice(lizard + 1, 0, 'The Lizard Cult (Garden)');
+    }
+
+    const duchy = retFactions.indexOf('The Grand Duchy');
+    if (duchy !== -1) {
+      retFactions.splice(duchy + 1, 0, 'The Grand Duchy (Market)');
+      retFactions.splice(duchy + 1, 0, 'The Grand Duchy (Citadel)');
     }
 
     return retFactions;
