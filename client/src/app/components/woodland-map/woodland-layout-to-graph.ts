@@ -17,6 +17,35 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
   const flipX = campaign.mapGen.flipY;
   const flipY = campaign.mapGen.flipX;
 
+  const oneWayEdges = {};
+
+  campaign.lakes.forEach((lake, i) => {
+    nodes.push({
+      id: `lake-${i}`,
+      isLake: true,
+      r: 100,
+      title: '',
+      x: width * (lake.position?.x ?? 0) || 50,
+      y: height * (lake.position?.y ?? 0) || 250
+    });
+
+    lake.connectedLakes.forEach(conn => {
+      if (oneWayEdges[`lake-${i}|lake-${conn}`]) { return; }
+      oneWayEdges[`lake-${conn}|lake-${i}`] = true;
+    });
+  });
+
+  campaign.forests.forEach((forest, i) => {
+    nodes.push({
+      id: `forest-${i}`,
+      isForest: true,
+      r: 50,
+      title: forest.name,
+      x: width * (forest.position?.x ?? 0) || 50,
+      y: height * (forest.position?.y ?? 0) || 250
+    });
+  });
+
   layout.nodePositions.forEach((pos, i) => {
 
     let clearingPos = {
@@ -76,38 +105,10 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
     });
   });
 
-  const oneWayEdges = {};
   campaign.clearings.forEach((c, i) => {
     c.landscape.clearingConnections.forEach(conn => {
       if (oneWayEdges[`clearing-${i}|clearing-${conn}`]) { return; }
       oneWayEdges[`clearing-${conn}|clearing-${i}`] = true;
-    });
-  });
-
-  campaign.forests.forEach((forest, i) => {
-    nodes.push({
-      id: `forest-${i}`,
-      isForest: true,
-      r: 50,
-      title: forest.name,
-      x: width * (forest.position?.x ?? 0) || 50,
-      y: height * (forest.position?.y ?? 0) || 250
-    });
-  });
-
-  campaign.lakes.forEach((lake, i) => {
-    nodes.push({
-      id: `lake-${i}`,
-      isLake: true,
-      r: 50,
-      title: '',
-      x: width * (lake.position?.x ?? 0) || 50,
-      y: height * (lake.position?.y ?? 0) || 250
-    });
-
-    lake.connectedLakes.forEach(conn => {
-      if (oneWayEdges[`lake-${i}|lake-${conn}`]) { return; }
-      oneWayEdges[`lake-${conn}|lake-${i}`] = true;
     });
   });
 

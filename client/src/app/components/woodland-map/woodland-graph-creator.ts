@@ -250,7 +250,7 @@ export class GraphCreator {
         const node = d3.select(nodes[i]);
         node
           .append('circle')
-          .attr('r', String(GraphConstants.nodeRadius));
+          .attr('r', d.r || String(GraphConstants.nodeRadius));
 
         this.insertTitleLinebreaks(d3.select(nodes[i]), d.title, d.subtitle);
 
