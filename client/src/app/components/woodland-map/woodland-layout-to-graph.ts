@@ -100,6 +100,7 @@ export function generateLayout(campaign: ICampaign, mapLayouts: Record<string, I
       tunnel: campaign.clearings[i].tunnel,
       cult: campaign.clearings[i].cult,
       corvid: campaign.clearings[i].corvid,
+      corvidPlot: campaign.clearings[i].corvidPlot || 'none',
       riverfolk: campaign.clearings[i].riverfolk,
       x: clearingPos.x,
       y: clearingPos.y,

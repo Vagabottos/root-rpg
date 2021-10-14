@@ -328,6 +328,17 @@ export class GraphCreator {
             .attr('xlink:href', () => `assets/map/token-tunnel.png`);
         }
 
+        // add corvid plot subindicator
+        if (d.corvidPlot && d.corvidPlot !== 'none') {
+          node
+            .append('svg:image')
+            .attr('x', -54)
+            .attr('y', -40)
+            .attr('width', 20)
+            .attr('height', 24)
+            .attr('xlink:href', () => `assets/map/token-${d.corvidPlot}.png`);
+        }
+
         // add lizard subindicator
         if (d.cult) {
           node

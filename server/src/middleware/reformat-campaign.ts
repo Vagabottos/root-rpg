@@ -31,6 +31,7 @@ function createClearing(campaign: ICampaign): IClearing {
     controlledBy: 'Uncontrolled',
     sympathy: false,
     corvid: false,
+    corvidPlot: 'none',
     cult: false,
     tradepost: false,
     tunnel: false,
@@ -467,6 +468,10 @@ function generateCorvids(campaign: ICampaign) {
   clearings.forEach(clearing => {
     clearing.corvid = true;
     addAuditLogEntry(campaign, clearing.name, `Conspiracy descended on ${clearing.name}.`);
+  });
+
+  campaign.clearings.forEach(clearing => {
+    clearing.corvidPlot = 'none';
   });
 }
 

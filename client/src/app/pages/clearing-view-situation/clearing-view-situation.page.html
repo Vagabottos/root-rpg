@@ -146,6 +146,13 @@
                   </ion-label>
                 </ion-item>
 
+                <ion-item *ngIf="!isEditing && campaign.factions.includes('The Corvid Conspiracy')">
+                  <ion-label>
+                    <p class="fake-form-label">Corvid Plot?</p>
+                    <h2>{{ clearingData.clearing.corvidPlot || 'none' }}</h2>
+                  </ion-label>
+                </ion-item>
+
                 <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Woodland Alliance')">
                   <ion-label position="stacked">Woodland Sympathy?</ion-label>
                   <ion-toggle [(ngModel)]="clearingCopy.sympathy"></ion-toggle>
@@ -174,6 +181,15 @@
                 <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Corvid Conspiracy')">
                   <ion-label position="stacked">Corvid Presence?</ion-label>
                   <ion-toggle [(ngModel)]="clearingCopy.corvid"></ion-toggle>
+                </ion-item>
+
+                <ion-item *ngIf="isEditing && campaignCopy.factions.includes('The Corvid Conspiracy')">
+                  <ion-label position="stacked">Corvid Plot?</ion-label>
+                  <ion-select [(ngModel)]="clearingCopy.corvidPlot" placeholder="Choose Clearing Corvid plot">
+                    <ion-select-option *ngFor="let choice of ['none', 'unknown', 'raid', 'snare', 'extortion', 'bomb']" [value]="choice">
+                      {{ choice }}
+                    </ion-select-option>
+                  </ion-select>
                 </ion-item>
 
                 <!-- contested by -->

@@ -15,6 +15,7 @@ export interface IClearing {
   tunnel: boolean;
   cult: boolean;
   corvid: boolean;
+  corvidPlot: string;
   riverfolk: boolean;
 
   npcs: INPC[];
