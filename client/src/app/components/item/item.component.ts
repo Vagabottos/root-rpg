@@ -13,6 +13,7 @@ export class ItemComponent implements OnInit {
 
   @Input() item: IItem;
   @Input() showFooter = true;
+  @Input() disableWear = false;
   @Output() updateWear: EventEmitter<number> = new EventEmitter();
   @Output() updateDepletion: EventEmitter<number> = new EventEmitter();
   @Output() updateLegendary: EventEmitter<number> = new EventEmitter();
@@ -39,6 +40,8 @@ export class ItemComponent implements OnInit {
   }
 
   changeWear(wear: number): void {
+    if (this.disableWear) {return;}
+
     if (this.item.wearUsed === wear) {
       this.item.wearUsed = 0;
       this.updateWear.emit(this.item.wearUsed);
@@ -50,6 +53,8 @@ export class ItemComponent implements OnInit {
   }
 
   changeDepletion(depletion: number): void {
+    if (this.disableWear) {return;}
+
     if (this.item.depletionUsed === depletion) {
       this.item.depletionUsed = 0;
       this.updateDepletion.emit(this.item.depletionUsed);
@@ -61,6 +66,8 @@ export class ItemComponent implements OnInit {
   }
 
   changeLegendary(legendary: number): void {
+    if (this.disableWear) {return;}
+
     if (this.item.legendary === legendary) {
       this.item.legendary = 0;
       this.updateLegendary.emit(this.item.legendary);
