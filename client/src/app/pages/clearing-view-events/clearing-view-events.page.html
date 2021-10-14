@@ -33,7 +33,7 @@
             </ion-card-header>
 
             <ion-card-content>
-              <p *ngIf="!isEditing">{{ clearing.eventRecord.beforePlay }}</p>
+              <p *ngIf="!isEditing" class="before-play-box">{{ clearing.eventRecord.beforePlay }}</p>
 
               <!-- before play history -->
               <ion-list *ngIf="isEditing">

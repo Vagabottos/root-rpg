@@ -95,7 +95,7 @@ export async function cleanCampaign(context: HookContext): Promise<HookContext> 
       clearing.history.civilWarEvents = clean(clearing.history.civilWarEvents, 1000);
       clearing.history.interregnumEvents = clean(clearing.history.interregnumEvents, 1000);
 
-      clearing.eventRecord.beforePlay = clean(clearing.eventRecord.beforePlay);
+      clearing.eventRecord.beforePlay = clean(clearing.eventRecord.beforePlay, 1000);
       clearing.eventRecord.visited.forEach(visitRecord => {
         visitRecord.visitText = clean(visitRecord.visitText, 1000);
         visitRecord.warContinuesType = clean(visitRecord.warContinuesType) as WarType;

@@ -209,7 +209,7 @@ function addAuditLogEntry(campaign: ICampaign, clearing: string, message: string
 
   const clearingRef = campaign.clearings.find(x => x.name === clearing);
   if(clearingRef) {
-    clearingRef.eventRecord.beforePlay += message + ' ';
+    clearingRef.eventRecord.beforePlay += message + ' \n';
   }
 }
 
