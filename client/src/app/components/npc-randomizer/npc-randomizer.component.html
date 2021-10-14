@@ -45,8 +45,8 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked">Depletion Range</ion-label>
-            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateDepletion">
+            <ion-label position="stacked">Wear Range</ion-label>
+            <ion-range min="1" max="5" pin="true" ticks="true" snaps="true" dualKnobs="true" [(ngModel)]="generateWear">
               <ion-label slot="start">1</ion-label>
               <ion-label slot="end">5</ion-label>
             </ion-range>
@@ -149,8 +149,8 @@
     <ion-icon *ngFor="let box of numBoxes(npc.harmMax.injury); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
     <span class="divider">/</span>
 
-    <strong>Depletion</strong>
-    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.depletion); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
+    <strong>Wear</strong>
+    <ion-icon *ngFor="let box of numBoxes(npc.harmMax.wear); let first = first; let last = last" [class.first]="first" [class.last]="last" name="square-outline"></ion-icon>
     <span class="divider">/</span>
 
     <strong>Exhaustion</strong>

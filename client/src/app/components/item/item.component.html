@@ -1,7 +1,7 @@
 
 <ion-card class="item-card">
   <ion-card-header>
-    <ion-card-title>
+    <ion-card-title (click)="collapse = !collapse">
       <span class="title">
         {{ item.name }}
 
@@ -12,95 +12,98 @@
 
   <ion-card-content>
 
-    <ion-row>
-      <ion-col class="box-row">
-        <span class="margin-right-1 label">Wear</span>
-        <span *ngIf="boxSlots.length === 0"><em>(none)</em></span>
-        <span class="boxes">
-          <ion-icon *ngFor="let slot of boxSlots; let i = index"
-                    [class.pointer]="!disableWear"
-                    (click)="changeWear(i + 1)"
-                    [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+    <ng-container *ngIf="allowCollapse && !collapse">
+      <ion-row>
+        <ion-col class="box-row">
+          <span class="margin-right-1 label">Wear</span>
+          <span *ngIf="boxSlots.length === 0"><em>(none)</em></span>
+          <span class="boxes">
+            <ion-icon *ngFor="let slot of boxSlots; let i = index"
+                      [class.pointer]="!disableWear"
+                      (click)="changeWear(i + 1)"
+                      [name]="item.wearUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
 
-        </span>
-        <span class="margin-left-1 margin-right-1 label" *ngIf="depletionSlots.length > 0">Depletion</span>
-        <span class="boxes">
-          <ion-icon *ngFor="let slot of depletionSlots; let i = index"
-                    [class.pointer]="!disableWear"
-                    (click)="changeDepletion(i + 1)"
-                    [name]="item.depletionUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-        </span>
-      </ion-col>
-    </ion-row>
+          </span>
+          <span class="margin-left-1 margin-right-1 label" *ngIf="depletionSlots.length > 0">Depletion</span>
+          <span class="boxes">
+            <ion-icon *ngFor="let slot of depletionSlots; let i = index"
+                      [class.pointer]="!disableWear"
+                      (click)="changeDepletion(i + 1)"
+                      [name]="item.depletionUsed > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+          </span>
+        </ion-col>
+      </ion-row>
 
-    <ion-row class="hr"></ion-row>
+      <ion-row class="hr"></ion-row>
 
-    <ion-row *ngIf="item.tagSet !== 'ship' && showFooter">
-      <ion-col>
-        <span class="label">Value</span>: {{ itemService.value(item) }}
-      </ion-col>
+      <ion-row *ngIf="item.tagSet !== 'ship' && showFooter">
+        <ion-col>
+          <span class="label">Value</span>: {{ itemService.value(item) }}
+        </ion-col>
 
-      <ion-col>
-        <span class="label">Load</span>: {{ itemService.load(item) }}
-      </ion-col>
+        <ion-col>
+          <span class="label">Load</span>: {{ itemService.load(item) }}
+        </ion-col>
 
-      <ion-col>
-        <span *ngIf="item.ranges?.length > 0">
-          <span class="label">Range</span>:  {{ item.ranges.join(', ') }}
-        </span>
-      </ion-col>
-    </ion-row>
+        <ion-col>
+          <span *ngIf="item.ranges?.length > 0">
+            <span class="label">Range</span>:  {{ item.ranges.join(', ') }}
+          </span>
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.tagSet !== 'ship'
-                 && showFooter
-                 && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.hated || item.incendiary1 || item.legendary1)" class="hr"></ion-row>
+      <ion-row *ngIf="item.tagSet !== 'ship'
+                   && showFooter
+                   && (item.tags?.length > 0 || item.skillTags?.length > 0 || item.designation || item.hated || item.incendiary1 || item.legendary1)" class="hr"></ion-row>
 
-    <ion-row *ngIf="item.tags?.length > 0" class="small-row">
-      <ion-col>
-        <span class="label">Item Tags</span>: {{ item.tags.join(', ') }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.tags?.length > 0" class="small-row">
+        <ion-col>
+          <span class="label">Item Tags</span>: {{ item.tags.join(', ') }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.skillTags?.length > 0" class="small-row">
-      <ion-col>
-        <span class="label">Skill Tags</span>: {{ item.skillTags.join(', ') }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.skillTags?.length > 0" class="small-row">
+        <ion-col>
+          <span class="label">Skill Tags</span>: {{ item.skillTags.join(', ') }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.hated" class="small-row">
-      <ion-col>
-        <span class="label">Hated Faction</span>: {{ item.hated }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.hated" class="small-row">
+        <ion-col>
+          <span class="label">Hated Faction</span>: {{ item.hated }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.designation" class="small-row">
-      <ion-col>
-        <span class="label">Ceremonial Faction</span>: {{ item.designation }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.designation" class="small-row">
+        <ion-col>
+          <span class="label">Ceremonial Faction</span>: {{ item.designation }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.incendiary1 && item.incendiary2" class="small-row">
-      <ion-col>
-        <span class="label">Incendiary Factions</span>: Inspires {{ item.incendiary1 }} | Angers {{ item.incendiary2 }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.incendiary1 && item.incendiary2" class="small-row">
+        <ion-col>
+          <span class="label">Incendiary Factions</span>: Inspires {{ item.incendiary1 }} | Angers {{ item.incendiary2 }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.legendary1 && item.legendary2" class="small-row">
-      <ion-col>
-        <span class="label">Legendary Factions</span>: Favored {{ item.legendary1 }} | Hated {{ item.legendary2 }}
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="item.legendary1 && item.legendary2" class="small-row">
+        <ion-col>
+          <span class="label">Legendary Factions</span>: Favored {{ item.legendary1 }} | Hated {{ item.legendary2 }}
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="item.legendary1" class="small-row harm-row margin-top-1">
-      <ion-col>
-        <span class="label">Prestige</span>
-      </ion-col>
+      <ion-row *ngIf="item.legendary1" class="small-row harm-row margin-top-1">
+        <ion-col>
+          <span class="label">Prestige</span>
+        </ion-col>
 
-      <ion-col class="harm-box"
-                *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"
-                (click)="changeLegendary(i + 1)">
-        <ion-icon class="harm-icon" [name]="item.legendary > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
-      </ion-col>
-    </ion-row>
+        <ion-col class="harm-box"
+                  *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]"
+                  (click)="changeLegendary(i + 1)">
+          <ion-icon class="harm-icon" [name]="item.legendary > i ? 'checkbox-outline' : 'square-outline'"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
   </ion-card-content>
 </ion-card>

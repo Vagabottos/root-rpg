@@ -498,13 +498,13 @@ function generateClearingNPC(campaign: ICampaign, clearing: IClearing) {
     equipment: [],
     notes: '',
     harm: {
-      depletion: 0,
+      wear: 0,
       exhaustion: 0,
       injury: 0,
       morale: 0
     },
     harmMax: {
-      depletion: random(0, 5),
+      wear: random(0, 5),
       exhaustion: random(0, 5),
       injury: random(0, 5),
       morale: random(0, 5)

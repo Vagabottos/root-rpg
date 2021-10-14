@@ -27,7 +27,7 @@ export class NPCCreatorComponent implements OnInit {
     drive:        new FormControl('', [Validators.required, Validators.maxLength(50)]),
     notes:        new FormControl('', [Validators.maxLength(1000)]),
     injury:       new FormControl(1,  [Validators.required, Validators.min(0), Validators.max(5)]),
-    depletion:    new FormControl(1,  [Validators.required, Validators.min(0), Validators.max(5)]),
+    wear:         new FormControl(1,  [Validators.required, Validators.min(0), Validators.max(5)]),
     exhaustion:   new FormControl(1,  [Validators.required, Validators.min(0), Validators.max(5)]),
     morale:       new FormControl(1,  [Validators.required, Validators.min(0), Validators.max(5)]),
     equipment:    new FormControl([]),
@@ -44,13 +44,13 @@ export class NPCCreatorComponent implements OnInit {
       equipment: this.npcForm.get('equipment').value,
       notes: this.npcForm.get('notes').value,
       harmMax: {
-        depletion: this.npcForm.get('depletion').value,
+        wear: this.npcForm.get('wear').value,
         exhaustion: this.npcForm.get('exhaustion').value,
         injury: this.npcForm.get('injury').value,
         morale: this.npcForm.get('morale').value
       },
       harm: {
-        depletion: 0,
+        wear: 0,
         exhaustion: 0,
         injury: 0,
         morale: 0
@@ -93,7 +93,7 @@ export class NPCCreatorComponent implements OnInit {
       this.npcForm.get('equipment').setValue(this.npc.equipment);
       this.npcForm.get('notes').setValue(this.npc.notes);
       this.npcForm.get('injury').setValue(this.npc.harmMax?.injury ?? 1);
-      this.npcForm.get('depletion').setValue(this.npc.harmMax?.depletion ?? 1);
+      this.npcForm.get('wear').setValue(this.npc.harmMax?.wear ?? 1);
       this.npcForm.get('exhaustion').setValue(this.npc.harmMax?.exhaustion ?? 1);
       this.npcForm.get('morale').setValue(this.npc.harmMax?.morale ?? 1);
     }

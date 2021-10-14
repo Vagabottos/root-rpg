@@ -14,6 +14,8 @@ export class ItemComponent implements OnInit {
   @Input() item: IItem;
   @Input() showFooter = true;
   @Input() disableWear = false;
+  @Input() allowCollapse = false;
+  @Input() collapse = false;
   @Output() updateWear: EventEmitter<number> = new EventEmitter();
   @Output() updateDepletion: EventEmitter<number> = new EventEmitter();
   @Output() updateLegendary: EventEmitter<number> = new EventEmitter();

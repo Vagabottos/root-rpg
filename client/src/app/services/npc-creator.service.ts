@@ -18,7 +18,7 @@ interface IRandomNPCOpts {
 
   injuryRange: number[];
   exhaustionRange: number[];
-  depletionRange: number[];
+  wearRange: number[];
   moraleRange: number[];
 }
 
@@ -65,13 +65,13 @@ export class NPCCreatorService {
       equipment: [],
       notes: '',
       harm: {
-        depletion: 0,
+        wear: 0,
         exhaustion: 0,
         injury: 0,
         morale: 0
       },
       harmMax: {
-        depletion: pickRandomFromRange(opts.depletionRange),
+        wear: pickRandomFromRange(opts.wearRange),
         exhaustion: pickRandomFromRange(opts.exhaustionRange),
         injury: pickRandomFromRange(opts.injuryRange),
         morale: pickRandomFromRange(opts.moraleRange)

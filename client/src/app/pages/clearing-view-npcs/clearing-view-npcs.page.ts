@@ -169,7 +169,7 @@ export class ClearingViewNpcsPage implements OnInit {
   }
 
   adjustHarm(npc: INPC, harm: string, newValue: number): void {
-    if (!npc.harm) { npc.harm = { injury: 0, depletion: 0, exhaustion: 0, morale: 0 }; }
+    if (!npc.harm) { npc.harm = { injury: 0, wear: 0, exhaustion: 0, morale: 0 }; }
 
     if (npc.harm[harm.toLowerCase()] === newValue) {
       npc.harm[harm.toLowerCase()] = 0;

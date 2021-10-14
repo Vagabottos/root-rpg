@@ -14,14 +14,14 @@ export interface INPC {
   harmMax: {
     injury: number;
     exhaustion: number;
-    depletion: number;
+    wear: number;
     morale: number;
   };
 
   harm: {
     injury: number;
     exhaustion: number;
-    depletion: number;
+    wear: number;
     morale: number;
   };
 }

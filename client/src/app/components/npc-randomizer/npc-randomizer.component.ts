@@ -25,7 +25,7 @@ export class NPCRandomizerComponent implements OnInit {
   public generateShields = true;
   public generateInjury = { lower: 1, upper: 4 };
   public generateExhaustion = { lower: 1, upper: 4 };
-  public generateDepletion = { lower: 1, upper: 4 };
+  public generateWear = { lower: 1, upper: 4 };
   public generateMorale = { lower: 1, upper: 4 };
 
   public get maxCreatableNPCS(): number {
@@ -63,7 +63,7 @@ export class NPCRandomizerComponent implements OnInit {
         pickShield: this.generateShields,
         injuryRange: [this.generateInjury.lower, this.generateInjury.upper],
         exhaustionRange: [this.generateExhaustion.lower, this.generateExhaustion.upper],
-        depletionRange: [this.generateDepletion.lower, this.generateDepletion.upper],
+        wearRange: [this.generateWear.lower, this.generateWear.upper],
         moraleRange: [this.generateMorale.lower, this.generateMorale.upper],
       }));
     }

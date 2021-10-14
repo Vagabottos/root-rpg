@@ -75,24 +75,6 @@
     <ion-card-content>
 
       <ion-row>
-        <ion-col class="ion-text-center">
-          <strong>Equipment</strong>
-        </ion-col>
-      </ion-row>
-
-      <ion-row *ngIf="npc.equipment.length === 0">
-        <ion-col>
-          None
-        </ion-col>
-      </ion-row>
-
-      <ion-row *ngFor="let item of npc.equipment">
-        <ion-col class="padding-left-0">
-          <app-item [item]="item" (updateWear)="save()"></app-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
         <ion-col class="ion-text-center margin-top-1">
           <strong>Looks Like</strong>
         </ion-col>
@@ -124,7 +106,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Depletion', 'Morale']" class="harm-row">
+          <ion-row *ngFor="let harm of ['Injury', 'Exhaustion', 'Wear', 'Morale']" class="harm-row">
             <ion-col class="harm-label" (click)="adjustHarm(npc, harm.toLowerCase(), 0)">{{ harm }}</ion-col>
             <ion-col class="harm-box"
                      *ngFor="let i of maxHarmBoxes()"
@@ -133,6 +115,24 @@
                         [class.hidden]="harmBoxes(npc, harm.toLowerCase()).length <= i"></ion-icon>
             </ion-col>
           </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <strong>Equipment</strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="npc.equipment.length === 0">
+        <ion-col>
+          None
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of npc.equipment">
+        <ion-col class="padding-left-0">
+          <app-item [item]="item" (updateWear)="save()" [allowCollapse]="true" [collapse]="true"></app-item>
         </ion-col>
       </ion-row>
     </ion-card-content>
