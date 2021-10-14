@@ -4,6 +4,8 @@
     <ion-card-title (click)="collapse = !collapse">
       <span class="title">
         {{ item.name }}
+        <span *ngIf="allowCollapse && collapse">+</span>
+        <span *ngIf="allowCollapse && !collapse">-</span>
 
         <ng-content select="[slot='actions']"></ng-content>
       </span>
