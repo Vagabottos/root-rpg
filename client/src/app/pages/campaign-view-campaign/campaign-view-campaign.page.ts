@@ -18,6 +18,8 @@ import { EditDeletePopoverComponent } from '../../components/editdelete.popover'
 })
 export class CampaignViewCampaignPage implements OnInit {
 
+  public editingRequest = false;
+
   constructor(
     private popover: PopoverController,
     private modal: ModalController,
@@ -95,6 +97,14 @@ export class CampaignViewCampaignPage implements OnInit {
   updateNotes(campaign: ICampaign, newNotes: string) {
     campaign.notes = newNotes;
     this.data.patchCampaign().subscribe(() => {});
+  }
+
+  toggleRequestEdit(campaign: ICampaign) {
+    this.editingRequest = !this.editingRequest;
+
+    if (!this.editingRequest) {
+      this.data.patchCampaign().subscribe(() => {});
+    }
   }
 
   async renameCampaign(campaign: ICampaign) {

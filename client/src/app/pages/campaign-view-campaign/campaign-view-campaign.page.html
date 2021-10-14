@@ -77,16 +77,40 @@
           <ion-card>
             <ion-card-header>
               <ion-card-title>Current Request</ion-card-title>
+              <ion-icon class="change margin-right-2" [name]="editingRequest ? 'checkmark-circle' : 'pencil'" (click)="toggleRequestEdit(campaign)"></ion-icon>
               <ion-icon class="change" name="refresh" (click)="generateRequest(campaign)"></ion-icon>
             </ion-card-header>
 
             <ion-card-content>
-              <em *ngIf="!campaign.request?.from">You have not generated a request.</em>
-              <div *ngIf="campaign.request?.from">
-                <strong>"{{ campaign.request.from }}"</strong>
-                <br>
-                In {{ campaign.request.where }}, {{ campaign.request.do }} ({{ campaign.request.target }}).
-              </div>
+              <ng-container *ngIf="!editingRequest">
+                <em *ngIf="!campaign.request?.from">You have not generated a request.</em>
+                <div *ngIf="campaign.request?.from">
+                  <strong>"{{ campaign.request.from }}"</strong>
+                  <br>
+                  In {{ campaign.request.where }}, {{ campaign.request.do }} ({{ campaign.request.target }}).
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="editingRequest">
+                <ion-list>
+                  <ion-item>
+                    <ion-label position="floating">From</ion-label>
+                    <ion-input type="text" [(ngModel)]="campaign.request.from" placeholder="From who?"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Where</ion-label>
+                    <ion-input type="text" [(ngModel)]="campaign.request.where" placeholder="Where should they go?"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">What</ion-label>
+                    <ion-input type="text" [(ngModel)]="campaign.request.do" placeholder="Do what?"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Target</ion-label>
+                    <ion-input type="text" [(ngModel)]="campaign.request.target" placeholder="Who is the target?"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ng-container>
             </ion-card-content>
           </ion-card>
 
