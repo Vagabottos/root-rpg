@@ -17,8 +17,19 @@ export class DashboardAccountPage implements OnInit {
 
   public passwordForm = new FormGroup({
     currentPassword: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required])
+    newPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
+
+  public validationMessages = {
+    currentPassword: [
+      { type: 'required', message: 'Current Password is required.' },
+      { type: 'minlength', message: 'Current Password must be at least 8 characters long.' }
+    ],
+    newPassword: [
+      { type: 'required', message: 'New Password is required.' },
+      { type: 'minlength', message: 'New Password must be at least 8 characters long.' }
+    ]
+  };
 
   constructor(
     private alert: AlertController,
@@ -60,8 +71,23 @@ export class DashboardAccountPage implements OnInit {
         {
           text: 'Yes, change password',
           handler: () => {
-            console.log(this.passwordForm.get('currentPassword').value, this.passwordForm.get('newPassword').value);
-            this.notify.notify('Your password has been changed!');
+            this.api.passwordChange({
+              oldPassword: this.passwordForm.get('currentPassword').value,
+              password: this.passwordForm.get('newPassword').value
+            }).subscribe({
+              next: () => {
+                this.notify.notify('Your password has been changed!');
+              },
+              error: (e) => {
+                if (e.error.errors.oldPassword) {
+                  this.notify.notify(e.error.errors.oldPassword);
+                } else {
+                  this.notify.notify('Something went wrong');
+                }
+              },
+              complete: () => {
+              }
+            });
           }
         }
       ]

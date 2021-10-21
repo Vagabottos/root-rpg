@@ -55,4 +55,16 @@ export class UserAPIService {
     localStorage.setItem('password', '');
   }
 
+  public passwordChange(args): Observable<any> {
+    return this.http.post(this.api.apiUrl('/authManagement'), {
+      action: 'passwordChange',
+      value: {
+        user: {
+          email: this.user.getValue().email
+        },
+        ...args
+      },
+    });
+  }
+
 }

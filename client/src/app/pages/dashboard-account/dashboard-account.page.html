@@ -69,10 +69,26 @@
                 <ion-input type="password" autocomplete="current-password" [placeholder]="'Current Password'" formControlName="currentPassword"></ion-input>
               </ion-item>
 
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.currentPassword">
+                  <div class="message" *ngIf="passwordForm.get('currentPassword').hasError(validation.type) && (passwordForm.get('currentPassword').dirty || passwordForm.get('currentPassword').touched)">
+                    <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
+
               <ion-item>
                 <ion-label position="stacked">New Password</ion-label>
                 <ion-input type="password" autocomplete="new-password" [placeholder]="'New Password'" formControlName="newPassword"></ion-input>
               </ion-item>
+
+              <div class="validation-errors">
+                <ng-container *ngFor="let validation of validationMessages.newPassword">
+                  <div class="message" *ngIf="passwordForm.get('newPassword').hasError(validation.type) && (passwordForm.get('newPassword').dirty || passwordForm.get('newPassword').touched)">
+                    <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                  </div>
+                </ng-container>
+              </div>
 
               <ion-item class="margin-top-2" (click)="changePassword()" color="primary" [disabled]="!passwordForm.valid">
                 Change Password
