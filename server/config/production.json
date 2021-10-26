@@ -1,5 +1,15 @@
 {
   "host": "rootrpg.magpiegames.com",
   "port": "PORT",
-  "mongodb": "MONGODB_URI"
+  "mongodb": "MONGODB_URI",
+  "mail": {
+    "from": "test@example.com",
+    "host": "localhost",
+    "port": 1025,
+    "secure": false,
+    "auth": {
+      "user": "123",
+      "pass": "321"
+    }
+  }
 }

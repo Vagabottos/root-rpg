@@ -7,6 +7,7 @@ import * as feathersAuthentication from '@feathersjs/authentication';
 
 import { Application } from './declarations';
 import { iff } from 'feathers-hooks-common';
+import notifier from './notifier';
 const { authenticate } = feathersAuthentication.hooks;
 
 declare module './declarations' {
@@ -34,6 +35,7 @@ export default function(app: Application): void {
   app.configure(authManagement({
     service: '/users',
     skipIsVerifiedCheck: true,
+    notifier: notifier(app)
   }, {}));
 
   const isAction = (...args) => (hook) => args.includes(hook.data.action);

@@ -67,4 +67,13 @@ export class UserAPIService {
     });
   }
 
+  public resetPassword(args): Observable<any> {
+    return this.http.post(this.api.apiUrl('/authManagement'), {
+      action: 'sendResetPwd',
+      value: {
+        email: args.email
+      },
+    });
+  }
+
 }

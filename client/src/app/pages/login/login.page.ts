@@ -5,6 +5,12 @@ import { environment } from '../../../environments/environment';
 import { NotificationService } from '../../services/notification.service';
 import { UserAPIService } from '../../services/user.api.service';
 
+enum LoginState {
+  Login,
+  Register,
+  Forgot,
+};
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -16,8 +22,15 @@ export class LoginPage implements OnInit {
     return environment.staging;
   }
 
-  public isRegistering = false;
+  public LoginState = LoginState;
+  public currentLoginState = LoginState.Login;
   public isDoing = false;
+
+  public titles = {
+    [LoginState.Login]: 'Log In',
+    [LoginState.Register]: 'Sign Up',
+    [LoginState.Forgot]: 'Reset Password',
+  };
 
   public authForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -45,7 +58,41 @@ export class LoginPage implements OnInit {
   }
 
   toggleRegister(): void {
-    this.isRegistering = !this.isRegistering;
+    this.authForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
+    this.currentLoginState = this.currentLoginState === LoginState.Login ? LoginState.Register : LoginState.Login;
+  }
+
+  toggleForgot(): void {
+    this.authForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+    });
+    this.currentLoginState = LoginState.Forgot;
+  }
+
+  resetPassword(): void {
+    if (this.isDoing) { return; }
+
+    this.isDoing = true;
+
+    this.userAPI.resetPassword({
+      email: this.authForm.get('email').value,
+    })
+      .subscribe({
+        next: () => {
+          this.notification.notify('Please check your email inbox for instructions.');
+          this.isDoing = false;
+        },
+        error: () => {
+          this.notification.notify('Could not send password reset. Please double check email.');
+          this.isDoing = false;
+        },
+        complete: () => {
+          this.isDoing = false;
+        }
+      });
   }
 
   auth() {
@@ -75,7 +122,7 @@ export class LoginPage implements OnInit {
         });
     };
 
-    if (this.isRegistering) {
+    if (this.currentLoginState === LoginState.Register) {
       this.userAPI.register(args)
         .subscribe({
           next: () => {
@@ -95,4 +142,11 @@ export class LoginPage implements OnInit {
     login();
   }
 
+  handleSubmit() {
+    if (this.currentLoginState === LoginState.Forgot) {
+      this.resetPassword();
+    } else {
+      this.auth();
+    }
+  }
 }
