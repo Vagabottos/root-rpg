@@ -67,7 +67,7 @@ export class UserAPIService {
     });
   }
 
-  public resetPassword(args): Observable<any> {
+  public sendResetPassword(args): Observable<any> {
     return this.http.post(this.api.apiUrl('/authManagement'), {
       action: 'sendResetPwd',
       value: {
@@ -76,4 +76,13 @@ export class UserAPIService {
     });
   }
 
+  public resetPassword(args): Observable<any> {
+    return this.http.post(this.api.apiUrl('/authManagement'), {
+      action: 'resetPwdLong',
+      value: {
+        token: args.token,
+        password: args.password
+      },
+    });
+  }
 }

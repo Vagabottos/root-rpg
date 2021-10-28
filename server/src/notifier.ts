@@ -7,7 +7,7 @@ export default function(app: Application): any {
 
   const handlers = {
     sendResetPwd(type, user, notifierOptions) {
-      const link = `https://${app.get('host')}/reset/${user.resetToken}`;
+      const link = `https://${app.get('host')}/password-reset/${user.resetToken}`;
 
       return sendEmail({
         from: app.get('mail').from,

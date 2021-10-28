@@ -77,7 +77,7 @@ export class LoginPage implements OnInit {
 
     this.isDoing = true;
 
-    this.userAPI.resetPassword({
+    this.userAPI.sendResetPassword({
       email: this.authForm.get('email').value,
     })
       .subscribe({
