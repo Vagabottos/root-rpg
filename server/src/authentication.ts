@@ -6,7 +6,7 @@ import authManagement from 'feathers-authentication-management';
 import * as feathersAuthentication from '@feathersjs/authentication';
 
 import { Application } from './declarations';
-import { iff } from 'feathers-hooks-common';
+import { disallow, iff } from 'feathers-hooks-common';
 import notifier from './notifier';
 const { authenticate } = feathersAuthentication.hooks;
 
@@ -45,8 +45,12 @@ export default function(app: Application): void {
     before: {
       create: [
         iff(
-          isAction('passwordChange', 'identityChange'),
+          isAction('passwordChange'),
           authenticate('jwt')
+        ),
+        iff(
+          !isAction('passwordChange', 'sendResetPwd', 'resetPwdLong'),
+          disallow('external')
         ),
       ],
     },
