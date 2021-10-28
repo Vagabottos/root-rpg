@@ -18,7 +18,7 @@
 
             <ion-card-header>
               <ion-card-title>
-                {{ isRegistering ? 'Sign Up' : 'Log In' }}
+                {{ titles[currentLoginState] }}
               </ion-card-title>
             </ion-card-header>
 
@@ -27,7 +27,7 @@
               <ion-list>
                 <ion-item>
                   <ion-label position="stacked">Email</ion-label>
-                  <ion-input type="email" formControlName="email" (keyup.enter)="auth()"></ion-input>
+                  <ion-input type="email" formControlName="email" (keyup.enter)="handleSubmit()"></ion-input>
                 </ion-item>
 
                 <div class="validation-errors">
@@ -38,12 +38,12 @@
                   </ng-container>
                 </div>
 
-                <ion-item>
+                <ion-item *ngIf="currentLoginState !== LoginState.Forgot">
                   <ion-label position="stacked">Password</ion-label>
-                  <ion-input type="password" formControlName="password" (keyup.enter)="auth()"></ion-input>
+                  <ion-input type="password" formControlName="password" (keyup.enter)="handleSubmit()"></ion-input>
                 </ion-item>
 
-                <div class="validation-errors">
+                <div class="validation-errors" *ngIf="currentLoginState !== LoginState.Forgot">
                   <ng-container *ngFor="let validation of validationMessages.password">
                     <div class="message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
                       <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
@@ -55,14 +55,24 @@
                   <ion-row class="action-row">
                     <ion-col>
                       <ion-button color="secondary" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
-                        {{ isRegistering ? 'Log in instead?' : 'Sign up instead?' }}
+                        {{ currentLoginState !== LoginState.Login ? 'Log in instead?' : 'Sign up instead?' }}
                       </ion-button>
                     </ion-col>
 
                     <ion-col class="ion-text-right">
-                      <ion-button color="primary" [disabled]="isDoing || authForm.invalid" (click)="auth()">
+                      <ion-button color="primary" [disabled]="isDoing || authForm.invalid" (click)="handleSubmit()">
                         <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
-                        {{ isRegistering ? 'Sign Up' : 'Log in' }}
+                        {{ titles[currentLoginState] }}
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+
+                <ion-item lines="none">
+                  <ion-row class="action-row">
+                    <ion-col>
+                      <ion-button color="secondary" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
+                        Forgot Password?
                       </ion-button>
                     </ion-col>
                   </ion-row>

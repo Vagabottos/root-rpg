@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'password-reset/:token',
+    loadChildren: () => import('./pages/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
+  },
+  {
     path: 'dashboard/campaigns/view/:id/clearings/:clearing',
     loadChildren: () => import('./pages/clearing-view/clearing-view.module').then( m => m.ClearingViewPageModule)
   },
@@ -37,7 +41,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

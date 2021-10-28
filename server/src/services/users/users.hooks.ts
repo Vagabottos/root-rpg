@@ -4,7 +4,7 @@ import { HookContext } from '@feathersjs/feathers';
 
 import { Conflict } from '@feathersjs/errors';
 import { attachCreatedAt, attachUpdatedAt } from '../../middleware/created-at';
-import { disallow } from '../../middleware/disallow';
+import { disallow } from 'feathers-hooks-common';
 
 // Don't remove this comment. It's needed to format import lines nicely.
 
@@ -35,7 +35,7 @@ export default {
     get: [ authenticate('jwt') ],
     create: [ duplicateEmail, attachCreatedAt, attachUpdatedAt, hashPassword('password') ],
     update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [ disallow ],
+    patch: [ disallow('external') ],
     remove: [ authenticate('jwt') ]
   },
 

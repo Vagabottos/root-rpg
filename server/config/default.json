@@ -27,5 +27,15 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/rootrpg"
+  "mongodb": "mongodb://localhost:27017/rootrpg",
+  "mail": {
+    "from": "test@example.com",
+    "host": "localhost",
+    "port": 1025,
+    "secure": false,
+    "auth": {
+      "user": "123",
+      "pass": "321"
+    }
+  }
 }
