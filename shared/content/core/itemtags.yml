@@ -787,7 +787,7 @@ Deadly (Heirloom):
   itemType:
     - Heirloom
 
-Double-headed (Heirloom):
+Double-Headed (Heirloom):
   tagSet: heirloom
   text: One edge inflicts injury, the other exhaustion. Declare which side you use at the start of a fight.
   itemType:
