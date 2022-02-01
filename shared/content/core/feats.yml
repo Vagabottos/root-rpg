@@ -23,7 +23,7 @@ Mastermind:
 Pick Lock:
   text: Used when opening a locked door or chest. Carries the risk of breaking something, being detected, or plunging into danger.
 
-Pick Pocket:
+Pickpocket:
   text: Used when subtly stealing from someone's pockets. Carries the risk of leaving evidence, giving a weak result, or taking too long.
 
 Set Trap:
