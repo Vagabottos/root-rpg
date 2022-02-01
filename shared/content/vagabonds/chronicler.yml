@@ -99,7 +99,7 @@ chooseFeats: 0
 feats:
   - name: Counterfeit
   - name: Disable Device
-  - name: Pick Pocket
+  - name: Pickpocket
 
 numSkills: 1
 skills:
