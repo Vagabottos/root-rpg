@@ -18,7 +18,7 @@ Arrow-proof:
 
 Barbed:
   tagSet: default
-  text: When you catch someone with this weapon's end, mark exhaustion to move to intimate range and grapple with them as if you had rolled a 10+.
+  text: When you catch someone with this weapon's end, mark exhaustion to move to intimate range and **grapple** with them as if you had rolled a 10+.
   valueMod: 1
   itemType:
     - Weapon
@@ -44,7 +44,7 @@ Bulky:
   itemType:
     - Weapon
 
-Catfolk-steel:
+Catfolk Steel:
   tagSet: default
   text: Mark wear when **engaging in melee** to shift your range one step, even on a miss.
   valueMod: 1
@@ -102,7 +102,7 @@ Conspicuous:
 
 Cumbersome:
   tagSet: default
-  text: Mark one exhaustion while you wear your armor—clear one exhaustion when you take it off.
+  text: Mark 1-exhaustion while you wear your armor—clear 1-exhaustion when you take it off.
   valueMod: -1
   itemType:
     - Armor
@@ -129,7 +129,7 @@ Dangerous:
 
 Disarming:
   tagSet: default
-  text: When wearing this item, you are underestimated. Mark exhaustion to change a miss to a 7-9 or a 7-9 to a 10+ when tricking an NPC by appearing **weak or nonthreatening**.
+  text: When wearing this item, you are underestimated. Mark exhaustion to change a miss to a 7-9 or a 7-9 to a 10+ when **tricking an NPC by appearing weak or nonthreatening**.
   valueMod: 1
   itemType:
     - Armor
@@ -173,8 +173,8 @@ Fast:
   text: Mark wear when **engaging in melee** to suffer 1 fewer harm, even on a miss.
   valueMod: 1
   itemType:
-    - Armor
-    - Shield
+    - Weapon
+    - Bow
 
 Fragile:
   tagSet: default
@@ -198,7 +198,7 @@ Flexible:
   itemType:
     - Armor
 
-Foxfolk steel:
+Foxfolk Steel:
   tagSet: default
   text: Ignore the first box of wear you mark on this item each session.
   valueMod: 1
@@ -207,9 +207,9 @@ Foxfolk steel:
     - Armor
     - Shield
 
-Hair trigger:
+Hair Trigger:
   tagSet: default
-  text: Mark wear to target a vulnerable foe at close range instead of far.
+  text: Mark wear to **target a vulnerable foe** at close range instead of far.
   valueMod: 1
   itemType:
     - Bow
@@ -236,7 +236,7 @@ Hated:
 
 Healer's Kit:
   tagSet: default
-  text: Mark wear to clear exhaustion. Mark 2 wear to clear injury.
+  text: Mark wear to clear exhaustion. Mark 2-wear to clear injury.
   valueMod: 1
   itemType: []
 
@@ -249,7 +249,7 @@ Heavy Bludgeon:
 
 Heavy Draw Weight:
   tagSet: default
-  text: When you target a vulnerable foe with this bow, mark exhaustion to inflict 1 additional injury.
+  text: When you **target a vulnerable foe** with this bow, mark exhaustion to inflict 1 additional injury.
   valueMod: 1
   itemType:
     - Bow
@@ -334,11 +334,7 @@ Invigorating:
   tagSet: default
   text: When you consume this item, mark 2-injury to clear all your exhaustion and add 2 boxes to your exhaustion track for the rest of the scene (they go away at the end of the scene, whether they are marked or unmarked, with no further harmful effects either way).
   valueMod: 1
-  itemType:
-    - Weapon
-    - Armor
-    - Shield
-    - Bow
+  itemType: []
 
 Iron Bolts:
   tagSet: default
@@ -378,7 +374,7 @@ Light:
 
 Luxury:
   tagSet: default
-  text: After creation, this item is worth +3 Value.
+  text: After creation, this item is worth +3-Value.
   valueMod: 1
   itemType:
     - Weapon
@@ -434,7 +430,7 @@ Noisy:
 
 Oiled String:
   tagSet: default
-  text: Mark wear to use the weapon skill quick shot even if you don't have it.
+  text: Mark wear to use the weapon skill **quick shot** even if you don't have it.
   valueMod: 1
   itemType:
     - Bow
