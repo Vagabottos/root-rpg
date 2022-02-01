@@ -12,13 +12,13 @@ Cover Up:
   text: Used when removing incriminating evidence or obfuscating a scene's true nature. Carries the risk of detection, expending resources, or taking too long.
 
 Disable Device:
-  text: Used when disarming traps or turning off mechanisms. Carries the risk of breaking something, drawing unwanted attention, or expend resources.
+  text: Used when disarming traps or turning off mechanisms. Carries the risk of breaking something, drawing unwanted attention, or expending resources.
 
 Hide:
   text: Used when disappearing from view or staying hidden. Carries the risk of expending resources, leaving evidence, or taking too long.
 
 Mastermind:
-  text: Used when giving orders to NPCs, detecting roguish operations, or positioning tactical elements. Carries the risk of drawing unwanted attention plunging into danger, or taking too long.
+  text: Used when giving orders to NPCs, directing roguish operations, or positioning tactical elements. Carries the risk of drawing unwanted attention, plunging into danger, or taking too long.
 
 Pick Lock:
   text: Used when opening a locked door or chest. Carries the risk of breaking something, being detected, or plunging into danger.
@@ -27,7 +27,7 @@ Pick Pocket:
   text: Used when subtly stealing from someone's pockets. Carries the risk of leaving evidence, giving a weak result, or taking too long.
 
 Set Trap:
-  text: Used when setting an ambush or rigging simple booby traps. Carries the risk of detection, expending resources, or taking too long.
+  text: Used when setting an ambush or rigging simple booby traps. Carries the risk of detection, expending resources, or leaving evidence.
 
 Sleight of Hand:
   text: Used when palming, switching, ditching, or flourishing. Carries the risk of drawing unwanted attention, leaving evidence, or giving a weak result.
