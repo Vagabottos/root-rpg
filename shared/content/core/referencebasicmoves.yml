@@ -1,6 +1,6 @@
 
 Attempt a Roguish Feat:
-  text: When you **attempt a roguish feat you are skilled in**, say your goal and roll with Finesse. On a hit, you achieve your goal. On a 7-9, mark exhaustion or one risk of your feat comes to bear, GM's choice. When you attempt a roguish feat you are NOT skilled in, you are trusting fate.
+  text: When you **attempt a roguish feat you are skilled in**, say your goal and roll with Finesse. On a hit, you achieve your goal. On a 7-9, mark exhaustion or one risk of your feat (GM's choice) comes to bear. When you attempt a roguish feat you are NOT skilled in, you are **trusting fate**.
 
   mastery: >
     On a 12+, in addition to the results of a 10+, choose one:
@@ -51,7 +51,7 @@ Read a Tense Situation:
 
 Trick an NPC:
   text: >
-    When you **trick an NPC to get what you want**, roll with Cunning. On a hit, they take the bait and do what you want. On a 7-9, they can instead choose one:
+    When you **trick an NPC** to get what you want, roll with Cunning. On a hit, they take the bait and do what you want. On a 7-9, they can instead choose one:
 
 
     * they hesitate; you shake their confidence or weaken their morale.
@@ -64,7 +64,7 @@ Trick an NPC:
 
 Trust Fate:
   text: >
-    When you **trust fate to get through trouble**, roll with Luck. On a hit you scrape by or barrel through; the GM will tell you what it costs you. On a 10+, fortune favors the bold; your panache also earns you a fleeting opportunity.
+    When you **trust fate** to get through trouble, roll with Luck. On a hit you scrape by or barrel through; the GM will tell you what it costs you. On a 10+, fortune favors the bold; your panache also earns you a fleeting opportunity.
 
   mastery: On a 12+, fate smiles upon you as you receive an incredible and surprising windfall of luck. You accomplish your aim without cost, and you receive an immediate fortunate benefit; the GM will tell you what bounty befalls you.
 
@@ -82,9 +82,9 @@ Wreck Something:
 
     * you can grab up shards of useful material from the wreckage; clear 2-depletion
 
-Help or Interface:
+Help or Interfere:
   text: >
-    When you **help or interfere with another vagabond**, mark exhaustion to add +1 or -2 to their roll (after rolling). Mark exhaustion again to select one of the following:
+    When you **help or interfere** with another vagabond, mark exhaustion to add +1 or -2 to their roll (after rolling). Mark exhaustion again to select one of the following:
 
 
     * conceal your aid or interference
@@ -93,4 +93,4 @@ Help or Interface:
 
 Plead with a PC:
   text: >
-    When you **plead with a PC to go along with you**, they clear 1 exhaustion if they agree to what you've proposed. You may use this move only once per session.
+    When you **plead with a PC** to go along with you, they clear 1-exhaustion if they agree to what you've proposed. You may use this move only once per session.
