@@ -30,7 +30,7 @@ heirloom:
   sections:
     - name: Features
       numChoices: 2
-      choices: [Reliable (Heirloom), Feared (Heirloom), Deadly (Heirloom), Double-headed (Heirloom), Flexible (Heirloom), Unique (Heirloom), Rousing (Heirloom)]
+      choices: [Reliable (Heirloom), Feared (Heirloom), Deadly (Heirloom), Double-Headed (Heirloom), Flexible (Heirloom), Unique (Heirloom), Rousing (Heirloom)]
 
 symbol:
   name: Symbol
