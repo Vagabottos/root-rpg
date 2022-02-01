@@ -9,7 +9,7 @@ toolkit:
       choices: [Assorted Scrap Wood (Toolbox), Assorted Gears and Springs (Toolbox), Esoteric Hand Tools (Toolbox), Manuals (Toolbox), Assorted Medicines (Toolbox), Portable Alchemy Kit (Toolbox), Sewing Kit (Toolbox), Cookware (Toolbox), Minor Explosives (Toolbox)]
     - name: Drawbacks
       numChoices: 1
-      choices: [Heavy (Toolbox), Bulky and Obvious (Toolbox), Stolen Toolkit (Toolbox), Fragile (Toolbox)]
+      choices: [Heavy (Toolbox), Bulky and Obvious (Toolbox), Stolen (Toolbox), Fragile (Toolbox)]
 
 ship:
   name: Small Ship
@@ -21,7 +21,7 @@ ship:
       choices: [Stocked (Ship), Nimble (Ship), Renowned (Ship), Swift (Ship)]
     - name: Flaws
       numChoices: 2
-      choices: [Dreaded (Ship), Rickety (Ship), Clumsy (Ship), Stolen Ship (Ship)]
+      choices: [Dreaded (Ship), Rickety (Ship), Clumsy (Ship), Stolen (Ship)]
 
 heirloom:
   name: Heirloom Weapon
