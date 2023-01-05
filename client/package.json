@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start:dev": "ng serve --hmr --open --port 3998",
+    "start:dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve --hmr --open --port 3998",
     "build": "ng build --prod",
     "build:staging": "ng build --configuration=staging",
     "test": "ng test",

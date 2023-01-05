@@ -27,7 +27,7 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/rootrpg",
+  "mongodb": "mongodb://127.0.0.1:27017/rootrpg",
   "mail": {
     "from": "test@example.com",
     "host": "localhost",

@@ -1,12 +1,12 @@
-import { ServiceAddons } from '@feathersjs/feathers';
+import * as feathersAuthentication from '@feathersjs/authentication';
 import { AuthenticationService, JWTStrategy } from '@feathersjs/authentication';
 import { LocalStrategy } from '@feathersjs/authentication-local';
 import { expressOauth } from '@feathersjs/authentication-oauth';
+import { ServiceAddons } from '@feathersjs/feathers';
 import authManagement from 'feathers-authentication-management';
-import * as feathersAuthentication from '@feathersjs/authentication';
 
-import { Application } from './declarations';
 import { disallow, iff } from 'feathers-hooks-common';
+import { Application } from './declarations';
 import notifier from './notifier';
 const { authenticate } = feathersAuthentication.hooks;
 
@@ -16,7 +16,7 @@ declare module './declarations' {
   }
 
   interface ServiceTypes {
-    'authManagement': authManagement & ServiceAddons<any>;
+    'authManagement': typeof authManagement & ServiceAddons<any>;
   }
 }
 

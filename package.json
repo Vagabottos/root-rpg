@@ -16,6 +16,7 @@
     "content": "node shared/scripts/content"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "lerna": "^3.22.1"
   },
   "dependencies": {
