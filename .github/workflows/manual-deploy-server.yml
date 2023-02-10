@@ -30,10 +30,8 @@ jobs:
 
     - run: cd server && npm run build
 
-    - name: Deploy Server
-      uses: AlexxNB/caprover-action@v1
-      with:
-        server: 'https://captain.rootrpgapi.magpiegames.com'
-        password: '${{ secrets.CAPROVER_PASSWORD }}'
-        appname: 'rootrpgapi'
-        branch: master
+    - name: Install caprover
+      run: npm install -g caprover
+
+    - name: Caprover Deploy
+      run: caprover deploy -h 'https://captain.rootrpgapi.magpiegames.com' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a 'rootrpgapi'
