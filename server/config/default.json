@@ -17,7 +17,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://rootrpg.seiyria.com",
+      "audience": "https://rootrpgkeeper.magpiegames.com",
       "issuer": "feathers",
       "algorithm": "HS256",
       "expiresIn": "1d"
