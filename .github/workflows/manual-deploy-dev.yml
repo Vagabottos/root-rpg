@@ -36,6 +36,7 @@ jobs:
         server: 'https://captain.rootrpgapi.magpiegames.com'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         appname: 'rootrpgapi'
+        branch: master
 
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v1.1

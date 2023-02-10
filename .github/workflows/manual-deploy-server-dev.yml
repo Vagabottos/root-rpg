@@ -34,3 +34,4 @@ jobs:
         server: 'https://captain.rootrpgapi.magpiegames.com'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         appname: 'rootrpgapi'
+        branch: master
