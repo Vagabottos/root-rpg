@@ -16,24 +16,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    
+
     - run: npm install && npm run setup
 
     - run: npm run lint
-      
+
     - run: cd client && npm run build:staging
-      
+
     - run: cd server && npm run build
 
     - name: Deploy Server
       uses: AlexxNB/caprover-action@v1
       with:
-        server: 'https://captain.rootrpgapi.seiyria.com'
+        server: 'https://captain.rootrpgapi.magpiegames.com'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         appname: 'rootrpgapi'
 
