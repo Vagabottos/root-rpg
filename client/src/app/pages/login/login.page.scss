@@ -1,16 +1,52 @@
 
-.container, ion-row, ion-col {
+.container, ion-col {
   height: 100%;
 }
 
 .container {
-  form {
-    min-width: 30%;
-    min-height: 30%;
+  height: 100vh;
+  background-color: #f4eedb;
 
-    @media screen and (min-width: 720px) {
-      margin-left: 20%;
-      margin-right: 20%;
+  @media screen and (min-width: 720px) {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  @media screen and (max-width: 720px) {
+    height: 150vh;
+  }
+
+  .headers {
+    padding: 0;
+
+    .headers-container {
+      position: relative;
+    }
+
+    ion-col {
+      padding: 0;
+    }
+
+    .big-header-img {
+      width: 100%;
+      max-height: 200px;
+    }
+
+    .big-logo-img-container {
+      width: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+    }
+
+    .big-logo-img {
+      width: 75%;
+      max-height: 250px;
+      margin-top: -170px;
+
+      @media screen and (min-width: 720px) {
+        width: 50%;
+      }
     }
   }
 
@@ -19,9 +55,119 @@
     height: 100%;
   }
 
+  .foreward {
+    --background: transparent;
+    box-shadow: none;
+  }
+
+  .login {
+
+    ion-card-title, ion-label {
+      color: #fff;
+      z-index: 100;
+    }
+
+    &, ion-list, ion-item, .validation-errors {
+      --background: #4c6b65;
+      --ion-item-background: #4c6b65;
+      --color: #fff;
+      background: #4c6b65;
+    }
+
+    ion-input {
+      color: #000;
+    }
+  }
+
+  .button-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+  }
+
+  .marketing-container {
+    margin-top: 130px;
+
+    .black-text {
+      color: #000;
+      padding-top: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .img-card {
+      &.physical {
+        background: url("../../../assets/splash/buy-print.png");
+        background-size: 100% 300px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        height: 300px;
+
+        ion-button {
+          --background: #a48020;
+          padding-left: 10px;
+        }
+      }
+
+      &.drivethrurpg {
+        background: url("../../../assets/splash/buy-drivethrurpg.png");
+        background-size: 100% 300px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        height: 300px;
+
+        ion-button {
+          --background: #2d6969;
+          padding-left: 25px;
+        }
+      }
+    }
+  }
+
   ion-spinner {
     margin-right: 10px;
     height: 18px;
     width: 18px;
+  }
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+
+  @media screen and (max-width: 720px) {
+    position: relative;
+  }
+
+  .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .leder {
+      width: 200px;
+      height: 20px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .magpie {
+      width: 200px;
+      height: 120px;
+    }
+  }
+
+  .credits {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
   }
 }

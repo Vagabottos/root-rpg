@@ -3,18 +3,29 @@
 
 <ion-content>
   <div class="container">
-    <ion-row>
-      <ion-col class="login-container">
-        <form [formGroup]="authForm">
-          <ion-card *ngIf="isStaging" color="warning">
-            <ion-card-content>
-              <strong>Warning:</strong> Your characters and campaigns may get edited or deleted while the app is being developed. I'll do my best to avoid deleting, but if something breaks please let me know.
-              <br><br>
-              - Seiyria#3457
-            </ion-card-content>
-          </ion-card>
+    <ion-row class="headers">
+      <ion-col class="headers-container">
+        <img src="assets/splash/header-rootrpg.png" class="big-header-img" />
 
-          <ion-card>
+        <div class="big-logo-img-container">
+          <img src="assets/splash/logo-rootrpg.png" class="big-logo-img" />
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeXs="12" sizeMd="4" class="login-container">
+        <ion-card class="foreward">
+          <ion-card-header>
+            <ion-card-title>Campaign Tools For Your Woodland</ion-card-title>
+            <ion-card-content>
+              Ready to run your own campaign of Root: The Roleplaying Game? The digital tools here will make it a breeze! You can track your own version of the Woodland with its individual clearings, factions, and NPCs, along with the player characters and all their relevant attributes! Just sign-in and get creating!
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+
+        <form [formGroup]="authForm">
+          <ion-card class="login">
 
             <ion-card-header>
               <ion-card-title>
@@ -26,7 +37,7 @@
 
               <ion-list>
                 <ion-item>
-                  <ion-label position="stacked">Email</ion-label>
+                  <ion-label position="stacked">Username (Email)</ion-label>
                   <ion-input type="email" formControlName="email" (keyup.enter)="handleSubmit()"></ion-input>
                 </ion-item>
 
@@ -51,18 +62,11 @@
                   </ng-container>
                 </div>
 
-                <ion-item lines="none">
+                <ion-item lines="none" *ngIf="currentLoginState !== LoginState.Forgot">
                   <ion-row class="action-row">
                     <ion-col>
-                      <ion-button color="secondary" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
-                        {{ currentLoginState !== LoginState.Login ? 'Log in instead?' : 'Sign up instead?' }}
-                      </ion-button>
-                    </ion-col>
-
-                    <ion-col class="ion-text-right">
-                      <ion-button color="primary" [disabled]="isDoing || authForm.invalid" (click)="handleSubmit()">
-                        <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
-                        {{ titles[currentLoginState] }}
+                      <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
+                        Forgot Your Password?
                       </ion-button>
                     </ion-col>
                   </ion-row>
@@ -70,9 +74,16 @@
 
                 <ion-item lines="none">
                   <ion-row class="action-row">
-                    <ion-col>
-                      <ion-button color="secondary" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
-                        Forgot Password?
+                    <ion-col class="button-area">
+                      <ion-button size="large" color="primary" [disabled]="isDoing || authForm.invalid" (click)="handleSubmit()">
+                        <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
+                        {{ titles[currentLoginState] }}
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col class="button-area ion-text-right">
+                      <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
+                        {{ currentLoginState !== LoginState.Login ? 'Log in' : 'Sign up' }}
                       </ion-button>
                     </ion-col>
                   </ion-row>
@@ -84,6 +95,51 @@
           </ion-card>
         </form>
       </ion-col>
+
+      <ion-col sizeXs="12" sizeMd="8" class="marketing-container">
+        <ion-card class="img-card physical">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="6" offset="6" class="black-text">
+                Grab a physical copy of the <strong>Root: The Roleplaying Game Core Book</strong> for everything you need to play! Each copy comes with a free digital version!
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+
+          <ion-row>
+            <ion-col size="6" offset="6">
+              <ion-button class="buy" size="large" target="blank" href="https://magpiegames.com/pages/root-rpg">Buy Now</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+
+        <ion-card class="img-card drivethrurpg">
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="6" class="black-text">
+                Digital versions of the <strong>Root: The Roleplaying Game Core Book</strong> are available through DriveThruRPG!
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+
+          <ion-row>
+            <ion-col size="6">
+              <ion-button class="buy" size="large" target="blank" href="https://www.drivethrurpg.com/browse/pub/4353/Magpie-Games/subcategory/8460_33580/Root-The-Tabletop-Roleplaying-Game">Buy Now</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
     </ion-row>
+
+    <div class="footer">
+      <div class="images">
+        <img src="assets/splash/logo-leder.png" class="logo-img leder" />
+        <img src="assets/splash/logo-magpie.png" class="logo-img magpie" />
+      </div>
+
+      <div class="credits">
+        Root&reg; and Leder Games&reg; logo and key art TM & &copy; Leder Games. Text and design TM & &copy; 2021 Magpie Games. All rights reserved.
+      </div>
+    </div>
   </div>
 </ion-content>
