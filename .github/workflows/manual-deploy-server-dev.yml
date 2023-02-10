@@ -31,6 +31,6 @@ jobs:
     - name: Deploy Server
       uses: AlexxNB/caprover-action@v1
       with:
-        server: 'https://captain.rootrpgapi.seiyria.com'
+        server: 'https://captain.rootrpgapi.magpiegames.com'
         password: '${{ secrets.CAPROVER_PASSWORD }}'
         appname: 'rootrpgapi'
