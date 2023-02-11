@@ -1,6 +1,6 @@
 {
-    "name": "Root RPG",
-    "short_name": "Root RPG",
+    "name": "Root RPG Keeper",
+    "short_name": "Root RPG Keeper",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#5e899b",
-    "background_color": "#5e899b",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone"
 }
