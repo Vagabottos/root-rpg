@@ -3,13 +3,13 @@
   "port": "PORT",
   "mongodb": "MONGODB_URI",
   "mail": {
-    "from": "test@example.com",
-    "host": "localhost",
-    "port": 1025,
-    "secure": false,
+    "from": "MAIL_EMAIL",
+    "host": "MAIL_HOST",
+    "port": "MAIL_PORT",
+    "secure": "MAIL_SECURE",
     "auth": {
-      "user": "123",
-      "pass": "321"
+      "user": "MAIL_USER",
+      "pass": "MAIL_PASSWORD"
     }
   }
 }
