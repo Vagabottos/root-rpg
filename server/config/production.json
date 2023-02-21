@@ -1,5 +1,5 @@
 {
-  "host": "rootrpg.magpiegames.com",
+  "host": "rootrpgkeeper.magpiegames.com",
   "port": "PORT",
   "mongodb": "MONGODB_URI",
   "mail": {
