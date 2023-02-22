@@ -2,7 +2,7 @@ import { Application } from './declarations';
 
 export default function(app: Application): any {
   async function sendEmail(email) {
-    const res = await app.service('mailer').create(email);
+    await app.service('mailer').create(email);
   }
 
   const handlers = {
