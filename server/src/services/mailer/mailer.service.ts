@@ -20,7 +20,9 @@ export default async function (app: Application): Promise<void> {
     auth: {
       apiKey: defaultMailSettings.auth.pass
     }
-  })));
+  }), defaultMailSettings));
+
+  console.log(defaultMailSettings);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('mailer');
