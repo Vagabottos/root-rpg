@@ -20,6 +20,7 @@
     "lerna": "^3.22.1"
   },
   "dependencies": {
+    "nodemailer-mandrill-transport": "^1.2.0",
     "yamljs": "^0.3.0"
   }
 }
