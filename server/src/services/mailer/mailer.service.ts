@@ -26,7 +26,7 @@ export default async function (app: Application): Promise<void> {
     debug: true
   });
 
-  app.use('/mailer', Mailer(transport, defaultMailSettings)));
+  app.use('/mailer', Mailer(transport, defaultMailSettings));
 
   console.log(defaultMailSettings);
 
