@@ -1,7 +1,7 @@
 // Initializes the `mailer` service on path `/services/mailer`
 import { ServiceAddons } from '@feathersjs/feathers';
 import Mailer from 'feathers-mailer';
-import mandrill from 'nodemailer-mandrill-transport';
+import nodemailer from 'nodemailer';
 import { Application } from '../../declarations';
 import hooks from './mailer.hooks';
 
@@ -16,11 +16,17 @@ export default async function (app: Application): Promise<void> {
 
   // Initialize our service with any options it requires
   const defaultMailSettings = app.get('mail');
-  app.use('/mailer', Mailer(mandrill({
+  const transport = nodemailer.createTransport({
+    service: 'Mandrill',
     auth: {
-      apiKey: defaultMailSettings.auth.pass
-    }
-  }), defaultMailSettings));
+      user: defaultMailSettings.auth.user,
+      pass: defaultMailSettings.auth.pass
+    },
+    logger: true,
+    debug: true
+  });
+
+  app.use('/mailer', Mailer(transport, defaultMailSettings)));
 
   console.log(defaultMailSettings);
 
