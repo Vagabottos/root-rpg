@@ -28,8 +28,6 @@ export default async function (app: Application): Promise<void> {
 
   app.use('/mailer', Mailer(transport, defaultMailSettings));
 
-  console.log(defaultMailSettings);
-
   // Get our initialized service so that we can register hooks
   const service = app.service('mailer');
   service.hooks(hooks);
