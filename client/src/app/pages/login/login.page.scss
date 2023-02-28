@@ -1,173 +1,218 @@
-
-.container, ion-col {
-  height: 100%;
-}
-
-.container {
-  height: 100vh;
-  background-color: #f4eedb;
-
-  @media screen and (min-width: 720px) {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-
-  @media screen and (max-width: 720px) {
-    height: 150vh;
-  }
-
-  .headers {
-    padding: 0;
-
-    .headers-container {
-      position: relative;
-    }
-
-    ion-col {
-      padding: 0;
-    }
-
-    .big-header-img {
-      width: 100%;
-      max-height: 200px;
-    }
-
-    .big-logo-img-container {
-      width: 100%;
-      position: absolute;
-      display: flex;
-      justify-content: center;
-    }
-
-    .big-logo-img {
-      width: 75%;
-      max-height: 250px;
-      margin-top: -170px;
-
-      @media screen and (min-width: 720px) {
-        width: 50%;
-      }
-    }
-  }
-
-  .login-container {
-    padding-top: 10%;
-    height: 100%;
-  }
-
-  .foreward {
-    --background: transparent;
-    box-shadow: none;
-  }
-
-  .login {
-
-    ion-card-title, ion-label {
-      color: #fff;
-      z-index: 100;
-    }
-
-    &, ion-list, ion-item, .validation-errors {
-      --background: #4c6b65;
-      --ion-item-background: #4c6b65;
-      --color: #fff;
-      background: #4c6b65;
-    }
-
-    ion-input {
-      color: #000;
-    }
-  }
-
-  .button-area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-  }
-
-  .marketing-container {
-    margin-top: 130px;
-
-    .black-text {
-      color: #000;
-      padding-top: 50px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .img-card {
-      &.physical {
-        background: url("../../../assets/splash/buy-print.png");
-        background-size: 100% 300px;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        height: 300px;
-
-        ion-button {
-          --background: #a48020;
-          padding-left: 10px;
-        }
-      }
-
-      &.drivethrurpg {
-        background: url("../../../assets/splash/buy-drivethrurpg.png");
-        background-size: 100% 300px;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        height: 300px;
-
-        ion-button {
-          --background: #2d6969;
-          padding-left: 25px;
-        }
-      }
-    }
-  }
-
-  ion-spinner {
-    margin-right: 10px;
-    height: 18px;
-    width: 18px;
-  }
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.upper {
   width: 100%;
+  position: absolute;
+  display: grid;
+  justify-items: center;
+}
 
-  @media screen and (max-width: 720px) {
-    position: relative;
+.holder {
+  width: 900px;
+  background-color: #F4EDDB;
+}
+
+.top {
+  background-repeat: no-repeat;
+  background-size: 900px 160px;
+  width: 900px;
+  height: 160px;
+  padding: 0;
+  background-image: url('/assets/splash/header-rootrpg.png');
+}
+
+.logo {
+  background-repeat: no-repeat;
+  background-size: 470px 160px;
+  width: 470px;
+  height: 160px;
+  padding: 0;
+  margin-top: -125px;
+  background-image: url('/assets/splash/logo-rootrpg.png');
+}
+
+.items {
+  height: 640px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  grid-row-gap: 15px;
+  grid-column-gap: 30px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding-left: 40px;
+  margin-top:35px;
+}
+
+.copyright {
+  color: #9a917a;
+  font-size: 10px;
+  font-family: sans-serif;
+  margin-bottom: 30px;
+}
+
+.lederheight {
+  height: 40px;
+}
+
+.lederimg {
+  width: 164px;
+  height: 18px;
+}
+
+.magpieimg {
+  width: 130px;
+}
+
+.item1 {
+  order: 1;
+  width: 300px;
+}
+
+.item2 {
+  order: 3;
+  background-image: url('/assets/splash/buy-print.png');
+  padding: 20px;
+  padding-left: 220px;
+  padding-top: 50px;
+  border-radius: 15px;
+  width:475px;height: 300px;
+  background-repeat: no-repeat;
+  color: #000;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.item3 {
+  order: 2;
+  width: 300px;
+  height: 368px;
+  background-color: transparent;
+}
+
+.item4 {
+  width: 475px;
+  height: 300px;
+  order: 4;
+  background-image: url('/assets/splash/buy-drivethrurpg.png');
+  background-repeat: no-repeat;
+  padding: 20px;
+  padding-top: 50px;
+  padding-right: 220px;
+  border-radius: 15px;
+  color: #000;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.campaign {
+  font-family: 'Luminari';
+  font-size: 32px;
+  color: #4c6b65;
+}
+
+.description {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #000
+}
+
+@media (max-width:480px) {
+  .holder {
+      width: 485px;
   }
 
-  .images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .leder {
-      width: 200px;
-      height: 20px;
-      margin-top: 10px;
-      margin-right: 10px;
-    }
-
-    .magpie {
-      width: 200px;
-      height: 120px;
-    }
+  .items {
+      height: 1190px;
+      padding-left: 5px;
+      padding-right: 5px;
   }
 
-  .credits {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    font-size: 12px;
-    color: #888;
-    text-align: center;
+  .item1 {
+      width: 475px;
+  }
+
+  .item3 {
+      width: 475px;
+  }
+
+  .top {
+    width: 485px;
+  }
+}  
+
+.login {
+  margin: 0px;
+  padding: 15px;
+  background-color: #4c6b65;
+
+  ion-card-title, ion-label {
+    color: #fff;
+    z-index: 100;
+  }
+
+  &, ion-list, ion-item, .validation-errors {
+    --background: #4c6b65;
+    --ion-item-background: #4c6b65;
+    --color: #fff;
+    background: #4c6b65;
+  }
+
+  ion-input {
+    color: #000;
+    background-color: #fff;
+    font-size: 18px;
+  }
+}
+
+.labelcurrentLoginState {
+  font-family: 'Luminari';
+  font-size: 25px;
+  color: #fff;
+}
+
+.cardcontent {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.ionlabel {
+  margin-bottom: 5px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.lumin {
+  font-family: 'Luminari';
+}
+
+.buttonphysical{
+  margin-left: -10px;
+  ion-button {
+    cursor: pointer;
+    width: 150px;
+    padding: 11px;
+    font-family: 'Luminari';
+    font-size: 18px;
+    text-transform: uppercase;
+    height:60px;
+    --background: #a48020;
+    padding-left: 10px;
+  }
+}
+
+.buttondigital{
+  margin-left: -10px;
+  ion-button {
+    cursor: pointer;
+    width: 150px;
+    padding: 11px;
+    font-family: 'Luminari';
+    font-size: 18px;
+    text-transform: uppercase;
+    height: 60px;
+    --background: #2e6969;
+    padding-left: 10px;
   }
 }
