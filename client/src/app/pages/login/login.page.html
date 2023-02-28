@@ -1,7 +1,9 @@
 <ion-header>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>  
 </ion-header>
 
 <ion-content>
+  <!--
   <div class="container">
     <ion-row class="headers">
       <ion-col class="headers-container">
@@ -142,4 +144,152 @@
       </div>
     </div>
   </div>
+  -->
+
+    <div class="superior">
+        <div class="contenedor">
+            <div class="top"></div>
+            <center>
+                <div class="logo"></div>
+            </center>
+            <div style="height:40px"></div>
+            <div class="conteiner" >
+                <div class="item1">
+                    <div style="font-family:Luminari;font-size:32px;color:#4c6b65;">Campaign Tools For Your Woodland</div>
+                    <div style="font-family:sans-serif;font-size:16px;color:#000">Ready to run your own campaign of Root: The Roleplaying Game? The digital tools here will make it a breeze! You can track your own version of the Woodland with its individual clearings, factions, and NPCs, along with the player characters and all their relevant attributes! Just sign-in and get creating!</div>
+                </div>
+                <div class="item2" style="padding:20px;padding-left:220px;padding-top:50px;border-radius: 15px;width:475px;height:300px;background-repeat: no-repeat;color:#000;font-size:16px;font-family: sans-serif;">
+                    Grab a physical copy of the <b>Root: The Roleplaying Game Core Book</b> for everything you need to play! Each copy comes with a free digital version!
+                    <br><br>
+                    <div style="cursor: pointer;border-radius: 10px;background-color:#a3801f;color:#fff;width:120px;padding:11px;font-family:'Luminari';font-size:18px;" onclick="location.href='https://magpiegames.com/pages/root-rpg'">BUY NOW</div>
+                </div>
+                <div class="item3">
+                  <form [formGroup]="authForm">
+                    <ion-card class="login" style="margin:0px;padding:15px;background-color:#4c6b65;">
+          
+                      <!--
+                      <ion-card-header>
+                        <ion-card-title>
+                          {{ titles[currentLoginState] }}
+                        </ion-card-title>
+                      </ion-card-header>
+                      -->
+                      <label style="font-family:Luminari;font-size:25px;color:#fff;">
+                        {{ titles[currentLoginState] }}
+                      </label>
+                      <ion-card-content style="padding:0;margin:0;line-height:1;">
+          
+                        <ion-list>
+                          <ion-item>
+                            <ion-label position="stacked" style="margin-bottom:5px;color:#fff;font-family: sans-serif;font-size: 18px;">Username</ion-label>
+                            <ion-input type="email" formControlName="email" (keyup.enter)="handleSubmit()"></ion-input>
+                          </ion-item>
+          
+                          <div class="validation-errors">
+                            <ng-container *ngFor="let validation of validationMessages.email">
+                              <div class="message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
+                                <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+          
+                          <ion-item *ngIf="currentLoginState !== LoginState.Forgot">
+                            <ion-label position="stacked" style="margin-bottom:5px;color:#fff;font-family: sans-serif;font-size: 18px;">Password</ion-label>
+                            <ion-input type="password" formControlName="password" (keyup.enter)="handleSubmit()"></ion-input>
+                          </ion-item>
+          
+                          <div class="validation-errors" *ngIf="currentLoginState !== LoginState.Forgot">
+                            <ng-container *ngFor="let validation of validationMessages.password">
+                              <div class="message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
+                                <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                              </div>
+                            </ng-container>
+                          </div>
+          
+                          <ion-item lines="none" *ngIf="currentLoginState !== LoginState.Forgot">
+                            <ion-row class="action-row">
+                              <ion-col>
+                                <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
+                                  Forgot Your Password?
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-item>
+          
+                          <ion-item lines="none">
+                            <ion-row class="action-row">
+                              <ion-col class="button-area">
+                                <ion-button size="large" color="primary" [disabled]="isDoing || authForm.invalid" (click)="handleSubmit()">
+                                  <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
+                                  <label style="font-family:'Luminari';">{{ titles[currentLoginState] }}</label>
+                                </ion-button>
+                              </ion-col>
+          
+                              <ion-col class="button-area ion-text-right">
+                                <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
+                                  {{ currentLoginState !== LoginState.Login ? 'Log in' : 'Sign up' }}
+                                </ion-button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-item>
+                        </ion-list>
+          
+                      </ion-card-content>
+          
+                    </ion-card>
+                  </form>
+                  <!--
+
+                    <label id="login">LOGIN</label>
+                    <br>
+                    <div style="height:10px;"></div>
+                    <form action="get">
+                    <label style="color:#fff;font-family:sans-serif;font-size:18px;">Username</label>
+                    <input type="text" id="usuario" style="height:30px;width:100%;border-radius: 5px;">
+                    <div style="height:10px;"></div>
+                    <label style="color:#fff;font-family:sans-serif;font-size:18px;">Password</label>
+                    <input type="password" id="password" style="height:30px;width:100%;border-radius: 5px;">
+                    <input type="hidden" id="tipo" value="login" style="height:30px;width:100%;border-radius: 5px;">
+                    <div style="height:10px;"></div>
+
+                    <div class="grid">
+                        <div class="columna1"><input class="boton" type="submit" value="Send" id="enviar"></div>
+                        <div class="columna2"><input class="opcion" type="button" value="SIGN UP" id="boton" onclick="cambiar()"></div>
+                    </div>
+                    
+
+                    
+                    </form>
+                  -->  
+                </div>
+                <div class="item4" style="padding:20px;padding-top:50px;padding-right:220px;border-radius: 15px;width:475px;height:300px;color:#000;font-size:16px;font-family: sans-serif;">
+                    Digital versions of the <b>Root: The Roleplaying Game Core Book</b> are available through DriveThruRPG!
+                    <br><br>
+                    <div style="cursor: pointer;border-radius: 10px;background-color:#2e6969;color:#fff;width:120px;padding:11px;font-family:'Luminari';font-size:18px;" onclick="location.href='https://www.drivethrurpg.com/browse/pub/4353/Magpie-Games/subcategory/8460_33580/Root-The-Tabletop-Roleplaying-Game'">BUY NOW</div>
+                </div>
+            </div>
+            <center>
+                <div class="footer">
+                    <table>
+                        <tr>
+                            <td>
+                                <div style="height:12px;"></div>
+                                <img src="assets/splash/logo-leder.png" style="width:164px;height:18px;">
+                                <!--leder-logo.png-->
+                              </td>
+                            <td>
+                                <img src="assets/splash/logo-magpie.png" style="width:130px;">
+                                <!--MagpieGames-logo-final.png-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="copyright" style="color:#9a917a;font-size:10px;font-family:sans-serif;margin-bottom:30px;">
+                    Root® and Leder Games® logo and key art TM & © 2017 Leder Games, Text and design TM & © 2021 MagpieGames. All rights reserved.
+                </div>
+            </center>
+        </div>
+    </div>
+
 </ion-content>
+

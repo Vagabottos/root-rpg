@@ -1,4 +1,4 @@
-
+/*
 .container, ion-col {
   height: 100%;
 }
@@ -171,3 +171,143 @@
     text-align: center;
   }
 }
+*/
+/*JRMG - 27feb2023*/
+.superior{
+  width:100%;
+  position:absolute;
+  top:0px;
+  display:grid;
+  justify-items:center;
+
+}
+.contenedor{
+  width:900px;
+  top:0px;
+  background-color:#F4EDDB;
+}
+.top{
+  background-repeat: no-repeat;
+  background-size: 900px 160px;
+  width:900px;
+  height:160px;
+  padding:0;
+  background-image:url('img/Root-website-HeaderBG.jpg');    
+}
+.logo{
+  background-repeat: no-repeat;
+  background-size: 470px 160px;
+  width:470px;
+  height:160px;
+  padding:0;
+  margin-top:-125px;
+  background-image:url('img/RootRPG-logo-small.png');    
+}
+.conteiner{
+  /*justify-self:center;*/
+
+  height:640px;
+
+  display:flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+
+  grid-row-gap: 15px;
+  grid-column-gap: 30px;
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding-left:40px;
+  /*width:450px;*/
+}
+
+.item1{
+  width: 300px;
+  order: 1;
+}
+.item2{
+  width: 475px;
+  height: 150px;
+  order: 3;
+  background-image:url('img/Root-website-Print.jpg');    
+}
+.item3{
+  order: 2;
+  /*
+  padding:20;
+  font-size:25px;
+  color:#fff;
+  border-radius: 15px;
+  */
+  width:300px;
+  height:368px;
+  background-color:transparent;//#00f;/*#4c6b65;*/
+}
+
+.item4{
+  width: 475px;
+  height: 150px;
+  order: 4;
+  background-image:url('img/Root-website-PDF.jpg');
+  background-repeat: no-repeat;  
+}
+
+@media (max-width:480px){
+  body{
+      color:#f0f;
+  font-size:30vw;
+  }
+  .contenedor{
+      width:485px;
+  }
+  .conteiner{
+      height:1190px;
+      padding-left:5px;
+      padding-right:5px;
+  }
+
+  .item1{
+      width:475px;
+  }
+
+  .item3{
+      width:475px;
+  }
+
+  .top{
+    width:485px;
+  }
+}  
+
+.login {
+
+  ion-card-title, ion-label {
+    color: #fff;
+    z-index: 100;
+  }
+
+  &, ion-list, ion-item, .validation-errors {
+    --background: #4c6b65;
+    --ion-item-background: #4c6b65;
+    --color: #fff;
+    background: #4c6b65;
+  }
+
+  ion-input {
+    color: #000;
+    background-color: #fff;
+    font-size:18px;
+  }
+
+  ion-item {
+    padding:0;
+    margin:0;
+  }
+}
+
+
+
+/*-END-*/
+
+
