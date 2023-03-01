@@ -1,145 +1,141 @@
 <ion-header>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 </ion-header>
 
 <ion-content>
-  <div class="container">
-    <ion-row class="headers">
-      <ion-col class="headers-container">
-        <img src="assets/splash/header-rootrpg.png" class="big-header-img" />
+  <div class="upper">
+    <div class="holder">
+      <div class="top"></div>
 
-        <div class="big-logo-img-container">
-          <img src="assets/splash/logo-rootrpg.png" class="big-logo-img" />
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col sizeXs="12" sizeMd="4" class="login-container">
-        <ion-card class="foreward">
-          <ion-card-header>
-            <ion-card-title>Campaign Tools For Your Woodland</ion-card-title>
-            <ion-card-content>
-              Ready to run your own campaign of Root: The Roleplaying Game? The digital tools here will make it a breeze! You can track your own version of the Woodland with its individual clearings, factions, and NPCs, along with the player characters and all their relevant attributes! Just sign-in and get creating!
-            </ion-card-content>
-          </ion-card-header>
-        </ion-card>
-
-        <form [formGroup]="authForm">
-          <ion-card class="login">
-
-            <ion-card-header>
-              <ion-card-title>
-                {{ titles[currentLoginState] }}
-              </ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-
-              <ion-list>
-                <ion-item>
-                  <ion-label position="stacked">Username (Email)</ion-label>
-                  <ion-input type="email" formControlName="email" (keyup.enter)="handleSubmit()"></ion-input>
-                </ion-item>
-
-                <div class="validation-errors">
-                  <ng-container *ngFor="let validation of validationMessages.email">
-                    <div class="message" *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
-                      <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-
-                <ion-item *ngIf="currentLoginState !== LoginState.Forgot">
-                  <ion-label position="stacked">Password</ion-label>
-                  <ion-input type="password" formControlName="password" (keyup.enter)="handleSubmit()"></ion-input>
-                </ion-item>
-
-                <div class="validation-errors" *ngIf="currentLoginState !== LoginState.Forgot">
-                  <ng-container *ngFor="let validation of validationMessages.password">
-                    <div class="message" *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
-                      <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
-                    </div>
-                  </ng-container>
-                </div>
-
-                <ion-item lines="none" *ngIf="currentLoginState !== LoginState.Forgot">
-                  <ion-row class="action-row">
-                    <ion-col>
-                      <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
-                        Forgot Your Password?
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
-
-                <ion-item lines="none">
-                  <ion-row class="action-row">
-                    <ion-col class="button-area">
-                      <ion-button size="large" color="primary" [disabled]="isDoing || authForm.invalid" (click)="handleSubmit()">
-                        <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
-                        {{ titles[currentLoginState] }}
-                      </ion-button>
-                    </ion-col>
-
-                    <ion-col class="button-area ion-text-right">
-                      <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
-                        {{ currentLoginState !== LoginState.Login ? 'Log in' : 'Sign up' }}
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                </ion-item>
-              </ion-list>
-
-            </ion-card-content>
-
-          </ion-card>
-        </form>
-      </ion-col>
-
-      <ion-col sizeXs="12" sizeMd="8" class="marketing-container">
-        <ion-card class="img-card physical">
-          <ion-card-content>
-            <ion-row>
-              <ion-col size="6" offset="6" class="black-text">
-                Grab a physical copy of the <strong>Root: The Roleplaying Game Core Book</strong> for everything you need to play! Each copy comes with a free digital version!
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-
-          <ion-row>
-            <ion-col size="6" offset="6">
-              <ion-button class="buy" size="large" target="blank" href="https://magpiegames.com/pages/root-rpg">Buy Now</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-
-        <ion-card class="img-card drivethrurpg">
-          <ion-card-content>
-            <ion-row>
-              <ion-col size="6" class="black-text">
-                Digital versions of the <strong>Root: The Roleplaying Game Core Book</strong> are available through DriveThruRPG!
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-
-          <ion-row>
-            <ion-col size="6">
-              <ion-button class="buy" size="large" target="blank" href="https://www.drivethrurpg.com/browse/pub/4353/Magpie-Games/subcategory/8460_33580/Root-The-Tabletop-Roleplaying-Game">Buy Now</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <div class="footer">
-      <div class="images">
-        <img src="assets/splash/logo-leder.png" class="logo-img leder" />
-        <img src="assets/splash/logo-magpie.png" class="logo-img magpie" />
+      <div class="center">
+        <div class="logo"></div>
       </div>
 
-      <div class="credits">
-        Root&reg; and Leder Games&reg; logo and key art TM & &copy; Leder Games. Text and design TM & &copy; 2021 Magpie Games. All rights reserved.
+      <div class="items">
+        <div class="item1">
+          <div class="campaign lumin">Campaign Tools For Your Woodland</div>
+          <div class="description">
+            Ready to run your own campaign of Root: The Roleplaying Game? The  digital tools here
+            will make it a breeze! You can track your own version of the Woodland with its individual clearings,
+            factions, and NPCs, along with the player characters and all their relevant attributes! Just sign-in and get
+            creating!
+          </div>
+        </div>
+
+        <div class="item2">
+          <label>Grab a physical copy of the <strong>Root: The Roleplaying Game Core Book</strong> for everything you
+            need to play! Each copy comes with a free digital version!</label>
+          <div class="buttonphysical lumin">
+            <ion-button size="large" target="blank" href="https://magpiegames.com/pages/root-rpg">Buy Now</ion-button>
+          </div>
+        </div>
+
+        <div class="item3">
+          <form [formGroup]="authForm">
+            <ion-card class="login">
+              <label class="labelcurrentLoginState lumin">
+                {{ titles[currentLoginState] }}
+              </label>
+
+              <ion-card-content class="cardcontent">
+                <ion-list>
+                  <ion-item>
+                    <ion-label position="stacked" class="ionlabel">Username</ion-label>
+                    <ion-input type="email" formControlName="email" (keyup.enter)="handleSubmit()"></ion-input>
+                  </ion-item>
+
+                  <div class="validation-errors">
+                    <ng-container *ngFor="let validation of validationMessages.email">
+                      <div class="message"
+                        *ngIf="authForm.get('email').hasError(validation.type) && (authForm.get('email').dirty || authForm.get('email').touched)">
+                        <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <ion-item *ngIf="currentLoginState !== LoginState.Forgot">
+                    <ion-label position="stacked" class="ionlabel">Password</ion-label>
+                    <ion-input type="password" formControlName="password" (keyup.enter)="handleSubmit()"></ion-input>
+                  </ion-item>
+
+                  <div class="validation-errors" *ngIf="currentLoginState !== LoginState.Forgot">
+                    <ng-container *ngFor="let validation of validationMessages.password">
+                      <div class="message"
+                        *ngIf="authForm.get('password').hasError(validation.type) && (authForm.get('password').dirty || authForm.get('password').touched)">
+                        <ion-icon name="warning-outline"></ion-icon> {{ validation.message }}
+                      </div>
+                    </ng-container>
+                  </div>
+
+                  <ion-item lines="none" *ngIf="currentLoginState !== LoginState.Forgot">
+                    <ion-row class="action-row">
+                      <ion-col>
+                        <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleForgot()">
+                          Forgot Your Password?
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+
+                  <ion-item lines="none">
+                    <ion-row class="action-row">
+                      <ion-col class="button-area">
+                        <ion-button size="large" color="primary" [disabled]="isDoing || authForm.invalid"
+                          (click)="handleSubmit()">
+                          <ion-spinner slot="start" *ngIf="isDoing"></ion-spinner>
+                          <label class="lumin">{{ titles[currentLoginState] }}</label>
+                        </ion-button>
+                      </ion-col>
+
+                      <ion-col class="button-area ion-text-right">
+                        <ion-button color="light" fill="clear" [disabled]="isDoing" (click)="toggleRegister()">
+                          {{ currentLoginState !== LoginState.Login ? 'Log in' : 'Sign up' }}
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </form>
+        </div>
+
+        <div class="item4">
+          <table>
+            <tr>
+              <td>
+                <label>
+                  Digital versions of the <strong>Root: The Roleplaying Game Core Book</strong> are available
+                  through DriveThruRPG!
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="buttondigital lumin">
+                  <ion-button size="large" target="blank"
+                    href="https://www.drivethrurpg.com/browse/pub/4353/Magpie-Games/subcategory/8460_33580/Root-The-Tabletop-Roleplaying-Game">Buy
+                    Now
+                  </ion-button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer">
+          <img src="assets/splash/logo-leder.png" class="lederimg">
+          <img src="assets/splash/logo-magpie.png" class="magpieimg">
+        </div>
+
+        <div class="copyright">
+          Root&reg; and Leder Games&reg; logo and key art TM & &copy; 2017 Leder Games. Text and design TM & &copy; 2021
+          MagpieGames. All rights reserved.
+        </div>
       </div>
     </div>
   </div>
+
 </ion-content>
