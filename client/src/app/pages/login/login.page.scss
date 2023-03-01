@@ -10,21 +10,22 @@
   background-color: #F4EDDB;
 }
 
-.top {
+.top, .logo {
   background-repeat: no-repeat;
+  padding: 0;
+}
+
+.top {
   background-size: 900px 160px;
   width: 900px;
   height: 160px;
-  padding: 0;
   background-image: url('/assets/splash/header-rootrpg.png');
 }
 
 .logo {
-  background-repeat: no-repeat;
   background-size: 470px 160px;
   width: 470px;
   height: 160px;
-  padding: 0;
   margin-top: -125px;
   background-image: url('/assets/splash/logo-rootrpg.png');
 }
@@ -75,7 +76,8 @@
   padding-left: 220px;
   padding-top: 50px;
   border-radius: 15px;
-  width:475px;height: 300px;
+  width: 475px;
+  height: 300px;
   background-repeat: no-repeat;
   color: #000;
   font-size: 16px;
@@ -105,7 +107,6 @@
 }
 
 .campaign {
-  font-family: 'Luminari';
   font-size: 32px;
   color: #4c6b65;
 }
@@ -116,29 +117,29 @@
   color: #000
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
   .holder {
-      width: 485px;
+    width: 485px;
   }
 
   .items {
-      height: 1190px;
-      padding-left: 5px;
-      padding-right: 5px;
+    height: 1190px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   .item1 {
-      width: 475px;
+    width: 475px;
   }
 
   .item3 {
-      width: 475px;
+    width: 475px;
   }
 
   .top {
     width: 485px;
   }
-}  
+}
 
 .login {
   margin: 0px;
@@ -159,13 +160,11 @@
 
   ion-input {
     color: #000;
-    background-color: #fff;
     font-size: 18px;
   }
 }
 
 .labelcurrentLoginState {
-  font-family: 'Luminari';
   font-size: 25px;
   color: #fff;
 }
@@ -187,32 +186,40 @@
   font-family: 'Luminari';
 }
 
-.buttonphysical{
+.buttonphysical, .buttondigital {
   margin-left: -10px;
+
   ion-button {
-    cursor: pointer;
     width: 150px;
     padding: 11px;
-    font-family: 'Luminari';
     font-size: 18px;
     text-transform: uppercase;
-    height:60px;
-    --background: #a48020;
+    height: 60px;
     padding-left: 10px;
   }
 }
 
-.buttondigital{
-  margin-left: -10px;
+.buttonphysical {
   ion-button {
-    cursor: pointer;
-    width: 150px;
-    padding: 11px;
-    font-family: 'Luminari';
-    font-size: 18px;
-    text-transform: uppercase;
-    height: 60px;
-    --background: #2e6969;
-    padding-left: 10px;
+    --background: #a48020;
   }
+}
+
+.buttondigital {
+  margin-left: -10px;
+
+  ion-button {
+    --background: #2e6969;
+  }
+}
+
+.center, .copyright {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
