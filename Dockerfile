@@ -1,4 +1,4 @@
-FROM node:13.14.0-alpine
+FROM node:18-alpine
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 ADD https://www.google.com /time.now
